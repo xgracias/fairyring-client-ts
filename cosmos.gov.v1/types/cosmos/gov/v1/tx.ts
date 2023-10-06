@@ -75,22 +75,6 @@ export interface MsgVote {
 export interface MsgVoteResponse {
 }
 
-/** MsgVoteEncrypted defines a message to cast an encrypted vote. */
-export interface MsgVoteEncrypted {
-  /** proposal_id defines the unique id of the proposal. */
-  proposalId: number;
-  /** voter is the voter address for the proposal. */
-  voter: string;
-  /** encrypted_data defines the encrypted vote option. */
-  encryptedData: string;
-  /** metadata is any arbitrary metadata attached to the Vote. */
-  metadata: string;
-}
-
-/** MsgVoteResponse defines the Msg/Vote response type. */
-export interface MsgVoteEncryptedResponse {
-}
-
 /** MsgVoteWeighted defines a message to cast a vote. */
 export interface MsgVoteWeighted {
   /** proposal_id defines the unique id of the proposal. */
@@ -511,121 +495,6 @@ export const MsgVoteResponse = {
   },
 };
 
-function createBaseMsgVoteEncrypted(): MsgVoteEncrypted {
-  return { proposalId: 0, voter: "", encryptedData: "", metadata: "" };
-}
-
-export const MsgVoteEncrypted = {
-  encode(message: MsgVoteEncrypted, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.proposalId !== 0) {
-      writer.uint32(8).uint64(message.proposalId);
-    }
-    if (message.voter !== "") {
-      writer.uint32(18).string(message.voter);
-    }
-    if (message.encryptedData !== "") {
-      writer.uint32(26).string(message.encryptedData);
-    }
-    if (message.metadata !== "") {
-      writer.uint32(34).string(message.metadata);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgVoteEncrypted {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgVoteEncrypted();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.proposalId = longToNumber(reader.uint64() as Long);
-          break;
-        case 2:
-          message.voter = reader.string();
-          break;
-        case 3:
-          message.encryptedData = reader.string();
-          break;
-        case 4:
-          message.metadata = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MsgVoteEncrypted {
-    return {
-      proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      voter: isSet(object.voter) ? String(object.voter) : "",
-      encryptedData: isSet(object.encryptedData) ? String(object.encryptedData) : "",
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
-    };
-  },
-
-  toJSON(message: MsgVoteEncrypted): unknown {
-    const obj: any = {};
-    message.proposalId !== undefined && (obj.proposalId = Math.round(message.proposalId));
-    message.voter !== undefined && (obj.voter = message.voter);
-    message.encryptedData !== undefined && (obj.encryptedData = message.encryptedData);
-    message.metadata !== undefined && (obj.metadata = message.metadata);
-    return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgVoteEncrypted>, I>>(object: I): MsgVoteEncrypted {
-    const message = createBaseMsgVoteEncrypted();
-    message.proposalId = object.proposalId ?? 0;
-    message.voter = object.voter ?? "";
-    message.encryptedData = object.encryptedData ?? "";
-    message.metadata = object.metadata ?? "";
-    return message;
-  },
-};
-
-function createBaseMsgVoteEncryptedResponse(): MsgVoteEncryptedResponse {
-  return {};
-}
-
-export const MsgVoteEncryptedResponse = {
-  encode(_: MsgVoteEncryptedResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgVoteEncryptedResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgVoteEncryptedResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(_: any): MsgVoteEncryptedResponse {
-    return {};
-  },
-
-  toJSON(_: MsgVoteEncryptedResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MsgVoteEncryptedResponse>, I>>(_: I): MsgVoteEncryptedResponse {
-    const message = createBaseMsgVoteEncryptedResponse();
-    return message;
-  },
-};
-
 function createBaseMsgVoteWeighted(): MsgVoteWeighted {
   return { proposalId: 0, voter: "", options: [], metadata: "" };
 }
@@ -965,8 +834,6 @@ export interface Msg {
   ExecLegacyContent(request: MsgExecLegacyContent): Promise<MsgExecLegacyContentResponse>;
   /** Vote defines a method to add a vote on a specific proposal. */
   Vote(request: MsgVote): Promise<MsgVoteResponse>;
-  /** VoteEncrypted defines a method to add an encrypted vote on a specific proposal. */
-  VoteEncrypted(request: MsgVoteEncrypted): Promise<MsgVoteEncryptedResponse>;
   /** VoteWeighted defines a method to add a weighted vote on a specific proposal. */
   VoteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse>;
   /** Deposit defines a method to add deposit on a specific proposal. */
@@ -987,7 +854,6 @@ export class MsgClientImpl implements Msg {
     this.SubmitProposal = this.SubmitProposal.bind(this);
     this.ExecLegacyContent = this.ExecLegacyContent.bind(this);
     this.Vote = this.Vote.bind(this);
-    this.VoteEncrypted = this.VoteEncrypted.bind(this);
     this.VoteWeighted = this.VoteWeighted.bind(this);
     this.Deposit = this.Deposit.bind(this);
     this.UpdateParams = this.UpdateParams.bind(this);
@@ -1008,12 +874,6 @@ export class MsgClientImpl implements Msg {
     const data = MsgVote.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "Vote", data);
     return promise.then((data) => MsgVoteResponse.decode(new _m0.Reader(data)));
-  }
-
-  VoteEncrypted(request: MsgVoteEncrypted): Promise<MsgVoteEncryptedResponse> {
-    const data = MsgVoteEncrypted.encode(request).finish();
-    const promise = this.rpc.request("cosmos.gov.v1.Msg", "VoteEncrypted", data);
-    return promise.then((data) => MsgVoteEncryptedResponse.decode(new _m0.Reader(data)));
   }
 
   VoteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse> {

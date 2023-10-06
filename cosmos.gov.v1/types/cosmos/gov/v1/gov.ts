@@ -22,8 +22,6 @@ export enum VoteOption {
   VOTE_OPTION_NO = 3,
   /** VOTE_OPTION_NO_WITH_VETO - VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option. */
   VOTE_OPTION_NO_WITH_VETO = 4,
-  /** VOTE_OPTION_ENCRYPTED - VOTE_OPTION_ENCRYPTED defines an encrypted bote */
-  VOTE_OPTION_ENCRYPTED = 5,
   UNRECOGNIZED = -1,
 }
 
@@ -44,9 +42,6 @@ export function voteOptionFromJSON(object: any): VoteOption {
     case 4:
     case "VOTE_OPTION_NO_WITH_VETO":
       return VoteOption.VOTE_OPTION_NO_WITH_VETO;
-    case 5:
-    case "VOTE_OPTION_ENCRYPTED":
-      return VoteOption.VOTE_OPTION_ENCRYPTED;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -66,8 +61,6 @@ export function voteOptionToJSON(object: VoteOption): string {
       return "VOTE_OPTION_NO";
     case VoteOption.VOTE_OPTION_NO_WITH_VETO:
       return "VOTE_OPTION_NO_WITH_VETO";
-    case VoteOption.VOTE_OPTION_ENCRYPTED:
-      return "VOTE_OPTION_ENCRYPTED";
     case VoteOption.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -89,25 +82,20 @@ export enum ProposalStatus {
    */
   PROPOSAL_STATUS_VOTING_PERIOD = 2,
   /**
-   * PROPOSAL_STATUS_TALLY_PERIOD - PROPOSAL_STATUS_TALLY_PERIOD defines a proposal status during the tally
-   * period.
-   */
-  PROPOSAL_STATUS_TALLY_PERIOD = 3,
-  /**
    * PROPOSAL_STATUS_PASSED - PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has
    * passed.
    */
-  PROPOSAL_STATUS_PASSED = 4,
+  PROPOSAL_STATUS_PASSED = 3,
   /**
    * PROPOSAL_STATUS_REJECTED - PROPOSAL_STATUS_REJECTED defines a proposal status of a proposal that has
    * been rejected.
    */
-  PROPOSAL_STATUS_REJECTED = 5,
+  PROPOSAL_STATUS_REJECTED = 4,
   /**
    * PROPOSAL_STATUS_FAILED - PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has
    * failed.
    */
-  PROPOSAL_STATUS_FAILED = 6,
+  PROPOSAL_STATUS_FAILED = 5,
   UNRECOGNIZED = -1,
 }
 
@@ -123,15 +111,12 @@ export function proposalStatusFromJSON(object: any): ProposalStatus {
     case "PROPOSAL_STATUS_VOTING_PERIOD":
       return ProposalStatus.PROPOSAL_STATUS_VOTING_PERIOD;
     case 3:
-    case "PROPOSAL_STATUS_TALLY_PERIOD":
-      return ProposalStatus.PROPOSAL_STATUS_TALLY_PERIOD;
-    case 4:
     case "PROPOSAL_STATUS_PASSED":
       return ProposalStatus.PROPOSAL_STATUS_PASSED;
-    case 5:
+    case 4:
     case "PROPOSAL_STATUS_REJECTED":
       return ProposalStatus.PROPOSAL_STATUS_REJECTED;
-    case 6:
+    case 5:
     case "PROPOSAL_STATUS_FAILED":
       return ProposalStatus.PROPOSAL_STATUS_FAILED;
     case -1:
@@ -149,8 +134,6 @@ export function proposalStatusToJSON(object: ProposalStatus): string {
       return "PROPOSAL_STATUS_DEPOSIT_PERIOD";
     case ProposalStatus.PROPOSAL_STATUS_VOTING_PERIOD:
       return "PROPOSAL_STATUS_VOTING_PERIOD";
-    case ProposalStatus.PROPOSAL_STATUS_TALLY_PERIOD:
-      return "PROPOSAL_STATUS_TALLY_PERIOD";
     case ProposalStatus.PROPOSAL_STATUS_PASSED:
       return "PROPOSAL_STATUS_PASSED";
     case ProposalStatus.PROPOSAL_STATUS_REJECTED:
@@ -238,13 +221,6 @@ export interface Proposal {
    * Since: cosmos-sdk 0.47
    */
   proposer: string;
-  /** flag to check if proposal has at least one encrypted vote */
-  hasEncryptedVotes: boolean;
-  /** identity and pubkey are used to submit encrypted votes */
-  identity: string;
-  pubkey: string;
-  /** aggregated keyshare is used to decrypt the encrypted votes during the tally phase */
-  aggrKeyshare: string;
 }
 
 /** TallyResult defines a standard tally for a governance proposal. */
@@ -257,8 +233,6 @@ export interface TallyResult {
   noCount: string;
   /** no_with_veto_count is the number of no with veto votes on a proposal. */
   noWithVetoCount: string;
-  /** encrypted_count is the number of encrypted votes on a proposal. */
-  encryptedCount: string;
 }
 
 /**
@@ -274,7 +248,6 @@ export interface Vote {
   options: WeightedVoteOption[];
   /** metadata is any  arbitrary metadata to attached to the vote. */
   metadata: string;
-  encryptedVoteData: string;
 }
 
 /** DepositParams defines the params for deposits on governance proposals. */
@@ -308,8 +281,6 @@ export interface TallyParams {
    * vetoed. Default value: 1/3.
    */
   vetoThreshold: string;
-  /** Duration of the tally period. */
-  maxTallyPeriod: Duration | undefined;
 }
 
 /**
@@ -351,22 +322,6 @@ export interface Params {
   burnProposalDepositPrevote: boolean;
   /** burn deposits if quorum with vote type no_veto is met */
   burnVoteVeto: boolean;
-  /** Duration of the voting period. */
-  maxTallyPeriod: Duration | undefined;
-  trustedCounterParties: TrustedCounterParty[];
-  channelId: string;
-}
-
-export interface DecryptedVoteOption {
-  /** option defines the vote option. */
-  option: VoteOption;
-  randomNo: number;
-}
-
-export interface TrustedCounterParty {
-  clientId: string;
-  connectionId: string;
-  channelId: string;
 }
 
 function createBaseWeightedVoteOption(): WeightedVoteOption {
@@ -513,10 +468,6 @@ function createBaseProposal(): Proposal {
     title: "",
     summary: "",
     proposer: "",
-    hasEncryptedVotes: false,
-    identity: "",
-    pubkey: "",
-    aggrKeyshare: "",
   };
 }
 
@@ -560,18 +511,6 @@ export const Proposal = {
     }
     if (message.proposer !== "") {
       writer.uint32(106).string(message.proposer);
-    }
-    if (message.hasEncryptedVotes === true) {
-      writer.uint32(112).bool(message.hasEncryptedVotes);
-    }
-    if (message.identity !== "") {
-      writer.uint32(122).string(message.identity);
-    }
-    if (message.pubkey !== "") {
-      writer.uint32(130).string(message.pubkey);
-    }
-    if (message.aggrKeyshare !== "") {
-      writer.uint32(138).string(message.aggrKeyshare);
     }
     return writer;
   },
@@ -622,18 +561,6 @@ export const Proposal = {
         case 13:
           message.proposer = reader.string();
           break;
-        case 14:
-          message.hasEncryptedVotes = reader.bool();
-          break;
-        case 15:
-          message.identity = reader.string();
-          break;
-        case 16:
-          message.pubkey = reader.string();
-          break;
-        case 17:
-          message.aggrKeyshare = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -657,10 +584,6 @@ export const Proposal = {
       title: isSet(object.title) ? String(object.title) : "",
       summary: isSet(object.summary) ? String(object.summary) : "",
       proposer: isSet(object.proposer) ? String(object.proposer) : "",
-      hasEncryptedVotes: isSet(object.hasEncryptedVotes) ? Boolean(object.hasEncryptedVotes) : false,
-      identity: isSet(object.identity) ? String(object.identity) : "",
-      pubkey: isSet(object.pubkey) ? String(object.pubkey) : "",
-      aggrKeyshare: isSet(object.aggrKeyshare) ? String(object.aggrKeyshare) : "",
     };
   },
 
@@ -688,10 +611,6 @@ export const Proposal = {
     message.title !== undefined && (obj.title = message.title);
     message.summary !== undefined && (obj.summary = message.summary);
     message.proposer !== undefined && (obj.proposer = message.proposer);
-    message.hasEncryptedVotes !== undefined && (obj.hasEncryptedVotes = message.hasEncryptedVotes);
-    message.identity !== undefined && (obj.identity = message.identity);
-    message.pubkey !== undefined && (obj.pubkey = message.pubkey);
-    message.aggrKeyshare !== undefined && (obj.aggrKeyshare = message.aggrKeyshare);
     return obj;
   },
 
@@ -712,16 +631,12 @@ export const Proposal = {
     message.title = object.title ?? "";
     message.summary = object.summary ?? "";
     message.proposer = object.proposer ?? "";
-    message.hasEncryptedVotes = object.hasEncryptedVotes ?? false;
-    message.identity = object.identity ?? "";
-    message.pubkey = object.pubkey ?? "";
-    message.aggrKeyshare = object.aggrKeyshare ?? "";
     return message;
   },
 };
 
 function createBaseTallyResult(): TallyResult {
-  return { yesCount: "", abstainCount: "", noCount: "", noWithVetoCount: "", encryptedCount: "" };
+  return { yesCount: "", abstainCount: "", noCount: "", noWithVetoCount: "" };
 }
 
 export const TallyResult = {
@@ -737,9 +652,6 @@ export const TallyResult = {
     }
     if (message.noWithVetoCount !== "") {
       writer.uint32(34).string(message.noWithVetoCount);
-    }
-    if (message.encryptedCount !== "") {
-      writer.uint32(42).string(message.encryptedCount);
     }
     return writer;
   },
@@ -763,9 +675,6 @@ export const TallyResult = {
         case 4:
           message.noWithVetoCount = reader.string();
           break;
-        case 5:
-          message.encryptedCount = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -780,7 +689,6 @@ export const TallyResult = {
       abstainCount: isSet(object.abstainCount) ? String(object.abstainCount) : "",
       noCount: isSet(object.noCount) ? String(object.noCount) : "",
       noWithVetoCount: isSet(object.noWithVetoCount) ? String(object.noWithVetoCount) : "",
-      encryptedCount: isSet(object.encryptedCount) ? String(object.encryptedCount) : "",
     };
   },
 
@@ -790,7 +698,6 @@ export const TallyResult = {
     message.abstainCount !== undefined && (obj.abstainCount = message.abstainCount);
     message.noCount !== undefined && (obj.noCount = message.noCount);
     message.noWithVetoCount !== undefined && (obj.noWithVetoCount = message.noWithVetoCount);
-    message.encryptedCount !== undefined && (obj.encryptedCount = message.encryptedCount);
     return obj;
   },
 
@@ -800,13 +707,12 @@ export const TallyResult = {
     message.abstainCount = object.abstainCount ?? "";
     message.noCount = object.noCount ?? "";
     message.noWithVetoCount = object.noWithVetoCount ?? "";
-    message.encryptedCount = object.encryptedCount ?? "";
     return message;
   },
 };
 
 function createBaseVote(): Vote {
-  return { proposalId: 0, voter: "", options: [], metadata: "", encryptedVoteData: "" };
+  return { proposalId: 0, voter: "", options: [], metadata: "" };
 }
 
 export const Vote = {
@@ -822,9 +728,6 @@ export const Vote = {
     }
     if (message.metadata !== "") {
       writer.uint32(42).string(message.metadata);
-    }
-    if (message.encryptedVoteData !== "") {
-      writer.uint32(50).string(message.encryptedVoteData);
     }
     return writer;
   },
@@ -848,9 +751,6 @@ export const Vote = {
         case 5:
           message.metadata = reader.string();
           break;
-        case 6:
-          message.encryptedVoteData = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -865,7 +765,6 @@ export const Vote = {
       voter: isSet(object.voter) ? String(object.voter) : "",
       options: Array.isArray(object?.options) ? object.options.map((e: any) => WeightedVoteOption.fromJSON(e)) : [],
       metadata: isSet(object.metadata) ? String(object.metadata) : "",
-      encryptedVoteData: isSet(object.encryptedVoteData) ? String(object.encryptedVoteData) : "",
     };
   },
 
@@ -879,7 +778,6 @@ export const Vote = {
       obj.options = [];
     }
     message.metadata !== undefined && (obj.metadata = message.metadata);
-    message.encryptedVoteData !== undefined && (obj.encryptedVoteData = message.encryptedVoteData);
     return obj;
   },
 
@@ -889,7 +787,6 @@ export const Vote = {
     message.voter = object.voter ?? "";
     message.options = object.options?.map((e) => WeightedVoteOption.fromPartial(e)) || [];
     message.metadata = object.metadata ?? "";
-    message.encryptedVoteData = object.encryptedVoteData ?? "";
     return message;
   },
 };
@@ -1010,7 +907,7 @@ export const VotingParams = {
 };
 
 function createBaseTallyParams(): TallyParams {
-  return { quorum: "", threshold: "", vetoThreshold: "", maxTallyPeriod: undefined };
+  return { quorum: "", threshold: "", vetoThreshold: "" };
 }
 
 export const TallyParams = {
@@ -1023,9 +920,6 @@ export const TallyParams = {
     }
     if (message.vetoThreshold !== "") {
       writer.uint32(26).string(message.vetoThreshold);
-    }
-    if (message.maxTallyPeriod !== undefined) {
-      Duration.encode(message.maxTallyPeriod, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
@@ -1046,9 +940,6 @@ export const TallyParams = {
         case 3:
           message.vetoThreshold = reader.string();
           break;
-        case 4:
-          message.maxTallyPeriod = Duration.decode(reader, reader.uint32());
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1062,7 +953,6 @@ export const TallyParams = {
       quorum: isSet(object.quorum) ? String(object.quorum) : "",
       threshold: isSet(object.threshold) ? String(object.threshold) : "",
       vetoThreshold: isSet(object.vetoThreshold) ? String(object.vetoThreshold) : "",
-      maxTallyPeriod: isSet(object.maxTallyPeriod) ? Duration.fromJSON(object.maxTallyPeriod) : undefined,
     };
   },
 
@@ -1071,8 +961,6 @@ export const TallyParams = {
     message.quorum !== undefined && (obj.quorum = message.quorum);
     message.threshold !== undefined && (obj.threshold = message.threshold);
     message.vetoThreshold !== undefined && (obj.vetoThreshold = message.vetoThreshold);
-    message.maxTallyPeriod !== undefined
-      && (obj.maxTallyPeriod = message.maxTallyPeriod ? Duration.toJSON(message.maxTallyPeriod) : undefined);
     return obj;
   },
 
@@ -1081,9 +969,6 @@ export const TallyParams = {
     message.quorum = object.quorum ?? "";
     message.threshold = object.threshold ?? "";
     message.vetoThreshold = object.vetoThreshold ?? "";
-    message.maxTallyPeriod = (object.maxTallyPeriod !== undefined && object.maxTallyPeriod !== null)
-      ? Duration.fromPartial(object.maxTallyPeriod)
-      : undefined;
     return message;
   },
 };
@@ -1100,9 +985,6 @@ function createBaseParams(): Params {
     burnVoteQuorum: false,
     burnProposalDepositPrevote: false,
     burnVoteVeto: false,
-    maxTallyPeriod: undefined,
-    trustedCounterParties: [],
-    channelId: "",
   };
 }
 
@@ -1137,15 +1019,6 @@ export const Params = {
     }
     if (message.burnVoteVeto === true) {
       writer.uint32(120).bool(message.burnVoteVeto);
-    }
-    if (message.maxTallyPeriod !== undefined) {
-      Duration.encode(message.maxTallyPeriod, writer.uint32(130).fork()).ldelim();
-    }
-    for (const v of message.trustedCounterParties) {
-      TrustedCounterParty.encode(v!, writer.uint32(138).fork()).ldelim();
-    }
-    if (message.channelId !== "") {
-      writer.uint32(146).string(message.channelId);
     }
     return writer;
   },
@@ -1187,15 +1060,6 @@ export const Params = {
         case 15:
           message.burnVoteVeto = reader.bool();
           break;
-        case 16:
-          message.maxTallyPeriod = Duration.decode(reader, reader.uint32());
-          break;
-        case 17:
-          message.trustedCounterParties.push(TrustedCounterParty.decode(reader, reader.uint32()));
-          break;
-        case 18:
-          message.channelId = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1218,11 +1082,6 @@ export const Params = {
         ? Boolean(object.burnProposalDepositPrevote)
         : false,
       burnVoteVeto: isSet(object.burnVoteVeto) ? Boolean(object.burnVoteVeto) : false,
-      maxTallyPeriod: isSet(object.maxTallyPeriod) ? Duration.fromJSON(object.maxTallyPeriod) : undefined,
-      trustedCounterParties: Array.isArray(object?.trustedCounterParties)
-        ? object.trustedCounterParties.map((e: any) => TrustedCounterParty.fromJSON(e))
-        : [],
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
     };
   },
 
@@ -1245,16 +1104,6 @@ export const Params = {
     message.burnProposalDepositPrevote !== undefined
       && (obj.burnProposalDepositPrevote = message.burnProposalDepositPrevote);
     message.burnVoteVeto !== undefined && (obj.burnVoteVeto = message.burnVoteVeto);
-    message.maxTallyPeriod !== undefined
-      && (obj.maxTallyPeriod = message.maxTallyPeriod ? Duration.toJSON(message.maxTallyPeriod) : undefined);
-    if (message.trustedCounterParties) {
-      obj.trustedCounterParties = message.trustedCounterParties.map((e) =>
-        e ? TrustedCounterParty.toJSON(e) : undefined
-      );
-    } else {
-      obj.trustedCounterParties = [];
-    }
-    message.channelId !== undefined && (obj.channelId = message.channelId);
     return obj;
   },
 
@@ -1274,136 +1123,6 @@ export const Params = {
     message.burnVoteQuorum = object.burnVoteQuorum ?? false;
     message.burnProposalDepositPrevote = object.burnProposalDepositPrevote ?? false;
     message.burnVoteVeto = object.burnVoteVeto ?? false;
-    message.maxTallyPeriod = (object.maxTallyPeriod !== undefined && object.maxTallyPeriod !== null)
-      ? Duration.fromPartial(object.maxTallyPeriod)
-      : undefined;
-    message.trustedCounterParties = object.trustedCounterParties?.map((e) => TrustedCounterParty.fromPartial(e)) || [];
-    message.channelId = object.channelId ?? "";
-    return message;
-  },
-};
-
-function createBaseDecryptedVoteOption(): DecryptedVoteOption {
-  return { option: 0, randomNo: 0 };
-}
-
-export const DecryptedVoteOption = {
-  encode(message: DecryptedVoteOption, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.option !== 0) {
-      writer.uint32(8).int32(message.option);
-    }
-    if (message.randomNo !== 0) {
-      writer.uint32(16).int64(message.randomNo);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): DecryptedVoteOption {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDecryptedVoteOption();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.option = reader.int32() as any;
-          break;
-        case 2:
-          message.randomNo = longToNumber(reader.int64() as Long);
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): DecryptedVoteOption {
-    return {
-      option: isSet(object.option) ? voteOptionFromJSON(object.option) : 0,
-      randomNo: isSet(object.randomNo) ? Number(object.randomNo) : 0,
-    };
-  },
-
-  toJSON(message: DecryptedVoteOption): unknown {
-    const obj: any = {};
-    message.option !== undefined && (obj.option = voteOptionToJSON(message.option));
-    message.randomNo !== undefined && (obj.randomNo = Math.round(message.randomNo));
-    return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<DecryptedVoteOption>, I>>(object: I): DecryptedVoteOption {
-    const message = createBaseDecryptedVoteOption();
-    message.option = object.option ?? 0;
-    message.randomNo = object.randomNo ?? 0;
-    return message;
-  },
-};
-
-function createBaseTrustedCounterParty(): TrustedCounterParty {
-  return { clientId: "", connectionId: "", channelId: "" };
-}
-
-export const TrustedCounterParty = {
-  encode(message: TrustedCounterParty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
-      writer.uint32(10).string(message.clientId);
-    }
-    if (message.connectionId !== "") {
-      writer.uint32(18).string(message.connectionId);
-    }
-    if (message.channelId !== "") {
-      writer.uint32(26).string(message.channelId);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): TrustedCounterParty {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseTrustedCounterParty();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.clientId = reader.string();
-          break;
-        case 2:
-          message.connectionId = reader.string();
-          break;
-        case 3:
-          message.channelId = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): TrustedCounterParty {
-    return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
-    };
-  },
-
-  toJSON(message: TrustedCounterParty): unknown {
-    const obj: any = {};
-    message.clientId !== undefined && (obj.clientId = message.clientId);
-    message.connectionId !== undefined && (obj.connectionId = message.connectionId);
-    message.channelId !== undefined && (obj.channelId = message.channelId);
-    return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(object: I): TrustedCounterParty {
-    const message = createBaseTrustedCounterParty();
-    message.clientId = object.clientId ?? "";
-    message.connectionId = object.connectionId ?? "";
-    message.channelId = object.channelId ?? "";
     return message;
   },
 };

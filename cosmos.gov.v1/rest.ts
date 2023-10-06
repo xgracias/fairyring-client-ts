@@ -194,11 +194,6 @@ export type V1MsgUpdateParamsResponse = object;
 /**
  * MsgVoteResponse defines the Msg/Vote response type.
  */
-export type V1MsgVoteEncryptedResponse = object;
-
-/**
- * MsgVoteResponse defines the Msg/Vote response type.
- */
 export type V1MsgVoteResponse = object;
 
 /**
@@ -250,11 +245,6 @@ export interface V1Params {
 
   /** burn deposits if quorum with vote type no_veto is met */
   burn_vote_veto?: boolean;
-
-  /** Duration of the voting period. */
-  max_tally_period?: string;
-  trusted_counter_parties?: V1TrustedCounterParty[];
-  channel_id?: string;
 }
 
 /**
@@ -327,16 +317,6 @@ export interface V1Proposal {
    * Since: cosmos-sdk 0.47
    */
   proposer?: string;
-
-  /** flag to check if proposal has at least one encrypted vote */
-  has_encrypted_votes?: boolean;
-
-  /** identity and pubkey are used to submit encrypted votes */
-  identity?: string;
-  pubkey?: string;
-
-  /** aggregated keyshare is used to decrypt the encrypted votes during the tally phase */
-  aggr_keyshare?: string;
 }
 
 /**
@@ -346,8 +326,6 @@ export interface V1Proposal {
  - PROPOSAL_STATUS_DEPOSIT_PERIOD: PROPOSAL_STATUS_DEPOSIT_PERIOD defines a proposal status during the deposit
 period.
  - PROPOSAL_STATUS_VOTING_PERIOD: PROPOSAL_STATUS_VOTING_PERIOD defines a proposal status during the voting
-period.
- - PROPOSAL_STATUS_TALLY_PERIOD: PROPOSAL_STATUS_TALLY_PERIOD defines a proposal status during the tally
 period.
  - PROPOSAL_STATUS_PASSED: PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has
 passed.
@@ -360,7 +338,6 @@ export enum V1ProposalStatus {
   PROPOSAL_STATUS_UNSPECIFIED = "PROPOSAL_STATUS_UNSPECIFIED",
   PROPOSAL_STATUS_DEPOSIT_PERIOD = "PROPOSAL_STATUS_DEPOSIT_PERIOD",
   PROPOSAL_STATUS_VOTING_PERIOD = "PROPOSAL_STATUS_VOTING_PERIOD",
-  PROPOSAL_STATUS_TALLY_PERIOD = "PROPOSAL_STATUS_TALLY_PERIOD",
   PROPOSAL_STATUS_PASSED = "PROPOSAL_STATUS_PASSED",
   PROPOSAL_STATUS_REJECTED = "PROPOSAL_STATUS_REJECTED",
   PROPOSAL_STATUS_FAILED = "PROPOSAL_STATUS_FAILED",
@@ -480,9 +457,6 @@ export interface V1TallyParams {
    * vetoed. Default value: 1/3.
    */
   veto_threshold?: string;
-
-  /** Duration of the tally period. */
-  max_tally_period?: string;
 }
 
 /**
@@ -500,15 +474,6 @@ export interface V1TallyResult {
 
   /** no_with_veto_count is the number of no with veto votes on a proposal. */
   no_with_veto_count?: string;
-
-  /** encrypted_count is the number of encrypted votes on a proposal. */
-  encrypted_count?: string;
-}
-
-export interface V1TrustedCounterParty {
-  client_id?: string;
-  connection_id?: string;
-  channel_id?: string;
 }
 
 /**
@@ -530,7 +495,6 @@ export interface V1Vote {
 
   /** metadata is any  arbitrary metadata to attached to the vote. */
   metadata?: string;
-  encrypted_vote_data?: string;
 }
 
 /**
@@ -541,7 +505,6 @@ export interface V1Vote {
  - VOTE_OPTION_ABSTAIN: VOTE_OPTION_ABSTAIN defines an abstain vote option.
  - VOTE_OPTION_NO: VOTE_OPTION_NO defines a no vote option.
  - VOTE_OPTION_NO_WITH_VETO: VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.
- - VOTE_OPTION_ENCRYPTED: VOTE_OPTION_ENCRYPTED defines an encrypted bote
 */
 export enum V1VoteOption {
   VOTE_OPTION_UNSPECIFIED = "VOTE_OPTION_UNSPECIFIED",
@@ -549,7 +512,6 @@ export enum V1VoteOption {
   VOTE_OPTION_ABSTAIN = "VOTE_OPTION_ABSTAIN",
   VOTE_OPTION_NO = "VOTE_OPTION_NO",
   VOTE_OPTION_NO_WITH_VETO = "VOTE_OPTION_NO_WITH_VETO",
-  VOTE_OPTION_ENCRYPTED = "VOTE_OPTION_ENCRYPTED",
 }
 
 /**
@@ -809,7 +771,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         | "PROPOSAL_STATUS_UNSPECIFIED"
         | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
         | "PROPOSAL_STATUS_VOTING_PERIOD"
-        | "PROPOSAL_STATUS_TALLY_PERIOD"
         | "PROPOSAL_STATUS_PASSED"
         | "PROPOSAL_STATUS_REJECTED"
         | "PROPOSAL_STATUS_FAILED";

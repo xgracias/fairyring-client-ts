@@ -50,7 +50,6 @@ export interface GenesisState {
    * Since: cosmos-sdk 0.47
    */
   params: Params | undefined;
-  portId: string;
 }
 
 function createBaseGenesisState(): GenesisState {
@@ -63,7 +62,6 @@ function createBaseGenesisState(): GenesisState {
     votingParams: undefined,
     tallyParams: undefined,
     params: undefined,
-    portId: "",
   };
 }
 
@@ -92,9 +90,6 @@ export const GenesisState = {
     }
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(66).fork()).ldelim();
-    }
-    if (message.portId !== "") {
-      writer.uint32(74).string(message.portId);
     }
     return writer;
   },
@@ -130,9 +125,6 @@ export const GenesisState = {
         case 8:
           message.params = Params.decode(reader, reader.uint32());
           break;
-        case 9:
-          message.portId = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -151,7 +143,6 @@ export const GenesisState = {
       votingParams: isSet(object.votingParams) ? VotingParams.fromJSON(object.votingParams) : undefined,
       tallyParams: isSet(object.tallyParams) ? TallyParams.fromJSON(object.tallyParams) : undefined,
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      portId: isSet(object.portId) ? String(object.portId) : "",
     };
   },
 
@@ -180,7 +171,6 @@ export const GenesisState = {
     message.tallyParams !== undefined
       && (obj.tallyParams = message.tallyParams ? TallyParams.toJSON(message.tallyParams) : undefined);
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    message.portId !== undefined && (obj.portId = message.portId);
     return obj;
   },
 
@@ -202,7 +192,6 @@ export const GenesisState = {
     message.params = (object.params !== undefined && object.params !== null)
       ? Params.fromPartial(object.params)
       : undefined;
-    message.portId = object.portId ?? "";
     return message;
   },
 };
