@@ -10,6 +10,19 @@
  */
 
 /**
+ * Params defines the set of Connection parameters.
+ */
+export interface Coreconnectionv1Params {
+  /**
+   * maximum expected time per block (in nanoseconds), used to enforce block delay. This parameter should reflect the
+   * largest amount of time that the chain might reasonably take to produce the next block under normal operating
+   * conditions. A safe choice is 3-5x the expected time per block.
+   * @format uint64
+   */
+  max_expected_time_per_block?: string;
+}
+
+/**
 * `Any` contains an arbitrary serialized protocol buffer message along with a
 URL that describes the type of the serialized message.
 
@@ -120,7 +133,7 @@ export interface ProtobufAny {
    * Schemes other than `http`, `https` (or the empty scheme) might be
    * used with implementation specific semantics.
    */
-  '@type'?: string;
+  "@type"?: string;
 }
 
 export interface RpcStatus {
@@ -462,6 +475,14 @@ export interface V1QueryConnectionConsensusStateResponse {
 }
 
 /**
+ * QueryConnectionParamsResponse is the response type for the Query/ConnectionParams RPC method.
+ */
+export interface V1QueryConnectionParamsResponse {
+  /** params defines the parameters of the module. */
+  params?: Coreconnectionv1Params;
+}
+
+/**
 * QueryConnectionResponse is the response type for the Query/Connection RPC
 method. Besides the connection end, it includes a proof and the height from
 which the proof was retrieved.
@@ -537,10 +558,10 @@ chain.
  - STATE_OPEN: A connection end has completed the handshake.
 */
 export enum V1State {
-  STATE_UNINITIALIZED_UNSPECIFIED = 'STATE_UNINITIALIZED_UNSPECIFIED',
-  STATE_INIT = 'STATE_INIT',
-  STATE_TRYOPEN = 'STATE_TRYOPEN',
-  STATE_OPEN = 'STATE_OPEN',
+  STATE_UNINITIALIZED_UNSPECIFIED = "STATE_UNINITIALIZED_UNSPECIFIED",
+  STATE_INIT = "STATE_INIT",
+  STATE_TRYOPEN = "STATE_TRYOPEN",
+  STATE_OPEN = "STATE_OPEN",
 }
 
 /**
@@ -627,17 +648,11 @@ export interface V1Beta1PageResponse {
   total?: string;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -652,43 +667,31 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
   securityWorker?: (
-    securityData: SecurityDataType | null
+    securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = 'application/json',
-  FormData = 'multipart/form-data',
-  UrlEncoded = 'application/x-www-form-urlencoded',
+  Json = "application/json",
+  FormData = "multipart/form-data",
+  UrlEncoded = "application/x-www-form-urlencoded",
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
+  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({
-      ...axiosConfig,
-      baseURL: axiosConfig.baseURL || '',
-    });
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -698,10 +701,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -721,9 +721,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === 'object' && property !== null
+          : typeof property === "object" && property !== null
           ? JSON.stringify(property)
-          : `${property}`
+          : `${property}`,
       );
       return formData;
     }, new FormData());
@@ -739,20 +739,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === 'boolean' ? secure : this.secure) &&
+      ((typeof secure === "boolean" ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
-      requestParams.headers.common = { Accept: '*/*' };
+    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
+      requestParams.headers.common = { Accept: "*/*" };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -762,9 +757,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -779,9 +772,7 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title ibc/core/connection/v1/connection.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
  * No description
  * 
@@ -794,8 +785,8 @@ state.
   queryClientConnections = (clientId: string, params: RequestParams = {}) =>
     this.request<V1QueryClientConnectionsResponse, RpcStatus>({
       path: `/ibc/core/connection/v1/client_connections/${clientId}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -809,19 +800,19 @@ state.
    */
   queryConnections = (
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryConnectionsResponse, RpcStatus>({
       path: `/ibc/core/connection/v1/connections`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -836,8 +827,8 @@ state.
   queryConnection = (connectionId: string, params: RequestParams = {}) =>
     this.request<V1QueryConnectionResponse, RpcStatus>({
       path: `/ibc/core/connection/v1/connections/${connectionId}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -850,14 +841,11 @@ state.
 connection.
  * @request GET:/ibc/core/connection/v1/connections/{connection_id}/client_state
  */
-  queryConnectionClientState = (
-    connectionId: string,
-    params: RequestParams = {}
-  ) =>
+  queryConnectionClientState = (connectionId: string, params: RequestParams = {}) =>
     this.request<V1QueryConnectionClientStateResponse, RpcStatus>({
       path: `/ibc/core/connection/v1/connections/${connectionId}/client_state`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -874,12 +862,28 @@ connection.
     connectionId: string,
     revisionNumber: string,
     revisionHeight: string,
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryConnectionConsensusStateResponse, RpcStatus>({
       path: `/ibc/core/connection/v1/connections/${connectionId}/consensus_state/revision/${revisionNumber}/height/${revisionHeight}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryConnectionParams
+   * @summary ConnectionParams queries all parameters of the ibc connection submodule.
+   * @request GET:/ibc/core/connection/v1/params
+   */
+  queryConnectionParams = (params: RequestParams = {}) =>
+    this.request<V1QueryConnectionParamsResponse, RpcStatus>({
+      path: `/ibc/core/connection/v1/params`,
+      method: "GET",
+      format: "json",
       ...params,
     });
 }

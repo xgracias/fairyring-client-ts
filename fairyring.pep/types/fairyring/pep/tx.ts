@@ -1,8 +1,8 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = 'fairyring.pep';
+export const protobufPackage = "fairyring.pep";
 
 export interface MsgSubmitEncryptedTx {
   creator: string;
@@ -10,7 +10,8 @@ export interface MsgSubmitEncryptedTx {
   targetBlockHeight: number;
 }
 
-export interface MsgSubmitEncryptedTxResponse {}
+export interface MsgSubmitEncryptedTxResponse {
+}
 
 /** this line is used by starport scaffolding # proto/tx/message */
 export interface MsgCreateAggregatedKeyShare {
@@ -19,21 +20,19 @@ export interface MsgCreateAggregatedKeyShare {
   data: string;
 }
 
-export interface MsgCreateAggregatedKeyShareResponse {}
+export interface MsgCreateAggregatedKeyShareResponse {
+}
 
 function createBaseMsgSubmitEncryptedTx(): MsgSubmitEncryptedTx {
-  return { creator: '', data: '', targetBlockHeight: 0 };
+  return { creator: "", data: "", targetBlockHeight: 0 };
 }
 
 export const MsgSubmitEncryptedTx = {
-  encode(
-    message: MsgSubmitEncryptedTx,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.creator !== '') {
+  encode(message: MsgSubmitEncryptedTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
-    if (message.data !== '') {
+    if (message.data !== "") {
       writer.uint32(18).string(message.data);
     }
     if (message.targetBlockHeight !== 0) {
@@ -42,10 +41,7 @@ export const MsgSubmitEncryptedTx = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgSubmitEncryptedTx {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitEncryptedTx {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgSubmitEncryptedTx();
@@ -71,11 +67,9 @@ export const MsgSubmitEncryptedTx = {
 
   fromJSON(object: any): MsgSubmitEncryptedTx {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : '',
-      data: isSet(object.data) ? String(object.data) : '',
-      targetBlockHeight: isSet(object.targetBlockHeight)
-        ? Number(object.targetBlockHeight)
-        : 0,
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      data: isSet(object.data) ? String(object.data) : "",
+      targetBlockHeight: isSet(object.targetBlockHeight) ? Number(object.targetBlockHeight) : 0,
     };
   },
 
@@ -83,17 +77,14 @@ export const MsgSubmitEncryptedTx = {
     const obj: any = {};
     message.creator !== undefined && (obj.creator = message.creator);
     message.data !== undefined && (obj.data = message.data);
-    message.targetBlockHeight !== undefined &&
-      (obj.targetBlockHeight = Math.round(message.targetBlockHeight));
+    message.targetBlockHeight !== undefined && (obj.targetBlockHeight = Math.round(message.targetBlockHeight));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTx>, I>>(
-    object: I
-  ): MsgSubmitEncryptedTx {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTx>, I>>(object: I): MsgSubmitEncryptedTx {
     const message = createBaseMsgSubmitEncryptedTx();
-    message.creator = object.creator ?? '';
-    message.data = object.data ?? '';
+    message.creator = object.creator ?? "";
+    message.data = object.data ?? "";
     message.targetBlockHeight = object.targetBlockHeight ?? 0;
     return message;
   },
@@ -104,17 +95,11 @@ function createBaseMsgSubmitEncryptedTxResponse(): MsgSubmitEncryptedTxResponse 
 }
 
 export const MsgSubmitEncryptedTxResponse = {
-  encode(
-    _: MsgSubmitEncryptedTxResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgSubmitEncryptedTxResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgSubmitEncryptedTxResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitEncryptedTxResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgSubmitEncryptedTxResponse();
@@ -138,39 +123,31 @@ export const MsgSubmitEncryptedTxResponse = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTxResponse>, I>>(
-    _: I
-  ): MsgSubmitEncryptedTxResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTxResponse>, I>>(_: I): MsgSubmitEncryptedTxResponse {
     const message = createBaseMsgSubmitEncryptedTxResponse();
     return message;
   },
 };
 
 function createBaseMsgCreateAggregatedKeyShare(): MsgCreateAggregatedKeyShare {
-  return { creator: '', height: 0, data: '' };
+  return { creator: "", height: 0, data: "" };
 }
 
 export const MsgCreateAggregatedKeyShare = {
-  encode(
-    message: MsgCreateAggregatedKeyShare,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.creator !== '') {
+  encode(message: MsgCreateAggregatedKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
     if (message.height !== 0) {
       writer.uint32(16).uint64(message.height);
     }
-    if (message.data !== '') {
+    if (message.data !== "") {
       writer.uint32(26).string(message.data);
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgCreateAggregatedKeyShare {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateAggregatedKeyShare {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgCreateAggregatedKeyShare();
@@ -196,9 +173,9 @@ export const MsgCreateAggregatedKeyShare = {
 
   fromJSON(object: any): MsgCreateAggregatedKeyShare {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : '',
+      creator: isSet(object.creator) ? String(object.creator) : "",
       height: isSet(object.height) ? Number(object.height) : 0,
-      data: isSet(object.data) ? String(object.data) : '',
+      data: isSet(object.data) ? String(object.data) : "",
     };
   },
 
@@ -210,13 +187,11 @@ export const MsgCreateAggregatedKeyShare = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgCreateAggregatedKeyShare>, I>>(
-    object: I
-  ): MsgCreateAggregatedKeyShare {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateAggregatedKeyShare>, I>>(object: I): MsgCreateAggregatedKeyShare {
     const message = createBaseMsgCreateAggregatedKeyShare();
-    message.creator = object.creator ?? '';
+    message.creator = object.creator ?? "";
     message.height = object.height ?? 0;
-    message.data = object.data ?? '';
+    message.data = object.data ?? "";
     return message;
   },
 };
@@ -226,17 +201,11 @@ function createBaseMsgCreateAggregatedKeyShareResponse(): MsgCreateAggregatedKey
 }
 
 export const MsgCreateAggregatedKeyShareResponse = {
-  encode(
-    _: MsgCreateAggregatedKeyShareResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgCreateAggregatedKeyShareResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgCreateAggregatedKeyShareResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateAggregatedKeyShareResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgCreateAggregatedKeyShareResponse();
@@ -260,9 +229,9 @@ export const MsgCreateAggregatedKeyShareResponse = {
     return obj;
   },
 
-  fromPartial<
-    I extends Exact<DeepPartial<MsgCreateAggregatedKeyShareResponse>, I>,
-  >(_: I): MsgCreateAggregatedKeyShareResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateAggregatedKeyShareResponse>, I>>(
+    _: I,
+  ): MsgCreateAggregatedKeyShareResponse {
     const message = createBaseMsgCreateAggregatedKeyShareResponse();
     return message;
   },
@@ -270,13 +239,9 @@ export const MsgCreateAggregatedKeyShareResponse = {
 
 /** Msg defines the Msg service. */
 export interface Msg {
-  SubmitEncryptedTx(
-    request: MsgSubmitEncryptedTx
-  ): Promise<MsgSubmitEncryptedTxResponse>;
+  SubmitEncryptedTx(request: MsgSubmitEncryptedTx): Promise<MsgSubmitEncryptedTxResponse>;
   /** this line is used by starport scaffolding # proto/tx/rpc */
-  CreateAggregatedKeyShare(
-    request: MsgCreateAggregatedKeyShare
-  ): Promise<MsgCreateAggregatedKeyShareResponse>;
+  CreateAggregatedKeyShare(request: MsgCreateAggregatedKeyShare): Promise<MsgCreateAggregatedKeyShareResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -286,91 +251,56 @@ export class MsgClientImpl implements Msg {
     this.SubmitEncryptedTx = this.SubmitEncryptedTx.bind(this);
     this.CreateAggregatedKeyShare = this.CreateAggregatedKeyShare.bind(this);
   }
-  SubmitEncryptedTx(
-    request: MsgSubmitEncryptedTx
-  ): Promise<MsgSubmitEncryptedTxResponse> {
+  SubmitEncryptedTx(request: MsgSubmitEncryptedTx): Promise<MsgSubmitEncryptedTxResponse> {
     const data = MsgSubmitEncryptedTx.encode(request).finish();
-    const promise = this.rpc.request(
-      'fairyring.pep.Msg',
-      'SubmitEncryptedTx',
-      data
-    );
-    return promise.then((data) =>
-      MsgSubmitEncryptedTxResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request("fairyring.pep.Msg", "SubmitEncryptedTx", data);
+    return promise.then((data) => MsgSubmitEncryptedTxResponse.decode(new _m0.Reader(data)));
   }
 
-  CreateAggregatedKeyShare(
-    request: MsgCreateAggregatedKeyShare
-  ): Promise<MsgCreateAggregatedKeyShareResponse> {
+  CreateAggregatedKeyShare(request: MsgCreateAggregatedKeyShare): Promise<MsgCreateAggregatedKeyShareResponse> {
     const data = MsgCreateAggregatedKeyShare.encode(request).finish();
-    const promise = this.rpc.request(
-      'fairyring.pep.Msg',
-      'CreateAggregatedKeyShare',
-      data
-    );
-    return promise.then((data) =>
-      MsgCreateAggregatedKeyShareResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request("fairyring.pep.Msg", "CreateAggregatedKeyShare", data);
+    return promise.then((data) => MsgCreateAggregatedKeyShareResponse.decode(new _m0.Reader(data)));
   }
 }
 
 interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

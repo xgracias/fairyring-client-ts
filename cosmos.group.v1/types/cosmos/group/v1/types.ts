@@ -1,11 +1,11 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Any } from '../../../google/protobuf/any';
-import { Duration } from '../../../google/protobuf/duration';
-import { Timestamp } from '../../../google/protobuf/timestamp';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Any } from "../../../google/protobuf/any";
+import { Duration } from "../../../google/protobuf/duration";
+import { Timestamp } from "../../../google/protobuf/timestamp";
 
-export const protobufPackage = 'cosmos.group.v1';
+export const protobufPackage = "cosmos.group.v1";
 
 /** Since: cosmos-sdk 0.46 */
 
@@ -30,22 +30,22 @@ export enum VoteOption {
 export function voteOptionFromJSON(object: any): VoteOption {
   switch (object) {
     case 0:
-    case 'VOTE_OPTION_UNSPECIFIED':
+    case "VOTE_OPTION_UNSPECIFIED":
       return VoteOption.VOTE_OPTION_UNSPECIFIED;
     case 1:
-    case 'VOTE_OPTION_YES':
+    case "VOTE_OPTION_YES":
       return VoteOption.VOTE_OPTION_YES;
     case 2:
-    case 'VOTE_OPTION_ABSTAIN':
+    case "VOTE_OPTION_ABSTAIN":
       return VoteOption.VOTE_OPTION_ABSTAIN;
     case 3:
-    case 'VOTE_OPTION_NO':
+    case "VOTE_OPTION_NO":
       return VoteOption.VOTE_OPTION_NO;
     case 4:
-    case 'VOTE_OPTION_NO_WITH_VETO':
+    case "VOTE_OPTION_NO_WITH_VETO":
       return VoteOption.VOTE_OPTION_NO_WITH_VETO;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return VoteOption.UNRECOGNIZED;
   }
@@ -54,18 +54,18 @@ export function voteOptionFromJSON(object: any): VoteOption {
 export function voteOptionToJSON(object: VoteOption): string {
   switch (object) {
     case VoteOption.VOTE_OPTION_UNSPECIFIED:
-      return 'VOTE_OPTION_UNSPECIFIED';
+      return "VOTE_OPTION_UNSPECIFIED";
     case VoteOption.VOTE_OPTION_YES:
-      return 'VOTE_OPTION_YES';
+      return "VOTE_OPTION_YES";
     case VoteOption.VOTE_OPTION_ABSTAIN:
-      return 'VOTE_OPTION_ABSTAIN';
+      return "VOTE_OPTION_ABSTAIN";
     case VoteOption.VOTE_OPTION_NO:
-      return 'VOTE_OPTION_NO';
+      return "VOTE_OPTION_NO";
     case VoteOption.VOTE_OPTION_NO_WITH_VETO:
-      return 'VOTE_OPTION_NO_WITH_VETO';
+      return "VOTE_OPTION_NO_WITH_VETO";
     case VoteOption.UNRECOGNIZED:
     default:
-      return 'UNRECOGNIZED';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -101,25 +101,25 @@ export enum ProposalStatus {
 export function proposalStatusFromJSON(object: any): ProposalStatus {
   switch (object) {
     case 0:
-    case 'PROPOSAL_STATUS_UNSPECIFIED':
+    case "PROPOSAL_STATUS_UNSPECIFIED":
       return ProposalStatus.PROPOSAL_STATUS_UNSPECIFIED;
     case 1:
-    case 'PROPOSAL_STATUS_SUBMITTED':
+    case "PROPOSAL_STATUS_SUBMITTED":
       return ProposalStatus.PROPOSAL_STATUS_SUBMITTED;
     case 2:
-    case 'PROPOSAL_STATUS_ACCEPTED':
+    case "PROPOSAL_STATUS_ACCEPTED":
       return ProposalStatus.PROPOSAL_STATUS_ACCEPTED;
     case 3:
-    case 'PROPOSAL_STATUS_REJECTED':
+    case "PROPOSAL_STATUS_REJECTED":
       return ProposalStatus.PROPOSAL_STATUS_REJECTED;
     case 4:
-    case 'PROPOSAL_STATUS_ABORTED':
+    case "PROPOSAL_STATUS_ABORTED":
       return ProposalStatus.PROPOSAL_STATUS_ABORTED;
     case 5:
-    case 'PROPOSAL_STATUS_WITHDRAWN':
+    case "PROPOSAL_STATUS_WITHDRAWN":
       return ProposalStatus.PROPOSAL_STATUS_WITHDRAWN;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return ProposalStatus.UNRECOGNIZED;
   }
@@ -128,20 +128,20 @@ export function proposalStatusFromJSON(object: any): ProposalStatus {
 export function proposalStatusToJSON(object: ProposalStatus): string {
   switch (object) {
     case ProposalStatus.PROPOSAL_STATUS_UNSPECIFIED:
-      return 'PROPOSAL_STATUS_UNSPECIFIED';
+      return "PROPOSAL_STATUS_UNSPECIFIED";
     case ProposalStatus.PROPOSAL_STATUS_SUBMITTED:
-      return 'PROPOSAL_STATUS_SUBMITTED';
+      return "PROPOSAL_STATUS_SUBMITTED";
     case ProposalStatus.PROPOSAL_STATUS_ACCEPTED:
-      return 'PROPOSAL_STATUS_ACCEPTED';
+      return "PROPOSAL_STATUS_ACCEPTED";
     case ProposalStatus.PROPOSAL_STATUS_REJECTED:
-      return 'PROPOSAL_STATUS_REJECTED';
+      return "PROPOSAL_STATUS_REJECTED";
     case ProposalStatus.PROPOSAL_STATUS_ABORTED:
-      return 'PROPOSAL_STATUS_ABORTED';
+      return "PROPOSAL_STATUS_ABORTED";
     case ProposalStatus.PROPOSAL_STATUS_WITHDRAWN:
-      return 'PROPOSAL_STATUS_WITHDRAWN';
+      return "PROPOSAL_STATUS_WITHDRAWN";
     case ProposalStatus.UNRECOGNIZED:
     default:
-      return 'UNRECOGNIZED';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -158,44 +158,40 @@ export enum ProposalExecutorResult {
   UNRECOGNIZED = -1,
 }
 
-export function proposalExecutorResultFromJSON(
-  object: any
-): ProposalExecutorResult {
+export function proposalExecutorResultFromJSON(object: any): ProposalExecutorResult {
   switch (object) {
     case 0:
-    case 'PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED':
+    case "PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED":
       return ProposalExecutorResult.PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED;
     case 1:
-    case 'PROPOSAL_EXECUTOR_RESULT_NOT_RUN':
+    case "PROPOSAL_EXECUTOR_RESULT_NOT_RUN":
       return ProposalExecutorResult.PROPOSAL_EXECUTOR_RESULT_NOT_RUN;
     case 2:
-    case 'PROPOSAL_EXECUTOR_RESULT_SUCCESS':
+    case "PROPOSAL_EXECUTOR_RESULT_SUCCESS":
       return ProposalExecutorResult.PROPOSAL_EXECUTOR_RESULT_SUCCESS;
     case 3:
-    case 'PROPOSAL_EXECUTOR_RESULT_FAILURE':
+    case "PROPOSAL_EXECUTOR_RESULT_FAILURE":
       return ProposalExecutorResult.PROPOSAL_EXECUTOR_RESULT_FAILURE;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return ProposalExecutorResult.UNRECOGNIZED;
   }
 }
 
-export function proposalExecutorResultToJSON(
-  object: ProposalExecutorResult
-): string {
+export function proposalExecutorResultToJSON(object: ProposalExecutorResult): string {
   switch (object) {
     case ProposalExecutorResult.PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED:
-      return 'PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED';
+      return "PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED";
     case ProposalExecutorResult.PROPOSAL_EXECUTOR_RESULT_NOT_RUN:
-      return 'PROPOSAL_EXECUTOR_RESULT_NOT_RUN';
+      return "PROPOSAL_EXECUTOR_RESULT_NOT_RUN";
     case ProposalExecutorResult.PROPOSAL_EXECUTOR_RESULT_SUCCESS:
-      return 'PROPOSAL_EXECUTOR_RESULT_SUCCESS';
+      return "PROPOSAL_EXECUTOR_RESULT_SUCCESS";
     case ProposalExecutorResult.PROPOSAL_EXECUTOR_RESULT_FAILURE:
-      return 'PROPOSAL_EXECUTOR_RESULT_FAILURE';
+      return "PROPOSAL_EXECUTOR_RESULT_FAILURE";
     case ProposalExecutorResult.UNRECOGNIZED:
     default:
-      return 'UNRECOGNIZED';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -231,7 +227,7 @@ export interface MemberRequest {
 /**
  * ThresholdDecisionPolicy is a decision policy where a proposal passes when it
  * satisfies the two following conditions:
- * 1. The sum of all `YES` voters' weights is greater or equal than the defined
+ * 1. The sum of all `YES` voter's weights is greater or equal than the defined
  *    `threshold`.
  * 2. The voting and execution periods of the proposal respect the parameters
  *    given by `windows`.
@@ -256,7 +252,7 @@ export interface ThresholdDecisionPolicy {
  */
 export interface PercentageDecisionPolicy {
   /**
-   * percentage is the minimum percentage the weighted sum of `YES` votes must
+   * percentage is the minimum percentage of the weighted sum of `YES` votes must
    * meet for a proposal to succeed.
    */
   percentage: string;
@@ -270,7 +266,9 @@ export interface DecisionPolicyWindows {
    * voting_period is the duration from submission of a proposal to the end of voting period
    * Within this times votes can be submitted with MsgVote.
    */
-  votingPeriod: Duration | undefined;
+  votingPeriod:
+    | Duration
+    | undefined;
   /**
    * min_execution_period is the minimum duration after the proposal submission
    * where members can start sending MsgExec. This means that the window for
@@ -324,7 +322,11 @@ export interface GroupPolicyInfo {
   groupId: number;
   /** admin is the account address of the group admin. */
   admin: string;
-  /** metadata is any arbitrary metadata to attached to the group policy. */
+  /**
+   * metadata is any arbitrary metadata attached to the group policy.
+   * the recommended format of the metadata is to be found here:
+   * https://docs.cosmos.network/v0.47/modules/group#decision-policy-1
+   */
   metadata: string;
   /**
    * version is used to track changes to a group's GroupPolicyInfo structure that
@@ -332,7 +334,9 @@ export interface GroupPolicyInfo {
    */
   version: number;
   /** decision_policy specifies the group policy's decision policy. */
-  decisionPolicy: Any | undefined;
+  decisionPolicy:
+    | Any
+    | undefined;
   /** created_at is a timestamp specifying when a group policy was created. */
   createdAt: Date | undefined;
 }
@@ -348,12 +352,18 @@ export interface Proposal {
   id: number;
   /** group_policy_address is the account address of group policy. */
   groupPolicyAddress: string;
-  /** metadata is any arbitrary metadata to attached to the proposal. */
+  /**
+   * metadata is any arbitrary metadata attached to the proposal.
+   * the recommended format of the metadata is to be found here:
+   * https://docs.cosmos.network/v0.47/modules/group#proposal-4
+   */
   metadata: string;
   /** proposers are the account addresses of the proposers. */
   proposers: string[];
   /** submit_time is a timestamp specifying when a proposal was submitted. */
-  submitTime: Date | undefined;
+  submitTime:
+    | Date
+    | undefined;
   /**
    * group_version tracks the version of the group at proposal submission.
    * This field is here for informational purposes only.
@@ -374,19 +384,35 @@ export interface Proposal {
    * populated after tallying, at voting period end or at proposal execution,
    * whichever happens first.
    */
-  finalTallyResult: TallyResult | undefined;
+  finalTallyResult:
+    | TallyResult
+    | undefined;
   /**
    * voting_period_end is the timestamp before which voting must be done.
-   * Unless a successfull MsgExec is called before (to execute a proposal whose
+   * Unless a successful MsgExec is called before (to execute a proposal whose
    * tally is successful before the voting period ends), tallying will be done
    * at this point, and the `final_tally_result`and `status` fields will be
    * accordingly updated.
    */
-  votingPeriodEnd: Date | undefined;
+  votingPeriodEnd:
+    | Date
+    | undefined;
   /** executor_result is the final result of the proposal execution. Initial value is NotRun. */
   executorResult: ProposalExecutorResult;
   /** messages is a list of `sdk.Msg`s that will be executed if the proposal passes. */
   messages: Any[];
+  /**
+   * title is the title of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   */
+  title: string;
+  /**
+   * summary is a short summary of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   */
+  summary: string;
 }
 
 /** TallyResult represents the sum of weighted votes for each vote option. */
@@ -409,35 +435,29 @@ export interface Vote {
   voter: string;
   /** option is the voter's choice on the proposal. */
   option: VoteOption;
-  /** metadata is any arbitrary metadata to attached to the vote. */
+  /** metadata is any arbitrary metadata attached to the vote. */
   metadata: string;
   /** submit_time is the timestamp when the vote was submitted. */
   submitTime: Date | undefined;
 }
 
 function createBaseMember(): Member {
-  return { address: '', weight: '', metadata: '', addedAt: undefined };
+  return { address: "", weight: "", metadata: "", addedAt: undefined };
 }
 
 export const Member = {
-  encode(
-    message: Member,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.address !== '') {
+  encode(message: Member, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
-    if (message.weight !== '') {
+    if (message.weight !== "") {
       writer.uint32(18).string(message.weight);
     }
-    if (message.metadata !== '') {
+    if (message.metadata !== "") {
       writer.uint32(26).string(message.metadata);
     }
     if (message.addedAt !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.addedAt),
-        writer.uint32(34).fork()
-      ).ldelim();
+      Timestamp.encode(toTimestamp(message.addedAt), writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
@@ -459,9 +479,7 @@ export const Member = {
           message.metadata = reader.string();
           break;
         case 4:
-          message.addedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.addedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -473,12 +491,10 @@ export const Member = {
 
   fromJSON(object: any): Member {
     return {
-      address: isSet(object.address) ? String(object.address) : '',
-      weight: isSet(object.weight) ? String(object.weight) : '',
-      metadata: isSet(object.metadata) ? String(object.metadata) : '',
-      addedAt: isSet(object.addedAt)
-        ? fromJsonTimestamp(object.addedAt)
-        : undefined,
+      address: isSet(object.address) ? String(object.address) : "",
+      weight: isSet(object.weight) ? String(object.weight) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      addedAt: isSet(object.addedAt) ? fromJsonTimestamp(object.addedAt) : undefined,
     };
   },
 
@@ -487,37 +503,33 @@ export const Member = {
     message.address !== undefined && (obj.address = message.address);
     message.weight !== undefined && (obj.weight = message.weight);
     message.metadata !== undefined && (obj.metadata = message.metadata);
-    message.addedAt !== undefined &&
-      (obj.addedAt = message.addedAt.toISOString());
+    message.addedAt !== undefined && (obj.addedAt = message.addedAt.toISOString());
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<Member>, I>>(object: I): Member {
     const message = createBaseMember();
-    message.address = object.address ?? '';
-    message.weight = object.weight ?? '';
-    message.metadata = object.metadata ?? '';
+    message.address = object.address ?? "";
+    message.weight = object.weight ?? "";
+    message.metadata = object.metadata ?? "";
     message.addedAt = object.addedAt ?? undefined;
     return message;
   },
 };
 
 function createBaseMemberRequest(): MemberRequest {
-  return { address: '', weight: '', metadata: '' };
+  return { address: "", weight: "", metadata: "" };
 }
 
 export const MemberRequest = {
-  encode(
-    message: MemberRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.address !== '') {
+  encode(message: MemberRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
-    if (message.weight !== '') {
+    if (message.weight !== "") {
       writer.uint32(18).string(message.weight);
     }
-    if (message.metadata !== '') {
+    if (message.metadata !== "") {
       writer.uint32(26).string(message.metadata);
     }
     return writer;
@@ -549,9 +561,9 @@ export const MemberRequest = {
 
   fromJSON(object: any): MemberRequest {
     return {
-      address: isSet(object.address) ? String(object.address) : '',
-      weight: isSet(object.weight) ? String(object.weight) : '',
-      metadata: isSet(object.metadata) ? String(object.metadata) : '',
+      address: isSet(object.address) ? String(object.address) : "",
+      weight: isSet(object.weight) ? String(object.weight) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : "",
     };
   },
 
@@ -563,42 +575,31 @@ export const MemberRequest = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MemberRequest>, I>>(
-    object: I
-  ): MemberRequest {
+  fromPartial<I extends Exact<DeepPartial<MemberRequest>, I>>(object: I): MemberRequest {
     const message = createBaseMemberRequest();
-    message.address = object.address ?? '';
-    message.weight = object.weight ?? '';
-    message.metadata = object.metadata ?? '';
+    message.address = object.address ?? "";
+    message.weight = object.weight ?? "";
+    message.metadata = object.metadata ?? "";
     return message;
   },
 };
 
 function createBaseThresholdDecisionPolicy(): ThresholdDecisionPolicy {
-  return { threshold: '', windows: undefined };
+  return { threshold: "", windows: undefined };
 }
 
 export const ThresholdDecisionPolicy = {
-  encode(
-    message: ThresholdDecisionPolicy,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.threshold !== '') {
+  encode(message: ThresholdDecisionPolicy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.threshold !== "") {
       writer.uint32(10).string(message.threshold);
     }
     if (message.windows !== undefined) {
-      DecisionPolicyWindows.encode(
-        message.windows,
-        writer.uint32(18).fork()
-      ).ldelim();
+      DecisionPolicyWindows.encode(message.windows, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): ThresholdDecisionPolicy {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ThresholdDecisionPolicy {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseThresholdDecisionPolicy();
@@ -609,10 +610,7 @@ export const ThresholdDecisionPolicy = {
           message.threshold = reader.string();
           break;
         case 2:
-          message.windows = DecisionPolicyWindows.decode(
-            reader,
-            reader.uint32()
-          );
+          message.windows = DecisionPolicyWindows.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -624,61 +622,45 @@ export const ThresholdDecisionPolicy = {
 
   fromJSON(object: any): ThresholdDecisionPolicy {
     return {
-      threshold: isSet(object.threshold) ? String(object.threshold) : '',
-      windows: isSet(object.windows)
-        ? DecisionPolicyWindows.fromJSON(object.windows)
-        : undefined,
+      threshold: isSet(object.threshold) ? String(object.threshold) : "",
+      windows: isSet(object.windows) ? DecisionPolicyWindows.fromJSON(object.windows) : undefined,
     };
   },
 
   toJSON(message: ThresholdDecisionPolicy): unknown {
     const obj: any = {};
     message.threshold !== undefined && (obj.threshold = message.threshold);
-    message.windows !== undefined &&
-      (obj.windows = message.windows
-        ? DecisionPolicyWindows.toJSON(message.windows)
-        : undefined);
+    message.windows !== undefined
+      && (obj.windows = message.windows ? DecisionPolicyWindows.toJSON(message.windows) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ThresholdDecisionPolicy>, I>>(
-    object: I
-  ): ThresholdDecisionPolicy {
+  fromPartial<I extends Exact<DeepPartial<ThresholdDecisionPolicy>, I>>(object: I): ThresholdDecisionPolicy {
     const message = createBaseThresholdDecisionPolicy();
-    message.threshold = object.threshold ?? '';
-    message.windows =
-      object.windows !== undefined && object.windows !== null
-        ? DecisionPolicyWindows.fromPartial(object.windows)
-        : undefined;
+    message.threshold = object.threshold ?? "";
+    message.windows = (object.windows !== undefined && object.windows !== null)
+      ? DecisionPolicyWindows.fromPartial(object.windows)
+      : undefined;
     return message;
   },
 };
 
 function createBasePercentageDecisionPolicy(): PercentageDecisionPolicy {
-  return { percentage: '', windows: undefined };
+  return { percentage: "", windows: undefined };
 }
 
 export const PercentageDecisionPolicy = {
-  encode(
-    message: PercentageDecisionPolicy,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.percentage !== '') {
+  encode(message: PercentageDecisionPolicy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.percentage !== "") {
       writer.uint32(10).string(message.percentage);
     }
     if (message.windows !== undefined) {
-      DecisionPolicyWindows.encode(
-        message.windows,
-        writer.uint32(18).fork()
-      ).ldelim();
+      DecisionPolicyWindows.encode(message.windows, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): PercentageDecisionPolicy {
+  decode(input: _m0.Reader | Uint8Array, length?: number): PercentageDecisionPolicy {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBasePercentageDecisionPolicy();
@@ -689,10 +671,7 @@ export const PercentageDecisionPolicy = {
           message.percentage = reader.string();
           break;
         case 2:
-          message.windows = DecisionPolicyWindows.decode(
-            reader,
-            reader.uint32()
-          );
+          message.windows = DecisionPolicyWindows.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -704,32 +683,25 @@ export const PercentageDecisionPolicy = {
 
   fromJSON(object: any): PercentageDecisionPolicy {
     return {
-      percentage: isSet(object.percentage) ? String(object.percentage) : '',
-      windows: isSet(object.windows)
-        ? DecisionPolicyWindows.fromJSON(object.windows)
-        : undefined,
+      percentage: isSet(object.percentage) ? String(object.percentage) : "",
+      windows: isSet(object.windows) ? DecisionPolicyWindows.fromJSON(object.windows) : undefined,
     };
   },
 
   toJSON(message: PercentageDecisionPolicy): unknown {
     const obj: any = {};
     message.percentage !== undefined && (obj.percentage = message.percentage);
-    message.windows !== undefined &&
-      (obj.windows = message.windows
-        ? DecisionPolicyWindows.toJSON(message.windows)
-        : undefined);
+    message.windows !== undefined
+      && (obj.windows = message.windows ? DecisionPolicyWindows.toJSON(message.windows) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<PercentageDecisionPolicy>, I>>(
-    object: I
-  ): PercentageDecisionPolicy {
+  fromPartial<I extends Exact<DeepPartial<PercentageDecisionPolicy>, I>>(object: I): PercentageDecisionPolicy {
     const message = createBasePercentageDecisionPolicy();
-    message.percentage = object.percentage ?? '';
-    message.windows =
-      object.windows !== undefined && object.windows !== null
-        ? DecisionPolicyWindows.fromPartial(object.windows)
-        : undefined;
+    message.percentage = object.percentage ?? "";
+    message.windows = (object.windows !== undefined && object.windows !== null)
+      ? DecisionPolicyWindows.fromPartial(object.windows)
+      : undefined;
     return message;
   },
 };
@@ -739,26 +711,17 @@ function createBaseDecisionPolicyWindows(): DecisionPolicyWindows {
 }
 
 export const DecisionPolicyWindows = {
-  encode(
-    message: DecisionPolicyWindows,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: DecisionPolicyWindows, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.votingPeriod !== undefined) {
       Duration.encode(message.votingPeriod, writer.uint32(10).fork()).ldelim();
     }
     if (message.minExecutionPeriod !== undefined) {
-      Duration.encode(
-        message.minExecutionPeriod,
-        writer.uint32(18).fork()
-      ).ldelim();
+      Duration.encode(message.minExecutionPeriod, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): DecisionPolicyWindows {
+  decode(input: _m0.Reader | Uint8Array, length?: number): DecisionPolicyWindows {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDecisionPolicyWindows();
@@ -781,81 +744,57 @@ export const DecisionPolicyWindows = {
 
   fromJSON(object: any): DecisionPolicyWindows {
     return {
-      votingPeriod: isSet(object.votingPeriod)
-        ? Duration.fromJSON(object.votingPeriod)
-        : undefined,
-      minExecutionPeriod: isSet(object.minExecutionPeriod)
-        ? Duration.fromJSON(object.minExecutionPeriod)
-        : undefined,
+      votingPeriod: isSet(object.votingPeriod) ? Duration.fromJSON(object.votingPeriod) : undefined,
+      minExecutionPeriod: isSet(object.minExecutionPeriod) ? Duration.fromJSON(object.minExecutionPeriod) : undefined,
     };
   },
 
   toJSON(message: DecisionPolicyWindows): unknown {
     const obj: any = {};
-    message.votingPeriod !== undefined &&
-      (obj.votingPeriod = message.votingPeriod
-        ? Duration.toJSON(message.votingPeriod)
-        : undefined);
-    message.minExecutionPeriod !== undefined &&
-      (obj.minExecutionPeriod = message.minExecutionPeriod
+    message.votingPeriod !== undefined
+      && (obj.votingPeriod = message.votingPeriod ? Duration.toJSON(message.votingPeriod) : undefined);
+    message.minExecutionPeriod !== undefined
+      && (obj.minExecutionPeriod = message.minExecutionPeriod
         ? Duration.toJSON(message.minExecutionPeriod)
         : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<DecisionPolicyWindows>, I>>(
-    object: I
-  ): DecisionPolicyWindows {
+  fromPartial<I extends Exact<DeepPartial<DecisionPolicyWindows>, I>>(object: I): DecisionPolicyWindows {
     const message = createBaseDecisionPolicyWindows();
-    message.votingPeriod =
-      object.votingPeriod !== undefined && object.votingPeriod !== null
-        ? Duration.fromPartial(object.votingPeriod)
-        : undefined;
-    message.minExecutionPeriod =
-      object.minExecutionPeriod !== undefined &&
-      object.minExecutionPeriod !== null
-        ? Duration.fromPartial(object.minExecutionPeriod)
-        : undefined;
+    message.votingPeriod = (object.votingPeriod !== undefined && object.votingPeriod !== null)
+      ? Duration.fromPartial(object.votingPeriod)
+      : undefined;
+    message.minExecutionPeriod = (object.minExecutionPeriod !== undefined && object.minExecutionPeriod !== null)
+      ? Duration.fromPartial(object.minExecutionPeriod)
+      : undefined;
     return message;
   },
 };
 
 function createBaseGroupInfo(): GroupInfo {
-  return {
-    id: 0,
-    admin: '',
-    metadata: '',
-    version: 0,
-    totalWeight: '',
-    createdAt: undefined,
-  };
+  return { id: 0, admin: "", metadata: "", version: 0, totalWeight: "", createdAt: undefined };
 }
 
 export const GroupInfo = {
-  encode(
-    message: GroupInfo,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GroupInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).uint64(message.id);
     }
-    if (message.admin !== '') {
+    if (message.admin !== "") {
       writer.uint32(18).string(message.admin);
     }
-    if (message.metadata !== '') {
+    if (message.metadata !== "") {
       writer.uint32(26).string(message.metadata);
     }
     if (message.version !== 0) {
       writer.uint32(32).uint64(message.version);
     }
-    if (message.totalWeight !== '') {
+    if (message.totalWeight !== "") {
       writer.uint32(42).string(message.totalWeight);
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.createdAt),
-        writer.uint32(50).fork()
-      ).ldelim();
+      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(50).fork()).ldelim();
     }
     return writer;
   },
@@ -883,9 +822,7 @@ export const GroupInfo = {
           message.totalWeight = reader.string();
           break;
         case 6:
-          message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -898,13 +835,11 @@ export const GroupInfo = {
   fromJSON(object: any): GroupInfo {
     return {
       id: isSet(object.id) ? Number(object.id) : 0,
-      admin: isSet(object.admin) ? String(object.admin) : '',
-      metadata: isSet(object.metadata) ? String(object.metadata) : '',
+      admin: isSet(object.admin) ? String(object.admin) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : "",
       version: isSet(object.version) ? Number(object.version) : 0,
-      totalWeight: isSet(object.totalWeight) ? String(object.totalWeight) : '',
-      createdAt: isSet(object.createdAt)
-        ? fromJsonTimestamp(object.createdAt)
-        : undefined,
+      totalWeight: isSet(object.totalWeight) ? String(object.totalWeight) : "",
+      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
     };
   },
 
@@ -913,24 +848,19 @@ export const GroupInfo = {
     message.id !== undefined && (obj.id = Math.round(message.id));
     message.admin !== undefined && (obj.admin = message.admin);
     message.metadata !== undefined && (obj.metadata = message.metadata);
-    message.version !== undefined &&
-      (obj.version = Math.round(message.version));
-    message.totalWeight !== undefined &&
-      (obj.totalWeight = message.totalWeight);
-    message.createdAt !== undefined &&
-      (obj.createdAt = message.createdAt.toISOString());
+    message.version !== undefined && (obj.version = Math.round(message.version));
+    message.totalWeight !== undefined && (obj.totalWeight = message.totalWeight);
+    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GroupInfo>, I>>(
-    object: I
-  ): GroupInfo {
+  fromPartial<I extends Exact<DeepPartial<GroupInfo>, I>>(object: I): GroupInfo {
     const message = createBaseGroupInfo();
     message.id = object.id ?? 0;
-    message.admin = object.admin ?? '';
-    message.metadata = object.metadata ?? '';
+    message.admin = object.admin ?? "";
+    message.metadata = object.metadata ?? "";
     message.version = object.version ?? 0;
-    message.totalWeight = object.totalWeight ?? '';
+    message.totalWeight = object.totalWeight ?? "";
     message.createdAt = object.createdAt ?? undefined;
     return message;
   },
@@ -941,10 +871,7 @@ function createBaseGroupMember(): GroupMember {
 }
 
 export const GroupMember = {
-  encode(
-    message: GroupMember,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GroupMember, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.groupId !== 0) {
       writer.uint32(8).uint64(message.groupId);
     }
@@ -984,32 +911,27 @@ export const GroupMember = {
 
   toJSON(message: GroupMember): unknown {
     const obj: any = {};
-    message.groupId !== undefined &&
-      (obj.groupId = Math.round(message.groupId));
-    message.member !== undefined &&
-      (obj.member = message.member ? Member.toJSON(message.member) : undefined);
+    message.groupId !== undefined && (obj.groupId = Math.round(message.groupId));
+    message.member !== undefined && (obj.member = message.member ? Member.toJSON(message.member) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GroupMember>, I>>(
-    object: I
-  ): GroupMember {
+  fromPartial<I extends Exact<DeepPartial<GroupMember>, I>>(object: I): GroupMember {
     const message = createBaseGroupMember();
     message.groupId = object.groupId ?? 0;
-    message.member =
-      object.member !== undefined && object.member !== null
-        ? Member.fromPartial(object.member)
-        : undefined;
+    message.member = (object.member !== undefined && object.member !== null)
+      ? Member.fromPartial(object.member)
+      : undefined;
     return message;
   },
 };
 
 function createBaseGroupPolicyInfo(): GroupPolicyInfo {
   return {
-    address: '',
+    address: "",
     groupId: 0,
-    admin: '',
-    metadata: '',
+    admin: "",
+    metadata: "",
     version: 0,
     decisionPolicy: undefined,
     createdAt: undefined,
@@ -1017,20 +939,17 @@ function createBaseGroupPolicyInfo(): GroupPolicyInfo {
 }
 
 export const GroupPolicyInfo = {
-  encode(
-    message: GroupPolicyInfo,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.address !== '') {
+  encode(message: GroupPolicyInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
     if (message.groupId !== 0) {
       writer.uint32(16).uint64(message.groupId);
     }
-    if (message.admin !== '') {
+    if (message.admin !== "") {
       writer.uint32(26).string(message.admin);
     }
-    if (message.metadata !== '') {
+    if (message.metadata !== "") {
       writer.uint32(34).string(message.metadata);
     }
     if (message.version !== 0) {
@@ -1040,10 +959,7 @@ export const GroupPolicyInfo = {
       Any.encode(message.decisionPolicy, writer.uint32(50).fork()).ldelim();
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.createdAt),
-        writer.uint32(58).fork()
-      ).ldelim();
+      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(58).fork()).ldelim();
     }
     return writer;
   },
@@ -1074,9 +990,7 @@ export const GroupPolicyInfo = {
           message.decisionPolicy = Any.decode(reader, reader.uint32());
           break;
         case 7:
-          message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1088,51 +1002,39 @@ export const GroupPolicyInfo = {
 
   fromJSON(object: any): GroupPolicyInfo {
     return {
-      address: isSet(object.address) ? String(object.address) : '',
+      address: isSet(object.address) ? String(object.address) : "",
       groupId: isSet(object.groupId) ? Number(object.groupId) : 0,
-      admin: isSet(object.admin) ? String(object.admin) : '',
-      metadata: isSet(object.metadata) ? String(object.metadata) : '',
+      admin: isSet(object.admin) ? String(object.admin) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : "",
       version: isSet(object.version) ? Number(object.version) : 0,
-      decisionPolicy: isSet(object.decisionPolicy)
-        ? Any.fromJSON(object.decisionPolicy)
-        : undefined,
-      createdAt: isSet(object.createdAt)
-        ? fromJsonTimestamp(object.createdAt)
-        : undefined,
+      decisionPolicy: isSet(object.decisionPolicy) ? Any.fromJSON(object.decisionPolicy) : undefined,
+      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
     };
   },
 
   toJSON(message: GroupPolicyInfo): unknown {
     const obj: any = {};
     message.address !== undefined && (obj.address = message.address);
-    message.groupId !== undefined &&
-      (obj.groupId = Math.round(message.groupId));
+    message.groupId !== undefined && (obj.groupId = Math.round(message.groupId));
     message.admin !== undefined && (obj.admin = message.admin);
     message.metadata !== undefined && (obj.metadata = message.metadata);
-    message.version !== undefined &&
-      (obj.version = Math.round(message.version));
-    message.decisionPolicy !== undefined &&
-      (obj.decisionPolicy = message.decisionPolicy
-        ? Any.toJSON(message.decisionPolicy)
-        : undefined);
-    message.createdAt !== undefined &&
-      (obj.createdAt = message.createdAt.toISOString());
+    message.version !== undefined && (obj.version = Math.round(message.version));
+    message.decisionPolicy !== undefined
+      && (obj.decisionPolicy = message.decisionPolicy ? Any.toJSON(message.decisionPolicy) : undefined);
+    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GroupPolicyInfo>, I>>(
-    object: I
-  ): GroupPolicyInfo {
+  fromPartial<I extends Exact<DeepPartial<GroupPolicyInfo>, I>>(object: I): GroupPolicyInfo {
     const message = createBaseGroupPolicyInfo();
-    message.address = object.address ?? '';
+    message.address = object.address ?? "";
     message.groupId = object.groupId ?? 0;
-    message.admin = object.admin ?? '';
-    message.metadata = object.metadata ?? '';
+    message.admin = object.admin ?? "";
+    message.metadata = object.metadata ?? "";
     message.version = object.version ?? 0;
-    message.decisionPolicy =
-      object.decisionPolicy !== undefined && object.decisionPolicy !== null
-        ? Any.fromPartial(object.decisionPolicy)
-        : undefined;
+    message.decisionPolicy = (object.decisionPolicy !== undefined && object.decisionPolicy !== null)
+      ? Any.fromPartial(object.decisionPolicy)
+      : undefined;
     message.createdAt = object.createdAt ?? undefined;
     return message;
   },
@@ -1141,8 +1043,8 @@ export const GroupPolicyInfo = {
 function createBaseProposal(): Proposal {
   return {
     id: 0,
-    groupPolicyAddress: '',
-    metadata: '',
+    groupPolicyAddress: "",
+    metadata: "",
     proposers: [],
     submitTime: undefined,
     groupVersion: 0,
@@ -1152,31 +1054,27 @@ function createBaseProposal(): Proposal {
     votingPeriodEnd: undefined,
     executorResult: 0,
     messages: [],
+    title: "",
+    summary: "",
   };
 }
 
 export const Proposal = {
-  encode(
-    message: Proposal,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Proposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).uint64(message.id);
     }
-    if (message.groupPolicyAddress !== '') {
+    if (message.groupPolicyAddress !== "") {
       writer.uint32(18).string(message.groupPolicyAddress);
     }
-    if (message.metadata !== '') {
+    if (message.metadata !== "") {
       writer.uint32(26).string(message.metadata);
     }
     for (const v of message.proposers) {
       writer.uint32(34).string(v!);
     }
     if (message.submitTime !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.submitTime),
-        writer.uint32(42).fork()
-      ).ldelim();
+      Timestamp.encode(toTimestamp(message.submitTime), writer.uint32(42).fork()).ldelim();
     }
     if (message.groupVersion !== 0) {
       writer.uint32(48).uint64(message.groupVersion);
@@ -1188,22 +1086,22 @@ export const Proposal = {
       writer.uint32(64).int32(message.status);
     }
     if (message.finalTallyResult !== undefined) {
-      TallyResult.encode(
-        message.finalTallyResult,
-        writer.uint32(74).fork()
-      ).ldelim();
+      TallyResult.encode(message.finalTallyResult, writer.uint32(74).fork()).ldelim();
     }
     if (message.votingPeriodEnd !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.votingPeriodEnd),
-        writer.uint32(82).fork()
-      ).ldelim();
+      Timestamp.encode(toTimestamp(message.votingPeriodEnd), writer.uint32(82).fork()).ldelim();
     }
     if (message.executorResult !== 0) {
       writer.uint32(88).int32(message.executorResult);
     }
     for (const v of message.messages) {
       Any.encode(v!, writer.uint32(98).fork()).ldelim();
+    }
+    if (message.title !== "") {
+      writer.uint32(106).string(message.title);
+    }
+    if (message.summary !== "") {
+      writer.uint32(114).string(message.summary);
     }
     return writer;
   },
@@ -1228,9 +1126,7 @@ export const Proposal = {
           message.proposers.push(reader.string());
           break;
         case 5:
-          message.submitTime = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.submitTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 6:
           message.groupVersion = longToNumber(reader.uint64() as Long);
@@ -1242,21 +1138,22 @@ export const Proposal = {
           message.status = reader.int32() as any;
           break;
         case 9:
-          message.finalTallyResult = TallyResult.decode(
-            reader,
-            reader.uint32()
-          );
+          message.finalTallyResult = TallyResult.decode(reader, reader.uint32());
           break;
         case 10:
-          message.votingPeriodEnd = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.votingPeriodEnd = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 11:
           message.executorResult = reader.int32() as any;
           break;
         case 12:
           message.messages.push(Any.decode(reader, reader.uint32()));
+          break;
+        case 13:
+          message.title = reader.string();
+          break;
+        case 14:
+          message.summary = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1269,117 +1166,88 @@ export const Proposal = {
   fromJSON(object: any): Proposal {
     return {
       id: isSet(object.id) ? Number(object.id) : 0,
-      groupPolicyAddress: isSet(object.groupPolicyAddress)
-        ? String(object.groupPolicyAddress)
-        : '',
-      metadata: isSet(object.metadata) ? String(object.metadata) : '',
-      proposers: Array.isArray(object?.proposers)
-        ? object.proposers.map((e: any) => String(e))
-        : [],
-      submitTime: isSet(object.submitTime)
-        ? fromJsonTimestamp(object.submitTime)
-        : undefined,
-      groupVersion: isSet(object.groupVersion)
-        ? Number(object.groupVersion)
-        : 0,
-      groupPolicyVersion: isSet(object.groupPolicyVersion)
-        ? Number(object.groupPolicyVersion)
-        : 0,
+      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      proposers: Array.isArray(object?.proposers) ? object.proposers.map((e: any) => String(e)) : [],
+      submitTime: isSet(object.submitTime) ? fromJsonTimestamp(object.submitTime) : undefined,
+      groupVersion: isSet(object.groupVersion) ? Number(object.groupVersion) : 0,
+      groupPolicyVersion: isSet(object.groupPolicyVersion) ? Number(object.groupPolicyVersion) : 0,
       status: isSet(object.status) ? proposalStatusFromJSON(object.status) : 0,
-      finalTallyResult: isSet(object.finalTallyResult)
-        ? TallyResult.fromJSON(object.finalTallyResult)
-        : undefined,
-      votingPeriodEnd: isSet(object.votingPeriodEnd)
-        ? fromJsonTimestamp(object.votingPeriodEnd)
-        : undefined,
-      executorResult: isSet(object.executorResult)
-        ? proposalExecutorResultFromJSON(object.executorResult)
-        : 0,
-      messages: Array.isArray(object?.messages)
-        ? object.messages.map((e: any) => Any.fromJSON(e))
-        : [],
+      finalTallyResult: isSet(object.finalTallyResult) ? TallyResult.fromJSON(object.finalTallyResult) : undefined,
+      votingPeriodEnd: isSet(object.votingPeriodEnd) ? fromJsonTimestamp(object.votingPeriodEnd) : undefined,
+      executorResult: isSet(object.executorResult) ? proposalExecutorResultFromJSON(object.executorResult) : 0,
+      messages: Array.isArray(object?.messages) ? object.messages.map((e: any) => Any.fromJSON(e)) : [],
+      title: isSet(object.title) ? String(object.title) : "",
+      summary: isSet(object.summary) ? String(object.summary) : "",
     };
   },
 
   toJSON(message: Proposal): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
-    message.groupPolicyAddress !== undefined &&
-      (obj.groupPolicyAddress = message.groupPolicyAddress);
+    message.groupPolicyAddress !== undefined && (obj.groupPolicyAddress = message.groupPolicyAddress);
     message.metadata !== undefined && (obj.metadata = message.metadata);
     if (message.proposers) {
       obj.proposers = message.proposers.map((e) => e);
     } else {
       obj.proposers = [];
     }
-    message.submitTime !== undefined &&
-      (obj.submitTime = message.submitTime.toISOString());
-    message.groupVersion !== undefined &&
-      (obj.groupVersion = Math.round(message.groupVersion));
-    message.groupPolicyVersion !== undefined &&
-      (obj.groupPolicyVersion = Math.round(message.groupPolicyVersion));
-    message.status !== undefined &&
-      (obj.status = proposalStatusToJSON(message.status));
-    message.finalTallyResult !== undefined &&
-      (obj.finalTallyResult = message.finalTallyResult
-        ? TallyResult.toJSON(message.finalTallyResult)
-        : undefined);
-    message.votingPeriodEnd !== undefined &&
-      (obj.votingPeriodEnd = message.votingPeriodEnd.toISOString());
-    message.executorResult !== undefined &&
-      (obj.executorResult = proposalExecutorResultToJSON(
-        message.executorResult
-      ));
+    message.submitTime !== undefined && (obj.submitTime = message.submitTime.toISOString());
+    message.groupVersion !== undefined && (obj.groupVersion = Math.round(message.groupVersion));
+    message.groupPolicyVersion !== undefined && (obj.groupPolicyVersion = Math.round(message.groupPolicyVersion));
+    message.status !== undefined && (obj.status = proposalStatusToJSON(message.status));
+    message.finalTallyResult !== undefined
+      && (obj.finalTallyResult = message.finalTallyResult ? TallyResult.toJSON(message.finalTallyResult) : undefined);
+    message.votingPeriodEnd !== undefined && (obj.votingPeriodEnd = message.votingPeriodEnd.toISOString());
+    message.executorResult !== undefined && (obj.executorResult = proposalExecutorResultToJSON(message.executorResult));
     if (message.messages) {
-      obj.messages = message.messages.map((e) =>
-        e ? Any.toJSON(e) : undefined
-      );
+      obj.messages = message.messages.map((e) => e ? Any.toJSON(e) : undefined);
     } else {
       obj.messages = [];
     }
+    message.title !== undefined && (obj.title = message.title);
+    message.summary !== undefined && (obj.summary = message.summary);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<Proposal>, I>>(object: I): Proposal {
     const message = createBaseProposal();
     message.id = object.id ?? 0;
-    message.groupPolicyAddress = object.groupPolicyAddress ?? '';
-    message.metadata = object.metadata ?? '';
+    message.groupPolicyAddress = object.groupPolicyAddress ?? "";
+    message.metadata = object.metadata ?? "";
     message.proposers = object.proposers?.map((e) => e) || [];
     message.submitTime = object.submitTime ?? undefined;
     message.groupVersion = object.groupVersion ?? 0;
     message.groupPolicyVersion = object.groupPolicyVersion ?? 0;
     message.status = object.status ?? 0;
-    message.finalTallyResult =
-      object.finalTallyResult !== undefined && object.finalTallyResult !== null
-        ? TallyResult.fromPartial(object.finalTallyResult)
-        : undefined;
+    message.finalTallyResult = (object.finalTallyResult !== undefined && object.finalTallyResult !== null)
+      ? TallyResult.fromPartial(object.finalTallyResult)
+      : undefined;
     message.votingPeriodEnd = object.votingPeriodEnd ?? undefined;
     message.executorResult = object.executorResult ?? 0;
     message.messages = object.messages?.map((e) => Any.fromPartial(e)) || [];
+    message.title = object.title ?? "";
+    message.summary = object.summary ?? "";
     return message;
   },
 };
 
 function createBaseTallyResult(): TallyResult {
-  return { yesCount: '', abstainCount: '', noCount: '', noWithVetoCount: '' };
+  return { yesCount: "", abstainCount: "", noCount: "", noWithVetoCount: "" };
 }
 
 export const TallyResult = {
-  encode(
-    message: TallyResult,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.yesCount !== '') {
+  encode(message: TallyResult, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.yesCount !== "") {
       writer.uint32(10).string(message.yesCount);
     }
-    if (message.abstainCount !== '') {
+    if (message.abstainCount !== "") {
       writer.uint32(18).string(message.abstainCount);
     }
-    if (message.noCount !== '') {
+    if (message.noCount !== "") {
       writer.uint32(26).string(message.noCount);
     }
-    if (message.noWithVetoCount !== '') {
+    if (message.noWithVetoCount !== "") {
       writer.uint32(34).string(message.noWithVetoCount);
     }
     return writer;
@@ -1414,48 +1282,34 @@ export const TallyResult = {
 
   fromJSON(object: any): TallyResult {
     return {
-      yesCount: isSet(object.yesCount) ? String(object.yesCount) : '',
-      abstainCount: isSet(object.abstainCount)
-        ? String(object.abstainCount)
-        : '',
-      noCount: isSet(object.noCount) ? String(object.noCount) : '',
-      noWithVetoCount: isSet(object.noWithVetoCount)
-        ? String(object.noWithVetoCount)
-        : '',
+      yesCount: isSet(object.yesCount) ? String(object.yesCount) : "",
+      abstainCount: isSet(object.abstainCount) ? String(object.abstainCount) : "",
+      noCount: isSet(object.noCount) ? String(object.noCount) : "",
+      noWithVetoCount: isSet(object.noWithVetoCount) ? String(object.noWithVetoCount) : "",
     };
   },
 
   toJSON(message: TallyResult): unknown {
     const obj: any = {};
     message.yesCount !== undefined && (obj.yesCount = message.yesCount);
-    message.abstainCount !== undefined &&
-      (obj.abstainCount = message.abstainCount);
+    message.abstainCount !== undefined && (obj.abstainCount = message.abstainCount);
     message.noCount !== undefined && (obj.noCount = message.noCount);
-    message.noWithVetoCount !== undefined &&
-      (obj.noWithVetoCount = message.noWithVetoCount);
+    message.noWithVetoCount !== undefined && (obj.noWithVetoCount = message.noWithVetoCount);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<TallyResult>, I>>(
-    object: I
-  ): TallyResult {
+  fromPartial<I extends Exact<DeepPartial<TallyResult>, I>>(object: I): TallyResult {
     const message = createBaseTallyResult();
-    message.yesCount = object.yesCount ?? '';
-    message.abstainCount = object.abstainCount ?? '';
-    message.noCount = object.noCount ?? '';
-    message.noWithVetoCount = object.noWithVetoCount ?? '';
+    message.yesCount = object.yesCount ?? "";
+    message.abstainCount = object.abstainCount ?? "";
+    message.noCount = object.noCount ?? "";
+    message.noWithVetoCount = object.noWithVetoCount ?? "";
     return message;
   },
 };
 
 function createBaseVote(): Vote {
-  return {
-    proposalId: 0,
-    voter: '',
-    option: 0,
-    metadata: '',
-    submitTime: undefined,
-  };
+  return { proposalId: 0, voter: "", option: 0, metadata: "", submitTime: undefined };
 }
 
 export const Vote = {
@@ -1463,20 +1317,17 @@ export const Vote = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.voter !== '') {
+    if (message.voter !== "") {
       writer.uint32(18).string(message.voter);
     }
     if (message.option !== 0) {
       writer.uint32(24).int32(message.option);
     }
-    if (message.metadata !== '') {
+    if (message.metadata !== "") {
       writer.uint32(34).string(message.metadata);
     }
     if (message.submitTime !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.submitTime),
-        writer.uint32(42).fork()
-      ).ldelim();
+      Timestamp.encode(toTimestamp(message.submitTime), writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -1501,9 +1352,7 @@ export const Vote = {
           message.metadata = reader.string();
           break;
         case 5:
-          message.submitTime = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.submitTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1516,34 +1365,29 @@ export const Vote = {
   fromJSON(object: any): Vote {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      voter: isSet(object.voter) ? String(object.voter) : '',
+      voter: isSet(object.voter) ? String(object.voter) : "",
       option: isSet(object.option) ? voteOptionFromJSON(object.option) : 0,
-      metadata: isSet(object.metadata) ? String(object.metadata) : '',
-      submitTime: isSet(object.submitTime)
-        ? fromJsonTimestamp(object.submitTime)
-        : undefined,
+      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      submitTime: isSet(object.submitTime) ? fromJsonTimestamp(object.submitTime) : undefined,
     };
   },
 
   toJSON(message: Vote): unknown {
     const obj: any = {};
-    message.proposalId !== undefined &&
-      (obj.proposalId = Math.round(message.proposalId));
+    message.proposalId !== undefined && (obj.proposalId = Math.round(message.proposalId));
     message.voter !== undefined && (obj.voter = message.voter);
-    message.option !== undefined &&
-      (obj.option = voteOptionToJSON(message.option));
+    message.option !== undefined && (obj.option = voteOptionToJSON(message.option));
     message.metadata !== undefined && (obj.metadata = message.metadata);
-    message.submitTime !== undefined &&
-      (obj.submitTime = message.submitTime.toISOString());
+    message.submitTime !== undefined && (obj.submitTime = message.submitTime.toISOString());
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<Vote>, I>>(object: I): Vote {
     const message = createBaseVote();
     message.proposalId = object.proposalId ?? 0;
-    message.voter = object.voter ?? '';
+    message.voter = object.voter ?? "";
     message.option = object.option ?? 0;
-    message.metadata = object.metadata ?? '';
+    message.metadata = object.metadata ?? "";
     message.submitTime = object.submitTime ?? undefined;
     return message;
   },
@@ -1553,46 +1397,31 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;
@@ -1609,7 +1438,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === 'string') {
+  } else if (typeof o === "string") {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -1618,7 +1447,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

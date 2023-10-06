@@ -120,7 +120,7 @@ export interface ProtobufAny {
    * Schemes other than `http`, `https` (or the empty scheme) might be
    * used with implementation specific semantics.
    */
-  '@type'?: string;
+  "@type"?: string;
 }
 
 export interface RpcStatus {
@@ -150,6 +150,81 @@ export interface V1Beta1AddressStringToBytesResponse {
 }
 
 /**
+* BaseAccount defines a base account type. It contains all the necessary fields
+for basic account functionality. Any custom account type should extend this
+type for additional functionality (e.g. vesting).
+*/
+export interface V1Beta1BaseAccount {
+  address?: string;
+
+  /**
+   * `Any` contains an arbitrary serialized protocol buffer message along with a
+   * URL that describes the type of the serialized message.
+   *
+   * Protobuf library provides support to pack/unpack Any values in the form
+   * of utility functions or additional generated methods of the Any type.
+   * Example 1: Pack and unpack a message in C++.
+   *     Foo foo = ...;
+   *     Any any;
+   *     any.PackFrom(foo);
+   *     ...
+   *     if (any.UnpackTo(&foo)) {
+   *       ...
+   *     }
+   * Example 2: Pack and unpack a message in Java.
+   *     Any any = Any.pack(foo);
+   *     if (any.is(Foo.class)) {
+   *       foo = any.unpack(Foo.class);
+   *  Example 3: Pack and unpack a message in Python.
+   *     foo = Foo(...)
+   *     any = Any()
+   *     any.Pack(foo)
+   *     if any.Is(Foo.DESCRIPTOR):
+   *       any.Unpack(foo)
+   *  Example 4: Pack and unpack a message in Go
+   *      foo := &pb.Foo{...}
+   *      any, err := anypb.New(foo)
+   *      if err != nil {
+   *        ...
+   *      }
+   *      ...
+   *      foo := &pb.Foo{}
+   *      if err := any.UnmarshalTo(foo); err != nil {
+   * The pack methods provided by protobuf library will by default use
+   * 'type.googleapis.com/full.type.name' as the type URL and the unpack
+   * methods only use the fully qualified type name after the last '/'
+   * in the type URL, for example "foo.bar.com/x/y.z" will yield type
+   * name "y.z".
+   * JSON
+   * ====
+   * The JSON representation of an `Any` value uses the regular
+   * representation of the deserialized, embedded message, with an
+   * additional field `@type` which contains the type URL. Example:
+   *     package google.profile;
+   *     message Person {
+   *       string first_name = 1;
+   *       string last_name = 2;
+   *     {
+   *       "@type": "type.googleapis.com/google.profile.Person",
+   *       "firstName": <string>,
+   *       "lastName": <string>
+   * If the embedded message type is well-known and has a custom JSON
+   * representation, that representation will be embedded adding a field
+   * `value` which holds the custom JSON in addition to the `@type`
+   * field. Example (for message [google.protobuf.Duration][]):
+   *       "@type": "type.googleapis.com/google.protobuf.Duration",
+   *       "value": "1.212s"
+   */
+  pub_key?: ProtobufAny;
+
+  /** @format uint64 */
+  account_number?: string;
+
+  /** @format uint64 */
+  sequence?: string;
+}
+
+/**
 * Bech32PrefixResponse is the response type for Bech32Prefix rpc method.
 
 Since: cosmos-sdk 0.46
@@ -157,6 +232,14 @@ Since: cosmos-sdk 0.46
 export interface V1Beta1Bech32PrefixResponse {
   bech32_prefix?: string;
 }
+
+/**
+* MsgUpdateParamsResponse defines the response structure for executing a
+MsgUpdateParams message.
+
+Since: cosmos-sdk 0.47
+*/
+export type V1Beta1MsgUpdateParamsResponse = object;
 
 /**
 * message SomeRequest {
@@ -258,6 +341,16 @@ export interface V1Beta1QueryAccountAddressByIDResponse {
 }
 
 /**
+* QueryAccountInfoResponse is the Query/AccountInfo response type.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1QueryAccountInfoResponse {
+  /** info is the account info which is represented by BaseAccount. */
+  info?: V1Beta1BaseAccount;
+}
+
+/**
  * QueryAccountResponse is the response type for the Query/Account RPC method.
  */
 export interface V1Beta1QueryAccountResponse {
@@ -279,6 +372,71 @@ export interface V1Beta1QueryAccountsResponse {
 }
 
 /**
+ * QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method.
+ */
+export interface V1Beta1QueryModuleAccountByNameResponse {
+  /**
+   * `Any` contains an arbitrary serialized protocol buffer message along with a
+   * URL that describes the type of the serialized message.
+   *
+   * Protobuf library provides support to pack/unpack Any values in the form
+   * of utility functions or additional generated methods of the Any type.
+   * Example 1: Pack and unpack a message in C++.
+   *     Foo foo = ...;
+   *     Any any;
+   *     any.PackFrom(foo);
+   *     ...
+   *     if (any.UnpackTo(&foo)) {
+   *       ...
+   *     }
+   * Example 2: Pack and unpack a message in Java.
+   *     Any any = Any.pack(foo);
+   *     if (any.is(Foo.class)) {
+   *       foo = any.unpack(Foo.class);
+   *  Example 3: Pack and unpack a message in Python.
+   *     foo = Foo(...)
+   *     any = Any()
+   *     any.Pack(foo)
+   *     if any.Is(Foo.DESCRIPTOR):
+   *       any.Unpack(foo)
+   *  Example 4: Pack and unpack a message in Go
+   *      foo := &pb.Foo{...}
+   *      any, err := anypb.New(foo)
+   *      if err != nil {
+   *        ...
+   *      }
+   *      ...
+   *      foo := &pb.Foo{}
+   *      if err := any.UnmarshalTo(foo); err != nil {
+   * The pack methods provided by protobuf library will by default use
+   * 'type.googleapis.com/full.type.name' as the type URL and the unpack
+   * methods only use the fully qualified type name after the last '/'
+   * in the type URL, for example "foo.bar.com/x/y.z" will yield type
+   * name "y.z".
+   * JSON
+   * ====
+   * The JSON representation of an `Any` value uses the regular
+   * representation of the deserialized, embedded message, with an
+   * additional field `@type` which contains the type URL. Example:
+   *     package google.profile;
+   *     message Person {
+   *       string first_name = 1;
+   *       string last_name = 2;
+   *     {
+   *       "@type": "type.googleapis.com/google.profile.Person",
+   *       "firstName": <string>,
+   *       "lastName": <string>
+   * If the embedded message type is well-known and has a custom JSON
+   * representation, that representation will be embedded adding a field
+   * `value` which holds the custom JSON in addition to the `@type`
+   * field. Example (for message [google.protobuf.Duration][]):
+   *       "@type": "type.googleapis.com/google.protobuf.Duration",
+   *       "value": "1.212s"
+   */
+  account?: ProtobufAny;
+}
+
+/**
 * QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method.
 
 Since: cosmos-sdk 0.46
@@ -295,17 +453,11 @@ export interface V1Beta1QueryParamsResponse {
   params?: V1Beta1Params;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -320,43 +472,31 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
   securityWorker?: (
-    securityData: SecurityDataType | null
+    securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = 'application/json',
-  FormData = 'multipart/form-data',
-  UrlEncoded = 'application/x-www-form-urlencoded',
+  Json = "application/json",
+  FormData = "multipart/form-data",
+  UrlEncoded = "application/x-www-form-urlencoded",
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
+  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({
-      ...axiosConfig,
-      baseURL: axiosConfig.baseURL || '',
-    });
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -366,10 +506,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -389,9 +526,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === 'object' && property !== null
+          : typeof property === "object" && property !== null
           ? JSON.stringify(property)
-          : `${property}`
+          : `${property}`,
       );
       return formData;
     }, new FormData());
@@ -407,20 +544,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === 'boolean' ? secure : this.secure) &&
+      ((typeof secure === "boolean" ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
-      requestParams.headers.common = { Accept: '*/*' };
+    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
+      requestParams.headers.common = { Accept: "*/*" };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -430,9 +562,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -447,32 +577,46 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title cosmos/auth/v1beta1/auth.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
-   * @description Since: cosmos-sdk 0.43
+   * @description Since: cosmos-sdk 0.47
+   *
+   * @tags Query
+   * @name QueryAccountInfo
+   * @summary AccountInfo queries account info which is common to all account types.
+   * @request GET:/cosmos/auth/v1beta1/account_info/{address}
+   */
+  queryAccountInfo = (address: string, params: RequestParams = {}) =>
+    this.request<V1Beta1QueryAccountInfoResponse, RpcStatus>({
+      path: `/cosmos/auth/v1beta1/account_info/${address}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * @description When called from another module, this query might consume a high amount of gas if the pagination field is incorrectly set. Since: cosmos-sdk 0.43
    *
    * @tags Query
    * @name QueryAccounts
-   * @summary Accounts returns all the existing accounts
+   * @summary Accounts returns all the existing accounts.
    * @request GET:/cosmos/auth/v1beta1/accounts
    */
   queryAccounts = (
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1QueryAccountsResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/accounts`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -487,8 +631,8 @@ export class Api<
   queryAccount = (address: string, params: RequestParams = {}) =>
     this.request<V1Beta1QueryAccountResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/accounts/${address}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -500,11 +644,12 @@ export class Api<
    * @summary AccountAddressByID returns account address based on account number.
    * @request GET:/cosmos/auth/v1beta1/address_by_id/{id}
    */
-  queryAccountAddressByID = (id: string, params: RequestParams = {}) =>
+  queryAccountAddressByID = (id: string, query?: { account_id?: string }, params: RequestParams = {}) =>
     this.request<V1Beta1QueryAccountAddressByIDResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/address_by_id/${id}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      query: query,
+      format: "json",
       ...params,
     });
 
@@ -519,8 +664,8 @@ export class Api<
   queryBech32Prefix = (params: RequestParams = {}) =>
     this.request<V1Beta1Bech32PrefixResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/bech32`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -532,14 +677,11 @@ export class Api<
    * @summary AddressBytesToString converts Account Address bytes to string
    * @request GET:/cosmos/auth/v1beta1/bech32/{address_bytes}
    */
-  queryAddressBytesToString = (
-    addressBytes: string,
-    params: RequestParams = {}
-  ) =>
+  queryAddressBytesToString = (addressBytes: string, params: RequestParams = {}) =>
     this.request<V1Beta1AddressBytesToStringResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/bech32/${addressBytes}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -551,14 +693,11 @@ export class Api<
    * @summary AddressStringToBytes converts Address string to bytes
    * @request GET:/cosmos/auth/v1beta1/bech32/{address_string}
    */
-  queryAddressStringToBytes = (
-    addressString: string,
-    params: RequestParams = {}
-  ) =>
+  queryAddressStringToBytes = (addressString: string, params: RequestParams = {}) =>
     this.request<V1Beta1AddressStringToBytesResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/bech32/${addressString}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -573,8 +712,24 @@ export class Api<
   queryModuleAccounts = (params: RequestParams = {}) =>
     this.request<V1Beta1QueryModuleAccountsResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/module_accounts`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryModuleAccountByName
+   * @summary ModuleAccountByName returns the module account info by module name
+   * @request GET:/cosmos/auth/v1beta1/module_accounts/{name}
+   */
+  queryModuleAccountByName = (name: string, params: RequestParams = {}) =>
+    this.request<V1Beta1QueryModuleAccountByNameResponse, RpcStatus>({
+      path: `/cosmos/auth/v1beta1/module_accounts/${name}`,
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -589,8 +744,8 @@ export class Api<
   queryParams = (params: RequestParams = {}) =>
     this.request<V1Beta1QueryParamsResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/params`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 }

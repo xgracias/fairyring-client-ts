@@ -1,7 +1,7 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
+import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = 'fairyring.keyshare';
+export const protobufPackage = "fairyring.keyshare";
 
 export interface ValidatorSet {
   index: string;
@@ -11,21 +11,18 @@ export interface ValidatorSet {
 }
 
 function createBaseValidatorSet(): ValidatorSet {
-  return { index: '', validator: '', consAddr: '', isActive: false };
+  return { index: "", validator: "", consAddr: "", isActive: false };
 }
 
 export const ValidatorSet = {
-  encode(
-    message: ValidatorSet,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.index !== '') {
+  encode(message: ValidatorSet, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.index !== "") {
       writer.uint32(10).string(message.index);
     }
-    if (message.validator !== '') {
+    if (message.validator !== "") {
       writer.uint32(18).string(message.validator);
     }
-    if (message.consAddr !== '') {
+    if (message.consAddr !== "") {
       writer.uint32(26).string(message.consAddr);
     }
     if (message.isActive === true) {
@@ -63,9 +60,9 @@ export const ValidatorSet = {
 
   fromJSON(object: any): ValidatorSet {
     return {
-      index: isSet(object.index) ? String(object.index) : '',
-      validator: isSet(object.validator) ? String(object.validator) : '',
-      consAddr: isSet(object.consAddr) ? String(object.consAddr) : '',
+      index: isSet(object.index) ? String(object.index) : "",
+      validator: isSet(object.validator) ? String(object.validator) : "",
+      consAddr: isSet(object.consAddr) ? String(object.consAddr) : "",
       isActive: isSet(object.isActive) ? Boolean(object.isActive) : false,
     };
   },
@@ -79,43 +76,26 @@ export const ValidatorSet = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ValidatorSet>, I>>(
-    object: I
-  ): ValidatorSet {
+  fromPartial<I extends Exact<DeepPartial<ValidatorSet>, I>>(object: I): ValidatorSet {
     const message = createBaseValidatorSet();
-    message.index = object.index ?? '';
-    message.validator = object.validator ?? '';
-    message.consAddr = object.consAddr ?? '';
+    message.index = object.index ?? "";
+    message.validator = object.validator ?? "";
+    message.consAddr = object.consAddr ?? "";
     message.isActive = object.isActive ?? false;
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

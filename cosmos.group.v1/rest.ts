@@ -120,7 +120,7 @@ export interface ProtobufAny {
    * Schemes other than `http`, `https` (or the empty scheme) might be
    * used with implementation specific semantics.
    */
-  '@type'?: string;
+  "@type"?: string;
 }
 
 export interface RpcStatus {
@@ -141,8 +141,8 @@ the proposal will still be open and could
 be executed at a later point.
 */
 export enum V1Exec {
-  EXEC_UNSPECIFIED = 'EXEC_UNSPECIFIED',
-  EXEC_TRY = 'EXEC_TRY',
+  EXEC_UNSPECIFIED = "EXEC_UNSPECIFIED",
+  EXEC_TRY = "EXEC_TRY",
 }
 
 /**
@@ -210,7 +210,11 @@ export interface V1GroupPolicyInfo {
   /** admin is the account address of the group admin. */
   admin?: string;
 
-  /** metadata is any arbitrary metadata to attached to the group policy. */
+  /**
+   * metadata is any arbitrary metadata attached to the group policy.
+   * the recommended format of the metadata is to be found here:
+   * https://docs.cosmos.network/v0.47/modules/group#decision-policy-1
+   */
   metadata?: string;
 
   /**
@@ -380,7 +384,11 @@ export interface V1Proposal {
   /** group_policy_address is the account address of group policy. */
   group_policy_address?: string;
 
-  /** metadata is any arbitrary metadata to attached to the proposal. */
+  /**
+   * metadata is any arbitrary metadata attached to the proposal.
+   * the recommended format of the metadata is to be found here:
+   * https://docs.cosmos.network/v0.47/modules/group#proposal-4
+   */
   metadata?: string;
 
   /** proposers are the account addresses of the proposers. */
@@ -421,7 +429,7 @@ export interface V1Proposal {
 
   /**
    * voting_period_end is the timestamp before which voting must be done.
-   * Unless a successfull MsgExec is called before (to execute a proposal whose
+   * Unless a successful MsgExec is called before (to execute a proposal whose
    * tally is successful before the voting period ends), tallying will be done
    * at this point, and the `final_tally_result`and `status` fields will be
    * accordingly updated.
@@ -434,6 +442,18 @@ export interface V1Proposal {
 
   /** messages is a list of `sdk.Msg`s that will be executed if the proposal passes. */
   messages?: ProtobufAny[];
+
+  /**
+   * title is the title of the proposal
+   * Since: cosmos-sdk 0.47
+   */
+  title?: string;
+
+  /**
+   * summary is a short summary of the proposal
+   * Since: cosmos-sdk 0.47
+   */
+  summary?: string;
 }
 
 /**
@@ -445,10 +465,10 @@ export interface V1Proposal {
  - PROPOSAL_EXECUTOR_RESULT_FAILURE: The executor returned an error and proposed action didn't update state.
 */
 export enum V1ProposalExecutorResult {
-  PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED = 'PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED',
-  PROPOSAL_EXECUTOR_RESULT_NOT_RUN = 'PROPOSAL_EXECUTOR_RESULT_NOT_RUN',
-  PROPOSAL_EXECUTOR_RESULT_SUCCESS = 'PROPOSAL_EXECUTOR_RESULT_SUCCESS',
-  PROPOSAL_EXECUTOR_RESULT_FAILURE = 'PROPOSAL_EXECUTOR_RESULT_FAILURE',
+  PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED = "PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED",
+  PROPOSAL_EXECUTOR_RESULT_NOT_RUN = "PROPOSAL_EXECUTOR_RESULT_NOT_RUN",
+  PROPOSAL_EXECUTOR_RESULT_SUCCESS = "PROPOSAL_EXECUTOR_RESULT_SUCCESS",
+  PROPOSAL_EXECUTOR_RESULT_FAILURE = "PROPOSAL_EXECUTOR_RESULT_FAILURE",
 }
 
 /**
@@ -466,19 +486,19 @@ final tally.
 When this happens the final status is Withdrawn.
 */
 export enum V1ProposalStatus {
-  PROPOSAL_STATUS_UNSPECIFIED = 'PROPOSAL_STATUS_UNSPECIFIED',
-  PROPOSAL_STATUS_SUBMITTED = 'PROPOSAL_STATUS_SUBMITTED',
-  PROPOSAL_STATUS_ACCEPTED = 'PROPOSAL_STATUS_ACCEPTED',
-  PROPOSAL_STATUS_REJECTED = 'PROPOSAL_STATUS_REJECTED',
-  PROPOSAL_STATUS_ABORTED = 'PROPOSAL_STATUS_ABORTED',
-  PROPOSAL_STATUS_WITHDRAWN = 'PROPOSAL_STATUS_WITHDRAWN',
+  PROPOSAL_STATUS_UNSPECIFIED = "PROPOSAL_STATUS_UNSPECIFIED",
+  PROPOSAL_STATUS_SUBMITTED = "PROPOSAL_STATUS_SUBMITTED",
+  PROPOSAL_STATUS_ACCEPTED = "PROPOSAL_STATUS_ACCEPTED",
+  PROPOSAL_STATUS_REJECTED = "PROPOSAL_STATUS_REJECTED",
+  PROPOSAL_STATUS_ABORTED = "PROPOSAL_STATUS_ABORTED",
+  PROPOSAL_STATUS_WITHDRAWN = "PROPOSAL_STATUS_WITHDRAWN",
 }
 
 /**
  * QueryGroupInfoResponse is the Query/GroupInfo response type.
  */
 export interface V1QueryGroupInfoResponse {
-  /** info is the GroupInfo for the group. */
+  /** info is the GroupInfo of the group. */
   info?: V1GroupInfo;
 }
 
@@ -519,7 +539,7 @@ export interface V1QueryGroupPoliciesByGroupResponse {
  * QueryGroupPolicyInfoResponse is the Query/GroupPolicyInfo response type.
  */
 export interface V1QueryGroupPolicyInfoResponse {
-  /** info is the GroupPolicyInfo for the group policy. */
+  /** info is the GroupPolicyInfo of the group policy. */
   info?: V1GroupPolicyInfo;
 }
 
@@ -539,6 +559,19 @@ export interface V1QueryGroupsByAdminResponse {
  */
 export interface V1QueryGroupsByMemberResponse {
   /** groups are the groups info with the provided group member. */
+  groups?: V1GroupInfo[];
+
+  /** pagination defines the pagination in the response. */
+  pagination?: V1Beta1PageResponse;
+}
+
+/**
+* QueryGroupsResponse is the Query/Groups response type.
+
+Since: cosmos-sdk 0.47.1
+*/
+export interface V1QueryGroupsResponse {
+  /** `groups` is all the groups present in state. */
   groups?: V1GroupInfo[];
 
   /** pagination defines the pagination in the response. */
@@ -635,7 +668,7 @@ export interface V1Vote {
   /** option is the voter's choice on the proposal. */
   option?: V1VoteOption;
 
-  /** metadata is any arbitrary metadata to attached to the vote. */
+  /** metadata is any arbitrary metadata attached to the vote. */
   metadata?: string;
 
   /**
@@ -656,11 +689,11 @@ return an error.
  - VOTE_OPTION_NO_WITH_VETO: VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.
 */
 export enum V1VoteOption {
-  VOTE_OPTION_UNSPECIFIED = 'VOTE_OPTION_UNSPECIFIED',
-  VOTE_OPTION_YES = 'VOTE_OPTION_YES',
-  VOTE_OPTION_ABSTAIN = 'VOTE_OPTION_ABSTAIN',
-  VOTE_OPTION_NO = 'VOTE_OPTION_NO',
-  VOTE_OPTION_NO_WITH_VETO = 'VOTE_OPTION_NO_WITH_VETO',
+  VOTE_OPTION_UNSPECIFIED = "VOTE_OPTION_UNSPECIFIED",
+  VOTE_OPTION_YES = "VOTE_OPTION_YES",
+  VOTE_OPTION_ABSTAIN = "VOTE_OPTION_ABSTAIN",
+  VOTE_OPTION_NO = "VOTE_OPTION_NO",
+  VOTE_OPTION_NO_WITH_VETO = "VOTE_OPTION_NO_WITH_VETO",
 }
 
 /**
@@ -735,17 +768,11 @@ export interface V1Beta1PageResponse {
   total?: string;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -760,43 +787,31 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
   securityWorker?: (
-    securityData: SecurityDataType | null
+    securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = 'application/json',
-  FormData = 'multipart/form-data',
-  UrlEncoded = 'application/x-www-form-urlencoded',
+  Json = "application/json",
+  FormData = "multipart/form-data",
+  UrlEncoded = "application/x-www-form-urlencoded",
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
+  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({
-      ...axiosConfig,
-      baseURL: axiosConfig.baseURL || '',
-    });
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -806,10 +821,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -829,9 +841,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === 'object' && property !== null
+          : typeof property === "object" && property !== null
           ? JSON.stringify(property)
-          : `${property}`
+          : `${property}`,
       );
       return formData;
     }, new FormData());
@@ -847,20 +859,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === 'boolean' ? secure : this.secure) &&
+      ((typeof secure === "boolean" ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
-      requestParams.headers.common = { Accept: '*/*' };
+    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
+      requestParams.headers.common = { Accept: "*/*" };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -870,9 +877,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -887,9 +892,7 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title cosmos/group/v1/events.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
@@ -901,8 +904,8 @@ export class Api<
   queryGroupInfo = (groupId: string, params: RequestParams = {}) =>
     this.request<V1QueryGroupInfoResponse, RpcStatus>({
       path: `/cosmos/group/v1/group_info/${groupId}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -911,25 +914,25 @@ export class Api<
    *
    * @tags Query
    * @name QueryGroupMembers
-   * @summary GroupMembers queries members of a group
+   * @summary GroupMembers queries members of a group by group id.
    * @request GET:/cosmos/group/v1/group_members/{group_id}
    */
   queryGroupMembers = (
     groupId: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryGroupMembersResponse, RpcStatus>({
       path: `/cosmos/group/v1/group_members/${groupId}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -938,25 +941,25 @@ export class Api<
    *
    * @tags Query
    * @name QueryGroupPoliciesByAdmin
-   * @summary GroupsByAdmin queries group policies by admin address.
+   * @summary GroupPoliciesByAdmin queries group policies by admin address.
    * @request GET:/cosmos/group/v1/group_policies_by_admin/{admin}
    */
   queryGroupPoliciesByAdmin = (
     admin: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryGroupPoliciesByAdminResponse, RpcStatus>({
       path: `/cosmos/group/v1/group_policies_by_admin/${admin}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -971,19 +974,19 @@ export class Api<
   queryGroupPoliciesByGroup = (
     groupId: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryGroupPoliciesByGroupResponse, RpcStatus>({
       path: `/cosmos/group/v1/group_policies_by_group/${groupId}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -998,8 +1001,34 @@ export class Api<
   queryGroupPolicyInfo = (address: string, params: RequestParams = {}) =>
     this.request<V1QueryGroupPolicyInfoResponse, RpcStatus>({
       path: `/cosmos/group/v1/group_policy_info/${address}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * @description Since: cosmos-sdk 0.47.1
+   *
+   * @tags Query
+   * @name QueryGroups
+   * @summary Groups queries all groups in state.
+   * @request GET:/cosmos/group/v1/groups
+   */
+  queryGroups = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<V1QueryGroupsResponse, RpcStatus>({
+      path: `/cosmos/group/v1/groups`,
+      method: "GET",
+      query: query,
+      format: "json",
       ...params,
     });
 
@@ -1014,19 +1043,19 @@ export class Api<
   queryGroupsByAdmin = (
     admin: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryGroupsByAdminResponse, RpcStatus>({
       path: `/cosmos/group/v1/groups_by_admin/${admin}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1041,19 +1070,19 @@ export class Api<
   queryGroupsByMember = (
     address: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryGroupsByMemberResponse, RpcStatus>({
       path: `/cosmos/group/v1/groups_by_member/${address}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1068,8 +1097,8 @@ export class Api<
   queryProposal = (proposalId: string, params: RequestParams = {}) =>
     this.request<V1QueryProposalResponse, RpcStatus>({
       path: `/cosmos/group/v1/proposal/${proposalId}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -1088,8 +1117,8 @@ proposal itself.
   queryTallyResult = (proposalId: string, params: RequestParams = {}) =>
     this.request<V1QueryTallyResultResponse, RpcStatus>({
       path: `/cosmos/group/v1/proposals/${proposalId}/tally`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -1104,19 +1133,19 @@ proposal itself.
   queryProposalsByGroupPolicy = (
     address: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryProposalsByGroupPolicyResponse, RpcStatus>({
       path: `/cosmos/group/v1/proposals_by_group_policy/${address}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1128,15 +1157,11 @@ proposal itself.
    * @summary VoteByProposalVoter queries a vote by proposal id and voter.
    * @request GET:/cosmos/group/v1/vote_by_proposal_voter/{proposal_id}/{voter}
    */
-  queryVoteByProposalVoter = (
-    proposalId: string,
-    voter: string,
-    params: RequestParams = {}
-  ) =>
+  queryVoteByProposalVoter = (proposalId: string, voter: string, params: RequestParams = {}) =>
     this.request<V1QueryVoteByProposalVoterResponse, RpcStatus>({
       path: `/cosmos/group/v1/vote_by_proposal_voter/${proposalId}/${voter}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -1145,25 +1170,25 @@ proposal itself.
    *
    * @tags Query
    * @name QueryVotesByProposal
-   * @summary VotesByProposal queries a vote by proposal.
+   * @summary VotesByProposal queries a vote by proposal id.
    * @request GET:/cosmos/group/v1/votes_by_proposal/{proposal_id}
    */
   queryVotesByProposal = (
     proposalId: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryVotesByProposalResponse, RpcStatus>({
       path: `/cosmos/group/v1/votes_by_proposal/${proposalId}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1178,19 +1203,19 @@ proposal itself.
   queryVotesByVoter = (
     voter: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1QueryVotesByVoterResponse, RpcStatus>({
       path: `/cosmos/group/v1/votes_by_voter/${voter}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 }

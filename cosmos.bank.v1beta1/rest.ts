@@ -10,7 +10,7 @@
  */
 
 export interface ProtobufAny {
-  '@type'?: string;
+  "@type"?: string;
 }
 
 export interface RpcStatus {
@@ -136,6 +136,21 @@ export type V1Beta1MsgMultiSendResponse = object;
 export type V1Beta1MsgSendResponse = object;
 
 /**
+* MsgSetSendEnabledResponse defines the Msg/SetSendEnabled response type.
+
+Since: cosmos-sdk 0.47
+*/
+export type V1Beta1MsgSetSendEnabledResponse = object;
+
+/**
+* MsgUpdateParamsResponse defines the response structure for executing a
+MsgUpdateParams message.
+
+Since: cosmos-sdk 0.47
+*/
+export type V1Beta1MsgUpdateParamsResponse = object;
+
+/**
  * Output models transaction outputs.
  */
 export interface V1Beta1Output {
@@ -219,6 +234,13 @@ export interface V1Beta1PageResponse {
  * Params defines the parameters for the bank module.
  */
 export interface V1Beta1Params {
+  /**
+   * Deprecated: Use of SendEnabled in params is deprecated.
+   * For genesis, use the newly added send_enabled field in the genesis object.
+   * Storage, lookup, and manipulation of this information is now in the keeper.
+   *
+   * As of cosmos-sdk 0.47, this only exists for backwards compatibility of genesis files.
+   */
   send_enabled?: V1Beta1SendEnabled[];
   default_send_enabled?: boolean;
 }
@@ -285,6 +307,32 @@ export interface V1Beta1QueryParamsResponse {
 }
 
 /**
+* QuerySendEnabledResponse defines the RPC response of a SendEnable query.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1QuerySendEnabledResponse {
+  send_enabled?: V1Beta1SendEnabled[];
+
+  /**
+   * pagination defines the pagination in the response. This field is only
+   * populated if the denoms field in the request is empty.
+   */
+  pagination?: V1Beta1PageResponse;
+}
+
+/**
+* QuerySpendableBalanceByDenomResponse defines the gRPC response structure for
+querying an account's spendable balance for a specific denom.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1QuerySpendableBalanceByDenomResponse {
+  /** balance is the balance of the coin. */
+  balance?: V1Beta1Coin;
+}
+
+/**
 * QuerySpendableBalancesResponse defines the gRPC response structure for querying
 an account's spendable balances.
 
@@ -327,17 +375,11 @@ export interface V1Beta1SendEnabled {
   enabled?: boolean;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -352,43 +394,31 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
   securityWorker?: (
-    securityData: SecurityDataType | null
+    securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = 'application/json',
-  FormData = 'multipart/form-data',
-  UrlEncoded = 'application/x-www-form-urlencoded',
+  Json = "application/json",
+  FormData = "multipart/form-data",
+  UrlEncoded = "application/x-www-form-urlencoded",
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
+  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({
-      ...axiosConfig,
-      baseURL: axiosConfig.baseURL || '',
-    });
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -398,10 +428,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -421,9 +448,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === 'object' && property !== null
+          : typeof property === "object" && property !== null
           ? JSON.stringify(property)
-          : `${property}`
+          : `${property}`,
       );
       return formData;
     }, new FormData());
@@ -439,20 +466,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === 'boolean' ? secure : this.secure) &&
+      ((typeof secure === "boolean" ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
-      requestParams.headers.common = { Accept: '*/*' };
+    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
+      requestParams.headers.common = { Accept: "*/*" };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -462,9 +484,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -479,11 +499,9 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title cosmos/bank/v1beta1/authz.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
-   * No description
+   * @description When called from another module, this query might consume a high amount of gas if the pagination field is incorrectly set.
    *
    * @tags Query
    * @name QueryAllBalances
@@ -493,19 +511,19 @@ export class Api<
   queryAllBalances = (
     address: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1QueryAllBalancesResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/balances/${address}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -517,21 +535,17 @@ export class Api<
    * @summary Balance queries the balance of a single coin for a single account.
    * @request GET:/cosmos/bank/v1beta1/balances/{address}/by_denom
    */
-  queryBalance = (
-    address: string,
-    query?: { denom?: string },
-    params: RequestParams = {}
-  ) =>
+  queryBalance = (address: string, query?: { denom?: string }, params: RequestParams = {}) =>
     this.request<V1Beta1QueryBalanceResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/balances/${address}/by_denom`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
   /**
- * @description Since: cosmos-sdk 0.46
+ * @description When called from another module, this query might consume a high amount of gas if the pagination field is incorrectly set. Since: cosmos-sdk 0.46
  * 
  * @tags Query
  * @name QueryDenomOwners
@@ -542,19 +556,19 @@ denomination.
   queryDenomOwners = (
     denom: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1QueryDenomOwnersResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/denom_owners/${denom}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -569,19 +583,19 @@ denominations.
  */
   queryDenomsMetadata = (
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1QueryDenomsMetadataResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/denoms_metadata`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -596,8 +610,8 @@ denominations.
   queryDenomMetadata = (denom: string, params: RequestParams = {}) =>
     this.request<V1Beta1QueryDenomMetadataResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/denoms_metadata/${denom}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
@@ -612,41 +626,86 @@ denominations.
   queryParams = (params: RequestParams = {}) =>
     this.request<V1Beta1QueryParamsResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/params`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 
   /**
- * @description Since: cosmos-sdk 0.46
+   * @description This query only returns denominations that have specific SendEnabled settings. Any denomination that does not have a specific setting will use the default params.default_send_enabled, and will not be returned by this query. Since: cosmos-sdk 0.47
+   *
+   * @tags Query
+   * @name QuerySendEnabled
+   * @summary SendEnabled queries for SendEnabled entries.
+   * @request GET:/cosmos/bank/v1beta1/send_enabled
+   */
+  querySendEnabled = (
+    query?: {
+      denoms?: string[];
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<V1Beta1QuerySendEnabledResponse, RpcStatus>({
+      path: `/cosmos/bank/v1beta1/send_enabled`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+ * @description When called from another module, this query might consume a high amount of gas if the pagination field is incorrectly set. Since: cosmos-sdk 0.46
  * 
  * @tags Query
  * @name QuerySpendableBalances
- * @summary SpendableBalances queries the spenable balance of all coins for a single
+ * @summary SpendableBalances queries the spendable balance of all coins for a single
 account.
  * @request GET:/cosmos/bank/v1beta1/spendable_balances/{address}
  */
   querySpendableBalances = (
     address: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1QuerySpendableBalancesResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/spendable_balances/${address}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
   /**
-   * No description
+ * @description When called from another module, this query might consume a high amount of gas if the pagination field is incorrectly set. Since: cosmos-sdk 0.47
+ * 
+ * @tags Query
+ * @name QuerySpendableBalanceByDenom
+ * @summary SpendableBalanceByDenom queries the spendable balance of a single denom for
+a single account.
+ * @request GET:/cosmos/bank/v1beta1/spendable_balances/{address}/by_denom
+ */
+  querySpendableBalanceByDenom = (address: string, query?: { denom?: string }, params: RequestParams = {}) =>
+    this.request<V1Beta1QuerySpendableBalanceByDenomResponse, RpcStatus>({
+      path: `/cosmos/bank/v1beta1/spendable_balances/${address}/by_denom`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * @description When called from another module, this query might consume a high amount of gas if the pagination field is incorrectly set.
    *
    * @tags Query
    * @name QueryTotalSupply
@@ -655,24 +714,24 @@ account.
    */
   queryTotalSupply = (
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1QueryTotalSupplyResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/supply`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
   /**
-   * No description
+   * @description When called from another module, this query might consume a high amount of gas if the pagination field is incorrectly set.
    *
    * @tags Query
    * @name QuerySupplyOf
@@ -682,9 +741,9 @@ account.
   querySupplyOf = (query?: { denom?: string }, params: RequestParams = {}) =>
     this.request<V1Beta1QuerySupplyOfResponse, RpcStatus>({
       path: `/cosmos/bank/v1beta1/supply/by_denom`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 }

@@ -23,10 +23,7 @@ export interface AbciEvent {
  * EventAttribute is a single key-value pair, associated with an event.
  */
 export interface AbciEventAttribute {
-  /** @format byte */
   key?: string;
-
-  /** @format byte */
   value?: string;
 
   /** nondeterministic */
@@ -182,7 +179,7 @@ export interface ProtobufAny {
    * Schemes other than `http`, `https` (or the empty scheme) might be
    * used with implementation specific semantics.
    */
-  '@type'?: string;
+  "@type"?: string;
 }
 
 export interface RpcStatus {
@@ -201,14 +198,6 @@ export interface TenderminttypesData {
   txs?: string[];
 }
 
-export interface TenderminttypesEvidence {
-  /** DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
-  duplicate_vote_evidence?: TypesDuplicateVoteEvidence;
-
-  /** LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client. */
-  light_client_attack_evidence?: TypesLightClientAttackEvidence;
-}
-
 export interface TenderminttypesValidator {
   /** @format byte */
   address?: string;
@@ -222,7 +211,7 @@ export interface TenderminttypesValidator {
 }
 
 export interface TypesBlock {
-  /** Header defines the structure of a Tendermint block header. */
+  /** Header defines the structure of a block header. */
   header?: TypesHeader;
   data?: TenderminttypesData;
   evidence?: TypesEvidenceList;
@@ -238,10 +227,10 @@ export interface TypesBlockID {
 }
 
 export enum TypesBlockIDFlag {
-  BLOCK_ID_FLAG_UNKNOWN = 'BLOCK_ID_FLAG_UNKNOWN',
-  BLOCK_ID_FLAG_ABSENT = 'BLOCK_ID_FLAG_ABSENT',
-  BLOCK_ID_FLAG_COMMIT = 'BLOCK_ID_FLAG_COMMIT',
-  BLOCK_ID_FLAG_NIL = 'BLOCK_ID_FLAG_NIL',
+  BLOCK_ID_FLAG_UNKNOWN = "BLOCK_ID_FLAG_UNKNOWN",
+  BLOCK_ID_FLAG_ABSENT = "BLOCK_ID_FLAG_ABSENT",
+  BLOCK_ID_FLAG_COMMIT = "BLOCK_ID_FLAG_COMMIT",
+  BLOCK_ID_FLAG_NIL = "BLOCK_ID_FLAG_NIL",
 }
 
 /**
@@ -299,12 +288,20 @@ export interface TypesDuplicateVoteEvidence {
   timestamp?: string;
 }
 
+export interface TypesEvidence {
+  /** DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
+  duplicate_vote_evidence?: TypesDuplicateVoteEvidence;
+
+  /** LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client. */
+  light_client_attack_evidence?: TypesLightClientAttackEvidence;
+}
+
 export interface TypesEvidenceList {
-  evidence?: TenderminttypesEvidence[];
+  evidence?: TypesEvidence[];
 }
 
 /**
- * Header defines the structure of a Tendermint block header.
+ * Header defines the structure of a block header.
  */
 export interface TypesHeader {
   /**
@@ -414,7 +411,7 @@ export interface TypesPartSetHeader {
 }
 
 export interface TypesSignedHeader {
-  /** Header defines the structure of a Tendermint block header. */
+  /** Header defines the structure of a block header. */
   header?: TypesHeader;
 
   /** Commit contains the evidence that a block was committed by a set of validators. */
@@ -428,10 +425,10 @@ export interface TypesSignedHeader {
  - SIGNED_MSG_TYPE_PROPOSAL: Proposals
 */
 export enum TypesSignedMsgType {
-  SIGNED_MSG_TYPE_UNKNOWN = 'SIGNED_MSG_TYPE_UNKNOWN',
-  SIGNED_MSG_TYPE_PREVOTE = 'SIGNED_MSG_TYPE_PREVOTE',
-  SIGNED_MSG_TYPE_PRECOMMIT = 'SIGNED_MSG_TYPE_PRECOMMIT',
-  SIGNED_MSG_TYPE_PROPOSAL = 'SIGNED_MSG_TYPE_PROPOSAL',
+  SIGNED_MSG_TYPE_UNKNOWN = "SIGNED_MSG_TYPE_UNKNOWN",
+  SIGNED_MSG_TYPE_PREVOTE = "SIGNED_MSG_TYPE_PREVOTE",
+  SIGNED_MSG_TYPE_PRECOMMIT = "SIGNED_MSG_TYPE_PRECOMMIT",
+  SIGNED_MSG_TYPE_PROPOSAL = "SIGNED_MSG_TYPE_PROPOSAL",
 }
 
 export interface TypesValidatorSet {
@@ -536,18 +533,18 @@ export interface V1Beta1AuthInfo {
 * BroadcastMode specifies the broadcast mode for the TxService.Broadcast RPC method.
 
  - BROADCAST_MODE_UNSPECIFIED: zero-value for mode ordering
- - BROADCAST_MODE_BLOCK: BROADCAST_MODE_BLOCK defines a tx broadcasting mode where the client waits for
-the tx to be committed in a block.
+ - BROADCAST_MODE_BLOCK: DEPRECATED: use BROADCAST_MODE_SYNC instead,
+BROADCAST_MODE_BLOCK is not supported by the SDK from v0.47.x onwards.
  - BROADCAST_MODE_SYNC: BROADCAST_MODE_SYNC defines a tx broadcasting mode where the client waits for
 a CheckTx execution response only.
  - BROADCAST_MODE_ASYNC: BROADCAST_MODE_ASYNC defines a tx broadcasting mode where the client returns
 immediately.
 */
 export enum V1Beta1BroadcastMode {
-  BROADCAST_MODE_UNSPECIFIED = 'BROADCAST_MODE_UNSPECIFIED',
-  BROADCAST_MODE_BLOCK = 'BROADCAST_MODE_BLOCK',
-  BROADCAST_MODE_SYNC = 'BROADCAST_MODE_SYNC',
-  BROADCAST_MODE_ASYNC = 'BROADCAST_MODE_ASYNC',
+  BROADCAST_MODE_UNSPECIFIED = "BROADCAST_MODE_UNSPECIFIED",
+  BROADCAST_MODE_BLOCK = "BROADCAST_MODE_BLOCK",
+  BROADCAST_MODE_SYNC = "BROADCAST_MODE_SYNC",
+  BROADCAST_MODE_ASYNC = "BROADCAST_MODE_ASYNC",
 }
 
 /**
@@ -565,8 +562,8 @@ export interface V1Beta1BroadcastTxRequest {
    * BroadcastMode specifies the broadcast mode for the TxService.Broadcast RPC method.
    *
    *  - BROADCAST_MODE_UNSPECIFIED: zero-value for mode ordering
-   *  - BROADCAST_MODE_BLOCK: BROADCAST_MODE_BLOCK defines a tx broadcasting mode where the client waits for
-   * the tx to be committed in a block.
+   *  - BROADCAST_MODE_BLOCK: DEPRECATED: use BROADCAST_MODE_SYNC instead,
+   * BROADCAST_MODE_BLOCK is not supported by the SDK from v0.47.x onwards.
    *  - BROADCAST_MODE_SYNC: BROADCAST_MODE_SYNC defines a tx broadcasting mode where the client waits for
    * a CheckTx execution response only.
    *  - BROADCAST_MODE_ASYNC: BROADCAST_MODE_ASYNC defines a tx broadcasting mode where the client returns
@@ -778,9 +775,9 @@ export interface V1Beta1ModeInfoSingle {
  - ORDER_BY_DESC: ORDER_BY_DESC defines descending order
 */
 export enum V1Beta1OrderBy {
-  ORDER_BY_UNSPECIFIED = 'ORDER_BY_UNSPECIFIED',
-  ORDER_BY_ASC = 'ORDER_BY_ASC',
-  ORDER_BY_DESC = 'ORDER_BY_DESC',
+  ORDER_BY_UNSPECIFIED = "ORDER_BY_UNSPECIFIED",
+  ORDER_BY_ASC = "ORDER_BY_ASC",
+  ORDER_BY_DESC = "ORDER_BY_DESC",
 }
 
 /**
@@ -892,12 +889,12 @@ EIP-191 in the future.
 Since: cosmos-sdk 0.45.2
 */
 export enum V1Beta1SignMode {
-  SIGN_MODE_UNSPECIFIED = 'SIGN_MODE_UNSPECIFIED',
-  SIGN_MODE_DIRECT = 'SIGN_MODE_DIRECT',
-  SIGN_MODE_TEXTUAL = 'SIGN_MODE_TEXTUAL',
-  SIGN_MODE_DIRECT_AUX = 'SIGN_MODE_DIRECT_AUX',
-  SIGN_MODE_LEGACY_AMINO_JSON = 'SIGN_MODE_LEGACY_AMINO_JSON',
-  SIGNMODEEIP191 = 'SIGN_MODE_EIP_191',
+  SIGN_MODE_UNSPECIFIED = "SIGN_MODE_UNSPECIFIED",
+  SIGN_MODE_DIRECT = "SIGN_MODE_DIRECT",
+  SIGN_MODE_TEXTUAL = "SIGN_MODE_TEXTUAL",
+  SIGN_MODE_DIRECT_AUX = "SIGN_MODE_DIRECT_AUX",
+  SIGN_MODE_LEGACY_AMINO_JSON = "SIGN_MODE_LEGACY_AMINO_JSON",
+  SIGNMODEEIP191 = "SIGN_MODE_EIP_191",
 }
 
 /**
@@ -1053,6 +1050,98 @@ export interface V1Beta1TxBody {
 }
 
 /**
+* TxDecodeAminoRequest is the request type for the Service.TxDecodeAmino
+RPC method.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1TxDecodeAminoRequest {
+  /** @format byte */
+  amino_binary?: string;
+}
+
+/**
+* TxDecodeAminoResponse is the response type for the Service.TxDecodeAmino
+RPC method.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1TxDecodeAminoResponse {
+  amino_json?: string;
+}
+
+/**
+* TxDecodeRequest is the request type for the Service.TxDecode
+RPC method.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1TxDecodeRequest {
+  /**
+   * tx_bytes is the raw transaction.
+   * @format byte
+   */
+  tx_bytes?: string;
+}
+
+/**
+* TxDecodeResponse is the response type for the
+Service.TxDecode method.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1TxDecodeResponse {
+  /** tx is the decoded transaction. */
+  tx?: V1Beta1Tx;
+}
+
+/**
+* TxEncodeAminoRequest is the request type for the Service.TxEncodeAmino
+RPC method.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1TxEncodeAminoRequest {
+  amino_json?: string;
+}
+
+/**
+* TxEncodeAminoResponse is the response type for the Service.TxEncodeAmino
+RPC method.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1TxEncodeAminoResponse {
+  /** @format byte */
+  amino_binary?: string;
+}
+
+/**
+* TxEncodeRequest is the request type for the Service.TxEncode
+RPC method.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1TxEncodeRequest {
+  /** tx is the transaction to encode. */
+  tx?: V1Beta1Tx;
+}
+
+/**
+* TxEncodeResponse is the response type for the
+Service.TxEncode method.
+
+Since: cosmos-sdk 0.47
+*/
+export interface V1Beta1TxEncodeResponse {
+  /**
+   * tx_bytes is the encoded transaction bytes.
+   * @format byte
+   */
+  tx_bytes?: string;
+}
+
+/**
 * TxResponse defines a structure containing relevant tx data and metadata. The
 tags are stringified and the log is JSON decoded.
 */
@@ -1136,17 +1225,11 @@ export interface VersionConsensus {
   app?: string;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -1161,43 +1244,31 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
   securityWorker?: (
-    securityData: SecurityDataType | null
+    securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = 'application/json',
-  FormData = 'multipart/form-data',
-  UrlEncoded = 'application/x-www-form-urlencoded',
+  Json = "application/json",
+  FormData = "multipart/form-data",
+  UrlEncoded = "application/x-www-form-urlencoded",
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
+  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({
-      ...axiosConfig,
-      baseURL: axiosConfig.baseURL || '',
-    });
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -1207,10 +1278,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -1230,9 +1298,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === 'object' && property !== null
+          : typeof property === "object" && property !== null
           ? JSON.stringify(property)
-          : `${property}`
+          : `${property}`,
       );
       return formData;
     }, new FormData());
@@ -1248,20 +1316,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === 'boolean' ? secure : this.secure) &&
+      ((typeof secure === "boolean" ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
-      requestParams.headers.common = { Accept: '*/*' };
+    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
+      requestParams.headers.common = { Accept: "*/*" };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -1271,9 +1334,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -1288,9 +1349,79 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title cosmos/tx/v1beta1/service.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * @description Since: cosmos-sdk 0.47
+   *
+   * @tags Service
+   * @name ServiceTxDecode
+   * @summary TxDecode decodes the transaction.
+   * @request POST:/cosmos/tx/v1beta1/decode
+   */
+  serviceTxDecode = (body: V1Beta1TxDecodeRequest, params: RequestParams = {}) =>
+    this.request<V1Beta1TxDecodeResponse, RpcStatus>({
+      path: `/cosmos/tx/v1beta1/decode`,
+      method: "POST",
+      body: body,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * @description Since: cosmos-sdk 0.47
+   *
+   * @tags Service
+   * @name ServiceTxDecodeAmino
+   * @summary TxDecodeAmino decodes an Amino transaction from encoded bytes to JSON.
+   * @request POST:/cosmos/tx/v1beta1/decode/amino
+   */
+  serviceTxDecodeAmino = (body: V1Beta1TxDecodeAminoRequest, params: RequestParams = {}) =>
+    this.request<V1Beta1TxDecodeAminoResponse, RpcStatus>({
+      path: `/cosmos/tx/v1beta1/decode/amino`,
+      method: "POST",
+      body: body,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * @description Since: cosmos-sdk 0.47
+   *
+   * @tags Service
+   * @name ServiceTxEncode
+   * @summary TxEncode encodes the transaction.
+   * @request POST:/cosmos/tx/v1beta1/encode
+   */
+  serviceTxEncode = (body: V1Beta1TxEncodeRequest, params: RequestParams = {}) =>
+    this.request<V1Beta1TxEncodeResponse, RpcStatus>({
+      path: `/cosmos/tx/v1beta1/encode`,
+      method: "POST",
+      body: body,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * @description Since: cosmos-sdk 0.47
+   *
+   * @tags Service
+   * @name ServiceTxEncodeAmino
+   * @summary TxEncodeAmino encodes an Amino transaction from JSON to encoded bytes.
+   * @request POST:/cosmos/tx/v1beta1/encode/amino
+   */
+  serviceTxEncodeAmino = (body: V1Beta1TxEncodeAminoRequest, params: RequestParams = {}) =>
+    this.request<V1Beta1TxEncodeAminoResponse, RpcStatus>({
+      path: `/cosmos/tx/v1beta1/encode/amino`,
+      method: "POST",
+      body: body,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+
   /**
    * No description
    *
@@ -1299,16 +1430,13 @@ export class Api<
    * @summary Simulate simulates executing a transaction for estimating gas usage.
    * @request POST:/cosmos/tx/v1beta1/simulate
    */
-  serviceSimulate = (
-    body: V1Beta1SimulateRequest,
-    params: RequestParams = {}
-  ) =>
+  serviceSimulate = (body: V1Beta1SimulateRequest, params: RequestParams = {}) =>
     this.request<V1Beta1SimulateResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/simulate`,
-      method: 'POST',
+      method: "POST",
       body: body,
       type: ContentType.Json,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1323,22 +1451,22 @@ export class Api<
   serviceGetTxsEvent = (
     query?: {
       events?: string[];
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
-      order_by?: 'ORDER_BY_UNSPECIFIED' | 'ORDER_BY_ASC' | 'ORDER_BY_DESC';
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+      order_by?: "ORDER_BY_UNSPECIFIED" | "ORDER_BY_ASC" | "ORDER_BY_DESC";
       page?: string;
       limit?: string;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1GetTxsEventResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1350,16 +1478,13 @@ export class Api<
    * @summary BroadcastTx broadcast transaction.
    * @request POST:/cosmos/tx/v1beta1/txs
    */
-  serviceBroadcastTx = (
-    body: V1Beta1BroadcastTxRequest,
-    params: RequestParams = {}
-  ) =>
+  serviceBroadcastTx = (body: V1Beta1BroadcastTxRequest, params: RequestParams = {}) =>
     this.request<V1Beta1BroadcastTxResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs`,
-      method: 'POST',
+      method: "POST",
       body: body,
       type: ContentType.Json,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1374,19 +1499,19 @@ export class Api<
   serviceGetBlockWithTxs = (
     height: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1GetBlockWithTxsResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs/block/${height}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1401,8 +1526,8 @@ export class Api<
   serviceGetTx = (hash: string, params: RequestParams = {}) =>
     this.request<V1Beta1GetTxResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs/${hash}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 }

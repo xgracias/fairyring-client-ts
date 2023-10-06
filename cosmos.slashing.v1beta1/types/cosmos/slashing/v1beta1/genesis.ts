@@ -1,14 +1,16 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Params, ValidatorSigningInfo } from './slashing';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Params, ValidatorSigningInfo } from "./slashing";
 
-export const protobufPackage = 'cosmos.slashing.v1beta1';
+export const protobufPackage = "cosmos.slashing.v1beta1";
 
 /** GenesisState defines the slashing module's genesis state. */
 export interface GenesisState {
-  /** params defines all the paramaters of related to deposit. */
-  params: Params | undefined;
+  /** params defines all the parameters of the module. */
+  params:
+    | Params
+    | undefined;
   /**
    * signing_infos represents a map between validator addresses and their
    * signing infos.
@@ -53,10 +55,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
@@ -80,14 +79,10 @@ export const GenesisState = {
           message.params = Params.decode(reader, reader.uint32());
           break;
         case 2:
-          message.signingInfos.push(
-            SigningInfo.decode(reader, reader.uint32())
-          );
+          message.signingInfos.push(SigningInfo.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.missedBlocks.push(
-            ValidatorMissedBlocks.decode(reader, reader.uint32())
-          );
+          message.missedBlocks.push(ValidatorMissedBlocks.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -111,59 +106,42 @@ export const GenesisState = {
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     if (message.signingInfos) {
-      obj.signingInfos = message.signingInfos.map((e) =>
-        e ? SigningInfo.toJSON(e) : undefined
-      );
+      obj.signingInfos = message.signingInfos.map((e) => e ? SigningInfo.toJSON(e) : undefined);
     } else {
       obj.signingInfos = [];
     }
     if (message.missedBlocks) {
-      obj.missedBlocks = message.missedBlocks.map((e) =>
-        e ? ValidatorMissedBlocks.toJSON(e) : undefined
-      );
+      obj.missedBlocks = message.missedBlocks.map((e) => e ? ValidatorMissedBlocks.toJSON(e) : undefined);
     } else {
       obj.missedBlocks = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.params =
-      object.params !== undefined && object.params !== null
-        ? Params.fromPartial(object.params)
-        : undefined;
-    message.signingInfos =
-      object.signingInfos?.map((e) => SigningInfo.fromPartial(e)) || [];
-    message.missedBlocks =
-      object.missedBlocks?.map((e) => ValidatorMissedBlocks.fromPartial(e)) ||
-      [];
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
+    message.signingInfos = object.signingInfos?.map((e) => SigningInfo.fromPartial(e)) || [];
+    message.missedBlocks = object.missedBlocks?.map((e) => ValidatorMissedBlocks.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseSigningInfo(): SigningInfo {
-  return { address: '', validatorSigningInfo: undefined };
+  return { address: "", validatorSigningInfo: undefined };
 }
 
 export const SigningInfo = {
-  encode(
-    message: SigningInfo,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.address !== '') {
+  encode(message: SigningInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
     if (message.validatorSigningInfo !== undefined) {
-      ValidatorSigningInfo.encode(
-        message.validatorSigningInfo,
-        writer.uint32(18).fork()
-      ).ldelim();
+      ValidatorSigningInfo.encode(message.validatorSigningInfo, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -179,10 +157,7 @@ export const SigningInfo = {
           message.address = reader.string();
           break;
         case 2:
-          message.validatorSigningInfo = ValidatorSigningInfo.decode(
-            reader,
-            reader.uint32()
-          );
+          message.validatorSigningInfo = ValidatorSigningInfo.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -194,7 +169,7 @@ export const SigningInfo = {
 
   fromJSON(object: any): SigningInfo {
     return {
-      address: isSet(object.address) ? String(object.address) : '',
+      address: isSet(object.address) ? String(object.address) : "",
       validatorSigningInfo: isSet(object.validatorSigningInfo)
         ? ValidatorSigningInfo.fromJSON(object.validatorSigningInfo)
         : undefined,
@@ -204,37 +179,29 @@ export const SigningInfo = {
   toJSON(message: SigningInfo): unknown {
     const obj: any = {};
     message.address !== undefined && (obj.address = message.address);
-    message.validatorSigningInfo !== undefined &&
-      (obj.validatorSigningInfo = message.validatorSigningInfo
-        ? ValidatorSigningInfo.toJSON(message.validatorSigningInfo)
-        : undefined);
+    message.validatorSigningInfo !== undefined && (obj.validatorSigningInfo = message.validatorSigningInfo
+      ? ValidatorSigningInfo.toJSON(message.validatorSigningInfo)
+      : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<SigningInfo>, I>>(
-    object: I
-  ): SigningInfo {
+  fromPartial<I extends Exact<DeepPartial<SigningInfo>, I>>(object: I): SigningInfo {
     const message = createBaseSigningInfo();
-    message.address = object.address ?? '';
-    message.validatorSigningInfo =
-      object.validatorSigningInfo !== undefined &&
-      object.validatorSigningInfo !== null
-        ? ValidatorSigningInfo.fromPartial(object.validatorSigningInfo)
-        : undefined;
+    message.address = object.address ?? "";
+    message.validatorSigningInfo = (object.validatorSigningInfo !== undefined && object.validatorSigningInfo !== null)
+      ? ValidatorSigningInfo.fromPartial(object.validatorSigningInfo)
+      : undefined;
     return message;
   },
 };
 
 function createBaseValidatorMissedBlocks(): ValidatorMissedBlocks {
-  return { address: '', missedBlocks: [] };
+  return { address: "", missedBlocks: [] };
 }
 
 export const ValidatorMissedBlocks = {
-  encode(
-    message: ValidatorMissedBlocks,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.address !== '') {
+  encode(message: ValidatorMissedBlocks, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
     for (const v of message.missedBlocks) {
@@ -243,10 +210,7 @@ export const ValidatorMissedBlocks = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): ValidatorMissedBlocks {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorMissedBlocks {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseValidatorMissedBlocks();
@@ -257,9 +221,7 @@ export const ValidatorMissedBlocks = {
           message.address = reader.string();
           break;
         case 2:
-          message.missedBlocks.push(
-            MissedBlock.decode(reader, reader.uint32())
-          );
+          message.missedBlocks.push(MissedBlock.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -271,7 +233,7 @@ export const ValidatorMissedBlocks = {
 
   fromJSON(object: any): ValidatorMissedBlocks {
     return {
-      address: isSet(object.address) ? String(object.address) : '',
+      address: isSet(object.address) ? String(object.address) : "",
       missedBlocks: Array.isArray(object?.missedBlocks)
         ? object.missedBlocks.map((e: any) => MissedBlock.fromJSON(e))
         : [],
@@ -282,22 +244,17 @@ export const ValidatorMissedBlocks = {
     const obj: any = {};
     message.address !== undefined && (obj.address = message.address);
     if (message.missedBlocks) {
-      obj.missedBlocks = message.missedBlocks.map((e) =>
-        e ? MissedBlock.toJSON(e) : undefined
-      );
+      obj.missedBlocks = message.missedBlocks.map((e) => e ? MissedBlock.toJSON(e) : undefined);
     } else {
       obj.missedBlocks = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ValidatorMissedBlocks>, I>>(
-    object: I
-  ): ValidatorMissedBlocks {
+  fromPartial<I extends Exact<DeepPartial<ValidatorMissedBlocks>, I>>(object: I): ValidatorMissedBlocks {
     const message = createBaseValidatorMissedBlocks();
-    message.address = object.address ?? '';
-    message.missedBlocks =
-      object.missedBlocks?.map((e) => MissedBlock.fromPartial(e)) || [];
+    message.address = object.address ?? "";
+    message.missedBlocks = object.missedBlocks?.map((e) => MissedBlock.fromPartial(e)) || [];
     return message;
   },
 };
@@ -307,10 +264,7 @@ function createBaseMissedBlock(): MissedBlock {
 }
 
 export const MissedBlock = {
-  encode(
-    message: MissedBlock,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MissedBlock, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.index !== 0) {
       writer.uint32(8).int64(message.index);
     }
@@ -355,9 +309,7 @@ export const MissedBlock = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MissedBlock>, I>>(
-    object: I
-  ): MissedBlock {
+  fromPartial<I extends Exact<DeepPartial<MissedBlock>, I>>(object: I): MissedBlock {
     const message = createBaseMissedBlock();
     message.index = object.index ?? 0;
     message.missed = object.missed ?? false;
@@ -369,50 +321,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }
