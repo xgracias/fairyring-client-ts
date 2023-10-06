@@ -7,6 +7,8 @@ import { DepositParams } from "./types/cosmos/gov/v1/gov"
 import { VotingParams } from "./types/cosmos/gov/v1/gov"
 import { TallyParams } from "./types/cosmos/gov/v1/gov"
 import { Params } from "./types/cosmos/gov/v1/gov"
+import { DecryptedVoteOption } from "./types/cosmos/gov/v1/gov"
+import { TrustedCounterParty } from "./types/cosmos/gov/v1/gov"
 
 
 export {     
@@ -19,5 +21,7 @@ export {
     VotingParams,
     TallyParams,
     Params,
+    DecryptedVoteOption,
+    TrustedCounterParty,
     
  }

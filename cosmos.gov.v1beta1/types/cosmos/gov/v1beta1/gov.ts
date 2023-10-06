@@ -20,6 +20,8 @@ export enum VoteOption {
   VOTE_OPTION_NO = 3,
   /** VOTE_OPTION_NO_WITH_VETO - VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option. */
   VOTE_OPTION_NO_WITH_VETO = 4,
+  /** VOTE_OPTION_ENCRYPTED - VOTE_OPTION_ENCRYPTED defines a encrypted vote */
+  VOTE_OPTION_ENCRYPTED = 5,
   UNRECOGNIZED = -1,
 }
 
@@ -40,6 +42,9 @@ export function voteOptionFromJSON(object: any): VoteOption {
     case 4:
     case "VOTE_OPTION_NO_WITH_VETO":
       return VoteOption.VOTE_OPTION_NO_WITH_VETO;
+    case 5:
+    case "VOTE_OPTION_ENCRYPTED":
+      return VoteOption.VOTE_OPTION_ENCRYPTED;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -59,6 +64,8 @@ export function voteOptionToJSON(object: VoteOption): string {
       return "VOTE_OPTION_NO";
     case VoteOption.VOTE_OPTION_NO_WITH_VETO:
       return "VOTE_OPTION_NO_WITH_VETO";
+    case VoteOption.VOTE_OPTION_ENCRYPTED:
+      return "VOTE_OPTION_ENCRYPTED";
     case VoteOption.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -80,20 +87,25 @@ export enum ProposalStatus {
    */
   PROPOSAL_STATUS_VOTING_PERIOD = 2,
   /**
+   * PROPOSAL_STATUS_TALLY_PERIOD - PROPOSAL_STATUS_TALLY_PERIOD defines a proposal status during the tally
+   * period.
+   */
+  PROPOSAL_STATUS_TALLY_PERIOD = 3,
+  /**
    * PROPOSAL_STATUS_PASSED - PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has
    * passed.
    */
-  PROPOSAL_STATUS_PASSED = 3,
+  PROPOSAL_STATUS_PASSED = 4,
   /**
    * PROPOSAL_STATUS_REJECTED - PROPOSAL_STATUS_REJECTED defines a proposal status of a proposal that has
    * been rejected.
    */
-  PROPOSAL_STATUS_REJECTED = 4,
+  PROPOSAL_STATUS_REJECTED = 5,
   /**
    * PROPOSAL_STATUS_FAILED - PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has
    * failed.
    */
-  PROPOSAL_STATUS_FAILED = 5,
+  PROPOSAL_STATUS_FAILED = 6,
   UNRECOGNIZED = -1,
 }
 
@@ -109,12 +121,15 @@ export function proposalStatusFromJSON(object: any): ProposalStatus {
     case "PROPOSAL_STATUS_VOTING_PERIOD":
       return ProposalStatus.PROPOSAL_STATUS_VOTING_PERIOD;
     case 3:
+    case "PROPOSAL_STATUS_TALLY_PERIOD":
+      return ProposalStatus.PROPOSAL_STATUS_TALLY_PERIOD;
+    case 4:
     case "PROPOSAL_STATUS_PASSED":
       return ProposalStatus.PROPOSAL_STATUS_PASSED;
-    case 4:
+    case 5:
     case "PROPOSAL_STATUS_REJECTED":
       return ProposalStatus.PROPOSAL_STATUS_REJECTED;
-    case 5:
+    case 6:
     case "PROPOSAL_STATUS_FAILED":
       return ProposalStatus.PROPOSAL_STATUS_FAILED;
     case -1:
@@ -132,6 +147,8 @@ export function proposalStatusToJSON(object: ProposalStatus): string {
       return "PROPOSAL_STATUS_DEPOSIT_PERIOD";
     case ProposalStatus.PROPOSAL_STATUS_VOTING_PERIOD:
       return "PROPOSAL_STATUS_VOTING_PERIOD";
+    case ProposalStatus.PROPOSAL_STATUS_TALLY_PERIOD:
+      return "PROPOSAL_STATUS_TALLY_PERIOD";
     case ProposalStatus.PROPOSAL_STATUS_PASSED:
       return "PROPOSAL_STATUS_PASSED";
     case ProposalStatus.PROPOSAL_STATUS_REJECTED:
@@ -213,7 +230,16 @@ export interface Proposal {
     | Date
     | undefined;
   /** voting_end_time is the end time of voting on a proposal. */
-  votingEndTime: Date | undefined;
+  votingEndTime:
+    | Date
+    | undefined;
+  /** flag to check if proposal has at least one encrypted vote */
+  hasEncryptedVotes: boolean;
+  /** identity and pubkey are used to submit encrypted votes */
+  identity: string;
+  pubkey: string;
+  /** aggregated keyshare is used to decrypt the encrypted votes during the tally phase */
+  aggrKeyshare: string;
 }
 
 /** TallyResult defines a standard tally for a governance proposal. */
@@ -226,6 +252,8 @@ export interface TallyResult {
   no: string;
   /** no_with_veto is the number of no with veto votes on a proposal. */
   noWithVeto: string;
+  /** encrypted is the number of encrypted votes on a proposal. */
+  encrypted: string;
 }
 
 /**
@@ -251,6 +279,7 @@ export interface Vote {
    * Since: cosmos-sdk 0.43
    */
   options: WeightedVoteOption[];
+  encryptedVoteData: string;
 }
 
 /** DepositParams defines the params for deposits on governance proposals. */
@@ -284,6 +313,8 @@ export interface TallyParams {
    * vetoed. Default value: 1/3.
    */
   vetoThreshold: Uint8Array;
+  /** Duration of the tally period. */
+  tallyPeriod: Duration | undefined;
 }
 
 function createBaseWeightedVoteOption(): WeightedVoteOption {
@@ -484,6 +515,10 @@ function createBaseProposal(): Proposal {
     totalDeposit: [],
     votingStartTime: undefined,
     votingEndTime: undefined,
+    hasEncryptedVotes: false,
+    identity: "",
+    pubkey: "",
+    aggrKeyshare: "",
   };
 }
 
@@ -515,6 +550,18 @@ export const Proposal = {
     }
     if (message.votingEndTime !== undefined) {
       Timestamp.encode(toTimestamp(message.votingEndTime), writer.uint32(74).fork()).ldelim();
+    }
+    if (message.hasEncryptedVotes === true) {
+      writer.uint32(80).bool(message.hasEncryptedVotes);
+    }
+    if (message.identity !== "") {
+      writer.uint32(90).string(message.identity);
+    }
+    if (message.pubkey !== "") {
+      writer.uint32(98).string(message.pubkey);
+    }
+    if (message.aggrKeyshare !== "") {
+      writer.uint32(106).string(message.aggrKeyshare);
     }
     return writer;
   },
@@ -553,6 +600,18 @@ export const Proposal = {
         case 9:
           message.votingEndTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
+        case 10:
+          message.hasEncryptedVotes = reader.bool();
+          break;
+        case 11:
+          message.identity = reader.string();
+          break;
+        case 12:
+          message.pubkey = reader.string();
+          break;
+        case 13:
+          message.aggrKeyshare = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -572,6 +631,10 @@ export const Proposal = {
       totalDeposit: Array.isArray(object?.totalDeposit) ? object.totalDeposit.map((e: any) => Coin.fromJSON(e)) : [],
       votingStartTime: isSet(object.votingStartTime) ? fromJsonTimestamp(object.votingStartTime) : undefined,
       votingEndTime: isSet(object.votingEndTime) ? fromJsonTimestamp(object.votingEndTime) : undefined,
+      hasEncryptedVotes: isSet(object.hasEncryptedVotes) ? Boolean(object.hasEncryptedVotes) : false,
+      identity: isSet(object.identity) ? String(object.identity) : "",
+      pubkey: isSet(object.pubkey) ? String(object.pubkey) : "",
+      aggrKeyshare: isSet(object.aggrKeyshare) ? String(object.aggrKeyshare) : "",
     };
   },
 
@@ -591,6 +654,10 @@ export const Proposal = {
     }
     message.votingStartTime !== undefined && (obj.votingStartTime = message.votingStartTime.toISOString());
     message.votingEndTime !== undefined && (obj.votingEndTime = message.votingEndTime.toISOString());
+    message.hasEncryptedVotes !== undefined && (obj.hasEncryptedVotes = message.hasEncryptedVotes);
+    message.identity !== undefined && (obj.identity = message.identity);
+    message.pubkey !== undefined && (obj.pubkey = message.pubkey);
+    message.aggrKeyshare !== undefined && (obj.aggrKeyshare = message.aggrKeyshare);
     return obj;
   },
 
@@ -609,12 +676,16 @@ export const Proposal = {
     message.totalDeposit = object.totalDeposit?.map((e) => Coin.fromPartial(e)) || [];
     message.votingStartTime = object.votingStartTime ?? undefined;
     message.votingEndTime = object.votingEndTime ?? undefined;
+    message.hasEncryptedVotes = object.hasEncryptedVotes ?? false;
+    message.identity = object.identity ?? "";
+    message.pubkey = object.pubkey ?? "";
+    message.aggrKeyshare = object.aggrKeyshare ?? "";
     return message;
   },
 };
 
 function createBaseTallyResult(): TallyResult {
-  return { yes: "", abstain: "", no: "", noWithVeto: "" };
+  return { yes: "", abstain: "", no: "", noWithVeto: "", encrypted: "" };
 }
 
 export const TallyResult = {
@@ -630,6 +701,9 @@ export const TallyResult = {
     }
     if (message.noWithVeto !== "") {
       writer.uint32(34).string(message.noWithVeto);
+    }
+    if (message.encrypted !== "") {
+      writer.uint32(42).string(message.encrypted);
     }
     return writer;
   },
@@ -653,6 +727,9 @@ export const TallyResult = {
         case 4:
           message.noWithVeto = reader.string();
           break;
+        case 5:
+          message.encrypted = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -667,6 +744,7 @@ export const TallyResult = {
       abstain: isSet(object.abstain) ? String(object.abstain) : "",
       no: isSet(object.no) ? String(object.no) : "",
       noWithVeto: isSet(object.noWithVeto) ? String(object.noWithVeto) : "",
+      encrypted: isSet(object.encrypted) ? String(object.encrypted) : "",
     };
   },
 
@@ -676,6 +754,7 @@ export const TallyResult = {
     message.abstain !== undefined && (obj.abstain = message.abstain);
     message.no !== undefined && (obj.no = message.no);
     message.noWithVeto !== undefined && (obj.noWithVeto = message.noWithVeto);
+    message.encrypted !== undefined && (obj.encrypted = message.encrypted);
     return obj;
   },
 
@@ -685,12 +764,13 @@ export const TallyResult = {
     message.abstain = object.abstain ?? "";
     message.no = object.no ?? "";
     message.noWithVeto = object.noWithVeto ?? "";
+    message.encrypted = object.encrypted ?? "";
     return message;
   },
 };
 
 function createBaseVote(): Vote {
-  return { proposalId: 0, voter: "", option: 0, options: [] };
+  return { proposalId: 0, voter: "", option: 0, options: [], encryptedVoteData: "" };
 }
 
 export const Vote = {
@@ -706,6 +786,9 @@ export const Vote = {
     }
     for (const v of message.options) {
       WeightedVoteOption.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.encryptedVoteData !== "") {
+      writer.uint32(42).string(message.encryptedVoteData);
     }
     return writer;
   },
@@ -729,6 +812,9 @@ export const Vote = {
         case 4:
           message.options.push(WeightedVoteOption.decode(reader, reader.uint32()));
           break;
+        case 5:
+          message.encryptedVoteData = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -743,6 +829,7 @@ export const Vote = {
       voter: isSet(object.voter) ? String(object.voter) : "",
       option: isSet(object.option) ? voteOptionFromJSON(object.option) : 0,
       options: Array.isArray(object?.options) ? object.options.map((e: any) => WeightedVoteOption.fromJSON(e)) : [],
+      encryptedVoteData: isSet(object.encryptedVoteData) ? String(object.encryptedVoteData) : "",
     };
   },
 
@@ -756,6 +843,7 @@ export const Vote = {
     } else {
       obj.options = [];
     }
+    message.encryptedVoteData !== undefined && (obj.encryptedVoteData = message.encryptedVoteData);
     return obj;
   },
 
@@ -765,6 +853,7 @@ export const Vote = {
     message.voter = object.voter ?? "";
     message.option = object.option ?? 0;
     message.options = object.options?.map((e) => WeightedVoteOption.fromPartial(e)) || [];
+    message.encryptedVoteData = object.encryptedVoteData ?? "";
     return message;
   },
 };
@@ -885,7 +974,12 @@ export const VotingParams = {
 };
 
 function createBaseTallyParams(): TallyParams {
-  return { quorum: new Uint8Array(), threshold: new Uint8Array(), vetoThreshold: new Uint8Array() };
+  return {
+    quorum: new Uint8Array(),
+    threshold: new Uint8Array(),
+    vetoThreshold: new Uint8Array(),
+    tallyPeriod: undefined,
+  };
 }
 
 export const TallyParams = {
@@ -898,6 +992,9 @@ export const TallyParams = {
     }
     if (message.vetoThreshold.length !== 0) {
       writer.uint32(26).bytes(message.vetoThreshold);
+    }
+    if (message.tallyPeriod !== undefined) {
+      Duration.encode(message.tallyPeriod, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
@@ -918,6 +1015,9 @@ export const TallyParams = {
         case 3:
           message.vetoThreshold = reader.bytes();
           break;
+        case 4:
+          message.tallyPeriod = Duration.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -931,6 +1031,7 @@ export const TallyParams = {
       quorum: isSet(object.quorum) ? bytesFromBase64(object.quorum) : new Uint8Array(),
       threshold: isSet(object.threshold) ? bytesFromBase64(object.threshold) : new Uint8Array(),
       vetoThreshold: isSet(object.vetoThreshold) ? bytesFromBase64(object.vetoThreshold) : new Uint8Array(),
+      tallyPeriod: isSet(object.tallyPeriod) ? Duration.fromJSON(object.tallyPeriod) : undefined,
     };
   },
 
@@ -944,6 +1045,8 @@ export const TallyParams = {
       && (obj.vetoThreshold = base64FromBytes(
         message.vetoThreshold !== undefined ? message.vetoThreshold : new Uint8Array(),
       ));
+    message.tallyPeriod !== undefined
+      && (obj.tallyPeriod = message.tallyPeriod ? Duration.toJSON(message.tallyPeriod) : undefined);
     return obj;
   },
 
@@ -952,6 +1055,9 @@ export const TallyParams = {
     message.quorum = object.quorum ?? new Uint8Array();
     message.threshold = object.threshold ?? new Uint8Array();
     message.vetoThreshold = object.vetoThreshold ?? new Uint8Array();
+    message.tallyPeriod = (object.tallyPeriod !== undefined && object.tallyPeriod !== null)
+      ? Duration.fromPartial(object.tallyPeriod)
+      : undefined;
     return message;
   },
 };
