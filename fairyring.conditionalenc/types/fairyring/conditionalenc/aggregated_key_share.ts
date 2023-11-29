@@ -1,160 +1,111 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
+import * as _m0 from "protobufjs/minimal";
+import Long = require("long");
 
-export const protobufPackage = "fairyring.conditionalenc";
-
-export interface AggregatedKeyShare {
-  height: number;
-  data: string;
-}
+export const protobufPackage = "fairyring.Conditionalenc";
 
 export interface AggregatedConditionalKeyShare {
-  condition: string;
+  condition: number;
   data: string;
+  creator: string;
 }
-
-function createBaseAggregatedKeyShare(): AggregatedKeyShare {
-  return { height: 0, data: "" };
-}
-
-export const AggregatedKeyShare = {
-  encode(message: AggregatedKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.height !== 0) {
-      writer.uint32(8).uint64(message.height);
-    }
-    if (message.data !== "") {
-      writer.uint32(18).string(message.data);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): AggregatedKeyShare {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAggregatedKeyShare();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.height = longToNumber(reader.uint64() as Long);
-          break;
-        case 2:
-          message.data = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): AggregatedKeyShare {
-    return {
-      height: isSet(object.height) ? Number(object.height) : 0,
-      data: isSet(object.data) ? String(object.data) : "",
-    };
-  },
-
-  toJSON(message: AggregatedKeyShare): unknown {
-    const obj: any = {};
-    message.height !== undefined && (obj.height = Math.round(message.height));
-    message.data !== undefined && (obj.data = message.data);
-    return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<AggregatedKeyShare>, I>>(object: I): AggregatedKeyShare {
-    const message = createBaseAggregatedKeyShare();
-    message.height = object.height ?? 0;
-    message.data = object.data ?? "";
-    return message;
-  },
-};
 
 function createBaseAggregatedConditionalKeyShare(): AggregatedConditionalKeyShare {
-  return { condition: "", data: "" };
+  return { condition: 0, data: "", creator: "" };
 }
 
 export const AggregatedConditionalKeyShare = {
   encode(message: AggregatedConditionalKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.condition !== "") {
-      writer.uint32(10).string(message.condition);
+    if (message.condition !== 0) {
+      writer.uint32(8).uint64(message.condition);
     }
     if (message.data !== "") {
       writer.uint32(18).string(message.data);
+    }
+    if (message.creator !== "") {
+      writer.uint32(26).string(message.creator);
     }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): AggregatedConditionalKeyShare {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseAggregatedConditionalKeyShare();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.condition = reader.string();
-          break;
+          if (tag !== 8) {
+            break;
+          }
+
+          message.condition = longToNumber(reader.uint64() as Long);
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.data = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
 
   fromJSON(object: any): AggregatedConditionalKeyShare {
     return {
-      condition: isSet(object.condition) ? String(object.condition) : "",
-      data: isSet(object.data) ? String(object.data) : "",
+      condition: isSet(object.condition) ? globalThis.Number(object.condition) : 0,
+      data: isSet(object.data) ? globalThis.String(object.data) : "",
+      creator: isSet(object.creator) ? globalThis.String(object.creator) : "",
     };
   },
 
   toJSON(message: AggregatedConditionalKeyShare): unknown {
     const obj: any = {};
-    message.condition !== undefined && (obj.condition = message.condition);
-    message.data !== undefined && (obj.data = message.data);
+    if (message.condition !== 0) {
+      obj.condition = Math.round(message.condition);
+    }
+    if (message.data !== "") {
+      obj.data = message.data;
+    }
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<AggregatedConditionalKeyShare>, I>>(base?: I): AggregatedConditionalKeyShare {
+    return AggregatedConditionalKeyShare.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<AggregatedConditionalKeyShare>, I>>(
     object: I,
   ): AggregatedConditionalKeyShare {
     const message = createBaseAggregatedConditionalKeyShare();
-    message.condition = object.condition ?? "";
+    message.condition = object.condition ?? 0;
     message.data = object.data ?? "";
+    message.creator = object.creator ?? "";
     return message;
   },
 };
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
   : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
@@ -163,7 +114,7 @@ export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
+  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
     throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
