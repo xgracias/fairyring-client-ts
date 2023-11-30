@@ -1,7 +1,3 @@
-import { Params } from "./types/ibc/applications/interchain_accounts/host/v1/host"
+import { Params } from './types/ibc/applications/interchain_accounts/host/v1/host';
 
-
-export {     
-    Params,
-    
- }
+export { Params };

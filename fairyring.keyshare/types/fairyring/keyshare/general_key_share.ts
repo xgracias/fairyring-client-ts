@@ -1,8 +1,8 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
-export const protobufPackage = "fairyring.keyshare";
+export const protobufPackage = 'fairyring.keyshare';
 
 export interface GeneralKeyShare {
   validator: string;
@@ -16,10 +16,10 @@ export interface GeneralKeyShare {
 
 function createBaseGeneralKeyShare(): GeneralKeyShare {
   return {
-    validator: "",
-    idType: "",
-    idValue: "",
-    keyShare: "",
+    validator: '',
+    idType: '',
+    idValue: '',
+    keyShare: '',
     keyShareIndex: 0,
     receivedTimestamp: 0,
     receivedBlockHeight: 0,
@@ -27,17 +27,20 @@ function createBaseGeneralKeyShare(): GeneralKeyShare {
 }
 
 export const GeneralKeyShare = {
-  encode(message: GeneralKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.validator !== "") {
+  encode(
+    message: GeneralKeyShare,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.validator !== '') {
       writer.uint32(10).string(message.validator);
     }
-    if (message.idType !== "") {
+    if (message.idType !== '') {
       writer.uint32(18).string(message.idType);
     }
-    if (message.idValue !== "") {
+    if (message.idValue !== '') {
       writer.uint32(26).string(message.idValue);
     }
-    if (message.keyShare !== "") {
+    if (message.keyShare !== '') {
       writer.uint32(34).string(message.keyShare);
     }
     if (message.keyShareIndex !== 0) {
@@ -90,13 +93,19 @@ export const GeneralKeyShare = {
 
   fromJSON(object: any): GeneralKeyShare {
     return {
-      validator: isSet(object.validator) ? String(object.validator) : "",
-      idType: isSet(object.idType) ? String(object.idType) : "",
-      idValue: isSet(object.idValue) ? String(object.idValue) : "",
-      keyShare: isSet(object.keyShare) ? String(object.keyShare) : "",
-      keyShareIndex: isSet(object.keyShareIndex) ? Number(object.keyShareIndex) : 0,
-      receivedTimestamp: isSet(object.receivedTimestamp) ? Number(object.receivedTimestamp) : 0,
-      receivedBlockHeight: isSet(object.receivedBlockHeight) ? Number(object.receivedBlockHeight) : 0,
+      validator: isSet(object.validator) ? String(object.validator) : '',
+      idType: isSet(object.idType) ? String(object.idType) : '',
+      idValue: isSet(object.idValue) ? String(object.idValue) : '',
+      keyShare: isSet(object.keyShare) ? String(object.keyShare) : '',
+      keyShareIndex: isSet(object.keyShareIndex)
+        ? Number(object.keyShareIndex)
+        : 0,
+      receivedTimestamp: isSet(object.receivedTimestamp)
+        ? Number(object.receivedTimestamp)
+        : 0,
+      receivedBlockHeight: isSet(object.receivedBlockHeight)
+        ? Number(object.receivedBlockHeight)
+        : 0,
     };
   },
 
@@ -106,18 +115,23 @@ export const GeneralKeyShare = {
     message.idType !== undefined && (obj.idType = message.idType);
     message.idValue !== undefined && (obj.idValue = message.idValue);
     message.keyShare !== undefined && (obj.keyShare = message.keyShare);
-    message.keyShareIndex !== undefined && (obj.keyShareIndex = Math.round(message.keyShareIndex));
-    message.receivedTimestamp !== undefined && (obj.receivedTimestamp = Math.round(message.receivedTimestamp));
-    message.receivedBlockHeight !== undefined && (obj.receivedBlockHeight = Math.round(message.receivedBlockHeight));
+    message.keyShareIndex !== undefined &&
+      (obj.keyShareIndex = Math.round(message.keyShareIndex));
+    message.receivedTimestamp !== undefined &&
+      (obj.receivedTimestamp = Math.round(message.receivedTimestamp));
+    message.receivedBlockHeight !== undefined &&
+      (obj.receivedBlockHeight = Math.round(message.receivedBlockHeight));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GeneralKeyShare>, I>>(object: I): GeneralKeyShare {
+  fromPartial<I extends Exact<DeepPartial<GeneralKeyShare>, I>>(
+    object: I
+  ): GeneralKeyShare {
     const message = createBaseGeneralKeyShare();
-    message.validator = object.validator ?? "";
-    message.idType = object.idType ?? "";
-    message.idValue = object.idValue ?? "";
-    message.keyShare = object.keyShare ?? "";
+    message.validator = object.validator ?? '';
+    message.idType = object.idType ?? '';
+    message.idValue = object.idValue ?? '';
+    message.keyShare = object.keyShare ?? '';
     message.keyShareIndex = object.keyShareIndex ?? 0;
     message.receivedTimestamp = object.receivedTimestamp ?? 0;
     message.receivedBlockHeight = object.receivedBlockHeight ?? 0;
@@ -129,35 +143,50 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+    };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

@@ -10,7 +10,7 @@
  */
 
 export interface ProtobufAny {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface RpcStatus {
@@ -315,11 +315,17 @@ export interface V1Beta1ValidatorSlashEvent {
   fraction?: string;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  ResponseType,
+} from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams
+  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -334,31 +340,43 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<
+  FullRequestParams,
+  'body' | 'method' | 'query' | 'path'
+>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown>
+  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+  constructor({
+    securityWorker,
+    secure,
+    format,
+    ...axiosConfig
+  }: ApiConfig<SecurityDataType> = {}) {
+    this.instance = axios.create({
+      ...axiosConfig,
+      baseURL: axiosConfig.baseURL || '',
+    });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -368,7 +386,10 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
+  private mergeRequestParams(
+    params1: AxiosRequestConfig,
+    params2?: AxiosRequestConfig
+  ): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -388,9 +409,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -406,15 +427,20 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (
+      type === ContentType.FormData &&
+      body &&
+      body !== null &&
+      typeof body === 'object'
+    ) {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -424,7 +450,9 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData
+          ? { 'Content-Type': type }
+          : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -439,7 +467,9 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title cosmos/distribution/v1beta1/distribution.proto
  * @version version not set
  */
-export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+export class Api<
+  SecurityDataType extends unknown,
+> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
@@ -451,8 +481,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryCommunityPool = (params: RequestParams = {}) =>
     this.request<V1Beta1QueryCommunityPoolResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/community_pool`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -465,11 +495,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
 validator.
  * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards
  */
-  queryDelegationTotalRewards = (delegatorAddress: string, params: RequestParams = {}) =>
+  queryDelegationTotalRewards = (
+    delegatorAddress: string,
+    params: RequestParams = {}
+  ) =>
     this.request<V1Beta1QueryDelegationTotalRewardsResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/rewards`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -481,11 +514,15 @@ validator.
    * @summary DelegationRewards queries the total rewards accrued by a delegation.
    * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}
    */
-  queryDelegationRewards = (delegatorAddress: string, validatorAddress: string, params: RequestParams = {}) =>
+  queryDelegationRewards = (
+    delegatorAddress: string,
+    validatorAddress: string,
+    params: RequestParams = {}
+  ) =>
     this.request<V1Beta1QueryDelegationRewardsResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/rewards/${validatorAddress}`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -497,11 +534,14 @@ validator.
    * @summary DelegatorValidators queries the validators of a delegator.
    * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/validators
    */
-  queryDelegatorValidators = (delegatorAddress: string, params: RequestParams = {}) =>
+  queryDelegatorValidators = (
+    delegatorAddress: string,
+    params: RequestParams = {}
+  ) =>
     this.request<V1Beta1QueryDelegatorValidatorsResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/validators`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -513,11 +553,14 @@ validator.
    * @summary DelegatorWithdrawAddress queries withdraw address of a delegator.
    * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address
    */
-  queryDelegatorWithdrawAddress = (delegatorAddress: string, params: RequestParams = {}) =>
+  queryDelegatorWithdrawAddress = (
+    delegatorAddress: string,
+    params: RequestParams = {}
+  ) =>
     this.request<V1Beta1QueryDelegatorWithdrawAddressResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/withdraw_address`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -532,8 +575,8 @@ validator.
   queryParams = (params: RequestParams = {}) =>
     this.request<V1Beta1QueryParamsResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/params`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -545,11 +588,14 @@ validator.
    * @summary ValidatorDistributionInfo queries validator commission and self-delegation rewards for validator
    * @request GET:/cosmos/distribution/v1beta1/validators/{validator_address}
    */
-  queryValidatorDistributionInfo = (validatorAddress: string, params: RequestParams = {}) =>
+  queryValidatorDistributionInfo = (
+    validatorAddress: string,
+    params: RequestParams = {}
+  ) =>
     this.request<V1Beta1QueryValidatorDistributionInfoResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -561,11 +607,14 @@ validator.
    * @summary ValidatorCommission queries accumulated commission for a validator.
    * @request GET:/cosmos/distribution/v1beta1/validators/{validator_address}/commission
    */
-  queryValidatorCommission = (validatorAddress: string, params: RequestParams = {}) =>
+  queryValidatorCommission = (
+    validatorAddress: string,
+    params: RequestParams = {}
+  ) =>
     this.request<V1Beta1QueryValidatorCommissionResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/commission`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -577,11 +626,14 @@ validator.
    * @summary ValidatorOutstandingRewards queries rewards of a validator address.
    * @request GET:/cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards
    */
-  queryValidatorOutstandingRewards = (validatorAddress: string, params: RequestParams = {}) =>
+  queryValidatorOutstandingRewards = (
+    validatorAddress: string,
+    params: RequestParams = {}
+  ) =>
     this.request<V1Beta1QueryValidatorOutstandingRewardsResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/outstanding_rewards`,
-      method: "GET",
-      format: "json",
+      method: 'GET',
+      format: 'json',
       ...params,
     });
 
@@ -598,19 +650,19 @@ validator.
     query?: {
       starting_height?: string;
       ending_height?: string;
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<V1Beta1QueryValidatorSlashesResponse, RpcStatus>({
       path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/slashes`,
-      method: "GET",
+      method: 'GET',
       query: query,
-      format: "json",
+      format: 'json',
       ...params,
     });
 }
