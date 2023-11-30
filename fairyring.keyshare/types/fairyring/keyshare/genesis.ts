@@ -42,10 +42,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
@@ -62,16 +59,10 @@ export const GenesisState = {
       AggregatedKeyShare.encode(v!, writer.uint32(42).fork()).ldelim();
     }
     if (message.activePubKey !== undefined) {
-      ActivePubKey.encode(
-        message.activePubKey,
-        writer.uint32(50).fork()
-      ).ldelim();
+      ActivePubKey.encode(message.activePubKey, writer.uint32(50).fork()).ldelim();
     }
     if (message.queuedPubKey !== undefined) {
-      QueuedPubKey.encode(
-        message.queuedPubKey,
-        writer.uint32(58).fork()
-      ).ldelim();
+      QueuedPubKey.encode(message.queuedPubKey, writer.uint32(58).fork()).ldelim();
     }
     for (const v of message.authorizedAddressList) {
       AuthorizedAddress.encode(v!, writer.uint32(66).fork()).ldelim();
@@ -99,17 +90,13 @@ export const GenesisState = {
           message.portId = reader.string();
           break;
         case 3:
-          message.validatorSetList.push(
-            ValidatorSet.decode(reader, reader.uint32())
-          );
+          message.validatorSetList.push(ValidatorSet.decode(reader, reader.uint32()));
           break;
         case 4:
           message.keyShareList.push(KeyShare.decode(reader, reader.uint32()));
           break;
         case 5:
-          message.aggregatedKeyShareList.push(
-            AggregatedKeyShare.decode(reader, reader.uint32())
-          );
+          message.aggregatedKeyShareList.push(AggregatedKeyShare.decode(reader, reader.uint32()));
           break;
         case 6:
           message.activePubKey = ActivePubKey.decode(reader, reader.uint32());
@@ -118,17 +105,13 @@ export const GenesisState = {
           message.queuedPubKey = QueuedPubKey.decode(reader, reader.uint32());
           break;
         case 8:
-          message.authorizedAddressList.push(
-            AuthorizedAddress.decode(reader, reader.uint32())
-          );
+          message.authorizedAddressList.push(AuthorizedAddress.decode(reader, reader.uint32()));
           break;
         case 9:
           message.requestCount = longToNumber(reader.uint64() as Long);
           break;
         case 10:
-          message.generalKeyShareList.push(
-            GeneralKeyShare.decode(reader, reader.uint32())
-          );
+          message.generalKeyShareList.push(GeneralKeyShare.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -149,48 +132,31 @@ export const GenesisState = {
         ? object.keyShareList.map((e: any) => KeyShare.fromJSON(e))
         : [],
       aggregatedKeyShareList: Array.isArray(object?.aggregatedKeyShareList)
-        ? object.aggregatedKeyShareList.map((e: any) =>
-            AggregatedKeyShare.fromJSON(e)
-          )
+        ? object.aggregatedKeyShareList.map((e: any) => AggregatedKeyShare.fromJSON(e))
         : [],
-      activePubKey: isSet(object.activePubKey)
-        ? ActivePubKey.fromJSON(object.activePubKey)
-        : undefined,
-      queuedPubKey: isSet(object.queuedPubKey)
-        ? QueuedPubKey.fromJSON(object.queuedPubKey)
-        : undefined,
+      activePubKey: isSet(object.activePubKey) ? ActivePubKey.fromJSON(object.activePubKey) : undefined,
+      queuedPubKey: isSet(object.queuedPubKey) ? QueuedPubKey.fromJSON(object.queuedPubKey) : undefined,
       authorizedAddressList: Array.isArray(object?.authorizedAddressList)
-        ? object.authorizedAddressList.map((e: any) =>
-            AuthorizedAddress.fromJSON(e)
-          )
+        ? object.authorizedAddressList.map((e: any) => AuthorizedAddress.fromJSON(e))
         : [],
-      requestCount: isSet(object.requestCount)
-        ? Number(object.requestCount)
-        : 0,
+      requestCount: isSet(object.requestCount) ? Number(object.requestCount) : 0,
       generalKeyShareList: Array.isArray(object?.generalKeyShareList)
-        ? object.generalKeyShareList.map((e: any) =>
-            GeneralKeyShare.fromJSON(e)
-          )
+        ? object.generalKeyShareList.map((e: any) => GeneralKeyShare.fromJSON(e))
         : [],
     };
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     message.portId !== undefined && (obj.portId = message.portId);
     if (message.validatorSetList) {
-      obj.validatorSetList = message.validatorSetList.map((e) =>
-        e ? ValidatorSet.toJSON(e) : undefined
-      );
+      obj.validatorSetList = message.validatorSetList.map((e) => (e ? ValidatorSet.toJSON(e) : undefined));
     } else {
       obj.validatorSetList = [];
     }
     if (message.keyShareList) {
-      obj.keyShareList = message.keyShareList.map((e) =>
-        e ? KeyShare.toJSON(e) : undefined
-      );
+      obj.keyShareList = message.keyShareList.map((e) => (e ? KeyShare.toJSON(e) : undefined));
     } else {
       obj.keyShareList = [];
     }
@@ -202,13 +168,9 @@ export const GenesisState = {
       obj.aggregatedKeyShareList = [];
     }
     message.activePubKey !== undefined &&
-      (obj.activePubKey = message.activePubKey
-        ? ActivePubKey.toJSON(message.activePubKey)
-        : undefined);
+      (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
     message.queuedPubKey !== undefined &&
-      (obj.queuedPubKey = message.queuedPubKey
-        ? QueuedPubKey.toJSON(message.queuedPubKey)
-        : undefined);
+      (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
     if (message.authorizedAddressList) {
       obj.authorizedAddressList = message.authorizedAddressList.map((e) =>
         e ? AuthorizedAddress.toJSON(e) : undefined
@@ -216,35 +178,23 @@ export const GenesisState = {
     } else {
       obj.authorizedAddressList = [];
     }
-    message.requestCount !== undefined &&
-      (obj.requestCount = Math.round(message.requestCount));
+    message.requestCount !== undefined && (obj.requestCount = Math.round(message.requestCount));
     if (message.generalKeyShareList) {
-      obj.generalKeyShareList = message.generalKeyShareList.map((e) =>
-        e ? GeneralKeyShare.toJSON(e) : undefined
-      );
+      obj.generalKeyShareList = message.generalKeyShareList.map((e) => (e ? GeneralKeyShare.toJSON(e) : undefined));
     } else {
       obj.generalKeyShareList = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.params =
-      object.params !== undefined && object.params !== null
-        ? Params.fromPartial(object.params)
-        : undefined;
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.portId = object.portId ?? '';
-    message.validatorSetList =
-      object.validatorSetList?.map((e) => ValidatorSet.fromPartial(e)) || [];
-    message.keyShareList =
-      object.keyShareList?.map((e) => KeyShare.fromPartial(e)) || [];
-    message.aggregatedKeyShareList =
-      object.aggregatedKeyShareList?.map((e) =>
-        AggregatedKeyShare.fromPartial(e)
-      ) || [];
+    message.validatorSetList = object.validatorSetList?.map((e) => ValidatorSet.fromPartial(e)) || [];
+    message.keyShareList = object.keyShareList?.map((e) => KeyShare.fromPartial(e)) || [];
+    message.aggregatedKeyShareList = object.aggregatedKeyShareList?.map((e) => AggregatedKeyShare.fromPartial(e)) || [];
     message.activePubKey =
       object.activePubKey !== undefined && object.activePubKey !== null
         ? ActivePubKey.fromPartial(object.activePubKey)
@@ -253,14 +203,9 @@ export const GenesisState = {
       object.queuedPubKey !== undefined && object.queuedPubKey !== null
         ? QueuedPubKey.fromPartial(object.queuedPubKey)
         : undefined;
-    message.authorizedAddressList =
-      object.authorizedAddressList?.map((e) =>
-        AuthorizedAddress.fromPartial(e)
-      ) || [];
+    message.authorizedAddressList = object.authorizedAddressList?.map((e) => AuthorizedAddress.fromPartial(e)) || [];
     message.requestCount = object.requestCount ?? 0;
-    message.generalKeyShareList =
-      object.generalKeyShareList?.map((e) => GeneralKeyShare.fromPartial(e)) ||
-      [];
+    message.generalKeyShareList = object.generalKeyShareList?.map((e) => GeneralKeyShare.fromPartial(e)) || [];
     return message;
   },
 };
@@ -284,14 +229,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

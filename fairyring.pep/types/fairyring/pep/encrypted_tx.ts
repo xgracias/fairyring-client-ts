@@ -28,10 +28,7 @@ function createBaseEncryptedTx(): EncryptedTx {
 }
 
 export const EncryptedTx = {
-  encode(
-    message: EncryptedTx,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: EncryptedTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.targetHeight !== 0) {
       writer.uint32(8).uint64(message.targetHeight);
     }
@@ -82,44 +79,33 @@ export const EncryptedTx = {
 
   fromJSON(object: any): EncryptedTx {
     return {
-      targetHeight: isSet(object.targetHeight)
-        ? Number(object.targetHeight)
-        : 0,
+      targetHeight: isSet(object.targetHeight) ? Number(object.targetHeight) : 0,
       index: isSet(object.index) ? Number(object.index) : 0,
       data: isSet(object.data) ? String(object.data) : '',
       creator: isSet(object.creator) ? String(object.creator) : '',
-      chargedGas: isSet(object.chargedGas)
-        ? Coin.fromJSON(object.chargedGas)
-        : undefined,
+      chargedGas: isSet(object.chargedGas) ? Coin.fromJSON(object.chargedGas) : undefined,
     };
   },
 
   toJSON(message: EncryptedTx): unknown {
     const obj: any = {};
-    message.targetHeight !== undefined &&
-      (obj.targetHeight = Math.round(message.targetHeight));
+    message.targetHeight !== undefined && (obj.targetHeight = Math.round(message.targetHeight));
     message.index !== undefined && (obj.index = Math.round(message.index));
     message.data !== undefined && (obj.data = message.data);
     message.creator !== undefined && (obj.creator = message.creator);
     message.chargedGas !== undefined &&
-      (obj.chargedGas = message.chargedGas
-        ? Coin.toJSON(message.chargedGas)
-        : undefined);
+      (obj.chargedGas = message.chargedGas ? Coin.toJSON(message.chargedGas) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<EncryptedTx>, I>>(
-    object: I
-  ): EncryptedTx {
+  fromPartial<I extends Exact<DeepPartial<EncryptedTx>, I>>(object: I): EncryptedTx {
     const message = createBaseEncryptedTx();
     message.targetHeight = object.targetHeight ?? 0;
     message.index = object.index ?? 0;
     message.data = object.data ?? '';
     message.creator = object.creator ?? '';
     message.chargedGas =
-      object.chargedGas !== undefined && object.chargedGas !== null
-        ? Coin.fromPartial(object.chargedGas)
-        : undefined;
+      object.chargedGas !== undefined && object.chargedGas !== null ? Coin.fromPartial(object.chargedGas) : undefined;
     return message;
   },
 };
@@ -129,10 +115,7 @@ function createBaseEncryptedTxArray(): EncryptedTxArray {
 }
 
 export const EncryptedTxArray = {
-  encode(
-    message: EncryptedTxArray,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: EncryptedTxArray, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.encryptedTx) {
       EncryptedTx.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -168,21 +151,16 @@ export const EncryptedTxArray = {
   toJSON(message: EncryptedTxArray): unknown {
     const obj: any = {};
     if (message.encryptedTx) {
-      obj.encryptedTx = message.encryptedTx.map((e) =>
-        e ? EncryptedTx.toJSON(e) : undefined
-      );
+      obj.encryptedTx = message.encryptedTx.map((e) => (e ? EncryptedTx.toJSON(e) : undefined));
     } else {
       obj.encryptedTx = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(
-    object: I
-  ): EncryptedTxArray {
+  fromPartial<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(object: I): EncryptedTxArray {
     const message = createBaseEncryptedTxArray();
-    message.encryptedTx =
-      object.encryptedTx?.map((e) => EncryptedTx.fromPartial(e)) || [];
+    message.encryptedTx = object.encryptedTx?.map((e) => EncryptedTx.fromPartial(e)) || [];
     return message;
   },
 };
@@ -206,14 +184,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

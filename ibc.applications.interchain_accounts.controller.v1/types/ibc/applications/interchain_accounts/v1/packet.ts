@@ -60,10 +60,7 @@ function createBaseInterchainAccountPacketData(): InterchainAccountPacketData {
 }
 
 export const InterchainAccountPacketData = {
-  encode(
-    message: InterchainAccountPacketData,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: InterchainAccountPacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.type !== 0) {
       writer.uint32(8).int32(message.type);
     }
@@ -76,10 +73,7 @@ export const InterchainAccountPacketData = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): InterchainAccountPacketData {
+  decode(input: _m0.Reader | Uint8Array, length?: number): InterchainAccountPacketData {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseInterchainAccountPacketData();
@@ -106,9 +100,7 @@ export const InterchainAccountPacketData = {
   fromJSON(object: any): InterchainAccountPacketData {
     return {
       type: isSet(object.type) ? typeFromJSON(object.type) : 0,
-      data: isSet(object.data)
-        ? bytesFromBase64(object.data)
-        : new Uint8Array(),
+      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
       memo: isSet(object.memo) ? String(object.memo) : '',
     };
   },
@@ -117,16 +109,12 @@ export const InterchainAccountPacketData = {
     const obj: any = {};
     message.type !== undefined && (obj.type = typeToJSON(message.type));
     message.data !== undefined &&
-      (obj.data = base64FromBytes(
-        message.data !== undefined ? message.data : new Uint8Array()
-      ));
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
     message.memo !== undefined && (obj.memo = message.memo);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<InterchainAccountPacketData>, I>>(
-    object: I
-  ): InterchainAccountPacketData {
+  fromPartial<I extends Exact<DeepPartial<InterchainAccountPacketData>, I>>(object: I): InterchainAccountPacketData {
     const message = createBaseInterchainAccountPacketData();
     message.type = object.type ?? 0;
     message.data = object.data ?? new Uint8Array();
@@ -140,10 +128,7 @@ function createBaseCosmosTx(): CosmosTx {
 }
 
 export const CosmosTx = {
-  encode(
-    message: CosmosTx,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: CosmosTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.messages) {
       Any.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -170,18 +155,14 @@ export const CosmosTx = {
 
   fromJSON(object: any): CosmosTx {
     return {
-      messages: Array.isArray(object?.messages)
-        ? object.messages.map((e: any) => Any.fromJSON(e))
-        : [],
+      messages: Array.isArray(object?.messages) ? object.messages.map((e: any) => Any.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: CosmosTx): unknown {
     const obj: any = {};
     if (message.messages) {
-      obj.messages = message.messages.map((e) =>
-        e ? Any.toJSON(e) : undefined
-      );
+      obj.messages = message.messages.map((e) => (e ? Any.toJSON(e) : undefined));
     } else {
       obj.messages = [];
     }
@@ -239,14 +220,7 @@ function base64FromBytes(arr: Uint8Array): string {
   }
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

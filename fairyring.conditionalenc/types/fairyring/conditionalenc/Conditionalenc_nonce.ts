@@ -14,10 +14,7 @@ function createBaseConditionalencNonce(): ConditionalencNonce {
 }
 
 export const ConditionalencNonce = {
-  encode(
-    message: ConditionalencNonce,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ConditionalencNonce, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
@@ -28,8 +25,7 @@ export const ConditionalencNonce = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): ConditionalencNonce {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseConditionalencNonce();
     while (reader.pos < end) {
@@ -76,14 +72,10 @@ export const ConditionalencNonce = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ConditionalencNonce>, I>>(
-    base?: I
-  ): ConditionalencNonce {
+  create<I extends Exact<DeepPartial<ConditionalencNonce>, I>>(base?: I): ConditionalencNonce {
     return ConditionalencNonce.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ConditionalencNonce>, I>>(
-    object: I
-  ): ConditionalencNonce {
+  fromPartial<I extends Exact<DeepPartial<ConditionalencNonce>, I>>(object: I): ConditionalencNonce {
     const message = createBaseConditionalencNonce();
     message.address = object.address ?? '';
     message.nonce = object.nonce ?? 0;
@@ -91,14 +83,7 @@ export const ConditionalencNonce = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

@@ -2,9 +2,9 @@ export type Constructor<T> = new (...args: any[]) => T;
 
 export type AnyFunction = (...args: any) => any;
 
-export type UnionToIntersection<Union> = (
-  Union extends any ? (argument: Union) => void : never
-) extends (argument: infer Intersection) => void
+export type UnionToIntersection<Union> = (Union extends any ? (argument: Union) => void : never) extends (
+  argument: infer Intersection
+) => void
   ? Intersection
   : never;
 

@@ -22,10 +22,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
@@ -71,13 +68,9 @@ export const GenesisState = {
   fromJSON(object: any): GenesisState {
     return {
       portId: isSet(object.portId) ? String(object.portId) : '',
-      denomTraces: Array.isArray(object?.denomTraces)
-        ? object.denomTraces.map((e: any) => DenomTrace.fromJSON(e))
-        : [],
+      denomTraces: Array.isArray(object?.denomTraces) ? object.denomTraces.map((e: any) => DenomTrace.fromJSON(e)) : [],
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      totalEscrowed: Array.isArray(object?.totalEscrowed)
-        ? object.totalEscrowed.map((e: any) => Coin.fromJSON(e))
-        : [],
+      totalEscrowed: Array.isArray(object?.totalEscrowed) ? object.totalEscrowed.map((e: any) => Coin.fromJSON(e)) : [],
     };
   },
 
@@ -85,49 +78,31 @@ export const GenesisState = {
     const obj: any = {};
     message.portId !== undefined && (obj.portId = message.portId);
     if (message.denomTraces) {
-      obj.denomTraces = message.denomTraces.map((e) =>
-        e ? DenomTrace.toJSON(e) : undefined
-      );
+      obj.denomTraces = message.denomTraces.map((e) => (e ? DenomTrace.toJSON(e) : undefined));
     } else {
       obj.denomTraces = [];
     }
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     if (message.totalEscrowed) {
-      obj.totalEscrowed = message.totalEscrowed.map((e) =>
-        e ? Coin.toJSON(e) : undefined
-      );
+      obj.totalEscrowed = message.totalEscrowed.map((e) => (e ? Coin.toJSON(e) : undefined));
     } else {
       obj.totalEscrowed = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.portId = object.portId ?? '';
-    message.denomTraces =
-      object.denomTraces?.map((e) => DenomTrace.fromPartial(e)) || [];
+    message.denomTraces = object.denomTraces?.map((e) => DenomTrace.fromPartial(e)) || [];
     message.params =
-      object.params !== undefined && object.params !== null
-        ? Params.fromPartial(object.params)
-        : undefined;
-    message.totalEscrowed =
-      object.totalEscrowed?.map((e) => Coin.fromPartial(e)) || [];
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.totalEscrowed = object.totalEscrowed?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

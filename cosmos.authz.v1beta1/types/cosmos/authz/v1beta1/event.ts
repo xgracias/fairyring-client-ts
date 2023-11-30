@@ -30,10 +30,7 @@ function createBaseEventGrant(): EventGrant {
 }
 
 export const EventGrant = {
-  encode(
-    message: EventGrant,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: EventGrant, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.msgTypeUrl !== '') {
       writer.uint32(18).string(message.msgTypeUrl);
     }
@@ -86,9 +83,7 @@ export const EventGrant = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<EventGrant>, I>>(
-    object: I
-  ): EventGrant {
+  fromPartial<I extends Exact<DeepPartial<EventGrant>, I>>(object: I): EventGrant {
     const message = createBaseEventGrant();
     message.msgTypeUrl = object.msgTypeUrl ?? '';
     message.granter = object.granter ?? '';
@@ -102,10 +97,7 @@ function createBaseEventRevoke(): EventRevoke {
 }
 
 export const EventRevoke = {
-  encode(
-    message: EventRevoke,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: EventRevoke, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.msgTypeUrl !== '') {
       writer.uint32(18).string(message.msgTypeUrl);
     }
@@ -158,9 +150,7 @@ export const EventRevoke = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<EventRevoke>, I>>(
-    object: I
-  ): EventRevoke {
+  fromPartial<I extends Exact<DeepPartial<EventRevoke>, I>>(object: I): EventRevoke {
     const message = createBaseEventRevoke();
     message.msgTypeUrl = object.msgTypeUrl ?? '';
     message.granter = object.granter ?? '';
@@ -169,14 +159,7 @@ export const EventRevoke = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

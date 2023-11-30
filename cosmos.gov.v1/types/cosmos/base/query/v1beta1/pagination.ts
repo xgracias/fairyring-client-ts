@@ -80,10 +80,7 @@ function createBasePageRequest(): PageRequest {
 }
 
 export const PageRequest = {
-  encode(
-    message: PageRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: PageRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key.length !== 0) {
       writer.uint32(10).bytes(message.key);
     }
@@ -145,9 +142,7 @@ export const PageRequest = {
   toJSON(message: PageRequest): unknown {
     const obj: any = {};
     message.key !== undefined &&
-      (obj.key = base64FromBytes(
-        message.key !== undefined ? message.key : new Uint8Array()
-      ));
+      (obj.key = base64FromBytes(message.key !== undefined ? message.key : new Uint8Array()));
     message.offset !== undefined && (obj.offset = Math.round(message.offset));
     message.limit !== undefined && (obj.limit = Math.round(message.limit));
     message.countTotal !== undefined && (obj.countTotal = message.countTotal);
@@ -155,9 +150,7 @@ export const PageRequest = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<PageRequest>, I>>(
-    object: I
-  ): PageRequest {
+  fromPartial<I extends Exact<DeepPartial<PageRequest>, I>>(object: I): PageRequest {
     const message = createBasePageRequest();
     message.key = object.key ?? new Uint8Array();
     message.offset = object.offset ?? 0;
@@ -173,10 +166,7 @@ function createBasePageResponse(): PageResponse {
 }
 
 export const PageResponse = {
-  encode(
-    message: PageResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: PageResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.nextKey.length !== 0) {
       writer.uint32(10).bytes(message.nextKey);
     }
@@ -209,9 +199,7 @@ export const PageResponse = {
 
   fromJSON(object: any): PageResponse {
     return {
-      nextKey: isSet(object.nextKey)
-        ? bytesFromBase64(object.nextKey)
-        : new Uint8Array(),
+      nextKey: isSet(object.nextKey) ? bytesFromBase64(object.nextKey) : new Uint8Array(),
       total: isSet(object.total) ? Number(object.total) : 0,
     };
   },
@@ -219,16 +207,12 @@ export const PageResponse = {
   toJSON(message: PageResponse): unknown {
     const obj: any = {};
     message.nextKey !== undefined &&
-      (obj.nextKey = base64FromBytes(
-        message.nextKey !== undefined ? message.nextKey : new Uint8Array()
-      ));
+      (obj.nextKey = base64FromBytes(message.nextKey !== undefined ? message.nextKey : new Uint8Array()));
     message.total !== undefined && (obj.total = Math.round(message.total));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<PageResponse>, I>>(
-    object: I
-  ): PageResponse {
+  fromPartial<I extends Exact<DeepPartial<PageResponse>, I>>(object: I): PageResponse {
     const message = createBasePageResponse();
     message.nextKey = object.nextKey ?? new Uint8Array();
     message.total = object.total ?? 0;
@@ -280,14 +264,7 @@ function base64FromBytes(arr: Uint8Array): string {
   }
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

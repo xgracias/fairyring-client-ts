@@ -38,10 +38,7 @@ function createBaseMsgGrantAllowance(): MsgGrantAllowance {
 }
 
 export const MsgGrantAllowance = {
-  encode(
-    message: MsgGrantAllowance,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MsgGrantAllowance, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.granter !== '') {
       writer.uint32(10).string(message.granter);
     }
@@ -82,9 +79,7 @@ export const MsgGrantAllowance = {
     return {
       granter: isSet(object.granter) ? String(object.granter) : '',
       grantee: isSet(object.grantee) ? String(object.grantee) : '',
-      allowance: isSet(object.allowance)
-        ? Any.fromJSON(object.allowance)
-        : undefined,
+      allowance: isSet(object.allowance) ? Any.fromJSON(object.allowance) : undefined,
     };
   },
 
@@ -92,23 +87,16 @@ export const MsgGrantAllowance = {
     const obj: any = {};
     message.granter !== undefined && (obj.granter = message.granter);
     message.grantee !== undefined && (obj.grantee = message.grantee);
-    message.allowance !== undefined &&
-      (obj.allowance = message.allowance
-        ? Any.toJSON(message.allowance)
-        : undefined);
+    message.allowance !== undefined && (obj.allowance = message.allowance ? Any.toJSON(message.allowance) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgGrantAllowance>, I>>(
-    object: I
-  ): MsgGrantAllowance {
+  fromPartial<I extends Exact<DeepPartial<MsgGrantAllowance>, I>>(object: I): MsgGrantAllowance {
     const message = createBaseMsgGrantAllowance();
     message.granter = object.granter ?? '';
     message.grantee = object.grantee ?? '';
     message.allowance =
-      object.allowance !== undefined && object.allowance !== null
-        ? Any.fromPartial(object.allowance)
-        : undefined;
+      object.allowance !== undefined && object.allowance !== null ? Any.fromPartial(object.allowance) : undefined;
     return message;
   },
 };
@@ -118,17 +106,11 @@ function createBaseMsgGrantAllowanceResponse(): MsgGrantAllowanceResponse {
 }
 
 export const MsgGrantAllowanceResponse = {
-  encode(
-    _: MsgGrantAllowanceResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgGrantAllowanceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgGrantAllowanceResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgGrantAllowanceResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgGrantAllowanceResponse();
@@ -152,9 +134,7 @@ export const MsgGrantAllowanceResponse = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgGrantAllowanceResponse>, I>>(
-    _: I
-  ): MsgGrantAllowanceResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgGrantAllowanceResponse>, I>>(_: I): MsgGrantAllowanceResponse {
     const message = createBaseMsgGrantAllowanceResponse();
     return message;
   },
@@ -165,10 +145,7 @@ function createBaseMsgRevokeAllowance(): MsgRevokeAllowance {
 }
 
 export const MsgRevokeAllowance = {
-  encode(
-    message: MsgRevokeAllowance,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MsgRevokeAllowance, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.granter !== '') {
       writer.uint32(10).string(message.granter);
     }
@@ -213,9 +190,7 @@ export const MsgRevokeAllowance = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgRevokeAllowance>, I>>(
-    object: I
-  ): MsgRevokeAllowance {
+  fromPartial<I extends Exact<DeepPartial<MsgRevokeAllowance>, I>>(object: I): MsgRevokeAllowance {
     const message = createBaseMsgRevokeAllowance();
     message.granter = object.granter ?? '';
     message.grantee = object.grantee ?? '';
@@ -228,17 +203,11 @@ function createBaseMsgRevokeAllowanceResponse(): MsgRevokeAllowanceResponse {
 }
 
 export const MsgRevokeAllowanceResponse = {
-  encode(
-    _: MsgRevokeAllowanceResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgRevokeAllowanceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgRevokeAllowanceResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgRevokeAllowanceResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgRevokeAllowanceResponse();
@@ -262,9 +231,7 @@ export const MsgRevokeAllowanceResponse = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgRevokeAllowanceResponse>, I>>(
-    _: I
-  ): MsgRevokeAllowanceResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgRevokeAllowanceResponse>, I>>(_: I): MsgRevokeAllowanceResponse {
     const message = createBaseMsgRevokeAllowanceResponse();
     return message;
   },
@@ -276,16 +243,12 @@ export interface Msg {
    * GrantAllowance grants fee allowance to the grantee on the granter's
    * account with the provided expiration time.
    */
-  GrantAllowance(
-    request: MsgGrantAllowance
-  ): Promise<MsgGrantAllowanceResponse>;
+  GrantAllowance(request: MsgGrantAllowance): Promise<MsgGrantAllowanceResponse>;
   /**
    * RevokeAllowance revokes any fee allowance of granter's account that
    * has been granted to the grantee.
    */
-  RevokeAllowance(
-    request: MsgRevokeAllowance
-  ): Promise<MsgRevokeAllowanceResponse>;
+  RevokeAllowance(request: MsgRevokeAllowance): Promise<MsgRevokeAllowanceResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -295,51 +258,24 @@ export class MsgClientImpl implements Msg {
     this.GrantAllowance = this.GrantAllowance.bind(this);
     this.RevokeAllowance = this.RevokeAllowance.bind(this);
   }
-  GrantAllowance(
-    request: MsgGrantAllowance
-  ): Promise<MsgGrantAllowanceResponse> {
+  GrantAllowance(request: MsgGrantAllowance): Promise<MsgGrantAllowanceResponse> {
     const data = MsgGrantAllowance.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.feegrant.v1beta1.Msg',
-      'GrantAllowance',
-      data
-    );
-    return promise.then((data) =>
-      MsgGrantAllowanceResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.feegrant.v1beta1.Msg', 'GrantAllowance', data);
+    return promise.then((data) => MsgGrantAllowanceResponse.decode(new _m0.Reader(data)));
   }
 
-  RevokeAllowance(
-    request: MsgRevokeAllowance
-  ): Promise<MsgRevokeAllowanceResponse> {
+  RevokeAllowance(request: MsgRevokeAllowance): Promise<MsgRevokeAllowanceResponse> {
     const data = MsgRevokeAllowance.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.feegrant.v1beta1.Msg',
-      'RevokeAllowance',
-      data
-    );
-    return promise.then((data) =>
-      MsgRevokeAllowanceResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.feegrant.v1beta1.Msg', 'RevokeAllowance', data);
+    return promise.then((data) => MsgRevokeAllowanceResponse.decode(new _m0.Reader(data)));
   }
 }
 
 interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

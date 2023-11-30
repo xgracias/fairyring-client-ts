@@ -48,10 +48,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
@@ -103,12 +100,8 @@ export const GenesisState = {
   fromJSON(object: any): GenesisState {
     return {
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      balances: Array.isArray(object?.balances)
-        ? object.balances.map((e: any) => Balance.fromJSON(e))
-        : [],
-      supply: Array.isArray(object?.supply)
-        ? object.supply.map((e: any) => Coin.fromJSON(e))
-        : [],
+      balances: Array.isArray(object?.balances) ? object.balances.map((e: any) => Balance.fromJSON(e)) : [],
+      supply: Array.isArray(object?.supply) ? object.supply.map((e: any) => Coin.fromJSON(e)) : [],
       denomMetadata: Array.isArray(object?.denomMetadata)
         ? object.denomMetadata.map((e: any) => Metadata.fromJSON(e))
         : [],
@@ -120,12 +113,9 @@ export const GenesisState = {
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     if (message.balances) {
-      obj.balances = message.balances.map((e) =>
-        e ? Balance.toJSON(e) : undefined
-      );
+      obj.balances = message.balances.map((e) => (e ? Balance.toJSON(e) : undefined));
     } else {
       obj.balances = [];
     }
@@ -135,37 +125,26 @@ export const GenesisState = {
       obj.supply = [];
     }
     if (message.denomMetadata) {
-      obj.denomMetadata = message.denomMetadata.map((e) =>
-        e ? Metadata.toJSON(e) : undefined
-      );
+      obj.denomMetadata = message.denomMetadata.map((e) => (e ? Metadata.toJSON(e) : undefined));
     } else {
       obj.denomMetadata = [];
     }
     if (message.sendEnabled) {
-      obj.sendEnabled = message.sendEnabled.map((e) =>
-        e ? SendEnabled.toJSON(e) : undefined
-      );
+      obj.sendEnabled = message.sendEnabled.map((e) => (e ? SendEnabled.toJSON(e) : undefined));
     } else {
       obj.sendEnabled = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.params =
-      object.params !== undefined && object.params !== null
-        ? Params.fromPartial(object.params)
-        : undefined;
-    message.balances =
-      object.balances?.map((e) => Balance.fromPartial(e)) || [];
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.balances = object.balances?.map((e) => Balance.fromPartial(e)) || [];
     message.supply = object.supply?.map((e) => Coin.fromPartial(e)) || [];
-    message.denomMetadata =
-      object.denomMetadata?.map((e) => Metadata.fromPartial(e)) || [];
-    message.sendEnabled =
-      object.sendEnabled?.map((e) => SendEnabled.fromPartial(e)) || [];
+    message.denomMetadata = object.denomMetadata?.map((e) => Metadata.fromPartial(e)) || [];
+    message.sendEnabled = object.sendEnabled?.map((e) => SendEnabled.fromPartial(e)) || [];
     return message;
   },
 };
@@ -175,10 +154,7 @@ function createBaseBalance(): Balance {
 }
 
 export const Balance = {
-  encode(
-    message: Balance,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Balance, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
@@ -212,9 +188,7 @@ export const Balance = {
   fromJSON(object: any): Balance {
     return {
       address: isSet(object.address) ? String(object.address) : '',
-      coins: Array.isArray(object?.coins)
-        ? object.coins.map((e: any) => Coin.fromJSON(e))
-        : [],
+      coins: Array.isArray(object?.coins) ? object.coins.map((e: any) => Coin.fromJSON(e)) : [],
     };
   },
 
@@ -237,14 +211,7 @@ export const Balance = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

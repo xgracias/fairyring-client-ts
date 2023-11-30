@@ -27,10 +27,7 @@ function createBaseGeneralKeyShare(): GeneralKeyShare {
 }
 
 export const GeneralKeyShare = {
-  encode(
-    message: GeneralKeyShare,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GeneralKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.validator !== '') {
       writer.uint32(10).string(message.validator);
     }
@@ -97,15 +94,9 @@ export const GeneralKeyShare = {
       idType: isSet(object.idType) ? String(object.idType) : '',
       idValue: isSet(object.idValue) ? String(object.idValue) : '',
       keyShare: isSet(object.keyShare) ? String(object.keyShare) : '',
-      keyShareIndex: isSet(object.keyShareIndex)
-        ? Number(object.keyShareIndex)
-        : 0,
-      receivedTimestamp: isSet(object.receivedTimestamp)
-        ? Number(object.receivedTimestamp)
-        : 0,
-      receivedBlockHeight: isSet(object.receivedBlockHeight)
-        ? Number(object.receivedBlockHeight)
-        : 0,
+      keyShareIndex: isSet(object.keyShareIndex) ? Number(object.keyShareIndex) : 0,
+      receivedTimestamp: isSet(object.receivedTimestamp) ? Number(object.receivedTimestamp) : 0,
+      receivedBlockHeight: isSet(object.receivedBlockHeight) ? Number(object.receivedBlockHeight) : 0,
     };
   },
 
@@ -115,18 +106,13 @@ export const GeneralKeyShare = {
     message.idType !== undefined && (obj.idType = message.idType);
     message.idValue !== undefined && (obj.idValue = message.idValue);
     message.keyShare !== undefined && (obj.keyShare = message.keyShare);
-    message.keyShareIndex !== undefined &&
-      (obj.keyShareIndex = Math.round(message.keyShareIndex));
-    message.receivedTimestamp !== undefined &&
-      (obj.receivedTimestamp = Math.round(message.receivedTimestamp));
-    message.receivedBlockHeight !== undefined &&
-      (obj.receivedBlockHeight = Math.round(message.receivedBlockHeight));
+    message.keyShareIndex !== undefined && (obj.keyShareIndex = Math.round(message.keyShareIndex));
+    message.receivedTimestamp !== undefined && (obj.receivedTimestamp = Math.round(message.receivedTimestamp));
+    message.receivedBlockHeight !== undefined && (obj.receivedBlockHeight = Math.round(message.receivedBlockHeight));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GeneralKeyShare>, I>>(
-    object: I
-  ): GeneralKeyShare {
+  fromPartial<I extends Exact<DeepPartial<GeneralKeyShare>, I>>(object: I): GeneralKeyShare {
     const message = createBaseGeneralKeyShare();
     message.validator = object.validator ?? '';
     message.idType = object.idType ?? '';
@@ -158,14 +144,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

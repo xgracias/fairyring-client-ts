@@ -12,10 +12,7 @@ function createBaseCommitments(): Commitments {
 }
 
 export const Commitments = {
-  encode(
-    message: Commitments,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Commitments, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.commitments) {
       writer.uint32(10).string(v!);
     }
@@ -42,9 +39,7 @@ export const Commitments = {
 
   fromJSON(object: any): Commitments {
     return {
-      commitments: Array.isArray(object?.commitments)
-        ? object.commitments.map((e: any) => String(e))
-        : [],
+      commitments: Array.isArray(object?.commitments) ? object.commitments.map((e: any) => String(e)) : [],
     };
   },
 
@@ -58,23 +53,14 @@ export const Commitments = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<Commitments>, I>>(
-    object: I
-  ): Commitments {
+  fromPartial<I extends Exact<DeepPartial<Commitments>, I>>(object: I): Commitments {
     const message = createBaseCommitments();
     message.commitments = object.commitments?.map((e) => e) || [];
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

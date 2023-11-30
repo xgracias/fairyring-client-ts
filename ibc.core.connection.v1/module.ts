@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -61,9 +56,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 
@@ -78,9 +71,7 @@ class SDKModule {
     this.updateTX(client);
     this.structure = {
       ConnectionEnd: getStructure(typeConnectionEnd.fromPartial({})),
-      IdentifiedConnection: getStructure(
-        typeIdentifiedConnection.fromPartial({})
-      ),
+      IdentifiedConnection: getStructure(typeIdentifiedConnection.fromPartial({})),
       Counterparty: getStructure(typeCounterparty.fromPartial({})),
       ClientPaths: getStructure(typeClientPaths.fromPartial({})),
       ConnectionPaths: getStructure(typeConnectionPaths.fromPartial({})),

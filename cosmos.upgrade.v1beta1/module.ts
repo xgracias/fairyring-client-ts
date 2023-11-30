@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -74,70 +69,35 @@ export const txClient = (
   }
 ) => {
   return {
-    async sendMsgSoftwareUpgrade({
-      value,
-      fee,
-      memo,
-    }: sendMsgSoftwareUpgradeParams): Promise<DeliverTxResponse> {
+    async sendMsgSoftwareUpgrade({ value, fee, memo }: sendMsgSoftwareUpgradeParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgSoftwareUpgrade: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgSoftwareUpgrade: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgSoftwareUpgrade({
           value: MsgSoftwareUpgrade.fromPartial(value),
         });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgSoftwareUpgrade: Could not broadcast Tx: ' +
-            e.message
-        );
+        throw new Error('TxClient:sendMsgSoftwareUpgrade: Could not broadcast Tx: ' + e.message);
       }
     },
 
-    async sendMsgCancelUpgrade({
-      value,
-      fee,
-      memo,
-    }: sendMsgCancelUpgradeParams): Promise<DeliverTxResponse> {
+    async sendMsgCancelUpgrade({ value, fee, memo }: sendMsgCancelUpgradeParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgCancelUpgrade: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgCancelUpgrade: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgCancelUpgrade({
           value: MsgCancelUpgrade.fromPartial(value),
         });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgCancelUpgrade: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgCancelUpgrade: Could not broadcast Tx: ' + e.message);
       }
     },
 
@@ -148,9 +108,7 @@ export const txClient = (
           value: MsgSoftwareUpgrade.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgSoftwareUpgrade: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgSoftwareUpgrade: Could not create message: ' + e.message);
       }
     },
 
@@ -161,9 +119,7 @@ export const txClient = (
           value: MsgCancelUpgrade.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgCancelUpgrade: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgCancelUpgrade: Could not create message: ' + e.message);
       }
     },
   };
@@ -173,9 +129,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 
@@ -190,12 +144,8 @@ class SDKModule {
     this.updateTX(client);
     this.structure = {
       Plan: getStructure(typePlan.fromPartial({})),
-      SoftwareUpgradeProposal: getStructure(
-        typeSoftwareUpgradeProposal.fromPartial({})
-      ),
-      CancelSoftwareUpgradeProposal: getStructure(
-        typeCancelSoftwareUpgradeProposal.fromPartial({})
-      ),
+      SoftwareUpgradeProposal: getStructure(typeSoftwareUpgradeProposal.fromPartial({})),
+      CancelSoftwareUpgradeProposal: getStructure(typeCancelSoftwareUpgradeProposal.fromPartial({})),
       ModuleVersion: getStructure(typeModuleVersion.fromPartial({})),
     };
     client.on('signer-changed', (signer) => {

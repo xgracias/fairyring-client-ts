@@ -30,10 +30,7 @@ function createBaseAllocation(): Allocation {
 }
 
 export const Allocation = {
-  encode(
-    message: Allocation,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Allocation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.sourcePort !== '') {
       writer.uint32(10).string(message.sourcePort);
     }
@@ -79,27 +76,18 @@ export const Allocation = {
   fromJSON(object: any): Allocation {
     return {
       sourcePort: isSet(object.sourcePort) ? String(object.sourcePort) : '',
-      sourceChannel: isSet(object.sourceChannel)
-        ? String(object.sourceChannel)
-        : '',
-      spendLimit: Array.isArray(object?.spendLimit)
-        ? object.spendLimit.map((e: any) => Coin.fromJSON(e))
-        : [],
-      allowList: Array.isArray(object?.allowList)
-        ? object.allowList.map((e: any) => String(e))
-        : [],
+      sourceChannel: isSet(object.sourceChannel) ? String(object.sourceChannel) : '',
+      spendLimit: Array.isArray(object?.spendLimit) ? object.spendLimit.map((e: any) => Coin.fromJSON(e)) : [],
+      allowList: Array.isArray(object?.allowList) ? object.allowList.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: Allocation): unknown {
     const obj: any = {};
     message.sourcePort !== undefined && (obj.sourcePort = message.sourcePort);
-    message.sourceChannel !== undefined &&
-      (obj.sourceChannel = message.sourceChannel);
+    message.sourceChannel !== undefined && (obj.sourceChannel = message.sourceChannel);
     if (message.spendLimit) {
-      obj.spendLimit = message.spendLimit.map((e) =>
-        e ? Coin.toJSON(e) : undefined
-      );
+      obj.spendLimit = message.spendLimit.map((e) => (e ? Coin.toJSON(e) : undefined));
     } else {
       obj.spendLimit = [];
     }
@@ -111,14 +99,11 @@ export const Allocation = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<Allocation>, I>>(
-    object: I
-  ): Allocation {
+  fromPartial<I extends Exact<DeepPartial<Allocation>, I>>(object: I): Allocation {
     const message = createBaseAllocation();
     message.sourcePort = object.sourcePort ?? '';
     message.sourceChannel = object.sourceChannel ?? '';
-    message.spendLimit =
-      object.spendLimit?.map((e) => Coin.fromPartial(e)) || [];
+    message.spendLimit = object.spendLimit?.map((e) => Coin.fromPartial(e)) || [];
     message.allowList = object.allowList?.map((e) => e) || [];
     return message;
   },
@@ -129,20 +114,14 @@ function createBaseTransferAuthorization(): TransferAuthorization {
 }
 
 export const TransferAuthorization = {
-  encode(
-    message: TransferAuthorization,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: TransferAuthorization, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.allocations) {
       Allocation.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): TransferAuthorization {
+  decode(input: _m0.Reader | Uint8Array, length?: number): TransferAuthorization {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTransferAuthorization();
@@ -162,42 +141,28 @@ export const TransferAuthorization = {
 
   fromJSON(object: any): TransferAuthorization {
     return {
-      allocations: Array.isArray(object?.allocations)
-        ? object.allocations.map((e: any) => Allocation.fromJSON(e))
-        : [],
+      allocations: Array.isArray(object?.allocations) ? object.allocations.map((e: any) => Allocation.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: TransferAuthorization): unknown {
     const obj: any = {};
     if (message.allocations) {
-      obj.allocations = message.allocations.map((e) =>
-        e ? Allocation.toJSON(e) : undefined
-      );
+      obj.allocations = message.allocations.map((e) => (e ? Allocation.toJSON(e) : undefined));
     } else {
       obj.allocations = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<TransferAuthorization>, I>>(
-    object: I
-  ): TransferAuthorization {
+  fromPartial<I extends Exact<DeepPartial<TransferAuthorization>, I>>(object: I): TransferAuthorization {
     const message = createBaseTransferAuthorization();
-    message.allocations =
-      object.allocations?.map((e) => Allocation.fromPartial(e)) || [];
+    message.allocations = object.allocations?.map((e) => Allocation.fromPartial(e)) || [];
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

@@ -21,10 +21,7 @@ function createBaseActivePubKey(): ActivePubKey {
 }
 
 export const ActivePubKey = {
-  encode(
-    message: ActivePubKey,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ActivePubKey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.publicKey !== '') {
       writer.uint32(10).string(message.publicKey);
     }
@@ -77,9 +74,7 @@ export const ActivePubKey = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ActivePubKey>, I>>(
-    object: I
-  ): ActivePubKey {
+  fromPartial<I extends Exact<DeepPartial<ActivePubKey>, I>>(object: I): ActivePubKey {
     const message = createBaseActivePubKey();
     message.publicKey = object.publicKey ?? '';
     message.creator = object.creator ?? '';
@@ -93,10 +88,7 @@ function createBaseQueuedPubKey(): QueuedPubKey {
 }
 
 export const QueuedPubKey = {
-  encode(
-    message: QueuedPubKey,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueuedPubKey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.publicKey !== '') {
       writer.uint32(10).string(message.publicKey);
     }
@@ -149,9 +141,7 @@ export const QueuedPubKey = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueuedPubKey>, I>>(
-    object: I
-  ): QueuedPubKey {
+  fromPartial<I extends Exact<DeepPartial<QueuedPubKey>, I>>(object: I): QueuedPubKey {
     const message = createBaseQueuedPubKey();
     message.publicKey = object.publicKey ?? '';
     message.creator = object.creator ?? '';
@@ -179,14 +169,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

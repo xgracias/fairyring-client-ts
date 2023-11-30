@@ -18,10 +18,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.constantFee !== undefined) {
       Coin.encode(message.constantFee, writer.uint32(26).fork()).ldelim();
     }
@@ -48,24 +45,18 @@ export const GenesisState = {
 
   fromJSON(object: any): GenesisState {
     return {
-      constantFee: isSet(object.constantFee)
-        ? Coin.fromJSON(object.constantFee)
-        : undefined,
+      constantFee: isSet(object.constantFee) ? Coin.fromJSON(object.constantFee) : undefined,
     };
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     message.constantFee !== undefined &&
-      (obj.constantFee = message.constantFee
-        ? Coin.toJSON(message.constantFee)
-        : undefined);
+      (obj.constantFee = message.constantFee ? Coin.toJSON(message.constantFee) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.constantFee =
       object.constantFee !== undefined && object.constantFee !== null
@@ -75,14 +66,7 @@ export const GenesisState = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

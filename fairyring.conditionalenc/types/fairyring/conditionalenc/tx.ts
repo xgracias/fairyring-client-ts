@@ -26,10 +26,7 @@ function createBaseMsgSubmitEncryptedTx(): MsgSubmitEncryptedTx {
 }
 
 export const MsgSubmitEncryptedTx = {
-  encode(
-    message: MsgSubmitEncryptedTx,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MsgSubmitEncryptedTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
@@ -42,12 +39,8 @@ export const MsgSubmitEncryptedTx = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgSubmitEncryptedTx {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitEncryptedTx {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgSubmitEncryptedTx();
     while (reader.pos < end) {
@@ -87,9 +80,7 @@ export const MsgSubmitEncryptedTx = {
     return {
       creator: isSet(object.creator) ? globalThis.String(object.creator) : '',
       data: isSet(object.data) ? globalThis.String(object.data) : '',
-      condition: isSet(object.condition)
-        ? globalThis.Number(object.condition)
-        : 0,
+      condition: isSet(object.condition) ? globalThis.Number(object.condition) : 0,
     };
   },
 
@@ -107,14 +98,10 @@ export const MsgSubmitEncryptedTx = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgSubmitEncryptedTx>, I>>(
-    base?: I
-  ): MsgSubmitEncryptedTx {
+  create<I extends Exact<DeepPartial<MsgSubmitEncryptedTx>, I>>(base?: I): MsgSubmitEncryptedTx {
     return MsgSubmitEncryptedTx.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTx>, I>>(
-    object: I
-  ): MsgSubmitEncryptedTx {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTx>, I>>(object: I): MsgSubmitEncryptedTx {
     const message = createBaseMsgSubmitEncryptedTx();
     message.creator = object.creator ?? '';
     message.data = object.data ?? '';
@@ -128,19 +115,12 @@ function createBaseMsgSubmitEncryptedTxResponse(): MsgSubmitEncryptedTxResponse 
 }
 
 export const MsgSubmitEncryptedTxResponse = {
-  encode(
-    _: MsgSubmitEncryptedTxResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgSubmitEncryptedTxResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgSubmitEncryptedTxResponse {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitEncryptedTxResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgSubmitEncryptedTxResponse();
     while (reader.pos < end) {
@@ -164,14 +144,10 @@ export const MsgSubmitEncryptedTxResponse = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MsgSubmitEncryptedTxResponse>, I>>(
-    base?: I
-  ): MsgSubmitEncryptedTxResponse {
+  create<I extends Exact<DeepPartial<MsgSubmitEncryptedTxResponse>, I>>(base?: I): MsgSubmitEncryptedTxResponse {
     return MsgSubmitEncryptedTxResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTxResponse>, I>>(
-    _: I
-  ): MsgSubmitEncryptedTxResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTxResponse>, I>>(_: I): MsgSubmitEncryptedTxResponse {
     const message = createBaseMsgSubmitEncryptedTxResponse();
     return message;
   },
@@ -182,10 +158,7 @@ function createBaseMsgCreateAggregatedConditionalKeyShare(): MsgCreateAggregated
 }
 
 export const MsgCreateAggregatedConditionalKeyShare = {
-  encode(
-    message: MsgCreateAggregatedConditionalKeyShare,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MsgCreateAggregatedConditionalKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
@@ -198,12 +171,8 @@ export const MsgCreateAggregatedConditionalKeyShare = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgCreateAggregatedConditionalKeyShare {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateAggregatedConditionalKeyShare {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgCreateAggregatedConditionalKeyShare();
     while (reader.pos < end) {
@@ -242,9 +211,7 @@ export const MsgCreateAggregatedConditionalKeyShare = {
   fromJSON(object: any): MsgCreateAggregatedConditionalKeyShare {
     return {
       creator: isSet(object.creator) ? globalThis.String(object.creator) : '',
-      condition: isSet(object.condition)
-        ? globalThis.Number(object.condition)
-        : 0,
+      condition: isSet(object.condition) ? globalThis.Number(object.condition) : 0,
       data: isSet(object.data) ? globalThis.String(object.data) : '',
     };
   },
@@ -263,16 +230,14 @@ export const MsgCreateAggregatedConditionalKeyShare = {
     return obj;
   },
 
-  create<
-    I extends Exact<DeepPartial<MsgCreateAggregatedConditionalKeyShare>, I>,
-  >(base?: I): MsgCreateAggregatedConditionalKeyShare {
-    return MsgCreateAggregatedConditionalKeyShare.fromPartial(
-      base ?? ({} as any)
-    );
+  create<I extends Exact<DeepPartial<MsgCreateAggregatedConditionalKeyShare>, I>>(
+    base?: I
+  ): MsgCreateAggregatedConditionalKeyShare {
+    return MsgCreateAggregatedConditionalKeyShare.fromPartial(base ?? ({} as any));
   },
-  fromPartial<
-    I extends Exact<DeepPartial<MsgCreateAggregatedConditionalKeyShare>, I>,
-  >(object: I): MsgCreateAggregatedConditionalKeyShare {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateAggregatedConditionalKeyShare>, I>>(
+    object: I
+  ): MsgCreateAggregatedConditionalKeyShare {
     const message = createBaseMsgCreateAggregatedConditionalKeyShare();
     message.creator = object.creator ?? '';
     message.condition = object.condition ?? 0;
@@ -286,19 +251,12 @@ function createBaseMsgCreateAggregatedConditionalKeyShareResponse(): MsgCreateAg
 }
 
 export const MsgCreateAggregatedConditionalKeyShareResponse = {
-  encode(
-    _: MsgCreateAggregatedConditionalKeyShareResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgCreateAggregatedConditionalKeyShareResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgCreateAggregatedConditionalKeyShareResponse {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateAggregatedConditionalKeyShareResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgCreateAggregatedConditionalKeyShareResponse();
     while (reader.pos < end) {
@@ -322,22 +280,14 @@ export const MsgCreateAggregatedConditionalKeyShareResponse = {
     return obj;
   },
 
-  create<
-    I extends Exact<
-      DeepPartial<MsgCreateAggregatedConditionalKeyShareResponse>,
-      I
-    >,
-  >(base?: I): MsgCreateAggregatedConditionalKeyShareResponse {
-    return MsgCreateAggregatedConditionalKeyShareResponse.fromPartial(
-      base ?? ({} as any)
-    );
+  create<I extends Exact<DeepPartial<MsgCreateAggregatedConditionalKeyShareResponse>, I>>(
+    base?: I
+  ): MsgCreateAggregatedConditionalKeyShareResponse {
+    return MsgCreateAggregatedConditionalKeyShareResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<
-    I extends Exact<
-      DeepPartial<MsgCreateAggregatedConditionalKeyShareResponse>,
-      I
-    >,
-  >(_: I): MsgCreateAggregatedConditionalKeyShareResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateAggregatedConditionalKeyShareResponse>, I>>(
+    _: I
+  ): MsgCreateAggregatedConditionalKeyShareResponse {
     const message = createBaseMsgCreateAggregatedConditionalKeyShareResponse();
     return message;
   },
@@ -345,9 +295,7 @@ export const MsgCreateAggregatedConditionalKeyShareResponse = {
 
 /** Msg defines the Msg service. */
 export interface Msg {
-  SubmitEncryptedTx(
-    request: MsgSubmitEncryptedTx
-  ): Promise<MsgSubmitEncryptedTxResponse>;
+  SubmitEncryptedTx(request: MsgSubmitEncryptedTx): Promise<MsgSubmitEncryptedTxResponse>;
   /** this line is used by starport scaffolding # proto/tx/rpc */
   CreateAggregatedConditionalKeyShare(
     request: MsgCreateAggregatedConditionalKeyShare
@@ -362,53 +310,28 @@ export class MsgClientImpl implements Msg {
     this.service = opts?.service || MsgServiceName;
     this.rpc = rpc;
     this.SubmitEncryptedTx = this.SubmitEncryptedTx.bind(this);
-    this.CreateAggregatedConditionalKeyShare =
-      this.CreateAggregatedConditionalKeyShare.bind(this);
+    this.CreateAggregatedConditionalKeyShare = this.CreateAggregatedConditionalKeyShare.bind(this);
   }
-  SubmitEncryptedTx(
-    request: MsgSubmitEncryptedTx
-  ): Promise<MsgSubmitEncryptedTxResponse> {
+  SubmitEncryptedTx(request: MsgSubmitEncryptedTx): Promise<MsgSubmitEncryptedTxResponse> {
     const data = MsgSubmitEncryptedTx.encode(request).finish();
     const promise = this.rpc.request(this.service, 'SubmitEncryptedTx', data);
-    return promise.then((data) =>
-      MsgSubmitEncryptedTxResponse.decode(_m0.Reader.create(data))
-    );
+    return promise.then((data) => MsgSubmitEncryptedTxResponse.decode(_m0.Reader.create(data)));
   }
 
   CreateAggregatedConditionalKeyShare(
     request: MsgCreateAggregatedConditionalKeyShare
   ): Promise<MsgCreateAggregatedConditionalKeyShareResponse> {
-    const data =
-      MsgCreateAggregatedConditionalKeyShare.encode(request).finish();
-    const promise = this.rpc.request(
-      this.service,
-      'CreateAggregatedConditionalKeyShare',
-      data
-    );
-    return promise.then((data) =>
-      MsgCreateAggregatedConditionalKeyShareResponse.decode(
-        _m0.Reader.create(data)
-      )
-    );
+    const data = MsgCreateAggregatedConditionalKeyShare.encode(request).finish();
+    const promise = this.rpc.request(this.service, 'CreateAggregatedConditionalKeyShare', data);
+    return promise.then((data) => MsgCreateAggregatedConditionalKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 }
 
 interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

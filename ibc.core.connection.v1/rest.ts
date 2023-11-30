@@ -648,17 +648,11 @@ export interface V1Beta1PageResponse {
   total?: string;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -673,13 +667,9 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
     securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
@@ -700,12 +690,7 @@ export class HttpClient<SecurityDataType = unknown> {
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
       baseURL: axiosConfig.baseURL || '',
@@ -719,10 +704,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -767,12 +749,7 @@ export class HttpClient<SecurityDataType = unknown> {
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
       requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
@@ -783,9 +760,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -800,9 +775,7 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title ibc/core/connection/v1/connection.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
  * No description
  * 
@@ -871,10 +844,7 @@ state.
 connection.
  * @request GET:/ibc/core/connection/v1/connections/{connection_id}/client_state
  */
-  queryConnectionClientState = (
-    connectionId: string,
-    params: RequestParams = {}
-  ) =>
+  queryConnectionClientState = (connectionId: string, params: RequestParams = {}) =>
     this.request<V1QueryConnectionClientStateResponse, RpcStatus>({
       path: `/ibc/core/connection/v1/connections/${connectionId}/client_state`,
       method: 'GET',

@@ -25,28 +25,18 @@ function createBaseConditionalencPacketData(): ConditionalencPacketData {
 }
 
 export const ConditionalencPacketData = {
-  encode(
-    message: ConditionalencPacketData,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ConditionalencPacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.noData !== undefined) {
       NoData.encode(message.noData, writer.uint32(10).fork()).ldelim();
     }
     if (message.currentKeysPacket !== undefined) {
-      CurrentKeysPacketData.encode(
-        message.currentKeysPacket,
-        writer.uint32(18).fork()
-      ).ldelim();
+      CurrentKeysPacketData.encode(message.currentKeysPacket, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): ConditionalencPacketData {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): ConditionalencPacketData {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseConditionalencPacketData();
     while (reader.pos < end) {
@@ -64,10 +54,7 @@ export const ConditionalencPacketData = {
             break;
           }
 
-          message.currentKeysPacket = CurrentKeysPacketData.decode(
-            reader,
-            reader.uint32()
-          );
+          message.currentKeysPacket = CurrentKeysPacketData.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -93,29 +80,20 @@ export const ConditionalencPacketData = {
       obj.noData = NoData.toJSON(message.noData);
     }
     if (message.currentKeysPacket !== undefined) {
-      obj.currentKeysPacket = CurrentKeysPacketData.toJSON(
-        message.currentKeysPacket
-      );
+      obj.currentKeysPacket = CurrentKeysPacketData.toJSON(message.currentKeysPacket);
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ConditionalencPacketData>, I>>(
-    base?: I
-  ): ConditionalencPacketData {
+  create<I extends Exact<DeepPartial<ConditionalencPacketData>, I>>(base?: I): ConditionalencPacketData {
     return ConditionalencPacketData.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<ConditionalencPacketData>, I>>(
-    object: I
-  ): ConditionalencPacketData {
+  fromPartial<I extends Exact<DeepPartial<ConditionalencPacketData>, I>>(object: I): ConditionalencPacketData {
     const message = createBaseConditionalencPacketData();
     message.noData =
-      object.noData !== undefined && object.noData !== null
-        ? NoData.fromPartial(object.noData)
-        : undefined;
+      object.noData !== undefined && object.noData !== null ? NoData.fromPartial(object.noData) : undefined;
     message.currentKeysPacket =
-      object.currentKeysPacket !== undefined &&
-      object.currentKeysPacket !== null
+      object.currentKeysPacket !== undefined && object.currentKeysPacket !== null
         ? CurrentKeysPacketData.fromPartial(object.currentKeysPacket)
         : undefined;
     return message;
@@ -132,8 +110,7 @@ export const NoData = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): NoData {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNoData();
     while (reader.pos < end) {
@@ -171,19 +148,12 @@ function createBaseCurrentKeysPacketData(): CurrentKeysPacketData {
 }
 
 export const CurrentKeysPacketData = {
-  encode(
-    _: CurrentKeysPacketData,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: CurrentKeysPacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): CurrentKeysPacketData {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): CurrentKeysPacketData {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCurrentKeysPacketData();
     while (reader.pos < end) {
@@ -207,14 +177,10 @@ export const CurrentKeysPacketData = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CurrentKeysPacketData>, I>>(
-    base?: I
-  ): CurrentKeysPacketData {
+  create<I extends Exact<DeepPartial<CurrentKeysPacketData>, I>>(base?: I): CurrentKeysPacketData {
     return CurrentKeysPacketData.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<CurrentKeysPacketData>, I>>(
-    _: I
-  ): CurrentKeysPacketData {
+  fromPartial<I extends Exact<DeepPartial<CurrentKeysPacketData>, I>>(_: I): CurrentKeysPacketData {
     const message = createBaseCurrentKeysPacketData();
     return message;
   },
@@ -225,10 +191,7 @@ function createBaseCurrentKeysPacketAck(): CurrentKeysPacketAck {
 }
 
 export const CurrentKeysPacketAck = {
-  encode(
-    message: CurrentKeysPacketAck,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: CurrentKeysPacketAck, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.activeKey !== undefined) {
       ActivePubKey.encode(message.activeKey, writer.uint32(18).fork()).ldelim();
     }
@@ -238,12 +201,8 @@ export const CurrentKeysPacketAck = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): CurrentKeysPacketAck {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): CurrentKeysPacketAck {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCurrentKeysPacketAck();
     while (reader.pos < end) {
@@ -274,12 +233,8 @@ export const CurrentKeysPacketAck = {
 
   fromJSON(object: any): CurrentKeysPacketAck {
     return {
-      activeKey: isSet(object.activeKey)
-        ? ActivePubKey.fromJSON(object.activeKey)
-        : undefined,
-      queuedKey: isSet(object.queuedKey)
-        ? QueuedPubKey.fromJSON(object.queuedKey)
-        : undefined,
+      activeKey: isSet(object.activeKey) ? ActivePubKey.fromJSON(object.activeKey) : undefined,
+      queuedKey: isSet(object.queuedKey) ? QueuedPubKey.fromJSON(object.queuedKey) : undefined,
     };
   },
 
@@ -294,14 +249,10 @@ export const CurrentKeysPacketAck = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CurrentKeysPacketAck>, I>>(
-    base?: I
-  ): CurrentKeysPacketAck {
+  create<I extends Exact<DeepPartial<CurrentKeysPacketAck>, I>>(base?: I): CurrentKeysPacketAck {
     return CurrentKeysPacketAck.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<CurrentKeysPacketAck>, I>>(
-    object: I
-  ): CurrentKeysPacketAck {
+  fromPartial<I extends Exact<DeepPartial<CurrentKeysPacketAck>, I>>(object: I): CurrentKeysPacketAck {
     const message = createBaseCurrentKeysPacketAck();
     message.activeKey =
       object.activeKey !== undefined && object.activeKey !== null
@@ -315,14 +266,7 @@ export const CurrentKeysPacketAck = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

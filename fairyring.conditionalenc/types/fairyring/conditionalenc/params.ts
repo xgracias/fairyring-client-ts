@@ -28,10 +28,7 @@ function createBaseParams(): Params {
 }
 
 export const Params = {
-  encode(
-    message: Params,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.trustedCounterParties) {
       TrustedCounterParty.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -48,8 +45,7 @@ export const Params = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): Params {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseParams();
     while (reader.pos < end) {
@@ -60,9 +56,7 @@ export const Params = {
             break;
           }
 
-          message.trustedCounterParties.push(
-            TrustedCounterParty.decode(reader, reader.uint32())
-          );
+          message.trustedCounterParties.push(TrustedCounterParty.decode(reader, reader.uint32()));
           continue;
         case 2:
           if (tag !== 18) {
@@ -96,31 +90,21 @@ export const Params = {
 
   fromJSON(object: any): Params {
     return {
-      trustedCounterParties: globalThis.Array.isArray(
-        object?.trustedCounterParties
-      )
-        ? object.trustedCounterParties.map((e: any) =>
-            TrustedCounterParty.fromJSON(e)
-          )
+      trustedCounterParties: globalThis.Array.isArray(object?.trustedCounterParties)
+        ? object.trustedCounterParties.map((e: any) => TrustedCounterParty.fromJSON(e))
         : [],
       trustedAddresses: globalThis.Array.isArray(object?.trustedAddresses)
         ? object.trustedAddresses.map((e: any) => globalThis.String(e))
         : [],
-      channelId: isSet(object.channelId)
-        ? globalThis.String(object.channelId)
-        : '',
-      minGasPrice: isSet(object.minGasPrice)
-        ? Coin.fromJSON(object.minGasPrice)
-        : undefined,
+      channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : '',
+      minGasPrice: isSet(object.minGasPrice) ? Coin.fromJSON(object.minGasPrice) : undefined,
     };
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
     if (message.trustedCounterParties?.length) {
-      obj.trustedCounterParties = message.trustedCounterParties.map((e) =>
-        TrustedCounterParty.toJSON(e)
-      );
+      obj.trustedCounterParties = message.trustedCounterParties.map((e) => TrustedCounterParty.toJSON(e));
     }
     if (message.trustedAddresses?.length) {
       obj.trustedAddresses = message.trustedAddresses;
@@ -139,10 +123,7 @@ export const Params = {
   },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
-    message.trustedCounterParties =
-      object.trustedCounterParties?.map((e) =>
-        TrustedCounterParty.fromPartial(e)
-      ) || [];
+    message.trustedCounterParties = object.trustedCounterParties?.map((e) => TrustedCounterParty.fromPartial(e)) || [];
     message.trustedAddresses = object.trustedAddresses?.map((e) => e) || [];
     message.channelId = object.channelId ?? '';
     message.minGasPrice =
@@ -158,10 +139,7 @@ function createBaseTrustedCounterParty(): TrustedCounterParty {
 }
 
 export const TrustedCounterParty = {
-  encode(
-    message: TrustedCounterParty,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: TrustedCounterParty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
@@ -175,8 +153,7 @@ export const TrustedCounterParty = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): TrustedCounterParty {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTrustedCounterParty();
     while (reader.pos < end) {
@@ -214,15 +191,9 @@ export const TrustedCounterParty = {
 
   fromJSON(object: any): TrustedCounterParty {
     return {
-      clientId: isSet(object.clientId)
-        ? globalThis.String(object.clientId)
-        : '',
-      connectionId: isSet(object.connectionId)
-        ? globalThis.String(object.connectionId)
-        : '',
-      channelId: isSet(object.channelId)
-        ? globalThis.String(object.channelId)
-        : '',
+      clientId: isSet(object.clientId) ? globalThis.String(object.clientId) : '',
+      connectionId: isSet(object.connectionId) ? globalThis.String(object.connectionId) : '',
+      channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : '',
     };
   },
 
@@ -240,14 +211,10 @@ export const TrustedCounterParty = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(
-    base?: I
-  ): TrustedCounterParty {
+  create<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(base?: I): TrustedCounterParty {
     return TrustedCounterParty.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(
-    object: I
-  ): TrustedCounterParty {
+  fromPartial<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(object: I): TrustedCounterParty {
     const message = createBaseTrustedCounterParty();
     message.clientId = object.clientId ?? '';
     message.connectionId = object.connectionId ?? '';
@@ -256,14 +223,7 @@ export const TrustedCounterParty = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

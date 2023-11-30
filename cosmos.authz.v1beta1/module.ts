@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -87,96 +82,45 @@ export const txClient = (
   }
 ) => {
   return {
-    async sendMsgGrant({
-      value,
-      fee,
-      memo,
-    }: sendMsgGrantParams): Promise<DeliverTxResponse> {
+    async sendMsgGrant({ value, fee, memo }: sendMsgGrantParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgGrant: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgGrant: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgGrant({ value: MsgGrant.fromPartial(value) });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgGrant: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgGrant: Could not broadcast Tx: ' + e.message);
       }
     },
 
-    async sendMsgRevoke({
-      value,
-      fee,
-      memo,
-    }: sendMsgRevokeParams): Promise<DeliverTxResponse> {
+    async sendMsgRevoke({ value, fee, memo }: sendMsgRevokeParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgRevoke: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgRevoke: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgRevoke({ value: MsgRevoke.fromPartial(value) });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgRevoke: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgRevoke: Could not broadcast Tx: ' + e.message);
       }
     },
 
-    async sendMsgExec({
-      value,
-      fee,
-      memo,
-    }: sendMsgExecParams): Promise<DeliverTxResponse> {
+    async sendMsgExec({ value, fee, memo }: sendMsgExecParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgExec: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgExec: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgExec({ value: MsgExec.fromPartial(value) });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgExec: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgExec: Could not broadcast Tx: ' + e.message);
       }
     },
 
@@ -187,9 +131,7 @@ export const txClient = (
           value: MsgGrant.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgGrant: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgGrant: Could not create message: ' + e.message);
       }
     },
 
@@ -200,9 +142,7 @@ export const txClient = (
           value: MsgRevoke.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgRevoke: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgRevoke: Could not create message: ' + e.message);
       }
     },
 
@@ -213,9 +153,7 @@ export const txClient = (
           value: MsgExec.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgExec: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgExec: Could not create message: ' + e.message);
       }
     },
   };
@@ -225,9 +163,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 
@@ -241,9 +177,7 @@ class SDKModule {
     this.query = queryClient({ addr: client.env.apiURL });
     this.updateTX(client);
     this.structure = {
-      GenericAuthorization: getStructure(
-        typeGenericAuthorization.fromPartial({})
-      ),
+      GenericAuthorization: getStructure(typeGenericAuthorization.fromPartial({})),
       Grant: getStructure(typeGrant.fromPartial({})),
       GrantAuthorization: getStructure(typeGrantAuthorization.fromPartial({})),
       GrantQueueItem: getStructure(typeGrantQueueItem.fromPartial({})),

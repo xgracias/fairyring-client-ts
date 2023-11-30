@@ -1,8 +1,7 @@
 /* eslint-disable */
 import _m0 from 'protobufjs/minimal';
 
-export const protobufPackage =
-  'ibc.applications.interchain_accounts.controller.v1';
+export const protobufPackage = 'ibc.applications.interchain_accounts.controller.v1';
 
 /**
  * Params defines the set of on-chain interchain accounts parameters.
@@ -18,10 +17,7 @@ function createBaseParams(): Params {
 }
 
 export const Params = {
-  encode(
-    message: Params,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.controllerEnabled === true) {
       writer.uint32(8).bool(message.controllerEnabled);
     }
@@ -48,16 +44,13 @@ export const Params = {
 
   fromJSON(object: any): Params {
     return {
-      controllerEnabled: isSet(object.controllerEnabled)
-        ? Boolean(object.controllerEnabled)
-        : false,
+      controllerEnabled: isSet(object.controllerEnabled) ? Boolean(object.controllerEnabled) : false,
     };
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
-    message.controllerEnabled !== undefined &&
-      (obj.controllerEnabled = message.controllerEnabled);
+    message.controllerEnabled !== undefined && (obj.controllerEnabled = message.controllerEnabled);
     return obj;
   },
 
@@ -68,14 +61,7 @@ export const Params = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

@@ -14,10 +14,7 @@ function createBaseAggregatedKeyShare(): AggregatedKeyShare {
 }
 
 export const AggregatedKeyShare = {
-  encode(
-    message: AggregatedKeyShare,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: AggregatedKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.height !== 0) {
       writer.uint32(8).uint64(message.height);
     }
@@ -62,9 +59,7 @@ export const AggregatedKeyShare = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<AggregatedKeyShare>, I>>(
-    object: I
-  ): AggregatedKeyShare {
+  fromPartial<I extends Exact<DeepPartial<AggregatedKeyShare>, I>>(object: I): AggregatedKeyShare {
     const message = createBaseAggregatedKeyShare();
     message.height = object.height ?? 0;
     message.data = object.data ?? '';
@@ -91,14 +86,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

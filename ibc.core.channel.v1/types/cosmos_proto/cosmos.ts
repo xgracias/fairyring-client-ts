@@ -98,10 +98,7 @@ function createBaseInterfaceDescriptor(): InterfaceDescriptor {
 }
 
 export const InterfaceDescriptor = {
-  encode(
-    message: InterfaceDescriptor,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: InterfaceDescriptor, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== '') {
       writer.uint32(10).string(message.name);
     }
@@ -142,14 +139,11 @@ export const InterfaceDescriptor = {
   toJSON(message: InterfaceDescriptor): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined &&
-      (obj.description = message.description);
+    message.description !== undefined && (obj.description = message.description);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<InterfaceDescriptor>, I>>(
-    object: I
-  ): InterfaceDescriptor {
+  fromPartial<I extends Exact<DeepPartial<InterfaceDescriptor>, I>>(object: I): InterfaceDescriptor {
     const message = createBaseInterfaceDescriptor();
     message.name = object.name ?? '';
     message.description = object.description ?? '';
@@ -162,10 +156,7 @@ function createBaseScalarDescriptor(): ScalarDescriptor {
 }
 
 export const ScalarDescriptor = {
-  encode(
-    message: ScalarDescriptor,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ScalarDescriptor, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== '') {
       writer.uint32(10).string(message.name);
     }
@@ -215,17 +206,14 @@ export const ScalarDescriptor = {
     return {
       name: isSet(object.name) ? String(object.name) : '',
       description: isSet(object.description) ? String(object.description) : '',
-      fieldType: Array.isArray(object?.fieldType)
-        ? object.fieldType.map((e: any) => scalarTypeFromJSON(e))
-        : [],
+      fieldType: Array.isArray(object?.fieldType) ? object.fieldType.map((e: any) => scalarTypeFromJSON(e)) : [],
     };
   },
 
   toJSON(message: ScalarDescriptor): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined &&
-      (obj.description = message.description);
+    message.description !== undefined && (obj.description = message.description);
     if (message.fieldType) {
       obj.fieldType = message.fieldType.map((e) => scalarTypeToJSON(e));
     } else {
@@ -234,9 +222,7 @@ export const ScalarDescriptor = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ScalarDescriptor>, I>>(
-    object: I
-  ): ScalarDescriptor {
+  fromPartial<I extends Exact<DeepPartial<ScalarDescriptor>, I>>(object: I): ScalarDescriptor {
     const message = createBaseScalarDescriptor();
     message.name = object.name ?? '';
     message.description = object.description ?? '';
@@ -245,14 +231,7 @@ export const ScalarDescriptor = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

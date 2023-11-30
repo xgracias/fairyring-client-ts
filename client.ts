@@ -1,10 +1,5 @@
 /// <reference path="./types.d.ts" />
-import {
-  GeneratedType,
-  OfflineSigner,
-  EncodeObject,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { GeneratedType, OfflineSigner, EncodeObject, Registry } from '@cosmjs/proto-signing';
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { Env } from './env';
@@ -42,17 +37,11 @@ export class IgniteClient extends EventEmitter {
   async signAndBroadcast(msgs: EncodeObject[], fee: StdFee, memo: string) {
     if (this.signer) {
       const { address } = (await this.signer.getAccounts())[0];
-      const signingClient = await SigningStargateClient.connectWithSigner(
-        this.env.rpcURL,
-        this.signer,
-        { registry: new Registry(this.registry), prefix: this.env.prefix }
-      );
-      return await signingClient.signAndBroadcast(
-        address,
-        msgs,
-        fee ? fee : defaultFee,
-        memo
-      );
+      const signingClient = await SigningStargateClient.connectWithSigner(this.env.rpcURL, this.signer, {
+        registry: new Registry(this.registry),
+        prefix: this.env.prefix,
+      });
+      return await signingClient.signAndBroadcast(address, msgs, fee ? fee : defaultFee, memo);
     } else {
       throw new Error(' Signer is not present.');
     }
@@ -83,15 +72,10 @@ export class IgniteClient extends EventEmitter {
   async useKeplr(keplrChainInfo: Partial<ChainInfo> = {}) {
     // Using queryClients directly because BaseClient has no knowledge of the modules at this stage
     try {
-      const queryClient = (
-        await import('./cosmos.base.tendermint.v1beta1/module')
-      ).queryClient;
-      const bankQueryClient = (await import('./cosmos.bank.v1beta1/module'))
-        .queryClient;
+      const queryClient = (await import('./cosmos.base.tendermint.v1beta1/module')).queryClient;
+      const bankQueryClient = (await import('./cosmos.bank.v1beta1/module')).queryClient;
 
-      const stakingQueryClient = (
-        await import('./cosmos.staking.v1beta1/module')
-      ).queryClient;
+      const stakingQueryClient = (await import('./cosmos.staking.v1beta1/module')).queryClient;
       const stakingqc = stakingQueryClient({ addr: this.env.apiURL });
       const staking = await (await stakingqc.queryParams()).data;
 

@@ -26,10 +26,7 @@ function createBaseSendAuthorization(): SendAuthorization {
 }
 
 export const SendAuthorization = {
-  encode(
-    message: SendAuthorization,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: SendAuthorization, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.spendLimit) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -62,21 +59,15 @@ export const SendAuthorization = {
 
   fromJSON(object: any): SendAuthorization {
     return {
-      spendLimit: Array.isArray(object?.spendLimit)
-        ? object.spendLimit.map((e: any) => Coin.fromJSON(e))
-        : [],
-      allowList: Array.isArray(object?.allowList)
-        ? object.allowList.map((e: any) => String(e))
-        : [],
+      spendLimit: Array.isArray(object?.spendLimit) ? object.spendLimit.map((e: any) => Coin.fromJSON(e)) : [],
+      allowList: Array.isArray(object?.allowList) ? object.allowList.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: SendAuthorization): unknown {
     const obj: any = {};
     if (message.spendLimit) {
-      obj.spendLimit = message.spendLimit.map((e) =>
-        e ? Coin.toJSON(e) : undefined
-      );
+      obj.spendLimit = message.spendLimit.map((e) => (e ? Coin.toJSON(e) : undefined));
     } else {
       obj.spendLimit = [];
     }
@@ -88,25 +79,15 @@ export const SendAuthorization = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<SendAuthorization>, I>>(
-    object: I
-  ): SendAuthorization {
+  fromPartial<I extends Exact<DeepPartial<SendAuthorization>, I>>(object: I): SendAuthorization {
     const message = createBaseSendAuthorization();
-    message.spendLimit =
-      object.spendLimit?.map((e) => Coin.fromPartial(e)) || [];
+    message.spendLimit = object.spendLimit?.map((e) => Coin.fromPartial(e)) || [];
     message.allowList = object.allowList?.map((e) => e) || [];
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

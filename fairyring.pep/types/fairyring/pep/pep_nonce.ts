@@ -14,10 +14,7 @@ function createBasePepNonce(): PepNonce {
 }
 
 export const PepNonce = {
-  encode(
-    message: PepNonce,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: PepNonce, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
@@ -89,14 +86,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

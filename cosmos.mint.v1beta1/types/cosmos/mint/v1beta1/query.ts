@@ -45,10 +45,7 @@ function createBaseQueryParamsRequest(): QueryParamsRequest {
 }
 
 export const QueryParamsRequest = {
-  encode(
-    _: QueryParamsRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: QueryParamsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -76,9 +73,7 @@ export const QueryParamsRequest = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(
-    _: I
-  ): QueryParamsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -89,10 +84,7 @@ function createBaseQueryParamsResponse(): QueryParamsResponse {
 }
 
 export const QueryParamsResponse = {
-  encode(
-    message: QueryParamsResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
@@ -125,19 +117,14 @@ export const QueryParamsResponse = {
 
   toJSON(message: QueryParamsResponse): unknown {
     const obj: any = {};
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(
-    object: I
-  ): QueryParamsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params =
-      object.params !== undefined && object.params !== null
-        ? Params.fromPartial(object.params)
-        : undefined;
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -147,17 +134,11 @@ function createBaseQueryInflationRequest(): QueryInflationRequest {
 }
 
 export const QueryInflationRequest = {
-  encode(
-    _: QueryInflationRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: QueryInflationRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): QueryInflationRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryInflationRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryInflationRequest();
@@ -181,9 +162,7 @@ export const QueryInflationRequest = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryInflationRequest>, I>>(
-    _: I
-  ): QueryInflationRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryInflationRequest>, I>>(_: I): QueryInflationRequest {
     const message = createBaseQueryInflationRequest();
     return message;
   },
@@ -194,20 +173,14 @@ function createBaseQueryInflationResponse(): QueryInflationResponse {
 }
 
 export const QueryInflationResponse = {
-  encode(
-    message: QueryInflationResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryInflationResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.inflation.length !== 0) {
       writer.uint32(10).bytes(message.inflation);
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): QueryInflationResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryInflationResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryInflationResponse();
@@ -227,24 +200,18 @@ export const QueryInflationResponse = {
 
   fromJSON(object: any): QueryInflationResponse {
     return {
-      inflation: isSet(object.inflation)
-        ? bytesFromBase64(object.inflation)
-        : new Uint8Array(),
+      inflation: isSet(object.inflation) ? bytesFromBase64(object.inflation) : new Uint8Array(),
     };
   },
 
   toJSON(message: QueryInflationResponse): unknown {
     const obj: any = {};
     message.inflation !== undefined &&
-      (obj.inflation = base64FromBytes(
-        message.inflation !== undefined ? message.inflation : new Uint8Array()
-      ));
+      (obj.inflation = base64FromBytes(message.inflation !== undefined ? message.inflation : new Uint8Array()));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryInflationResponse>, I>>(
-    object: I
-  ): QueryInflationResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryInflationResponse>, I>>(object: I): QueryInflationResponse {
     const message = createBaseQueryInflationResponse();
     message.inflation = object.inflation ?? new Uint8Array();
     return message;
@@ -256,17 +223,11 @@ function createBaseQueryAnnualProvisionsRequest(): QueryAnnualProvisionsRequest 
 }
 
 export const QueryAnnualProvisionsRequest = {
-  encode(
-    _: QueryAnnualProvisionsRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: QueryAnnualProvisionsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): QueryAnnualProvisionsRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAnnualProvisionsRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAnnualProvisionsRequest();
@@ -290,9 +251,7 @@ export const QueryAnnualProvisionsRequest = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryAnnualProvisionsRequest>, I>>(
-    _: I
-  ): QueryAnnualProvisionsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryAnnualProvisionsRequest>, I>>(_: I): QueryAnnualProvisionsRequest {
     const message = createBaseQueryAnnualProvisionsRequest();
     return message;
   },
@@ -303,20 +262,14 @@ function createBaseQueryAnnualProvisionsResponse(): QueryAnnualProvisionsRespons
 }
 
 export const QueryAnnualProvisionsResponse = {
-  encode(
-    message: QueryAnnualProvisionsResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryAnnualProvisionsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.annualProvisions.length !== 0) {
       writer.uint32(10).bytes(message.annualProvisions);
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): QueryAnnualProvisionsResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAnnualProvisionsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAnnualProvisionsResponse();
@@ -336,9 +289,7 @@ export const QueryAnnualProvisionsResponse = {
 
   fromJSON(object: any): QueryAnnualProvisionsResponse {
     return {
-      annualProvisions: isSet(object.annualProvisions)
-        ? bytesFromBase64(object.annualProvisions)
-        : new Uint8Array(),
+      annualProvisions: isSet(object.annualProvisions) ? bytesFromBase64(object.annualProvisions) : new Uint8Array(),
     };
   },
 
@@ -346,9 +297,7 @@ export const QueryAnnualProvisionsResponse = {
     const obj: any = {};
     message.annualProvisions !== undefined &&
       (obj.annualProvisions = base64FromBytes(
-        message.annualProvisions !== undefined
-          ? message.annualProvisions
-          : new Uint8Array()
+        message.annualProvisions !== undefined ? message.annualProvisions : new Uint8Array()
       ));
     return obj;
   },
@@ -369,9 +318,7 @@ export interface Query {
   /** Inflation returns the current minting inflation value. */
   Inflation(request: QueryInflationRequest): Promise<QueryInflationResponse>;
   /** AnnualProvisions current minting annual provisions value. */
-  AnnualProvisions(
-    request: QueryAnnualProvisionsRequest
-  ): Promise<QueryAnnualProvisionsResponse>;
+  AnnualProvisions(request: QueryAnnualProvisionsRequest): Promise<QueryAnnualProvisionsResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -384,49 +331,25 @@ export class QueryClientImpl implements Query {
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.mint.v1beta1.Query',
-      'Params',
-      data
-    );
-    return promise.then((data) =>
-      QueryParamsResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.mint.v1beta1.Query', 'Params', data);
+    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
   }
 
   Inflation(request: QueryInflationRequest): Promise<QueryInflationResponse> {
     const data = QueryInflationRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.mint.v1beta1.Query',
-      'Inflation',
-      data
-    );
-    return promise.then((data) =>
-      QueryInflationResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.mint.v1beta1.Query', 'Inflation', data);
+    return promise.then((data) => QueryInflationResponse.decode(new _m0.Reader(data)));
   }
 
-  AnnualProvisions(
-    request: QueryAnnualProvisionsRequest
-  ): Promise<QueryAnnualProvisionsResponse> {
+  AnnualProvisions(request: QueryAnnualProvisionsRequest): Promise<QueryAnnualProvisionsResponse> {
     const data = QueryAnnualProvisionsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.mint.v1beta1.Query',
-      'AnnualProvisions',
-      data
-    );
-    return promise.then((data) =>
-      QueryAnnualProvisionsResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.mint.v1beta1.Query', 'AnnualProvisions', data);
+    return promise.then((data) => QueryAnnualProvisionsResponse.decode(new _m0.Reader(data)));
   }
 }
 
 interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
 declare var self: any | undefined;
@@ -473,14 +396,7 @@ function base64FromBytes(arr: Uint8Array): string {
   }
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

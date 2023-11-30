@@ -26,10 +26,7 @@ function createBaseMsgSubmitEncryptedTx(): MsgSubmitEncryptedTx {
 }
 
 export const MsgSubmitEncryptedTx = {
-  encode(
-    message: MsgSubmitEncryptedTx,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MsgSubmitEncryptedTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
@@ -42,10 +39,7 @@ export const MsgSubmitEncryptedTx = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgSubmitEncryptedTx {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitEncryptedTx {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgSubmitEncryptedTx();
@@ -73,9 +67,7 @@ export const MsgSubmitEncryptedTx = {
     return {
       creator: isSet(object.creator) ? String(object.creator) : '',
       data: isSet(object.data) ? String(object.data) : '',
-      targetBlockHeight: isSet(object.targetBlockHeight)
-        ? Number(object.targetBlockHeight)
-        : 0,
+      targetBlockHeight: isSet(object.targetBlockHeight) ? Number(object.targetBlockHeight) : 0,
     };
   },
 
@@ -83,14 +75,11 @@ export const MsgSubmitEncryptedTx = {
     const obj: any = {};
     message.creator !== undefined && (obj.creator = message.creator);
     message.data !== undefined && (obj.data = message.data);
-    message.targetBlockHeight !== undefined &&
-      (obj.targetBlockHeight = Math.round(message.targetBlockHeight));
+    message.targetBlockHeight !== undefined && (obj.targetBlockHeight = Math.round(message.targetBlockHeight));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTx>, I>>(
-    object: I
-  ): MsgSubmitEncryptedTx {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTx>, I>>(object: I): MsgSubmitEncryptedTx {
     const message = createBaseMsgSubmitEncryptedTx();
     message.creator = object.creator ?? '';
     message.data = object.data ?? '';
@@ -104,17 +93,11 @@ function createBaseMsgSubmitEncryptedTxResponse(): MsgSubmitEncryptedTxResponse 
 }
 
 export const MsgSubmitEncryptedTxResponse = {
-  encode(
-    _: MsgSubmitEncryptedTxResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgSubmitEncryptedTxResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgSubmitEncryptedTxResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitEncryptedTxResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgSubmitEncryptedTxResponse();
@@ -138,9 +121,7 @@ export const MsgSubmitEncryptedTxResponse = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTxResponse>, I>>(
-    _: I
-  ): MsgSubmitEncryptedTxResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgSubmitEncryptedTxResponse>, I>>(_: I): MsgSubmitEncryptedTxResponse {
     const message = createBaseMsgSubmitEncryptedTxResponse();
     return message;
   },
@@ -151,10 +132,7 @@ function createBaseMsgCreateAggregatedKeyShare(): MsgCreateAggregatedKeyShare {
 }
 
 export const MsgCreateAggregatedKeyShare = {
-  encode(
-    message: MsgCreateAggregatedKeyShare,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MsgCreateAggregatedKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
@@ -167,10 +145,7 @@ export const MsgCreateAggregatedKeyShare = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgCreateAggregatedKeyShare {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateAggregatedKeyShare {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgCreateAggregatedKeyShare();
@@ -210,9 +185,7 @@ export const MsgCreateAggregatedKeyShare = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgCreateAggregatedKeyShare>, I>>(
-    object: I
-  ): MsgCreateAggregatedKeyShare {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateAggregatedKeyShare>, I>>(object: I): MsgCreateAggregatedKeyShare {
     const message = createBaseMsgCreateAggregatedKeyShare();
     message.creator = object.creator ?? '';
     message.height = object.height ?? 0;
@@ -226,17 +199,11 @@ function createBaseMsgCreateAggregatedKeyShareResponse(): MsgCreateAggregatedKey
 }
 
 export const MsgCreateAggregatedKeyShareResponse = {
-  encode(
-    _: MsgCreateAggregatedKeyShareResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgCreateAggregatedKeyShareResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgCreateAggregatedKeyShareResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateAggregatedKeyShareResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgCreateAggregatedKeyShareResponse();
@@ -260,9 +227,9 @@ export const MsgCreateAggregatedKeyShareResponse = {
     return obj;
   },
 
-  fromPartial<
-    I extends Exact<DeepPartial<MsgCreateAggregatedKeyShareResponse>, I>,
-  >(_: I): MsgCreateAggregatedKeyShareResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgCreateAggregatedKeyShareResponse>, I>>(
+    _: I
+  ): MsgCreateAggregatedKeyShareResponse {
     const message = createBaseMsgCreateAggregatedKeyShareResponse();
     return message;
   },
@@ -270,13 +237,9 @@ export const MsgCreateAggregatedKeyShareResponse = {
 
 /** Msg defines the Msg service. */
 export interface Msg {
-  SubmitEncryptedTx(
-    request: MsgSubmitEncryptedTx
-  ): Promise<MsgSubmitEncryptedTxResponse>;
+  SubmitEncryptedTx(request: MsgSubmitEncryptedTx): Promise<MsgSubmitEncryptedTxResponse>;
   /** this line is used by starport scaffolding # proto/tx/rpc */
-  CreateAggregatedKeyShare(
-    request: MsgCreateAggregatedKeyShare
-  ): Promise<MsgCreateAggregatedKeyShareResponse>;
+  CreateAggregatedKeyShare(request: MsgCreateAggregatedKeyShare): Promise<MsgCreateAggregatedKeyShareResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -286,41 +249,21 @@ export class MsgClientImpl implements Msg {
     this.SubmitEncryptedTx = this.SubmitEncryptedTx.bind(this);
     this.CreateAggregatedKeyShare = this.CreateAggregatedKeyShare.bind(this);
   }
-  SubmitEncryptedTx(
-    request: MsgSubmitEncryptedTx
-  ): Promise<MsgSubmitEncryptedTxResponse> {
+  SubmitEncryptedTx(request: MsgSubmitEncryptedTx): Promise<MsgSubmitEncryptedTxResponse> {
     const data = MsgSubmitEncryptedTx.encode(request).finish();
-    const promise = this.rpc.request(
-      'fairyring.pep.Msg',
-      'SubmitEncryptedTx',
-      data
-    );
-    return promise.then((data) =>
-      MsgSubmitEncryptedTxResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('fairyring.pep.Msg', 'SubmitEncryptedTx', data);
+    return promise.then((data) => MsgSubmitEncryptedTxResponse.decode(new _m0.Reader(data)));
   }
 
-  CreateAggregatedKeyShare(
-    request: MsgCreateAggregatedKeyShare
-  ): Promise<MsgCreateAggregatedKeyShareResponse> {
+  CreateAggregatedKeyShare(request: MsgCreateAggregatedKeyShare): Promise<MsgCreateAggregatedKeyShareResponse> {
     const data = MsgCreateAggregatedKeyShare.encode(request).finish();
-    const promise = this.rpc.request(
-      'fairyring.pep.Msg',
-      'CreateAggregatedKeyShare',
-      data
-    );
-    return promise.then((data) =>
-      MsgCreateAggregatedKeyShareResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('fairyring.pep.Msg', 'CreateAggregatedKeyShare', data);
+    return promise.then((data) => MsgCreateAggregatedKeyShareResponse.decode(new _m0.Reader(data)));
   }
 }
 
 interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
 declare var self: any | undefined;
@@ -342,14 +285,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

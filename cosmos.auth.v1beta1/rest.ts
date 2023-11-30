@@ -453,17 +453,11 @@ export interface V1Beta1QueryParamsResponse {
   params?: V1Beta1Params;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -478,13 +472,9 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
     securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
@@ -505,12 +495,7 @@ export class HttpClient<SecurityDataType = unknown> {
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
       baseURL: axiosConfig.baseURL || '',
@@ -524,10 +509,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -572,12 +554,7 @@ export class HttpClient<SecurityDataType = unknown> {
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
       requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
@@ -588,9 +565,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -605,9 +580,7 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title cosmos/auth/v1beta1/auth.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
    * @description Since: cosmos-sdk 0.47
    *
@@ -674,11 +647,7 @@ export class Api<
    * @summary AccountAddressByID returns account address based on account number.
    * @request GET:/cosmos/auth/v1beta1/address_by_id/{id}
    */
-  queryAccountAddressByID = (
-    id: string,
-    query?: { account_id?: string },
-    params: RequestParams = {}
-  ) =>
+  queryAccountAddressByID = (id: string, query?: { account_id?: string }, params: RequestParams = {}) =>
     this.request<V1Beta1QueryAccountAddressByIDResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/address_by_id/${id}`,
       method: 'GET',
@@ -711,10 +680,7 @@ export class Api<
    * @summary AddressBytesToString converts Account Address bytes to string
    * @request GET:/cosmos/auth/v1beta1/bech32/{address_bytes}
    */
-  queryAddressBytesToString = (
-    addressBytes: string,
-    params: RequestParams = {}
-  ) =>
+  queryAddressBytesToString = (addressBytes: string, params: RequestParams = {}) =>
     this.request<V1Beta1AddressBytesToStringResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/bech32/${addressBytes}`,
       method: 'GET',
@@ -730,10 +696,7 @@ export class Api<
    * @summary AddressStringToBytes converts Address string to bytes
    * @request GET:/cosmos/auth/v1beta1/bech32/{address_string}
    */
-  queryAddressStringToBytes = (
-    addressString: string,
-    params: RequestParams = {}
-  ) =>
+  queryAddressStringToBytes = (addressString: string, params: RequestParams = {}) =>
     this.request<V1Beta1AddressStringToBytesResponse, RpcStatus>({
       path: `/cosmos/auth/v1beta1/bech32/${addressString}`,
       method: 'GET',

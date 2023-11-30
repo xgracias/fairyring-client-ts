@@ -25,10 +25,7 @@ function createBaseKeyShare(): KeyShare {
 }
 
 export const KeyShare = {
-  encode(
-    message: KeyShare,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: KeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.validator !== '') {
       writer.uint32(10).string(message.validator);
     }
@@ -88,30 +85,20 @@ export const KeyShare = {
       validator: isSet(object.validator) ? String(object.validator) : '',
       blockHeight: isSet(object.blockHeight) ? Number(object.blockHeight) : 0,
       keyShare: isSet(object.keyShare) ? String(object.keyShare) : '',
-      keyShareIndex: isSet(object.keyShareIndex)
-        ? Number(object.keyShareIndex)
-        : 0,
-      receivedTimestamp: isSet(object.receivedTimestamp)
-        ? Number(object.receivedTimestamp)
-        : 0,
-      receivedBlockHeight: isSet(object.receivedBlockHeight)
-        ? Number(object.receivedBlockHeight)
-        : 0,
+      keyShareIndex: isSet(object.keyShareIndex) ? Number(object.keyShareIndex) : 0,
+      receivedTimestamp: isSet(object.receivedTimestamp) ? Number(object.receivedTimestamp) : 0,
+      receivedBlockHeight: isSet(object.receivedBlockHeight) ? Number(object.receivedBlockHeight) : 0,
     };
   },
 
   toJSON(message: KeyShare): unknown {
     const obj: any = {};
     message.validator !== undefined && (obj.validator = message.validator);
-    message.blockHeight !== undefined &&
-      (obj.blockHeight = Math.round(message.blockHeight));
+    message.blockHeight !== undefined && (obj.blockHeight = Math.round(message.blockHeight));
     message.keyShare !== undefined && (obj.keyShare = message.keyShare);
-    message.keyShareIndex !== undefined &&
-      (obj.keyShareIndex = Math.round(message.keyShareIndex));
-    message.receivedTimestamp !== undefined &&
-      (obj.receivedTimestamp = Math.round(message.receivedTimestamp));
-    message.receivedBlockHeight !== undefined &&
-      (obj.receivedBlockHeight = Math.round(message.receivedBlockHeight));
+    message.keyShareIndex !== undefined && (obj.keyShareIndex = Math.round(message.keyShareIndex));
+    message.receivedTimestamp !== undefined && (obj.receivedTimestamp = Math.round(message.receivedTimestamp));
+    message.receivedBlockHeight !== undefined && (obj.receivedBlockHeight = Math.round(message.receivedBlockHeight));
     return obj;
   },
 
@@ -146,14 +133,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

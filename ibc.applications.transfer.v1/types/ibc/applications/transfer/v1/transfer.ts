@@ -41,10 +41,7 @@ function createBaseDenomTrace(): DenomTrace {
 }
 
 export const DenomTrace = {
-  encode(
-    message: DenomTrace,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: DenomTrace, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.path !== '') {
       writer.uint32(10).string(message.path);
     }
@@ -89,9 +86,7 @@ export const DenomTrace = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<DenomTrace>, I>>(
-    object: I
-  ): DenomTrace {
+  fromPartial<I extends Exact<DeepPartial<DenomTrace>, I>>(object: I): DenomTrace {
     const message = createBaseDenomTrace();
     message.path = object.path ?? '';
     message.baseDenom = object.baseDenom ?? '';
@@ -104,10 +99,7 @@ function createBaseParams(): Params {
 }
 
 export const Params = {
-  encode(
-    message: Params,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.sendEnabled === true) {
       writer.uint32(8).bool(message.sendEnabled);
     }
@@ -140,21 +132,15 @@ export const Params = {
 
   fromJSON(object: any): Params {
     return {
-      sendEnabled: isSet(object.sendEnabled)
-        ? Boolean(object.sendEnabled)
-        : false,
-      receiveEnabled: isSet(object.receiveEnabled)
-        ? Boolean(object.receiveEnabled)
-        : false,
+      sendEnabled: isSet(object.sendEnabled) ? Boolean(object.sendEnabled) : false,
+      receiveEnabled: isSet(object.receiveEnabled) ? Boolean(object.receiveEnabled) : false,
     };
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
-    message.sendEnabled !== undefined &&
-      (obj.sendEnabled = message.sendEnabled);
-    message.receiveEnabled !== undefined &&
-      (obj.receiveEnabled = message.receiveEnabled);
+    message.sendEnabled !== undefined && (obj.sendEnabled = message.sendEnabled);
+    message.receiveEnabled !== undefined && (obj.receiveEnabled = message.receiveEnabled);
     return obj;
   },
 
@@ -166,14 +152,7 @@ export const Params = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

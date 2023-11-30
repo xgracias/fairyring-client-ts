@@ -51,8 +51,7 @@ export const Coin = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): Coin {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCoin();
     while (reader.pos < end) {
@@ -115,10 +114,7 @@ function createBaseDecCoin(): DecCoin {
 }
 
 export const DecCoin = {
-  encode(
-    message: DecCoin,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: DecCoin, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.denom !== '') {
       writer.uint32(10).string(message.denom);
     }
@@ -129,8 +125,7 @@ export const DecCoin = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): DecCoin {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDecCoin();
     while (reader.pos < end) {
@@ -193,10 +188,7 @@ function createBaseIntProto(): IntProto {
 }
 
 export const IntProto = {
-  encode(
-    message: IntProto,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: IntProto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.int !== '') {
       writer.uint32(10).string(message.int);
     }
@@ -204,8 +196,7 @@ export const IntProto = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): IntProto {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseIntProto();
     while (reader.pos < end) {
@@ -254,10 +245,7 @@ function createBaseDecProto(): DecProto {
 }
 
 export const DecProto = {
-  encode(
-    message: DecProto,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: DecProto, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.dec !== '') {
       writer.uint32(10).string(message.dec);
     }
@@ -265,8 +253,7 @@ export const DecProto = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): DecProto {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDecProto();
     while (reader.pos < end) {
@@ -310,14 +297,7 @@ export const DecProto = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

@@ -53,10 +53,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
@@ -80,14 +77,10 @@ export const GenesisState = {
           message.params = Params.decode(reader, reader.uint32());
           break;
         case 2:
-          message.signingInfos.push(
-            SigningInfo.decode(reader, reader.uint32())
-          );
+          message.signingInfos.push(SigningInfo.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.missedBlocks.push(
-            ValidatorMissedBlocks.decode(reader, reader.uint32())
-          );
+          message.missedBlocks.push(ValidatorMissedBlocks.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -111,38 +104,26 @@ export const GenesisState = {
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     if (message.signingInfos) {
-      obj.signingInfos = message.signingInfos.map((e) =>
-        e ? SigningInfo.toJSON(e) : undefined
-      );
+      obj.signingInfos = message.signingInfos.map((e) => (e ? SigningInfo.toJSON(e) : undefined));
     } else {
       obj.signingInfos = [];
     }
     if (message.missedBlocks) {
-      obj.missedBlocks = message.missedBlocks.map((e) =>
-        e ? ValidatorMissedBlocks.toJSON(e) : undefined
-      );
+      obj.missedBlocks = message.missedBlocks.map((e) => (e ? ValidatorMissedBlocks.toJSON(e) : undefined));
     } else {
       obj.missedBlocks = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.params =
-      object.params !== undefined && object.params !== null
-        ? Params.fromPartial(object.params)
-        : undefined;
-    message.signingInfos =
-      object.signingInfos?.map((e) => SigningInfo.fromPartial(e)) || [];
-    message.missedBlocks =
-      object.missedBlocks?.map((e) => ValidatorMissedBlocks.fromPartial(e)) ||
-      [];
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.signingInfos = object.signingInfos?.map((e) => SigningInfo.fromPartial(e)) || [];
+    message.missedBlocks = object.missedBlocks?.map((e) => ValidatorMissedBlocks.fromPartial(e)) || [];
     return message;
   },
 };
@@ -152,18 +133,12 @@ function createBaseSigningInfo(): SigningInfo {
 }
 
 export const SigningInfo = {
-  encode(
-    message: SigningInfo,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: SigningInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.validatorSigningInfo !== undefined) {
-      ValidatorSigningInfo.encode(
-        message.validatorSigningInfo,
-        writer.uint32(18).fork()
-      ).ldelim();
+      ValidatorSigningInfo.encode(message.validatorSigningInfo, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -179,10 +154,7 @@ export const SigningInfo = {
           message.address = reader.string();
           break;
         case 2:
-          message.validatorSigningInfo = ValidatorSigningInfo.decode(
-            reader,
-            reader.uint32()
-          );
+          message.validatorSigningInfo = ValidatorSigningInfo.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -211,14 +183,11 @@ export const SigningInfo = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<SigningInfo>, I>>(
-    object: I
-  ): SigningInfo {
+  fromPartial<I extends Exact<DeepPartial<SigningInfo>, I>>(object: I): SigningInfo {
     const message = createBaseSigningInfo();
     message.address = object.address ?? '';
     message.validatorSigningInfo =
-      object.validatorSigningInfo !== undefined &&
-      object.validatorSigningInfo !== null
+      object.validatorSigningInfo !== undefined && object.validatorSigningInfo !== null
         ? ValidatorSigningInfo.fromPartial(object.validatorSigningInfo)
         : undefined;
     return message;
@@ -230,10 +199,7 @@ function createBaseValidatorMissedBlocks(): ValidatorMissedBlocks {
 }
 
 export const ValidatorMissedBlocks = {
-  encode(
-    message: ValidatorMissedBlocks,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ValidatorMissedBlocks, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
@@ -243,10 +209,7 @@ export const ValidatorMissedBlocks = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): ValidatorMissedBlocks {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorMissedBlocks {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseValidatorMissedBlocks();
@@ -257,9 +220,7 @@ export const ValidatorMissedBlocks = {
           message.address = reader.string();
           break;
         case 2:
-          message.missedBlocks.push(
-            MissedBlock.decode(reader, reader.uint32())
-          );
+          message.missedBlocks.push(MissedBlock.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -282,22 +243,17 @@ export const ValidatorMissedBlocks = {
     const obj: any = {};
     message.address !== undefined && (obj.address = message.address);
     if (message.missedBlocks) {
-      obj.missedBlocks = message.missedBlocks.map((e) =>
-        e ? MissedBlock.toJSON(e) : undefined
-      );
+      obj.missedBlocks = message.missedBlocks.map((e) => (e ? MissedBlock.toJSON(e) : undefined));
     } else {
       obj.missedBlocks = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ValidatorMissedBlocks>, I>>(
-    object: I
-  ): ValidatorMissedBlocks {
+  fromPartial<I extends Exact<DeepPartial<ValidatorMissedBlocks>, I>>(object: I): ValidatorMissedBlocks {
     const message = createBaseValidatorMissedBlocks();
     message.address = object.address ?? '';
-    message.missedBlocks =
-      object.missedBlocks?.map((e) => MissedBlock.fromPartial(e)) || [];
+    message.missedBlocks = object.missedBlocks?.map((e) => MissedBlock.fromPartial(e)) || [];
     return message;
   },
 };
@@ -307,10 +263,7 @@ function createBaseMissedBlock(): MissedBlock {
 }
 
 export const MissedBlock = {
-  encode(
-    message: MissedBlock,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MissedBlock, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.index !== 0) {
       writer.uint32(8).int64(message.index);
     }
@@ -355,9 +308,7 @@ export const MissedBlock = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MissedBlock>, I>>(
-    object: I
-  ): MissedBlock {
+  fromPartial<I extends Exact<DeepPartial<MissedBlock>, I>>(object: I): MissedBlock {
     const message = createBaseMissedBlock();
     message.index = object.index ?? 0;
     message.missed = object.missed ?? false;
@@ -384,14 +335,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

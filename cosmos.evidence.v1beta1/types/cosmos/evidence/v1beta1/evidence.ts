@@ -25,18 +25,12 @@ function createBaseEquivocation(): Equivocation {
 }
 
 export const Equivocation = {
-  encode(
-    message: Equivocation,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Equivocation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.height !== 0) {
       writer.uint32(8).int64(message.height);
     }
     if (message.time !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.time),
-        writer.uint32(18).fork()
-      ).ldelim();
+      Timestamp.encode(toTimestamp(message.time), writer.uint32(18).fork()).ldelim();
     }
     if (message.power !== 0) {
       writer.uint32(24).int64(message.power);
@@ -58,9 +52,7 @@ export const Equivocation = {
           message.height = longToNumber(reader.int64() as Long);
           break;
         case 2:
-          message.time = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.time = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 3:
           message.power = longToNumber(reader.int64() as Long);
@@ -81,9 +73,7 @@ export const Equivocation = {
       height: isSet(object.height) ? Number(object.height) : 0,
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
       power: isSet(object.power) ? Number(object.power) : 0,
-      consensusAddress: isSet(object.consensusAddress)
-        ? String(object.consensusAddress)
-        : '',
+      consensusAddress: isSet(object.consensusAddress) ? String(object.consensusAddress) : '',
     };
   },
 
@@ -92,14 +82,11 @@ export const Equivocation = {
     message.height !== undefined && (obj.height = Math.round(message.height));
     message.time !== undefined && (obj.time = message.time.toISOString());
     message.power !== undefined && (obj.power = Math.round(message.power));
-    message.consensusAddress !== undefined &&
-      (obj.consensusAddress = message.consensusAddress);
+    message.consensusAddress !== undefined && (obj.consensusAddress = message.consensusAddress);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<Equivocation>, I>>(
-    object: I
-  ): Equivocation {
+  fromPartial<I extends Exact<DeepPartial<Equivocation>, I>>(object: I): Equivocation {
     const message = createBaseEquivocation();
     message.height = object.height ?? 0;
     message.time = object.time ?? undefined;
@@ -128,14 +115,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

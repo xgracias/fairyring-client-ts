@@ -15,17 +15,11 @@ import { MsgLeaveGroup } from './types/cosmos/group/v1/tx';
 import { MsgSubmitProposal } from './types/cosmos/group/v1/tx';
 
 const msgTypes: Array<[string, GeneratedType]> = [
-  [
-    '/cosmos.group.v1.MsgUpdateGroupPolicyMetadata',
-    MsgUpdateGroupPolicyMetadata,
-  ],
+  ['/cosmos.group.v1.MsgUpdateGroupPolicyMetadata', MsgUpdateGroupPolicyMetadata],
   ['/cosmos.group.v1.MsgCreateGroup', MsgCreateGroup],
   ['/cosmos.group.v1.MsgCreateGroupWithPolicy', MsgCreateGroupWithPolicy],
   ['/cosmos.group.v1.MsgVote', MsgVote],
-  [
-    '/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy',
-    MsgUpdateGroupPolicyDecisionPolicy,
-  ],
+  ['/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy', MsgUpdateGroupPolicyDecisionPolicy],
   ['/cosmos.group.v1.MsgUpdateGroupAdmin', MsgUpdateGroupAdmin],
   ['/cosmos.group.v1.MsgUpdateGroupPolicyAdmin', MsgUpdateGroupPolicyAdmin],
   ['/cosmos.group.v1.MsgUpdateGroupMetadata', MsgUpdateGroupMetadata],

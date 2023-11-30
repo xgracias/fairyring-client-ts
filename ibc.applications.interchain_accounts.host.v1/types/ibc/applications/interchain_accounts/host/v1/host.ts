@@ -19,10 +19,7 @@ function createBaseParams(): Params {
 }
 
 export const Params = {
-  encode(
-    message: Params,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.hostEnabled === true) {
       writer.uint32(8).bool(message.hostEnabled);
     }
@@ -55,19 +52,14 @@ export const Params = {
 
   fromJSON(object: any): Params {
     return {
-      hostEnabled: isSet(object.hostEnabled)
-        ? Boolean(object.hostEnabled)
-        : false,
-      allowMessages: Array.isArray(object?.allowMessages)
-        ? object.allowMessages.map((e: any) => String(e))
-        : [],
+      hostEnabled: isSet(object.hostEnabled) ? Boolean(object.hostEnabled) : false,
+      allowMessages: Array.isArray(object?.allowMessages) ? object.allowMessages.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
-    message.hostEnabled !== undefined &&
-      (obj.hostEnabled = message.hostEnabled);
+    message.hostEnabled !== undefined && (obj.hostEnabled = message.hostEnabled);
     if (message.allowMessages) {
       obj.allowMessages = message.allowMessages.map((e) => e);
     } else {
@@ -84,14 +76,7 @@ export const Params = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

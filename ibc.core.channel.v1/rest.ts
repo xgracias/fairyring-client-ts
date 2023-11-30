@@ -976,17 +976,11 @@ export interface V1Beta1PageResponse {
   total?: string;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -1001,13 +995,9 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
     securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
@@ -1028,12 +1018,7 @@ export class HttpClient<SecurityDataType = unknown> {
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
       baseURL: axiosConfig.baseURL || '',
@@ -1047,10 +1032,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -1095,12 +1077,7 @@ export class HttpClient<SecurityDataType = unknown> {
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
       requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
@@ -1111,9 +1088,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -1128,9 +1103,7 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title ibc/core/channel/v1/channel.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
@@ -1165,11 +1138,7 @@ export class Api<
    * @summary Channel queries an IBC Channel.
    * @request GET:/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}
    */
-  queryChannel = (
-    channelId: string,
-    portId: string,
-    params: RequestParams = {}
-  ) =>
+  queryChannel = (channelId: string, portId: string, params: RequestParams = {}) =>
     this.request<V1QueryChannelResponse, RpcStatus>({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}`,
       method: 'GET',
@@ -1186,11 +1155,7 @@ export class Api<
 with the provided channel identifiers.
  * @request GET:/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/client_state
  */
-  queryChannelClientState = (
-    channelId: string,
-    portId: string,
-    params: RequestParams = {}
-  ) =>
+  queryChannelClientState = (channelId: string, portId: string, params: RequestParams = {}) =>
     this.request<V1QueryChannelClientStateResponse, RpcStatus>({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/client_state`,
       method: 'GET',
@@ -1229,11 +1194,7 @@ associated with the provided channel identifiers.
    * @summary NextSequenceReceive returns the next receive sequence for a given channel.
    * @request GET:/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/next_sequence
    */
-  queryNextSequenceReceive = (
-    channelId: string,
-    portId: string,
-    params: RequestParams = {}
-  ) =>
+  queryNextSequenceReceive = (channelId: string, portId: string, params: RequestParams = {}) =>
     this.request<V1QueryNextSequenceReceiveResponse, RpcStatus>({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/next_sequence`,
       method: 'GET',
@@ -1279,12 +1240,7 @@ with a channel.
    * @summary PacketAcknowledgement queries a stored packet acknowledgement hash.
    * @request GET:/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_acks/{sequence}
    */
-  queryPacketAcknowledgement = (
-    channelId: string,
-    portId: string,
-    sequence: string,
-    params: RequestParams = {}
-  ) =>
+  queryPacketAcknowledgement = (channelId: string, portId: string, sequence: string, params: RequestParams = {}) =>
     this.request<V1QueryPacketAcknowledgementResponse, RpcStatus>({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_acks/${sequence}`,
       method: 'GET',
@@ -1330,12 +1286,7 @@ with a channel.
 with a channel and sequences.
  * @request GET:/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{packet_ack_sequences}/unreceived_acks
  */
-  queryUnreceivedAcks = (
-    channelId: string,
-    portId: string,
-    packetAckSequences: string[],
-    params: RequestParams = {}
-  ) =>
+  queryUnreceivedAcks = (channelId: string, portId: string, packetAckSequences: string[], params: RequestParams = {}) =>
     this.request<V1QueryUnreceivedAcksResponse, RpcStatus>({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_commitments/${packetAckSequences}/unreceived_acks`,
       method: 'GET',
@@ -1373,12 +1324,7 @@ channel and sequences.
    * @summary PacketCommitment queries a stored packet commitment hash.
    * @request GET:/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{sequence}
    */
-  queryPacketCommitment = (
-    channelId: string,
-    portId: string,
-    sequence: string,
-    params: RequestParams = {}
-  ) =>
+  queryPacketCommitment = (channelId: string, portId: string, sequence: string, params: RequestParams = {}) =>
     this.request<V1QueryPacketCommitmentResponse, RpcStatus>({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_commitments/${sequence}`,
       method: 'GET',
@@ -1395,12 +1341,7 @@ channel and sequences.
 queried chain
  * @request GET:/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_receipts/{sequence}
  */
-  queryPacketReceipt = (
-    channelId: string,
-    portId: string,
-    sequence: string,
-    params: RequestParams = {}
-  ) =>
+  queryPacketReceipt = (channelId: string, portId: string, sequence: string, params: RequestParams = {}) =>
     this.request<V1QueryPacketReceiptResponse, RpcStatus>({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_receipts/${sequence}`,
       method: 'GET',

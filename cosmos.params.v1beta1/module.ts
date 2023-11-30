@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -57,9 +52,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 
@@ -73,9 +66,7 @@ class SDKModule {
     this.query = queryClient({ addr: client.env.apiURL });
     this.updateTX(client);
     this.structure = {
-      ParameterChangeProposal: getStructure(
-        typeParameterChangeProposal.fromPartial({})
-      ),
+      ParameterChangeProposal: getStructure(typeParameterChangeProposal.fromPartial({})),
       ParamChange: getStructure(typeParamChange.fromPartial({})),
       Subspace: getStructure(typeSubspace.fromPartial({})),
     };

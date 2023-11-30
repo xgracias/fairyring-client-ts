@@ -1,13 +1,7 @@
 /* eslint-disable */
 import Long from 'long';
 import _m0 from 'protobufjs/minimal';
-import {
-  GroupInfo,
-  GroupMember,
-  GroupPolicyInfo,
-  Proposal,
-  Vote,
-} from './types';
+import { GroupInfo, GroupMember, GroupPolicyInfo, Proposal, Vote } from './types';
 
 export const protobufPackage = 'cosmos.group.v1';
 
@@ -56,10 +50,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.groupSeq !== 0) {
       writer.uint32(8).uint64(message.groupSeq);
     }
@@ -101,17 +92,13 @@ export const GenesisState = {
           message.groups.push(GroupInfo.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.groupMembers.push(
-            GroupMember.decode(reader, reader.uint32())
-          );
+          message.groupMembers.push(GroupMember.decode(reader, reader.uint32()));
           break;
         case 4:
           message.groupPolicySeq = longToNumber(reader.uint64() as Long);
           break;
         case 5:
-          message.groupPolicies.push(
-            GroupPolicyInfo.decode(reader, reader.uint32())
-          );
+          message.groupPolicies.push(GroupPolicyInfo.decode(reader, reader.uint32()));
           break;
         case 6:
           message.proposalSeq = longToNumber(reader.uint64() as Long);
@@ -133,61 +120,42 @@ export const GenesisState = {
   fromJSON(object: any): GenesisState {
     return {
       groupSeq: isSet(object.groupSeq) ? Number(object.groupSeq) : 0,
-      groups: Array.isArray(object?.groups)
-        ? object.groups.map((e: any) => GroupInfo.fromJSON(e))
-        : [],
+      groups: Array.isArray(object?.groups) ? object.groups.map((e: any) => GroupInfo.fromJSON(e)) : [],
       groupMembers: Array.isArray(object?.groupMembers)
         ? object.groupMembers.map((e: any) => GroupMember.fromJSON(e))
         : [],
-      groupPolicySeq: isSet(object.groupPolicySeq)
-        ? Number(object.groupPolicySeq)
-        : 0,
+      groupPolicySeq: isSet(object.groupPolicySeq) ? Number(object.groupPolicySeq) : 0,
       groupPolicies: Array.isArray(object?.groupPolicies)
         ? object.groupPolicies.map((e: any) => GroupPolicyInfo.fromJSON(e))
         : [],
       proposalSeq: isSet(object.proposalSeq) ? Number(object.proposalSeq) : 0,
-      proposals: Array.isArray(object?.proposals)
-        ? object.proposals.map((e: any) => Proposal.fromJSON(e))
-        : [],
-      votes: Array.isArray(object?.votes)
-        ? object.votes.map((e: any) => Vote.fromJSON(e))
-        : [],
+      proposals: Array.isArray(object?.proposals) ? object.proposals.map((e: any) => Proposal.fromJSON(e)) : [],
+      votes: Array.isArray(object?.votes) ? object.votes.map((e: any) => Vote.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
-    message.groupSeq !== undefined &&
-      (obj.groupSeq = Math.round(message.groupSeq));
+    message.groupSeq !== undefined && (obj.groupSeq = Math.round(message.groupSeq));
     if (message.groups) {
-      obj.groups = message.groups.map((e) =>
-        e ? GroupInfo.toJSON(e) : undefined
-      );
+      obj.groups = message.groups.map((e) => (e ? GroupInfo.toJSON(e) : undefined));
     } else {
       obj.groups = [];
     }
     if (message.groupMembers) {
-      obj.groupMembers = message.groupMembers.map((e) =>
-        e ? GroupMember.toJSON(e) : undefined
-      );
+      obj.groupMembers = message.groupMembers.map((e) => (e ? GroupMember.toJSON(e) : undefined));
     } else {
       obj.groupMembers = [];
     }
-    message.groupPolicySeq !== undefined &&
-      (obj.groupPolicySeq = Math.round(message.groupPolicySeq));
+    message.groupPolicySeq !== undefined && (obj.groupPolicySeq = Math.round(message.groupPolicySeq));
     if (message.groupPolicies) {
-      obj.groupPolicies = message.groupPolicies.map((e) =>
-        e ? GroupPolicyInfo.toJSON(e) : undefined
-      );
+      obj.groupPolicies = message.groupPolicies.map((e) => (e ? GroupPolicyInfo.toJSON(e) : undefined));
     } else {
       obj.groupPolicies = [];
     }
-    message.proposalSeq !== undefined &&
-      (obj.proposalSeq = Math.round(message.proposalSeq));
+    message.proposalSeq !== undefined && (obj.proposalSeq = Math.round(message.proposalSeq));
     if (message.proposals) {
-      obj.proposals = message.proposals.map((e) =>
-        e ? Proposal.toJSON(e) : undefined
-      );
+      obj.proposals = message.proposals.map((e) => (e ? Proposal.toJSON(e) : undefined));
     } else {
       obj.proposals = [];
     }
@@ -199,20 +167,15 @@ export const GenesisState = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.groupSeq = object.groupSeq ?? 0;
     message.groups = object.groups?.map((e) => GroupInfo.fromPartial(e)) || [];
-    message.groupMembers =
-      object.groupMembers?.map((e) => GroupMember.fromPartial(e)) || [];
+    message.groupMembers = object.groupMembers?.map((e) => GroupMember.fromPartial(e)) || [];
     message.groupPolicySeq = object.groupPolicySeq ?? 0;
-    message.groupPolicies =
-      object.groupPolicies?.map((e) => GroupPolicyInfo.fromPartial(e)) || [];
+    message.groupPolicies = object.groupPolicies?.map((e) => GroupPolicyInfo.fromPartial(e)) || [];
     message.proposalSeq = object.proposalSeq ?? 0;
-    message.proposals =
-      object.proposals?.map((e) => Proposal.fromPartial(e)) || [];
+    message.proposals = object.proposals?.map((e) => Proposal.fromPartial(e)) || [];
     message.votes = object.votes?.map((e) => Vote.fromPartial(e)) || [];
     return message;
   },
@@ -237,14 +200,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

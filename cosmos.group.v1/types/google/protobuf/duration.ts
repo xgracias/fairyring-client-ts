@@ -87,10 +87,7 @@ function createBaseDuration(): Duration {
 }
 
 export const Duration = {
-  encode(
-    message: Duration,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Duration, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.seconds !== 0) {
       writer.uint32(8).int64(message.seconds);
     }
@@ -130,8 +127,7 @@ export const Duration = {
 
   toJSON(message: Duration): unknown {
     const obj: any = {};
-    message.seconds !== undefined &&
-      (obj.seconds = Math.round(message.seconds));
+    message.seconds !== undefined && (obj.seconds = Math.round(message.seconds));
     message.nanos !== undefined && (obj.nanos = Math.round(message.nanos));
     return obj;
   },
@@ -163,14 +159,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

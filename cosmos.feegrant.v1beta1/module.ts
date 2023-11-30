@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -74,70 +69,35 @@ export const txClient = (
   }
 ) => {
   return {
-    async sendMsgGrantAllowance({
-      value,
-      fee,
-      memo,
-    }: sendMsgGrantAllowanceParams): Promise<DeliverTxResponse> {
+    async sendMsgGrantAllowance({ value, fee, memo }: sendMsgGrantAllowanceParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgGrantAllowance: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgGrantAllowance: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgGrantAllowance({
           value: MsgGrantAllowance.fromPartial(value),
         });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgGrantAllowance: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgGrantAllowance: Could not broadcast Tx: ' + e.message);
       }
     },
 
-    async sendMsgRevokeAllowance({
-      value,
-      fee,
-      memo,
-    }: sendMsgRevokeAllowanceParams): Promise<DeliverTxResponse> {
+    async sendMsgRevokeAllowance({ value, fee, memo }: sendMsgRevokeAllowanceParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgRevokeAllowance: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgRevokeAllowance: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgRevokeAllowance({
           value: MsgRevokeAllowance.fromPartial(value),
         });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgRevokeAllowance: Could not broadcast Tx: ' +
-            e.message
-        );
+        throw new Error('TxClient:sendMsgRevokeAllowance: Could not broadcast Tx: ' + e.message);
       }
     },
 
@@ -148,9 +108,7 @@ export const txClient = (
           value: MsgGrantAllowance.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgGrantAllowance: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgGrantAllowance: Could not create message: ' + e.message);
       }
     },
 
@@ -161,9 +119,7 @@ export const txClient = (
           value: MsgRevokeAllowance.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgRevokeAllowance: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgRevokeAllowance: Could not create message: ' + e.message);
       }
     },
   };
@@ -173,9 +129,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 
@@ -191,9 +145,7 @@ class SDKModule {
     this.structure = {
       BasicAllowance: getStructure(typeBasicAllowance.fromPartial({})),
       PeriodicAllowance: getStructure(typePeriodicAllowance.fromPartial({})),
-      AllowedMsgAllowance: getStructure(
-        typeAllowedMsgAllowance.fromPartial({})
-      ),
+      AllowedMsgAllowance: getStructure(typeAllowedMsgAllowance.fromPartial({})),
       Grant: getStructure(typeGrant.fromPartial({})),
     };
     client.on('signer-changed', (signer) => {

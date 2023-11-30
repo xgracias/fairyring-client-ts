@@ -6,12 +6,4 @@ import { ConnectionPaths } from './types/ibc/core/connection/v1/connection';
 import { Version } from './types/ibc/core/connection/v1/connection';
 import { Params } from './types/ibc/core/connection/v1/connection';
 
-export {
-  ConnectionEnd,
-  IdentifiedConnection,
-  Counterparty,
-  ClientPaths,
-  ConnectionPaths,
-  Version,
-  Params,
-};
+export { ConnectionEnd, IdentifiedConnection, Counterparty, ClientPaths, ConnectionPaths, Version, Params };

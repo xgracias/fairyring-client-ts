@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -80,65 +75,31 @@ export const txClient = (
   }
 ) => {
   return {
-    async sendMsgSend({
-      value,
-      fee,
-      memo,
-    }: sendMsgSendParams): Promise<DeliverTxResponse> {
+    async sendMsgSend({ value, fee, memo }: sendMsgSendParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgSend: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgSend: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgSend({ value: MsgSend.fromPartial(value) });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgSend: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgSend: Could not broadcast Tx: ' + e.message);
       }
     },
 
-    async sendMsgMultiSend({
-      value,
-      fee,
-      memo,
-    }: sendMsgMultiSendParams): Promise<DeliverTxResponse> {
+    async sendMsgMultiSend({ value, fee, memo }: sendMsgMultiSendParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgMultiSend: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgMultiSend: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgMultiSend({ value: MsgMultiSend.fromPartial(value) });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgMultiSend: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgMultiSend: Could not broadcast Tx: ' + e.message);
       }
     },
 
@@ -149,9 +110,7 @@ export const txClient = (
           value: MsgSend.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgSend: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgSend: Could not create message: ' + e.message);
       }
     },
 
@@ -162,9 +121,7 @@ export const txClient = (
           value: MsgMultiSend.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgMultiSend: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgMultiSend: Could not create message: ' + e.message);
       }
     },
   };
@@ -174,9 +131,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 

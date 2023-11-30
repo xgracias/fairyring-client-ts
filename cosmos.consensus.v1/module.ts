@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -58,36 +53,19 @@ export const txClient = (
   }
 ) => {
   return {
-    async sendMsgUpdateParams({
-      value,
-      fee,
-      memo,
-    }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
+    async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgUpdateParams({
           value: MsgUpdateParams.fromPartial(value),
         });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
       }
     },
 
@@ -98,9 +76,7 @@ export const txClient = (
           value: MsgUpdateParams.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgUpdateParams: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
       }
     },
   };
@@ -110,9 +86,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 

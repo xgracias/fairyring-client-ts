@@ -41,10 +41,7 @@ function createBaseMsgUnjail(): MsgUnjail {
 }
 
 export const MsgUnjail = {
-  encode(
-    message: MsgUnjail,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MsgUnjail, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.validatorAddr !== '') {
       writer.uint32(10).string(message.validatorAddr);
     }
@@ -71,22 +68,17 @@ export const MsgUnjail = {
 
   fromJSON(object: any): MsgUnjail {
     return {
-      validatorAddr: isSet(object.validatorAddr)
-        ? String(object.validatorAddr)
-        : '',
+      validatorAddr: isSet(object.validatorAddr) ? String(object.validatorAddr) : '',
     };
   },
 
   toJSON(message: MsgUnjail): unknown {
     const obj: any = {};
-    message.validatorAddr !== undefined &&
-      (obj.validatorAddr = message.validatorAddr);
+    message.validatorAddr !== undefined && (obj.validatorAddr = message.validatorAddr);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgUnjail>, I>>(
-    object: I
-  ): MsgUnjail {
+  fromPartial<I extends Exact<DeepPartial<MsgUnjail>, I>>(object: I): MsgUnjail {
     const message = createBaseMsgUnjail();
     message.validatorAddr = object.validatorAddr ?? '';
     return message;
@@ -98,10 +90,7 @@ function createBaseMsgUnjailResponse(): MsgUnjailResponse {
 }
 
 export const MsgUnjailResponse = {
-  encode(
-    _: MsgUnjailResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgUnjailResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -129,9 +118,7 @@ export const MsgUnjailResponse = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgUnjailResponse>, I>>(
-    _: I
-  ): MsgUnjailResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgUnjailResponse>, I>>(_: I): MsgUnjailResponse {
     const message = createBaseMsgUnjailResponse();
     return message;
   },
@@ -142,10 +129,7 @@ function createBaseMsgUpdateParams(): MsgUpdateParams {
 }
 
 export const MsgUpdateParams = {
-  encode(
-    message: MsgUpdateParams,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
@@ -186,20 +170,15 @@ export const MsgUpdateParams = {
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
     message.authority !== undefined && (obj.authority = message.authority);
-    message.params !== undefined &&
-      (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(
-    object: I
-  ): MsgUpdateParams {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? '';
     message.params =
-      object.params !== undefined && object.params !== null
-        ? Params.fromPartial(object.params)
-        : undefined;
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -209,17 +188,11 @@ function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
 }
 
 export const MsgUpdateParamsResponse = {
-  encode(
-    _: MsgUpdateParamsResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: MsgUpdateParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): MsgUpdateParamsResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParamsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgUpdateParamsResponse();
@@ -243,9 +216,7 @@ export const MsgUpdateParamsResponse = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(
-    _: I
-  ): MsgUpdateParamsResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
   },
@@ -277,45 +248,22 @@ export class MsgClientImpl implements Msg {
   }
   Unjail(request: MsgUnjail): Promise<MsgUnjailResponse> {
     const data = MsgUnjail.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.slashing.v1beta1.Msg',
-      'Unjail',
-      data
-    );
-    return promise.then((data) =>
-      MsgUnjailResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.slashing.v1beta1.Msg', 'Unjail', data);
+    return promise.then((data) => MsgUnjailResponse.decode(new _m0.Reader(data)));
   }
 
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.slashing.v1beta1.Msg',
-      'UpdateParams',
-      data
-    );
-    return promise.then((data) =>
-      MsgUpdateParamsResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.slashing.v1beta1.Msg', 'UpdateParams', data);
+    return promise.then((data) => MsgUpdateParamsResponse.decode(new _m0.Reader(data)));
   }
 }
 
 interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

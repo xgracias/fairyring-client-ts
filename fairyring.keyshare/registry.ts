@@ -11,19 +11,10 @@ const msgTypes: Array<[string, GeneratedType]> = [
   ['/fairyring.keyshare.MsgCreateGeneralKeyShare', MsgCreateGeneralKeyShare],
   ['/fairyring.keyshare.MsgSendKeyshare', MsgSendKeyshare],
   ['/fairyring.keyshare.MsgCreateLatestPubKey', MsgCreateLatestPubKey],
-  [
-    '/fairyring.keyshare.MsgUpdateAuthorizedAddress',
-    MsgUpdateAuthorizedAddress,
-  ],
-  [
-    '/fairyring.keyshare.MsgDeleteAuthorizedAddress',
-    MsgDeleteAuthorizedAddress,
-  ],
+  ['/fairyring.keyshare.MsgUpdateAuthorizedAddress', MsgUpdateAuthorizedAddress],
+  ['/fairyring.keyshare.MsgDeleteAuthorizedAddress', MsgDeleteAuthorizedAddress],
   ['/fairyring.keyshare.MsgRegisterValidator', MsgRegisterValidator],
-  [
-    '/fairyring.keyshare.MsgCreateAuthorizedAddress',
-    MsgCreateAuthorizedAddress,
-  ],
+  ['/fairyring.keyshare.MsgCreateAuthorizedAddress', MsgCreateAuthorizedAddress],
 ];
 
 export { msgTypes };

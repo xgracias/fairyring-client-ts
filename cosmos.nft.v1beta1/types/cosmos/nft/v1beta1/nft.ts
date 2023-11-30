@@ -127,12 +127,10 @@ export const Class = {
     message.id !== undefined && (obj.id = message.id);
     message.name !== undefined && (obj.name = message.name);
     message.symbol !== undefined && (obj.symbol = message.symbol);
-    message.description !== undefined &&
-      (obj.description = message.description);
+    message.description !== undefined && (obj.description = message.description);
     message.uri !== undefined && (obj.uri = message.uri);
     message.uriHash !== undefined && (obj.uriHash = message.uriHash);
-    message.data !== undefined &&
-      (obj.data = message.data ? Any.toJSON(message.data) : undefined);
+    message.data !== undefined && (obj.data = message.data ? Any.toJSON(message.data) : undefined);
     return obj;
   },
 
@@ -144,10 +142,7 @@ export const Class = {
     message.description = object.description ?? '';
     message.uri = object.uri ?? '';
     message.uriHash = object.uriHash ?? '';
-    message.data =
-      object.data !== undefined && object.data !== null
-        ? Any.fromPartial(object.data)
-        : undefined;
+    message.data = object.data !== undefined && object.data !== null ? Any.fromPartial(object.data) : undefined;
     return message;
   },
 };
@@ -222,8 +217,7 @@ export const NFT = {
     message.id !== undefined && (obj.id = message.id);
     message.uri !== undefined && (obj.uri = message.uri);
     message.uriHash !== undefined && (obj.uriHash = message.uriHash);
-    message.data !== undefined &&
-      (obj.data = message.data ? Any.toJSON(message.data) : undefined);
+    message.data !== undefined && (obj.data = message.data ? Any.toJSON(message.data) : undefined);
     return obj;
   },
 
@@ -233,22 +227,12 @@ export const NFT = {
     message.id = object.id ?? '';
     message.uri = object.uri ?? '';
     message.uriHash = object.uriHash ?? '';
-    message.data =
-      object.data !== undefined && object.data !== null
-        ? Any.fromPartial(object.data)
-        : undefined;
+    message.data = object.data !== undefined && object.data !== null ? Any.fromPartial(object.data) : undefined;
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

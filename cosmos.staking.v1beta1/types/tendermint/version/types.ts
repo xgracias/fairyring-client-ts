@@ -69,8 +69,7 @@ export const App = {
 
   toJSON(message: App): unknown {
     const obj: any = {};
-    message.protocol !== undefined &&
-      (obj.protocol = Math.round(message.protocol));
+    message.protocol !== undefined && (obj.protocol = Math.round(message.protocol));
     message.software !== undefined && (obj.software = message.software);
     return obj;
   },
@@ -88,10 +87,7 @@ function createBaseConsensus(): Consensus {
 }
 
 export const Consensus = {
-  encode(
-    message: Consensus,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Consensus, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.block !== 0) {
       writer.uint32(8).uint64(message.block);
     }
@@ -136,9 +132,7 @@ export const Consensus = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<Consensus>, I>>(
-    object: I
-  ): Consensus {
+  fromPartial<I extends Exact<DeepPartial<Consensus>, I>>(object: I): Consensus {
     const message = createBaseConsensus();
     message.block = object.block ?? 0;
     message.app = object.app ?? 0;
@@ -165,14 +159,7 @@ var globalThis: any = (() => {
   throw 'Unable to locate global object';
 })();
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

@@ -15,10 +15,7 @@ function createBaseAggregatedConditionalKeyShare(): AggregatedConditionalKeyShar
 }
 
 export const AggregatedConditionalKeyShare = {
-  encode(
-    message: AggregatedConditionalKeyShare,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: AggregatedConditionalKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.condition !== 0) {
       writer.uint32(8).uint64(message.condition);
     }
@@ -31,12 +28,8 @@ export const AggregatedConditionalKeyShare = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): AggregatedConditionalKeyShare {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): AggregatedConditionalKeyShare {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseAggregatedConditionalKeyShare();
     while (reader.pos < end) {
@@ -74,9 +67,7 @@ export const AggregatedConditionalKeyShare = {
 
   fromJSON(object: any): AggregatedConditionalKeyShare {
     return {
-      condition: isSet(object.condition)
-        ? globalThis.Number(object.condition)
-        : 0,
+      condition: isSet(object.condition) ? globalThis.Number(object.condition) : 0,
       data: isSet(object.data) ? globalThis.String(object.data) : '',
       creator: isSet(object.creator) ? globalThis.String(object.creator) : '',
     };
@@ -96,9 +87,7 @@ export const AggregatedConditionalKeyShare = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AggregatedConditionalKeyShare>, I>>(
-    base?: I
-  ): AggregatedConditionalKeyShare {
+  create<I extends Exact<DeepPartial<AggregatedConditionalKeyShare>, I>>(base?: I): AggregatedConditionalKeyShare {
     return AggregatedConditionalKeyShare.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<AggregatedConditionalKeyShare>, I>>(
@@ -112,14 +101,7 @@ export const AggregatedConditionalKeyShare = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

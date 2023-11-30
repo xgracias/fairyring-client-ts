@@ -69,62 +69,36 @@ export const Block = {
     return {
       header: isSet(object.header) ? Header.fromJSON(object.header) : undefined,
       data: isSet(object.data) ? Data.fromJSON(object.data) : undefined,
-      evidence: isSet(object.evidence)
-        ? EvidenceList.fromJSON(object.evidence)
-        : undefined,
-      lastCommit: isSet(object.lastCommit)
-        ? Commit.fromJSON(object.lastCommit)
-        : undefined,
+      evidence: isSet(object.evidence) ? EvidenceList.fromJSON(object.evidence) : undefined,
+      lastCommit: isSet(object.lastCommit) ? Commit.fromJSON(object.lastCommit) : undefined,
     };
   },
 
   toJSON(message: Block): unknown {
     const obj: any = {};
-    message.header !== undefined &&
-      (obj.header = message.header ? Header.toJSON(message.header) : undefined);
-    message.data !== undefined &&
-      (obj.data = message.data ? Data.toJSON(message.data) : undefined);
+    message.header !== undefined && (obj.header = message.header ? Header.toJSON(message.header) : undefined);
+    message.data !== undefined && (obj.data = message.data ? Data.toJSON(message.data) : undefined);
     message.evidence !== undefined &&
-      (obj.evidence = message.evidence
-        ? EvidenceList.toJSON(message.evidence)
-        : undefined);
+      (obj.evidence = message.evidence ? EvidenceList.toJSON(message.evidence) : undefined);
     message.lastCommit !== undefined &&
-      (obj.lastCommit = message.lastCommit
-        ? Commit.toJSON(message.lastCommit)
-        : undefined);
+      (obj.lastCommit = message.lastCommit ? Commit.toJSON(message.lastCommit) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<Block>, I>>(object: I): Block {
     const message = createBaseBlock();
     message.header =
-      object.header !== undefined && object.header !== null
-        ? Header.fromPartial(object.header)
-        : undefined;
-    message.data =
-      object.data !== undefined && object.data !== null
-        ? Data.fromPartial(object.data)
-        : undefined;
+      object.header !== undefined && object.header !== null ? Header.fromPartial(object.header) : undefined;
+    message.data = object.data !== undefined && object.data !== null ? Data.fromPartial(object.data) : undefined;
     message.evidence =
-      object.evidence !== undefined && object.evidence !== null
-        ? EvidenceList.fromPartial(object.evidence)
-        : undefined;
+      object.evidence !== undefined && object.evidence !== null ? EvidenceList.fromPartial(object.evidence) : undefined;
     message.lastCommit =
-      object.lastCommit !== undefined && object.lastCommit !== null
-        ? Commit.fromPartial(object.lastCommit)
-        : undefined;
+      object.lastCommit !== undefined && object.lastCommit !== null ? Commit.fromPartial(object.lastCommit) : undefined;
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

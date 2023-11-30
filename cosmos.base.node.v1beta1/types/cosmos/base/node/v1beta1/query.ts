@@ -16,10 +16,7 @@ function createBaseConfigRequest(): ConfigRequest {
 }
 
 export const ConfigRequest = {
-  encode(
-    _: ConfigRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(_: ConfigRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
@@ -47,9 +44,7 @@ export const ConfigRequest = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ConfigRequest>, I>>(
-    _: I
-  ): ConfigRequest {
+  fromPartial<I extends Exact<DeepPartial<ConfigRequest>, I>>(_: I): ConfigRequest {
     const message = createBaseConfigRequest();
     return message;
   },
@@ -60,10 +55,7 @@ function createBaseConfigResponse(): ConfigResponse {
 }
 
 export const ConfigResponse = {
-  encode(
-    message: ConfigResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ConfigResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.minimumGasPrice !== '') {
       writer.uint32(10).string(message.minimumGasPrice);
     }
@@ -90,22 +82,17 @@ export const ConfigResponse = {
 
   fromJSON(object: any): ConfigResponse {
     return {
-      minimumGasPrice: isSet(object.minimumGasPrice)
-        ? String(object.minimumGasPrice)
-        : '',
+      minimumGasPrice: isSet(object.minimumGasPrice) ? String(object.minimumGasPrice) : '',
     };
   },
 
   toJSON(message: ConfigResponse): unknown {
     const obj: any = {};
-    message.minimumGasPrice !== undefined &&
-      (obj.minimumGasPrice = message.minimumGasPrice);
+    message.minimumGasPrice !== undefined && (obj.minimumGasPrice = message.minimumGasPrice);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ConfigResponse>, I>>(
-    object: I
-  ): ConfigResponse {
+  fromPartial<I extends Exact<DeepPartial<ConfigResponse>, I>>(object: I): ConfigResponse {
     const message = createBaseConfigResponse();
     message.minimumGasPrice = object.minimumGasPrice ?? '';
     return message;
@@ -126,31 +113,16 @@ export class ServiceClientImpl implements Service {
   }
   Config(request: ConfigRequest): Promise<ConfigResponse> {
     const data = ConfigRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.base.node.v1beta1.Service',
-      'Config',
-      data
-    );
+    const promise = this.rpc.request('cosmos.base.node.v1beta1.Service', 'Config', data);
     return promise.then((data) => ConfigResponse.decode(new _m0.Reader(data)));
   }
 }
 
 interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

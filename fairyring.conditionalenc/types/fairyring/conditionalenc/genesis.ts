@@ -33,10 +33,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
@@ -50,29 +47,19 @@ export const GenesisState = {
       ConditionalencNonce.encode(v!, writer.uint32(34).fork()).ldelim();
     }
     for (const v of message.AggregatedConditionalKeyShareList) {
-      AggregatedConditionalKeyShare.encode(
-        v!,
-        writer.uint32(50).fork()
-      ).ldelim();
+      AggregatedConditionalKeyShare.encode(v!, writer.uint32(50).fork()).ldelim();
     }
     if (message.activePubKey !== undefined) {
-      ActivePubKey.encode(
-        message.activePubKey,
-        writer.uint32(58).fork()
-      ).ldelim();
+      ActivePubKey.encode(message.activePubKey, writer.uint32(58).fork()).ldelim();
     }
     if (message.queuedPubKey !== undefined) {
-      QueuedPubKey.encode(
-        message.queuedPubKey,
-        writer.uint32(66).fork()
-      ).ldelim();
+      QueuedPubKey.encode(message.queuedPubKey, writer.uint32(66).fork()).ldelim();
     }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGenesisState();
     while (reader.pos < end) {
@@ -97,27 +84,21 @@ export const GenesisState = {
             break;
           }
 
-          message.encryptedTxArray.push(
-            EncryptedTxArray.decode(reader, reader.uint32())
-          );
+          message.encryptedTxArray.push(EncryptedTxArray.decode(reader, reader.uint32()));
           continue;
         case 4:
           if (tag !== 34) {
             break;
           }
 
-          message.ConditionalencNonceList.push(
-            ConditionalencNonce.decode(reader, reader.uint32())
-          );
+          message.ConditionalencNonceList.push(ConditionalencNonce.decode(reader, reader.uint32()));
           continue;
         case 6:
           if (tag !== 50) {
             break;
           }
 
-          message.AggregatedConditionalKeyShareList.push(
-            AggregatedConditionalKeyShare.decode(reader, reader.uint32())
-          );
+          message.AggregatedConditionalKeyShareList.push(AggregatedConditionalKeyShare.decode(reader, reader.uint32()));
           continue;
         case 7:
           if (tag !== 58) {
@@ -149,26 +130,14 @@ export const GenesisState = {
       encryptedTxArray: globalThis.Array.isArray(object?.encryptedTxArray)
         ? object.encryptedTxArray.map((e: any) => EncryptedTxArray.fromJSON(e))
         : [],
-      ConditionalencNonceList: globalThis.Array.isArray(
-        object?.ConditionalencNonceList
-      )
-        ? object.ConditionalencNonceList.map((e: any) =>
-            ConditionalencNonce.fromJSON(e)
-          )
+      ConditionalencNonceList: globalThis.Array.isArray(object?.ConditionalencNonceList)
+        ? object.ConditionalencNonceList.map((e: any) => ConditionalencNonce.fromJSON(e))
         : [],
-      AggregatedConditionalKeyShareList: globalThis.Array.isArray(
-        object?.AggregatedConditionalKeyShareList
-      )
-        ? object.AggregatedConditionalKeyShareList.map((e: any) =>
-            AggregatedConditionalKeyShare.fromJSON(e)
-          )
+      AggregatedConditionalKeyShareList: globalThis.Array.isArray(object?.AggregatedConditionalKeyShareList)
+        ? object.AggregatedConditionalKeyShareList.map((e: any) => AggregatedConditionalKeyShare.fromJSON(e))
         : [],
-      activePubKey: isSet(object.activePubKey)
-        ? ActivePubKey.fromJSON(object.activePubKey)
-        : undefined,
-      queuedPubKey: isSet(object.queuedPubKey)
-        ? QueuedPubKey.fromJSON(object.queuedPubKey)
-        : undefined,
+      activePubKey: isSet(object.activePubKey) ? ActivePubKey.fromJSON(object.activePubKey) : undefined,
+      queuedPubKey: isSet(object.queuedPubKey) ? QueuedPubKey.fromJSON(object.queuedPubKey) : undefined,
     };
   },
 
@@ -181,20 +150,15 @@ export const GenesisState = {
       obj.portId = message.portId;
     }
     if (message.encryptedTxArray?.length) {
-      obj.encryptedTxArray = message.encryptedTxArray.map((e) =>
-        EncryptedTxArray.toJSON(e)
-      );
+      obj.encryptedTxArray = message.encryptedTxArray.map((e) => EncryptedTxArray.toJSON(e));
     }
     if (message.ConditionalencNonceList?.length) {
-      obj.ConditionalencNonceList = message.ConditionalencNonceList.map((e) =>
-        ConditionalencNonce.toJSON(e)
-      );
+      obj.ConditionalencNonceList = message.ConditionalencNonceList.map((e) => ConditionalencNonce.toJSON(e));
     }
     if (message.AggregatedConditionalKeyShareList?.length) {
-      obj.AggregatedConditionalKeyShareList =
-        message.AggregatedConditionalKeyShareList.map((e) =>
-          AggregatedConditionalKeyShare.toJSON(e)
-        );
+      obj.AggregatedConditionalKeyShareList = message.AggregatedConditionalKeyShareList.map((e) =>
+        AggregatedConditionalKeyShare.toJSON(e)
+      );
     }
     if (message.activePubKey !== undefined) {
       obj.activePubKey = ActivePubKey.toJSON(message.activePubKey);
@@ -205,31 +169,19 @@ export const GenesisState = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GenesisState>, I>>(
-    base?: I
-  ): GenesisState {
+  create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState {
     return GenesisState.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.params =
-      object.params !== undefined && object.params !== null
-        ? Params.fromPartial(object.params)
-        : undefined;
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.portId = object.portId ?? '';
-    message.encryptedTxArray =
-      object.encryptedTxArray?.map((e) => EncryptedTxArray.fromPartial(e)) ||
-      [];
+    message.encryptedTxArray = object.encryptedTxArray?.map((e) => EncryptedTxArray.fromPartial(e)) || [];
     message.ConditionalencNonceList =
-      object.ConditionalencNonceList?.map((e) =>
-        ConditionalencNonce.fromPartial(e)
-      ) || [];
+      object.ConditionalencNonceList?.map((e) => ConditionalencNonce.fromPartial(e)) || [];
     message.AggregatedConditionalKeyShareList =
-      object.AggregatedConditionalKeyShareList?.map((e) =>
-        AggregatedConditionalKeyShare.fromPartial(e)
-      ) || [];
+      object.AggregatedConditionalKeyShareList?.map((e) => AggregatedConditionalKeyShare.fromPartial(e)) || [];
     message.activePubKey =
       object.activePubKey !== undefined && object.activePubKey !== null
         ? ActivePubKey.fromPartial(object.activePubKey)
@@ -242,14 +194,7 @@ export const GenesisState = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

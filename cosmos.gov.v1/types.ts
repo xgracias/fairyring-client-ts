@@ -8,14 +8,4 @@ import { VotingParams } from './types/cosmos/gov/v1/gov';
 import { TallyParams } from './types/cosmos/gov/v1/gov';
 import { Params } from './types/cosmos/gov/v1/gov';
 
-export {
-  WeightedVoteOption,
-  Deposit,
-  Proposal,
-  TallyResult,
-  Vote,
-  DepositParams,
-  VotingParams,
-  TallyParams,
-  Params,
-};
+export { WeightedVoteOption, Deposit, Proposal, TallyResult, Vote, DepositParams, VotingParams, TallyParams, Params };

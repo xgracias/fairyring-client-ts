@@ -92,12 +92,8 @@ export const Proof = {
     return {
       total: isSet(object.total) ? Number(object.total) : 0,
       index: isSet(object.index) ? Number(object.index) : 0,
-      leafHash: isSet(object.leafHash)
-        ? bytesFromBase64(object.leafHash)
-        : new Uint8Array(),
-      aunts: Array.isArray(object?.aunts)
-        ? object.aunts.map((e: any) => bytesFromBase64(e))
-        : [],
+      leafHash: isSet(object.leafHash) ? bytesFromBase64(object.leafHash) : new Uint8Array(),
+      aunts: Array.isArray(object?.aunts) ? object.aunts.map((e: any) => bytesFromBase64(e)) : [],
     };
   },
 
@@ -106,13 +102,9 @@ export const Proof = {
     message.total !== undefined && (obj.total = Math.round(message.total));
     message.index !== undefined && (obj.index = Math.round(message.index));
     message.leafHash !== undefined &&
-      (obj.leafHash = base64FromBytes(
-        message.leafHash !== undefined ? message.leafHash : new Uint8Array()
-      ));
+      (obj.leafHash = base64FromBytes(message.leafHash !== undefined ? message.leafHash : new Uint8Array()));
     if (message.aunts) {
-      obj.aunts = message.aunts.map((e) =>
-        base64FromBytes(e !== undefined ? e : new Uint8Array())
-      );
+      obj.aunts = message.aunts.map((e) => base64FromBytes(e !== undefined ? e : new Uint8Array()));
     } else {
       obj.aunts = [];
     }
@@ -134,10 +126,7 @@ function createBaseValueOp(): ValueOp {
 }
 
 export const ValueOp = {
-  encode(
-    message: ValueOp,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ValueOp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key.length !== 0) {
       writer.uint32(10).bytes(message.key);
     }
@@ -178,21 +167,15 @@ export const ValueOp = {
   toJSON(message: ValueOp): unknown {
     const obj: any = {};
     message.key !== undefined &&
-      (obj.key = base64FromBytes(
-        message.key !== undefined ? message.key : new Uint8Array()
-      ));
-    message.proof !== undefined &&
-      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+      (obj.key = base64FromBytes(message.key !== undefined ? message.key : new Uint8Array()));
+    message.proof !== undefined && (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<ValueOp>, I>>(object: I): ValueOp {
     const message = createBaseValueOp();
     message.key = object.key ?? new Uint8Array();
-    message.proof =
-      object.proof !== undefined && object.proof !== null
-        ? Proof.fromPartial(object.proof)
-        : undefined;
+    message.proof = object.proof !== undefined && object.proof !== null ? Proof.fromPartial(object.proof) : undefined;
     return message;
   },
 };
@@ -202,10 +185,7 @@ function createBaseDominoOp(): DominoOp {
 }
 
 export const DominoOp = {
-  encode(
-    message: DominoOp,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: DominoOp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== '') {
       writer.uint32(10).string(message.key);
     }
@@ -272,10 +252,7 @@ function createBaseProofOp(): ProofOp {
 }
 
 export const ProofOp = {
-  encode(
-    message: ProofOp,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ProofOp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.type !== '') {
       writer.uint32(10).string(message.type);
     }
@@ -316,9 +293,7 @@ export const ProofOp = {
     return {
       type: isSet(object.type) ? String(object.type) : '',
       key: isSet(object.key) ? bytesFromBase64(object.key) : new Uint8Array(),
-      data: isSet(object.data)
-        ? bytesFromBase64(object.data)
-        : new Uint8Array(),
+      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
     };
   },
 
@@ -326,13 +301,9 @@ export const ProofOp = {
     const obj: any = {};
     message.type !== undefined && (obj.type = message.type);
     message.key !== undefined &&
-      (obj.key = base64FromBytes(
-        message.key !== undefined ? message.key : new Uint8Array()
-      ));
+      (obj.key = base64FromBytes(message.key !== undefined ? message.key : new Uint8Array()));
     message.data !== undefined &&
-      (obj.data = base64FromBytes(
-        message.data !== undefined ? message.data : new Uint8Array()
-      ));
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
     return obj;
   },
 
@@ -350,10 +321,7 @@ function createBaseProofOps(): ProofOps {
 }
 
 export const ProofOps = {
-  encode(
-    message: ProofOps,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ProofOps, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.ops) {
       ProofOp.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -380,9 +348,7 @@ export const ProofOps = {
 
   fromJSON(object: any): ProofOps {
     return {
-      ops: Array.isArray(object?.ops)
-        ? object.ops.map((e: any) => ProofOp.fromJSON(e))
-        : [],
+      ops: Array.isArray(object?.ops) ? object.ops.map((e: any) => ProofOp.fromJSON(e)) : [],
     };
   },
 
@@ -447,14 +413,7 @@ function base64FromBytes(arr: Uint8Array): string {
   }
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

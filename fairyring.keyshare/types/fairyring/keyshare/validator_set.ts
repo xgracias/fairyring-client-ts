@@ -15,10 +15,7 @@ function createBaseValidatorSet(): ValidatorSet {
 }
 
 export const ValidatorSet = {
-  encode(
-    message: ValidatorSet,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: ValidatorSet, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.index !== '') {
       writer.uint32(10).string(message.index);
     }
@@ -79,9 +76,7 @@ export const ValidatorSet = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ValidatorSet>, I>>(
-    object: I
-  ): ValidatorSet {
+  fromPartial<I extends Exact<DeepPartial<ValidatorSet>, I>>(object: I): ValidatorSet {
     const message = createBaseValidatorSet();
     message.index = object.index ?? '';
     message.validator = object.validator ?? '';
@@ -91,14 +86,7 @@ export const ValidatorSet = {
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

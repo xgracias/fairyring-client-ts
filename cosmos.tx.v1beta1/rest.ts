@@ -1225,17 +1225,11 @@ export interface VersionConsensus {
   app?: string;
 }
 
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -1250,13 +1244,9 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
     securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
@@ -1277,12 +1267,7 @@ export class HttpClient<SecurityDataType = unknown> {
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
       baseURL: axiosConfig.baseURL || '',
@@ -1296,10 +1281,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig
-  ): AxiosRequestConfig {
+  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -1344,12 +1326,7 @@ export class HttpClient<SecurityDataType = unknown> {
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === 'object'
-    ) {
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
       requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
@@ -1360,9 +1337,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData
-          ? { 'Content-Type': type }
-          : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -1377,9 +1352,7 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title cosmos/tx/v1beta1/service.proto
  * @version version not set
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
    * @description Since: cosmos-sdk 0.47
    *
@@ -1388,10 +1361,7 @@ export class Api<
    * @summary TxDecode decodes the transaction.
    * @request POST:/cosmos/tx/v1beta1/decode
    */
-  serviceTxDecode = (
-    body: V1Beta1TxDecodeRequest,
-    params: RequestParams = {}
-  ) =>
+  serviceTxDecode = (body: V1Beta1TxDecodeRequest, params: RequestParams = {}) =>
     this.request<V1Beta1TxDecodeResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/decode`,
       method: 'POST',
@@ -1409,10 +1379,7 @@ export class Api<
    * @summary TxDecodeAmino decodes an Amino transaction from encoded bytes to JSON.
    * @request POST:/cosmos/tx/v1beta1/decode/amino
    */
-  serviceTxDecodeAmino = (
-    body: V1Beta1TxDecodeAminoRequest,
-    params: RequestParams = {}
-  ) =>
+  serviceTxDecodeAmino = (body: V1Beta1TxDecodeAminoRequest, params: RequestParams = {}) =>
     this.request<V1Beta1TxDecodeAminoResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/decode/amino`,
       method: 'POST',
@@ -1430,10 +1397,7 @@ export class Api<
    * @summary TxEncode encodes the transaction.
    * @request POST:/cosmos/tx/v1beta1/encode
    */
-  serviceTxEncode = (
-    body: V1Beta1TxEncodeRequest,
-    params: RequestParams = {}
-  ) =>
+  serviceTxEncode = (body: V1Beta1TxEncodeRequest, params: RequestParams = {}) =>
     this.request<V1Beta1TxEncodeResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/encode`,
       method: 'POST',
@@ -1451,10 +1415,7 @@ export class Api<
    * @summary TxEncodeAmino encodes an Amino transaction from JSON to encoded bytes.
    * @request POST:/cosmos/tx/v1beta1/encode/amino
    */
-  serviceTxEncodeAmino = (
-    body: V1Beta1TxEncodeAminoRequest,
-    params: RequestParams = {}
-  ) =>
+  serviceTxEncodeAmino = (body: V1Beta1TxEncodeAminoRequest, params: RequestParams = {}) =>
     this.request<V1Beta1TxEncodeAminoResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/encode/amino`,
       method: 'POST',
@@ -1472,10 +1433,7 @@ export class Api<
    * @summary Simulate simulates executing a transaction for estimating gas usage.
    * @request POST:/cosmos/tx/v1beta1/simulate
    */
-  serviceSimulate = (
-    body: V1Beta1SimulateRequest,
-    params: RequestParams = {}
-  ) =>
+  serviceSimulate = (body: V1Beta1SimulateRequest, params: RequestParams = {}) =>
     this.request<V1Beta1SimulateResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/simulate`,
       method: 'POST',
@@ -1523,10 +1481,7 @@ export class Api<
    * @summary BroadcastTx broadcast transaction.
    * @request POST:/cosmos/tx/v1beta1/txs
    */
-  serviceBroadcastTx = (
-    body: V1Beta1BroadcastTxRequest,
-    params: RequestParams = {}
-  ) =>
+  serviceBroadcastTx = (body: V1Beta1BroadcastTxRequest, params: RequestParams = {}) =>
     this.request<V1Beta1BroadcastTxResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs`,
       method: 'POST',

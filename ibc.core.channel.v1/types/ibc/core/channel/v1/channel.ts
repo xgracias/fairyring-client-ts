@@ -250,10 +250,7 @@ function createBaseChannel(): Channel {
 }
 
 export const Channel = {
-  encode(
-    message: Channel,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Channel, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.state !== 0) {
       writer.uint32(8).int32(message.state);
     }
@@ -261,10 +258,7 @@ export const Channel = {
       writer.uint32(16).int32(message.ordering);
     }
     if (message.counterparty !== undefined) {
-      Counterparty.encode(
-        message.counterparty,
-        writer.uint32(26).fork()
-      ).ldelim();
+      Counterparty.encode(message.counterparty, writer.uint32(26).fork()).ldelim();
     }
     for (const v of message.connectionHops) {
       writer.uint32(34).string(v!);
@@ -309,12 +303,8 @@ export const Channel = {
     return {
       state: isSet(object.state) ? stateFromJSON(object.state) : 0,
       ordering: isSet(object.ordering) ? orderFromJSON(object.ordering) : 0,
-      counterparty: isSet(object.counterparty)
-        ? Counterparty.fromJSON(object.counterparty)
-        : undefined,
-      connectionHops: Array.isArray(object?.connectionHops)
-        ? object.connectionHops.map((e: any) => String(e))
-        : [],
+      counterparty: isSet(object.counterparty) ? Counterparty.fromJSON(object.counterparty) : undefined,
+      connectionHops: Array.isArray(object?.connectionHops) ? object.connectionHops.map((e: any) => String(e)) : [],
       version: isSet(object.version) ? String(object.version) : '',
     };
   },
@@ -322,12 +312,9 @@ export const Channel = {
   toJSON(message: Channel): unknown {
     const obj: any = {};
     message.state !== undefined && (obj.state = stateToJSON(message.state));
-    message.ordering !== undefined &&
-      (obj.ordering = orderToJSON(message.ordering));
+    message.ordering !== undefined && (obj.ordering = orderToJSON(message.ordering));
     message.counterparty !== undefined &&
-      (obj.counterparty = message.counterparty
-        ? Counterparty.toJSON(message.counterparty)
-        : undefined);
+      (obj.counterparty = message.counterparty ? Counterparty.toJSON(message.counterparty) : undefined);
     if (message.connectionHops) {
       obj.connectionHops = message.connectionHops.map((e) => e);
     } else {
@@ -364,10 +351,7 @@ function createBaseIdentifiedChannel(): IdentifiedChannel {
 }
 
 export const IdentifiedChannel = {
-  encode(
-    message: IdentifiedChannel,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: IdentifiedChannel, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.state !== 0) {
       writer.uint32(8).int32(message.state);
     }
@@ -375,10 +359,7 @@ export const IdentifiedChannel = {
       writer.uint32(16).int32(message.ordering);
     }
     if (message.counterparty !== undefined) {
-      Counterparty.encode(
-        message.counterparty,
-        writer.uint32(26).fork()
-      ).ldelim();
+      Counterparty.encode(message.counterparty, writer.uint32(26).fork()).ldelim();
     }
     for (const v of message.connectionHops) {
       writer.uint32(34).string(v!);
@@ -435,12 +416,8 @@ export const IdentifiedChannel = {
     return {
       state: isSet(object.state) ? stateFromJSON(object.state) : 0,
       ordering: isSet(object.ordering) ? orderFromJSON(object.ordering) : 0,
-      counterparty: isSet(object.counterparty)
-        ? Counterparty.fromJSON(object.counterparty)
-        : undefined,
-      connectionHops: Array.isArray(object?.connectionHops)
-        ? object.connectionHops.map((e: any) => String(e))
-        : [],
+      counterparty: isSet(object.counterparty) ? Counterparty.fromJSON(object.counterparty) : undefined,
+      connectionHops: Array.isArray(object?.connectionHops) ? object.connectionHops.map((e: any) => String(e)) : [],
       version: isSet(object.version) ? String(object.version) : '',
       portId: isSet(object.portId) ? String(object.portId) : '',
       channelId: isSet(object.channelId) ? String(object.channelId) : '',
@@ -450,12 +427,9 @@ export const IdentifiedChannel = {
   toJSON(message: IdentifiedChannel): unknown {
     const obj: any = {};
     message.state !== undefined && (obj.state = stateToJSON(message.state));
-    message.ordering !== undefined &&
-      (obj.ordering = orderToJSON(message.ordering));
+    message.ordering !== undefined && (obj.ordering = orderToJSON(message.ordering));
     message.counterparty !== undefined &&
-      (obj.counterparty = message.counterparty
-        ? Counterparty.toJSON(message.counterparty)
-        : undefined);
+      (obj.counterparty = message.counterparty ? Counterparty.toJSON(message.counterparty) : undefined);
     if (message.connectionHops) {
       obj.connectionHops = message.connectionHops.map((e) => e);
     } else {
@@ -467,9 +441,7 @@ export const IdentifiedChannel = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<IdentifiedChannel>, I>>(
-    object: I
-  ): IdentifiedChannel {
+  fromPartial<I extends Exact<DeepPartial<IdentifiedChannel>, I>>(object: I): IdentifiedChannel {
     const message = createBaseIdentifiedChannel();
     message.state = object.state ?? 0;
     message.ordering = object.ordering ?? 0;
@@ -490,10 +462,7 @@ function createBaseCounterparty(): Counterparty {
 }
 
 export const Counterparty = {
-  encode(
-    message: Counterparty,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Counterparty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
@@ -538,9 +507,7 @@ export const Counterparty = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<Counterparty>, I>>(
-    object: I
-  ): Counterparty {
+  fromPartial<I extends Exact<DeepPartial<Counterparty>, I>>(object: I): Counterparty {
     const message = createBaseCounterparty();
     message.portId = object.portId ?? '';
     message.channelId = object.channelId ?? '';
@@ -562,10 +529,7 @@ function createBasePacket(): Packet {
 }
 
 export const Packet = {
-  encode(
-    message: Packet,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Packet, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.sequence !== 0) {
       writer.uint32(8).uint64(message.sequence);
     }
@@ -636,48 +600,27 @@ export const Packet = {
     return {
       sequence: isSet(object.sequence) ? Number(object.sequence) : 0,
       sourcePort: isSet(object.sourcePort) ? String(object.sourcePort) : '',
-      sourceChannel: isSet(object.sourceChannel)
-        ? String(object.sourceChannel)
-        : '',
-      destinationPort: isSet(object.destinationPort)
-        ? String(object.destinationPort)
-        : '',
-      destinationChannel: isSet(object.destinationChannel)
-        ? String(object.destinationChannel)
-        : '',
-      data: isSet(object.data)
-        ? bytesFromBase64(object.data)
-        : new Uint8Array(),
-      timeoutHeight: isSet(object.timeoutHeight)
-        ? Height.fromJSON(object.timeoutHeight)
-        : undefined,
-      timeoutTimestamp: isSet(object.timeoutTimestamp)
-        ? Number(object.timeoutTimestamp)
-        : 0,
+      sourceChannel: isSet(object.sourceChannel) ? String(object.sourceChannel) : '',
+      destinationPort: isSet(object.destinationPort) ? String(object.destinationPort) : '',
+      destinationChannel: isSet(object.destinationChannel) ? String(object.destinationChannel) : '',
+      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
+      timeoutHeight: isSet(object.timeoutHeight) ? Height.fromJSON(object.timeoutHeight) : undefined,
+      timeoutTimestamp: isSet(object.timeoutTimestamp) ? Number(object.timeoutTimestamp) : 0,
     };
   },
 
   toJSON(message: Packet): unknown {
     const obj: any = {};
-    message.sequence !== undefined &&
-      (obj.sequence = Math.round(message.sequence));
+    message.sequence !== undefined && (obj.sequence = Math.round(message.sequence));
     message.sourcePort !== undefined && (obj.sourcePort = message.sourcePort);
-    message.sourceChannel !== undefined &&
-      (obj.sourceChannel = message.sourceChannel);
-    message.destinationPort !== undefined &&
-      (obj.destinationPort = message.destinationPort);
-    message.destinationChannel !== undefined &&
-      (obj.destinationChannel = message.destinationChannel);
+    message.sourceChannel !== undefined && (obj.sourceChannel = message.sourceChannel);
+    message.destinationPort !== undefined && (obj.destinationPort = message.destinationPort);
+    message.destinationChannel !== undefined && (obj.destinationChannel = message.destinationChannel);
     message.data !== undefined &&
-      (obj.data = base64FromBytes(
-        message.data !== undefined ? message.data : new Uint8Array()
-      ));
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
     message.timeoutHeight !== undefined &&
-      (obj.timeoutHeight = message.timeoutHeight
-        ? Height.toJSON(message.timeoutHeight)
-        : undefined);
-    message.timeoutTimestamp !== undefined &&
-      (obj.timeoutTimestamp = Math.round(message.timeoutTimestamp));
+      (obj.timeoutHeight = message.timeoutHeight ? Height.toJSON(message.timeoutHeight) : undefined);
+    message.timeoutTimestamp !== undefined && (obj.timeoutTimestamp = Math.round(message.timeoutTimestamp));
     return obj;
   },
 
@@ -703,10 +646,7 @@ function createBasePacketState(): PacketState {
 }
 
 export const PacketState = {
-  encode(
-    message: PacketState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: PacketState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
@@ -754,9 +694,7 @@ export const PacketState = {
       portId: isSet(object.portId) ? String(object.portId) : '',
       channelId: isSet(object.channelId) ? String(object.channelId) : '',
       sequence: isSet(object.sequence) ? Number(object.sequence) : 0,
-      data: isSet(object.data)
-        ? bytesFromBase64(object.data)
-        : new Uint8Array(),
+      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
     };
   },
 
@@ -764,18 +702,13 @@ export const PacketState = {
     const obj: any = {};
     message.portId !== undefined && (obj.portId = message.portId);
     message.channelId !== undefined && (obj.channelId = message.channelId);
-    message.sequence !== undefined &&
-      (obj.sequence = Math.round(message.sequence));
+    message.sequence !== undefined && (obj.sequence = Math.round(message.sequence));
     message.data !== undefined &&
-      (obj.data = base64FromBytes(
-        message.data !== undefined ? message.data : new Uint8Array()
-      ));
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<PacketState>, I>>(
-    object: I
-  ): PacketState {
+  fromPartial<I extends Exact<DeepPartial<PacketState>, I>>(object: I): PacketState {
     const message = createBasePacketState();
     message.portId = object.portId ?? '';
     message.channelId = object.channelId ?? '';
@@ -790,10 +723,7 @@ function createBasePacketId(): PacketId {
 }
 
 export const PacketId = {
-  encode(
-    message: PacketId,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: PacketId, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
@@ -842,8 +772,7 @@ export const PacketId = {
     const obj: any = {};
     message.portId !== undefined && (obj.portId = message.portId);
     message.channelId !== undefined && (obj.channelId = message.channelId);
-    message.sequence !== undefined &&
-      (obj.sequence = Math.round(message.sequence));
+    message.sequence !== undefined && (obj.sequence = Math.round(message.sequence));
     return obj;
   },
 
@@ -861,10 +790,7 @@ function createBaseAcknowledgement(): Acknowledgement {
 }
 
 export const Acknowledgement = {
-  encode(
-    message: Acknowledgement,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Acknowledgement, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.result !== undefined) {
       writer.uint32(170).bytes(message.result);
     }
@@ -905,17 +831,12 @@ export const Acknowledgement = {
   toJSON(message: Acknowledgement): unknown {
     const obj: any = {};
     message.result !== undefined &&
-      (obj.result =
-        message.result !== undefined
-          ? base64FromBytes(message.result)
-          : undefined);
+      (obj.result = message.result !== undefined ? base64FromBytes(message.result) : undefined);
     message.error !== undefined && (obj.error = message.error);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<Acknowledgement>, I>>(
-    object: I
-  ): Acknowledgement {
+  fromPartial<I extends Exact<DeepPartial<Acknowledgement>, I>>(object: I): Acknowledgement {
     const message = createBaseAcknowledgement();
     message.result = object.result ?? undefined;
     message.error = object.error ?? undefined;
@@ -967,14 +888,7 @@ function base64FromBytes(arr: Uint8Array): string {
   }
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

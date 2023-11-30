@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -63,9 +58,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 
@@ -79,25 +72,15 @@ class SDKModule {
     this.query = queryClient({ addr: client.env.apiURL });
     this.updateTX(client);
     this.structure = {
-      IdentifiedClientState: getStructure(
-        typeIdentifiedClientState.fromPartial({})
-      ),
-      ConsensusStateWithHeight: getStructure(
-        typeConsensusStateWithHeight.fromPartial({})
-      ),
-      ClientConsensusStates: getStructure(
-        typeClientConsensusStates.fromPartial({})
-      ),
-      ClientUpdateProposal: getStructure(
-        typeClientUpdateProposal.fromPartial({})
-      ),
+      IdentifiedClientState: getStructure(typeIdentifiedClientState.fromPartial({})),
+      ConsensusStateWithHeight: getStructure(typeConsensusStateWithHeight.fromPartial({})),
+      ClientConsensusStates: getStructure(typeClientConsensusStates.fromPartial({})),
+      ClientUpdateProposal: getStructure(typeClientUpdateProposal.fromPartial({})),
       UpgradeProposal: getStructure(typeUpgradeProposal.fromPartial({})),
       Height: getStructure(typeHeight.fromPartial({})),
       Params: getStructure(typeParams.fromPartial({})),
       GenesisMetadata: getStructure(typeGenesisMetadata.fromPartial({})),
-      IdentifiedGenesisMetadata: getStructure(
-        typeIdentifiedGenesisMetadata.fromPartial({})
-      ),
+      IdentifiedGenesisMetadata: getStructure(typeIdentifiedGenesisMetadata.fromPartial({})),
     };
     client.on('signer-changed', (signer) => {
       this.updateTX(client);

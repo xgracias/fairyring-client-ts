@@ -60,10 +60,7 @@ function createBaseQueryGrantsRequest(): QueryGrantsRequest {
 }
 
 export const QueryGrantsRequest = {
-  encode(
-    message: QueryGrantsRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryGrantsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.granter !== '') {
       writer.uint32(10).string(message.granter);
     }
@@ -111,9 +108,7 @@ export const QueryGrantsRequest = {
       granter: isSet(object.granter) ? String(object.granter) : '',
       grantee: isSet(object.grantee) ? String(object.grantee) : '',
       msgTypeUrl: isSet(object.msgTypeUrl) ? String(object.msgTypeUrl) : '',
-      pagination: isSet(object.pagination)
-        ? PageRequest.fromJSON(object.pagination)
-        : undefined,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
@@ -123,15 +118,11 @@ export const QueryGrantsRequest = {
     message.grantee !== undefined && (obj.grantee = message.grantee);
     message.msgTypeUrl !== undefined && (obj.msgTypeUrl = message.msgTypeUrl);
     message.pagination !== undefined &&
-      (obj.pagination = message.pagination
-        ? PageRequest.toJSON(message.pagination)
-        : undefined);
+      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryGrantsRequest>, I>>(
-    object: I
-  ): QueryGrantsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryGrantsRequest>, I>>(object: I): QueryGrantsRequest {
     const message = createBaseQueryGrantsRequest();
     message.granter = object.granter ?? '';
     message.grantee = object.grantee ?? '';
@@ -149,18 +140,12 @@ function createBaseQueryGrantsResponse(): QueryGrantsResponse {
 }
 
 export const QueryGrantsResponse = {
-  encode(
-    message: QueryGrantsResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryGrantsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.grants) {
       Grant.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
-      PageResponse.encode(
-        message.pagination,
-        writer.uint32(18).fork()
-      ).ldelim();
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -188,12 +173,8 @@ export const QueryGrantsResponse = {
 
   fromJSON(object: any): QueryGrantsResponse {
     return {
-      grants: Array.isArray(object?.grants)
-        ? object.grants.map((e: any) => Grant.fromJSON(e))
-        : [],
-      pagination: isSet(object.pagination)
-        ? PageResponse.fromJSON(object.pagination)
-        : undefined,
+      grants: Array.isArray(object?.grants) ? object.grants.map((e: any) => Grant.fromJSON(e)) : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
     };
   },
 
@@ -205,15 +186,11 @@ export const QueryGrantsResponse = {
       obj.grants = [];
     }
     message.pagination !== undefined &&
-      (obj.pagination = message.pagination
-        ? PageResponse.toJSON(message.pagination)
-        : undefined);
+      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryGrantsResponse>, I>>(
-    object: I
-  ): QueryGrantsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryGrantsResponse>, I>>(object: I): QueryGrantsResponse {
     const message = createBaseQueryGrantsResponse();
     message.grants = object.grants?.map((e) => Grant.fromPartial(e)) || [];
     message.pagination =
@@ -229,10 +206,7 @@ function createBaseQueryGranterGrantsRequest(): QueryGranterGrantsRequest {
 }
 
 export const QueryGranterGrantsRequest = {
-  encode(
-    message: QueryGranterGrantsRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryGranterGrantsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.granter !== '') {
       writer.uint32(10).string(message.granter);
     }
@@ -242,10 +216,7 @@ export const QueryGranterGrantsRequest = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): QueryGranterGrantsRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGranterGrantsRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGranterGrantsRequest();
@@ -269,9 +240,7 @@ export const QueryGranterGrantsRequest = {
   fromJSON(object: any): QueryGranterGrantsRequest {
     return {
       granter: isSet(object.granter) ? String(object.granter) : '',
-      pagination: isSet(object.pagination)
-        ? PageRequest.fromJSON(object.pagination)
-        : undefined,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
@@ -279,15 +248,11 @@ export const QueryGranterGrantsRequest = {
     const obj: any = {};
     message.granter !== undefined && (obj.granter = message.granter);
     message.pagination !== undefined &&
-      (obj.pagination = message.pagination
-        ? PageRequest.toJSON(message.pagination)
-        : undefined);
+      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryGranterGrantsRequest>, I>>(
-    object: I
-  ): QueryGranterGrantsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryGranterGrantsRequest>, I>>(object: I): QueryGranterGrantsRequest {
     const message = createBaseQueryGranterGrantsRequest();
     message.granter = object.granter ?? '';
     message.pagination =
@@ -303,26 +268,17 @@ function createBaseQueryGranterGrantsResponse(): QueryGranterGrantsResponse {
 }
 
 export const QueryGranterGrantsResponse = {
-  encode(
-    message: QueryGranterGrantsResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryGranterGrantsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.grants) {
       GrantAuthorization.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
-      PageResponse.encode(
-        message.pagination,
-        writer.uint32(18).fork()
-      ).ldelim();
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): QueryGranterGrantsResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGranterGrantsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGranterGrantsResponse();
@@ -330,9 +286,7 @@ export const QueryGranterGrantsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.grants.push(
-            GrantAuthorization.decode(reader, reader.uint32())
-          );
+          message.grants.push(GrantAuthorization.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -347,37 +301,26 @@ export const QueryGranterGrantsResponse = {
 
   fromJSON(object: any): QueryGranterGrantsResponse {
     return {
-      grants: Array.isArray(object?.grants)
-        ? object.grants.map((e: any) => GrantAuthorization.fromJSON(e))
-        : [],
-      pagination: isSet(object.pagination)
-        ? PageResponse.fromJSON(object.pagination)
-        : undefined,
+      grants: Array.isArray(object?.grants) ? object.grants.map((e: any) => GrantAuthorization.fromJSON(e)) : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
     };
   },
 
   toJSON(message: QueryGranterGrantsResponse): unknown {
     const obj: any = {};
     if (message.grants) {
-      obj.grants = message.grants.map((e) =>
-        e ? GrantAuthorization.toJSON(e) : undefined
-      );
+      obj.grants = message.grants.map((e) => (e ? GrantAuthorization.toJSON(e) : undefined));
     } else {
       obj.grants = [];
     }
     message.pagination !== undefined &&
-      (obj.pagination = message.pagination
-        ? PageResponse.toJSON(message.pagination)
-        : undefined);
+      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryGranterGrantsResponse>, I>>(
-    object: I
-  ): QueryGranterGrantsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryGranterGrantsResponse>, I>>(object: I): QueryGranterGrantsResponse {
     const message = createBaseQueryGranterGrantsResponse();
-    message.grants =
-      object.grants?.map((e) => GrantAuthorization.fromPartial(e)) || [];
+    message.grants = object.grants?.map((e) => GrantAuthorization.fromPartial(e)) || [];
     message.pagination =
       object.pagination !== undefined && object.pagination !== null
         ? PageResponse.fromPartial(object.pagination)
@@ -391,10 +334,7 @@ function createBaseQueryGranteeGrantsRequest(): QueryGranteeGrantsRequest {
 }
 
 export const QueryGranteeGrantsRequest = {
-  encode(
-    message: QueryGranteeGrantsRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryGranteeGrantsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.grantee !== '') {
       writer.uint32(10).string(message.grantee);
     }
@@ -404,10 +344,7 @@ export const QueryGranteeGrantsRequest = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): QueryGranteeGrantsRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGranteeGrantsRequest {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGranteeGrantsRequest();
@@ -431,9 +368,7 @@ export const QueryGranteeGrantsRequest = {
   fromJSON(object: any): QueryGranteeGrantsRequest {
     return {
       grantee: isSet(object.grantee) ? String(object.grantee) : '',
-      pagination: isSet(object.pagination)
-        ? PageRequest.fromJSON(object.pagination)
-        : undefined,
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
@@ -441,15 +376,11 @@ export const QueryGranteeGrantsRequest = {
     const obj: any = {};
     message.grantee !== undefined && (obj.grantee = message.grantee);
     message.pagination !== undefined &&
-      (obj.pagination = message.pagination
-        ? PageRequest.toJSON(message.pagination)
-        : undefined);
+      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryGranteeGrantsRequest>, I>>(
-    object: I
-  ): QueryGranteeGrantsRequest {
+  fromPartial<I extends Exact<DeepPartial<QueryGranteeGrantsRequest>, I>>(object: I): QueryGranteeGrantsRequest {
     const message = createBaseQueryGranteeGrantsRequest();
     message.grantee = object.grantee ?? '';
     message.pagination =
@@ -465,26 +396,17 @@ function createBaseQueryGranteeGrantsResponse(): QueryGranteeGrantsResponse {
 }
 
 export const QueryGranteeGrantsResponse = {
-  encode(
-    message: QueryGranteeGrantsResponse,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: QueryGranteeGrantsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.grants) {
       GrantAuthorization.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
-      PageResponse.encode(
-        message.pagination,
-        writer.uint32(18).fork()
-      ).ldelim();
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): QueryGranteeGrantsResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGranteeGrantsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGranteeGrantsResponse();
@@ -492,9 +414,7 @@ export const QueryGranteeGrantsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.grants.push(
-            GrantAuthorization.decode(reader, reader.uint32())
-          );
+          message.grants.push(GrantAuthorization.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -509,37 +429,26 @@ export const QueryGranteeGrantsResponse = {
 
   fromJSON(object: any): QueryGranteeGrantsResponse {
     return {
-      grants: Array.isArray(object?.grants)
-        ? object.grants.map((e: any) => GrantAuthorization.fromJSON(e))
-        : [],
-      pagination: isSet(object.pagination)
-        ? PageResponse.fromJSON(object.pagination)
-        : undefined,
+      grants: Array.isArray(object?.grants) ? object.grants.map((e: any) => GrantAuthorization.fromJSON(e)) : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
     };
   },
 
   toJSON(message: QueryGranteeGrantsResponse): unknown {
     const obj: any = {};
     if (message.grants) {
-      obj.grants = message.grants.map((e) =>
-        e ? GrantAuthorization.toJSON(e) : undefined
-      );
+      obj.grants = message.grants.map((e) => (e ? GrantAuthorization.toJSON(e) : undefined));
     } else {
       obj.grants = [];
     }
     message.pagination !== undefined &&
-      (obj.pagination = message.pagination
-        ? PageResponse.toJSON(message.pagination)
-        : undefined);
+      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<QueryGranteeGrantsResponse>, I>>(
-    object: I
-  ): QueryGranteeGrantsResponse {
+  fromPartial<I extends Exact<DeepPartial<QueryGranteeGrantsResponse>, I>>(object: I): QueryGranteeGrantsResponse {
     const message = createBaseQueryGranteeGrantsResponse();
-    message.grants =
-      object.grants?.map((e) => GrantAuthorization.fromPartial(e)) || [];
+    message.grants = object.grants?.map((e) => GrantAuthorization.fromPartial(e)) || [];
     message.pagination =
       object.pagination !== undefined && object.pagination !== null
         ? PageResponse.fromPartial(object.pagination)
@@ -557,17 +466,13 @@ export interface Query {
    *
    * Since: cosmos-sdk 0.46
    */
-  GranterGrants(
-    request: QueryGranterGrantsRequest
-  ): Promise<QueryGranterGrantsResponse>;
+  GranterGrants(request: QueryGranterGrantsRequest): Promise<QueryGranterGrantsResponse>;
   /**
    * GranteeGrants returns a list of `GrantAuthorization` by grantee.
    *
    * Since: cosmos-sdk 0.46
    */
-  GranteeGrants(
-    request: QueryGranteeGrantsRequest
-  ): Promise<QueryGranteeGrantsResponse>;
+  GranteeGrants(request: QueryGranteeGrantsRequest): Promise<QueryGranteeGrantsResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -580,61 +485,28 @@ export class QueryClientImpl implements Query {
   }
   Grants(request: QueryGrantsRequest): Promise<QueryGrantsResponse> {
     const data = QueryGrantsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.authz.v1beta1.Query',
-      'Grants',
-      data
-    );
-    return promise.then((data) =>
-      QueryGrantsResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.authz.v1beta1.Query', 'Grants', data);
+    return promise.then((data) => QueryGrantsResponse.decode(new _m0.Reader(data)));
   }
 
-  GranterGrants(
-    request: QueryGranterGrantsRequest
-  ): Promise<QueryGranterGrantsResponse> {
+  GranterGrants(request: QueryGranterGrantsRequest): Promise<QueryGranterGrantsResponse> {
     const data = QueryGranterGrantsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.authz.v1beta1.Query',
-      'GranterGrants',
-      data
-    );
-    return promise.then((data) =>
-      QueryGranterGrantsResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.authz.v1beta1.Query', 'GranterGrants', data);
+    return promise.then((data) => QueryGranterGrantsResponse.decode(new _m0.Reader(data)));
   }
 
-  GranteeGrants(
-    request: QueryGranteeGrantsRequest
-  ): Promise<QueryGranteeGrantsResponse> {
+  GranteeGrants(request: QueryGranteeGrantsRequest): Promise<QueryGranteeGrantsResponse> {
     const data = QueryGranteeGrantsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.authz.v1beta1.Query',
-      'GranteeGrants',
-      data
-    );
-    return promise.then((data) =>
-      QueryGranteeGrantsResponse.decode(new _m0.Reader(data))
-    );
+    const promise = this.rpc.request('cosmos.authz.v1beta1.Query', 'GranteeGrants', data);
+    return promise.then((data) => QueryGranteeGrantsResponse.decode(new _m0.Reader(data)));
   }
 }
 
 interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
+  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

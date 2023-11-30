@@ -26,10 +26,7 @@ function createBaseParams(): Params {
 }
 
 export const Params = {
-  encode(
-    message: Params,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.keyExpiry !== 0) {
       writer.uint32(8).uint64(message.keyExpiry);
     }
@@ -96,19 +93,14 @@ export const Params = {
       slashFractionWrongKeyshare: isSet(object.slashFractionWrongKeyshare)
         ? bytesFromBase64(object.slashFractionWrongKeyshare)
         : new Uint8Array(),
-      minimumBonded: isSet(object.minimumBonded)
-        ? Number(object.minimumBonded)
-        : 0,
-      maxIdledBlock: isSet(object.maxIdledBlock)
-        ? Number(object.maxIdledBlock)
-        : 0,
+      minimumBonded: isSet(object.minimumBonded) ? Number(object.minimumBonded) : 0,
+      maxIdledBlock: isSet(object.maxIdledBlock) ? Number(object.maxIdledBlock) : 0,
     };
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
-    message.keyExpiry !== undefined &&
-      (obj.keyExpiry = Math.round(message.keyExpiry));
+    message.keyExpiry !== undefined && (obj.keyExpiry = Math.round(message.keyExpiry));
     if (message.trustedAddresses) {
       obj.trustedAddresses = message.trustedAddresses.map((e) => e);
     } else {
@@ -116,20 +108,14 @@ export const Params = {
     }
     message.slashFractionNoKeyshare !== undefined &&
       (obj.slashFractionNoKeyshare = base64FromBytes(
-        message.slashFractionNoKeyshare !== undefined
-          ? message.slashFractionNoKeyshare
-          : new Uint8Array()
+        message.slashFractionNoKeyshare !== undefined ? message.slashFractionNoKeyshare : new Uint8Array()
       ));
     message.slashFractionWrongKeyshare !== undefined &&
       (obj.slashFractionWrongKeyshare = base64FromBytes(
-        message.slashFractionWrongKeyshare !== undefined
-          ? message.slashFractionWrongKeyshare
-          : new Uint8Array()
+        message.slashFractionWrongKeyshare !== undefined ? message.slashFractionWrongKeyshare : new Uint8Array()
       ));
-    message.minimumBonded !== undefined &&
-      (obj.minimumBonded = Math.round(message.minimumBonded));
-    message.maxIdledBlock !== undefined &&
-      (obj.maxIdledBlock = Math.round(message.maxIdledBlock));
+    message.minimumBonded !== undefined && (obj.minimumBonded = Math.round(message.minimumBonded));
+    message.maxIdledBlock !== undefined && (obj.maxIdledBlock = Math.round(message.maxIdledBlock));
     return obj;
   },
 
@@ -137,10 +123,8 @@ export const Params = {
     const message = createBaseParams();
     message.keyExpiry = object.keyExpiry ?? 0;
     message.trustedAddresses = object.trustedAddresses?.map((e) => e) || [];
-    message.slashFractionNoKeyshare =
-      object.slashFractionNoKeyshare ?? new Uint8Array();
-    message.slashFractionWrongKeyshare =
-      object.slashFractionWrongKeyshare ?? new Uint8Array();
+    message.slashFractionNoKeyshare = object.slashFractionNoKeyshare ?? new Uint8Array();
+    message.slashFractionWrongKeyshare = object.slashFractionWrongKeyshare ?? new Uint8Array();
     message.minimumBonded = object.minimumBonded ?? 0;
     message.maxIdledBlock = object.maxIdledBlock ?? 0;
     return message;
@@ -191,14 +175,7 @@ function base64FromBytes(arr: Uint8Array): string {
   }
 }
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

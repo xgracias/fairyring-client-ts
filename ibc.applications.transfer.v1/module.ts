@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -63,34 +58,17 @@ export const txClient = (
   }
 ) => {
   return {
-    async sendMsgTransfer({
-      value,
-      fee,
-      memo,
-    }: sendMsgTransferParams): Promise<DeliverTxResponse> {
+    async sendMsgTransfer({ value, fee, memo }: sendMsgTransferParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgTransfer: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgTransfer: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgTransfer({ value: MsgTransfer.fromPartial(value) });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgTransfer: Could not broadcast Tx: ' + e.message
-        );
+        throw new Error('TxClient:sendMsgTransfer: Could not broadcast Tx: ' + e.message);
       }
     },
 
@@ -101,9 +79,7 @@ export const txClient = (
           value: MsgTransfer.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgTransfer: Could not create message: ' + e.message
-        );
+        throw new Error('TxClient:MsgTransfer: Could not create message: ' + e.message);
       }
     },
   };
@@ -113,9 +89,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 
@@ -130,9 +104,7 @@ class SDKModule {
     this.updateTX(client);
     this.structure = {
       Allocation: getStructure(typeAllocation.fromPartial({})),
-      TransferAuthorization: getStructure(
-        typeTransferAuthorization.fromPartial({})
-      ),
+      TransferAuthorization: getStructure(typeTransferAuthorization.fromPartial({})),
       DenomTrace: getStructure(typeDenomTrace.fromPartial({})),
       Params: getStructure(typeParams.fromPartial({})),
     };

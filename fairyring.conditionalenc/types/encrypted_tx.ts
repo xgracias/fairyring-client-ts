@@ -28,10 +28,7 @@ function createBaseEncryptedTx(): EncryptedTx {
 }
 
 export const EncryptedTx = {
-  encode(
-    message: EncryptedTx,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: EncryptedTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.targetCondition !== '') {
       writer.uint32(10).string(message.targetCondition);
     }
@@ -51,8 +48,7 @@ export const EncryptedTx = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedTx {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEncryptedTx();
     while (reader.pos < end) {
@@ -104,15 +100,11 @@ export const EncryptedTx = {
 
   fromJSON(object: any): EncryptedTx {
     return {
-      targetCondition: isSet(object.targetCondition)
-        ? globalThis.String(object.targetCondition)
-        : '',
+      targetCondition: isSet(object.targetCondition) ? globalThis.String(object.targetCondition) : '',
       index: isSet(object.index) ? globalThis.Number(object.index) : 0,
       data: isSet(object.data) ? globalThis.String(object.data) : '',
       creator: isSet(object.creator) ? globalThis.String(object.creator) : '',
-      chargedGas: isSet(object.chargedGas)
-        ? Coin.fromJSON(object.chargedGas)
-        : undefined,
+      chargedGas: isSet(object.chargedGas) ? Coin.fromJSON(object.chargedGas) : undefined,
     };
   },
 
@@ -139,18 +131,14 @@ export const EncryptedTx = {
   create<I extends Exact<DeepPartial<EncryptedTx>, I>>(base?: I): EncryptedTx {
     return EncryptedTx.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<EncryptedTx>, I>>(
-    object: I
-  ): EncryptedTx {
+  fromPartial<I extends Exact<DeepPartial<EncryptedTx>, I>>(object: I): EncryptedTx {
     const message = createBaseEncryptedTx();
     message.targetCondition = object.targetCondition ?? '';
     message.index = object.index ?? 0;
     message.data = object.data ?? '';
     message.creator = object.creator ?? '';
     message.chargedGas =
-      object.chargedGas !== undefined && object.chargedGas !== null
-        ? Coin.fromPartial(object.chargedGas)
-        : undefined;
+      object.chargedGas !== undefined && object.chargedGas !== null ? Coin.fromPartial(object.chargedGas) : undefined;
     return message;
   },
 };
@@ -160,10 +148,7 @@ function createBaseEncryptedTxArray(): EncryptedTxArray {
 }
 
 export const EncryptedTxArray = {
-  encode(
-    message: EncryptedTxArray,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: EncryptedTxArray, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.encryptedTx) {
       EncryptedTx.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -171,8 +156,7 @@ export const EncryptedTxArray = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedTxArray {
-    const reader =
-      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEncryptedTxArray();
     while (reader.pos < end) {
@@ -210,29 +194,17 @@ export const EncryptedTxArray = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(
-    base?: I
-  ): EncryptedTxArray {
+  create<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(base?: I): EncryptedTxArray {
     return EncryptedTxArray.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(
-    object: I
-  ): EncryptedTxArray {
+  fromPartial<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(object: I): EncryptedTxArray {
     const message = createBaseEncryptedTxArray();
-    message.encryptedTx =
-      object.encryptedTx?.map((e) => EncryptedTx.fromPartial(e)) || [];
+    message.encryptedTx = object.encryptedTx?.map((e) => EncryptedTx.fromPartial(e)) || [];
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

@@ -7,13 +7,4 @@ import { PacketId } from './types/ibc/core/channel/v1/channel';
 import { Acknowledgement } from './types/ibc/core/channel/v1/channel';
 import { PacketSequence } from './types/ibc/core/channel/v1/genesis';
 
-export {
-  Channel,
-  IdentifiedChannel,
-  Counterparty,
-  Packet,
-  PacketState,
-  PacketId,
-  Acknowledgement,
-  PacketSequence,
-};
+export { Channel, IdentifiedChannel, Counterparty, Packet, PacketState, PacketId, Acknowledgement, PacketSequence };

@@ -16,10 +16,7 @@ function createBaseGenesisState(): GenesisState {
 }
 
 export const GenesisState = {
-  encode(
-    message: GenesisState,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
+  encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.allowances) {
       Grant.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -46,42 +43,28 @@ export const GenesisState = {
 
   fromJSON(object: any): GenesisState {
     return {
-      allowances: Array.isArray(object?.allowances)
-        ? object.allowances.map((e: any) => Grant.fromJSON(e))
-        : [],
+      allowances: Array.isArray(object?.allowances) ? object.allowances.map((e: any) => Grant.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     if (message.allowances) {
-      obj.allowances = message.allowances.map((e) =>
-        e ? Grant.toJSON(e) : undefined
-      );
+      obj.allowances = message.allowances.map((e) => (e ? Grant.toJSON(e) : undefined));
     } else {
       obj.allowances = [];
     }
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(
-    object: I
-  ): GenesisState {
+  fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.allowances =
-      object.allowances?.map((e) => Grant.fromPartial(e)) || [];
+    message.allowances = object.allowances?.map((e) => Grant.fromPartial(e)) || [];
     return message;
   },
 };
 
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
 export type DeepPartial<T> = T extends Builtin
   ? T

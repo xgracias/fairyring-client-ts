@@ -2,12 +2,7 @@
 
 import { StdFee } from '@cosmjs/launchpad';
 import { SigningStargateClient, DeliverTxResponse } from '@cosmjs/stargate';
-import {
-  EncodeObject,
-  GeneratedType,
-  OfflineSigner,
-  Registry,
-} from '@cosmjs/proto-signing';
+import { EncodeObject, GeneratedType, OfflineSigner, Registry } from '@cosmjs/proto-signing';
 import { msgTypes } from './registry';
 import { IgniteClient } from '../client';
 import { MissingWalletError } from '../helpers';
@@ -82,37 +77,19 @@ export const txClient = (
   }
 ) => {
   return {
-    async sendMsgSubmitEncryptedTx({
-      value,
-      fee,
-      memo,
-    }: sendMsgSubmitEncryptedTxParams): Promise<DeliverTxResponse> {
+    async sendMsgSubmitEncryptedTx({ value, fee, memo }: sendMsgSubmitEncryptedTxParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgSubmitEncryptedTx: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgSubmitEncryptedTx: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgSubmitEncryptedTx({
           value: MsgSubmitEncryptedTx.fromPartial(value),
         });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgSubmitEncryptedTx: Could not broadcast Tx: ' +
-            e.message
-        );
+        throw new Error('TxClient:sendMsgSubmitEncryptedTx: Could not broadcast Tx: ' + e.message);
       }
     },
 
@@ -122,31 +99,17 @@ export const txClient = (
       memo,
     }: sendMsgCreateAggregatedKeyShareParams): Promise<DeliverTxResponse> {
       if (!signer) {
-        throw new Error(
-          'TxClient:sendMsgCreateAggregatedKeyShare: Unable to sign Tx. Signer is not present.'
-        );
+        throw new Error('TxClient:sendMsgCreateAggregatedKeyShare: Unable to sign Tx. Signer is not present.');
       }
       try {
         const { address } = (await signer.getAccounts())[0];
-        const signingClient = await SigningStargateClient.connectWithSigner(
-          addr,
-          signer,
-          { registry, prefix }
-        );
+        const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry, prefix });
         let msg = this.msgCreateAggregatedKeyShare({
           value: MsgCreateAggregatedKeyShare.fromPartial(value),
         });
-        return await signingClient.signAndBroadcast(
-          address,
-          [msg],
-          fee ? fee : defaultFee,
-          memo
-        );
+        return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
-        throw new Error(
-          'TxClient:sendMsgCreateAggregatedKeyShare: Could not broadcast Tx: ' +
-            e.message
-        );
+        throw new Error('TxClient:sendMsgCreateAggregatedKeyShare: Could not broadcast Tx: ' + e.message);
       }
     },
 
@@ -157,26 +120,18 @@ export const txClient = (
           value: MsgSubmitEncryptedTx.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgSubmitEncryptedTx: Could not create message: ' +
-            e.message
-        );
+        throw new Error('TxClient:MsgSubmitEncryptedTx: Could not create message: ' + e.message);
       }
     },
 
-    msgCreateAggregatedKeyShare({
-      value,
-    }: msgCreateAggregatedKeyShareParams): EncodeObject {
+    msgCreateAggregatedKeyShare({ value }: msgCreateAggregatedKeyShareParams): EncodeObject {
       try {
         return {
           typeUrl: '/fairyring.pep.MsgCreateAggregatedKeyShare',
           value: MsgCreateAggregatedKeyShare.fromPartial(value),
         };
       } catch (e: any) {
-        throw new Error(
-          'TxClient:MsgCreateAggregatedKeyShare: Could not create message: ' +
-            e.message
-        );
+        throw new Error('TxClient:MsgCreateAggregatedKeyShare: Could not create message: ' + e.message);
       }
     },
   };
@@ -186,9 +141,7 @@ interface QueryClientOptions {
   addr: string;
 }
 
-export const queryClient = (
-  { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
-) => {
+export const queryClient = ({ addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }) => {
   return new Api({ baseURL: addr });
 };
 
@@ -207,16 +160,10 @@ class SDKModule {
       EncryptedTxArray: getStructure(typeEncryptedTxArray.fromPartial({})),
       PepPacketData: getStructure(typePepPacketData.fromPartial({})),
       NoData: getStructure(typeNoData.fromPartial({})),
-      CurrentKeysPacketData: getStructure(
-        typeCurrentKeysPacketData.fromPartial({})
-      ),
-      CurrentKeysPacketAck: getStructure(
-        typeCurrentKeysPacketAck.fromPartial({})
-      ),
+      CurrentKeysPacketData: getStructure(typeCurrentKeysPacketData.fromPartial({})),
+      CurrentKeysPacketAck: getStructure(typeCurrentKeysPacketAck.fromPartial({})),
       Params: getStructure(typeParams.fromPartial({})),
-      TrustedCounterParty: getStructure(
-        typeTrustedCounterParty.fromPartial({})
-      ),
+      TrustedCounterParty: getStructure(typeTrustedCounterParty.fromPartial({})),
       PepNonce: getStructure(typePepNonce.fromPartial({})),
       ActivePubKey: getStructure(typeActivePubKey.fromPartial({})),
       QueuedPubKey: getStructure(typeQueuedPubKey.fromPartial({})),
