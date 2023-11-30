@@ -1,9 +1,9 @@
 /* eslint-disable */
-import * as _m0 from "protobufjs/minimal";
-import { Coin } from "../../cosmos/base/v1beta1/coin";
-import Long = require("long");
+import * as _m0 from 'protobufjs/minimal';
+import { Coin } from '../../cosmos/base/v1beta1/coin';
+import Long = require('long');
 
-export const protobufPackage = "fairyring.Conditionalenc";
+export const protobufPackage = 'fairyring.Conditionalenc';
 
 export interface EncryptedTx {
   targetCondition: string;
@@ -18,21 +18,30 @@ export interface EncryptedTxArray {
 }
 
 function createBaseEncryptedTx(): EncryptedTx {
-  return { targetCondition: "", index: 0, data: "", creator: "", chargedGas: undefined };
+  return {
+    targetCondition: '',
+    index: 0,
+    data: '',
+    creator: '',
+    chargedGas: undefined,
+  };
 }
 
 export const EncryptedTx = {
-  encode(message: EncryptedTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.targetCondition !== "") {
+  encode(
+    message: EncryptedTx,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.targetCondition !== '') {
       writer.uint32(10).string(message.targetCondition);
     }
     if (message.index !== 0) {
       writer.uint32(16).uint64(message.index);
     }
-    if (message.data !== "") {
+    if (message.data !== '') {
       writer.uint32(26).string(message.data);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(34).string(message.creator);
     }
     if (message.chargedGas !== undefined) {
@@ -42,7 +51,8 @@ export const EncryptedTx = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedTx {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEncryptedTx();
     while (reader.pos < end) {
@@ -94,26 +104,30 @@ export const EncryptedTx = {
 
   fromJSON(object: any): EncryptedTx {
     return {
-      targetCondition: isSet(object.targetCondition) ? globalThis.String(object.targetCondition) : "",
+      targetCondition: isSet(object.targetCondition)
+        ? globalThis.String(object.targetCondition)
+        : '',
       index: isSet(object.index) ? globalThis.Number(object.index) : 0,
-      data: isSet(object.data) ? globalThis.String(object.data) : "",
-      creator: isSet(object.creator) ? globalThis.String(object.creator) : "",
-      chargedGas: isSet(object.chargedGas) ? Coin.fromJSON(object.chargedGas) : undefined,
+      data: isSet(object.data) ? globalThis.String(object.data) : '',
+      creator: isSet(object.creator) ? globalThis.String(object.creator) : '',
+      chargedGas: isSet(object.chargedGas)
+        ? Coin.fromJSON(object.chargedGas)
+        : undefined,
     };
   },
 
   toJSON(message: EncryptedTx): unknown {
     const obj: any = {};
-    if (message.targetCondition !== "") {
+    if (message.targetCondition !== '') {
       obj.targetCondition = message.targetCondition;
     }
     if (message.index !== 0) {
       obj.index = Math.round(message.index);
     }
-    if (message.data !== "") {
+    if (message.data !== '') {
       obj.data = message.data;
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     if (message.chargedGas !== undefined) {
@@ -125,15 +139,18 @@ export const EncryptedTx = {
   create<I extends Exact<DeepPartial<EncryptedTx>, I>>(base?: I): EncryptedTx {
     return EncryptedTx.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<EncryptedTx>, I>>(object: I): EncryptedTx {
+  fromPartial<I extends Exact<DeepPartial<EncryptedTx>, I>>(
+    object: I
+  ): EncryptedTx {
     const message = createBaseEncryptedTx();
-    message.targetCondition = object.targetCondition ?? "";
+    message.targetCondition = object.targetCondition ?? '';
     message.index = object.index ?? 0;
-    message.data = object.data ?? "";
-    message.creator = object.creator ?? "";
-    message.chargedGas = (object.chargedGas !== undefined && object.chargedGas !== null)
-      ? Coin.fromPartial(object.chargedGas)
-      : undefined;
+    message.data = object.data ?? '';
+    message.creator = object.creator ?? '';
+    message.chargedGas =
+      object.chargedGas !== undefined && object.chargedGas !== null
+        ? Coin.fromPartial(object.chargedGas)
+        : undefined;
     return message;
   },
 };
@@ -143,7 +160,10 @@ function createBaseEncryptedTxArray(): EncryptedTxArray {
 }
 
 export const EncryptedTxArray = {
-  encode(message: EncryptedTxArray, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: EncryptedTxArray,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.encryptedTx) {
       EncryptedTx.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -151,7 +171,8 @@ export const EncryptedTxArray = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedTxArray {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEncryptedTxArray();
     while (reader.pos < end) {
@@ -189,31 +210,50 @@ export const EncryptedTxArray = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(base?: I): EncryptedTxArray {
+  create<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(
+    base?: I
+  ): EncryptedTxArray {
     return EncryptedTxArray.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(object: I): EncryptedTxArray {
+  fromPartial<I extends Exact<DeepPartial<EncryptedTxArray>, I>>(
+    object: I
+  ): EncryptedTxArray {
     const message = createBaseEncryptedTxArray();
-    message.encryptedTx = object.encryptedTx?.map((e) => EncryptedTx.fromPartial(e)) || [];
+    message.encryptedTx =
+      object.encryptedTx?.map((e) => EncryptedTx.fromPartial(e)) || [];
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends globalThis.Array<infer U>
+    ? globalThis.Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+    };
 
 function longToNumber(long: Long): number {
   if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

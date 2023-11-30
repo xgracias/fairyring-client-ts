@@ -1,8 +1,8 @@
 /* eslint-disable */
-import * as _m0 from "protobufjs/minimal";
-import { Coin } from "../../cosmos/base/v1beta1/coin";
+import * as _m0 from 'protobufjs/minimal';
+import { Coin } from '../../cosmos/base/v1beta1/coin';
 
-export const protobufPackage = "fairyring.Conditionalenc";
+export const protobufPackage = 'fairyring.Conditionalenc';
 
 /** Params defines the parameters for the module. */
 export interface Params {
@@ -19,18 +19,26 @@ export interface TrustedCounterParty {
 }
 
 function createBaseParams(): Params {
-  return { trustedCounterParties: [], trustedAddresses: [], channelId: "", minGasPrice: undefined };
+  return {
+    trustedCounterParties: [],
+    trustedAddresses: [],
+    channelId: '',
+    minGasPrice: undefined,
+  };
 }
 
 export const Params = {
-  encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Params,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.trustedCounterParties) {
       TrustedCounterParty.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     for (const v of message.trustedAddresses) {
       writer.uint32(18).string(v!);
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(26).string(message.channelId);
     }
     if (message.minGasPrice !== undefined) {
@@ -40,7 +48,8 @@ export const Params = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): Params {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseParams();
     while (reader.pos < end) {
@@ -51,7 +60,9 @@ export const Params = {
             break;
           }
 
-          message.trustedCounterParties.push(TrustedCounterParty.decode(reader, reader.uint32()));
+          message.trustedCounterParties.push(
+            TrustedCounterParty.decode(reader, reader.uint32())
+          );
           continue;
         case 2:
           if (tag !== 18) {
@@ -85,26 +96,36 @@ export const Params = {
 
   fromJSON(object: any): Params {
     return {
-      trustedCounterParties: globalThis.Array.isArray(object?.trustedCounterParties)
-        ? object.trustedCounterParties.map((e: any) => TrustedCounterParty.fromJSON(e))
+      trustedCounterParties: globalThis.Array.isArray(
+        object?.trustedCounterParties
+      )
+        ? object.trustedCounterParties.map((e: any) =>
+            TrustedCounterParty.fromJSON(e)
+          )
         : [],
       trustedAddresses: globalThis.Array.isArray(object?.trustedAddresses)
         ? object.trustedAddresses.map((e: any) => globalThis.String(e))
         : [],
-      channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : "",
-      minGasPrice: isSet(object.minGasPrice) ? Coin.fromJSON(object.minGasPrice) : undefined,
+      channelId: isSet(object.channelId)
+        ? globalThis.String(object.channelId)
+        : '',
+      minGasPrice: isSet(object.minGasPrice)
+        ? Coin.fromJSON(object.minGasPrice)
+        : undefined,
     };
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
     if (message.trustedCounterParties?.length) {
-      obj.trustedCounterParties = message.trustedCounterParties.map((e) => TrustedCounterParty.toJSON(e));
+      obj.trustedCounterParties = message.trustedCounterParties.map((e) =>
+        TrustedCounterParty.toJSON(e)
+      );
     }
     if (message.trustedAddresses?.length) {
       obj.trustedAddresses = message.trustedAddresses;
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
     if (message.minGasPrice !== undefined) {
@@ -118,36 +139,44 @@ export const Params = {
   },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
-    message.trustedCounterParties = object.trustedCounterParties?.map((e) => TrustedCounterParty.fromPartial(e)) || [];
+    message.trustedCounterParties =
+      object.trustedCounterParties?.map((e) =>
+        TrustedCounterParty.fromPartial(e)
+      ) || [];
     message.trustedAddresses = object.trustedAddresses?.map((e) => e) || [];
-    message.channelId = object.channelId ?? "";
-    message.minGasPrice = (object.minGasPrice !== undefined && object.minGasPrice !== null)
-      ? Coin.fromPartial(object.minGasPrice)
-      : undefined;
+    message.channelId = object.channelId ?? '';
+    message.minGasPrice =
+      object.minGasPrice !== undefined && object.minGasPrice !== null
+        ? Coin.fromPartial(object.minGasPrice)
+        : undefined;
     return message;
   },
 };
 
 function createBaseTrustedCounterParty(): TrustedCounterParty {
-  return { clientId: "", connectionId: "", channelId: "" };
+  return { clientId: '', connectionId: '', channelId: '' };
 }
 
 export const TrustedCounterParty = {
-  encode(message: TrustedCounterParty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+  encode(
+    message: TrustedCounterParty,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       writer.uint32(18).string(message.connectionId);
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(26).string(message.channelId);
     }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): TrustedCounterParty {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTrustedCounterParty();
     while (reader.pos < end) {
@@ -185,49 +214,73 @@ export const TrustedCounterParty = {
 
   fromJSON(object: any): TrustedCounterParty {
     return {
-      clientId: isSet(object.clientId) ? globalThis.String(object.clientId) : "",
-      connectionId: isSet(object.connectionId) ? globalThis.String(object.connectionId) : "",
-      channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : "",
+      clientId: isSet(object.clientId)
+        ? globalThis.String(object.clientId)
+        : '',
+      connectionId: isSet(object.connectionId)
+        ? globalThis.String(object.connectionId)
+        : '',
+      channelId: isSet(object.channelId)
+        ? globalThis.String(object.channelId)
+        : '',
     };
   },
 
   toJSON(message: TrustedCounterParty): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       obj.connectionId = message.connectionId;
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(base?: I): TrustedCounterParty {
+  create<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(
+    base?: I
+  ): TrustedCounterParty {
     return TrustedCounterParty.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(object: I): TrustedCounterParty {
+  fromPartial<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(
+    object: I
+  ): TrustedCounterParty {
     const message = createBaseTrustedCounterParty();
-    message.clientId = object.clientId ?? "";
-    message.connectionId = object.connectionId ?? "";
-    message.channelId = object.channelId ?? "";
+    message.clientId = object.clientId ?? '';
+    message.connectionId = object.connectionId ?? '';
+    message.channelId = object.channelId ?? '';
     return message;
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends globalThis.Array<infer U>
+    ? globalThis.Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+    };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
