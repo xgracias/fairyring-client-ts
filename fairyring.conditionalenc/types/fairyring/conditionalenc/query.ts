@@ -5,7 +5,7 @@ import { ConditionalencNonce } from './conditionalenc_nonce';
 import { EncryptedTx, EncryptedTxArray } from './encrypted_tx';
 import { Params } from './params';
 import { ActivePubKey, QueuedPubKey } from './pub_key';
-import Long = require('long');
+import Long from 'long';
 
 export const protobufPackage = 'fairyring.Conditionalenc';
 

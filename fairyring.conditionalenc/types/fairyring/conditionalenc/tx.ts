@@ -1,6 +1,6 @@
 /* eslint-disable */
+import Long from 'long';
 import * as _m0 from 'protobufjs/minimal';
-import Long = require('long');
 
 export const protobufPackage = 'fairyring.Conditionalenc';
 
