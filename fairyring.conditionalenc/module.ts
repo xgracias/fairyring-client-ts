@@ -68,7 +68,7 @@ export const txClient = (
     msgSubmitEncryptedTx({ value }: msgSubmitEncryptedTxParams): EncodeObject {
       try {
         return {
-          typeUrl: '/fairyring.conditionalenc.MsgSubmitEncryptedTx',
+          typeUrl: '/fairyring.Conditionalenc.Msg/SubmitEncryptedTx',
           value: MsgSubmitEncryptedTx.fromPartial(value),
         };
       } catch (e: any) {
