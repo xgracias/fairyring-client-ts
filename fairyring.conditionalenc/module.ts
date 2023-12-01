@@ -38,6 +38,10 @@ type sendMsgSubmitEncryptedTxParams = {
   memo?: string;
 };
 
+type msgSubmitEncryptedTxParams = {
+  value: MsgSubmitEncryptedTx;
+};
+
 export const txClient = (
   { signer, prefix, addr }: TxClientOptions = {
     addr: 'http://localhost:26657',
@@ -58,6 +62,17 @@ export const txClient = (
         return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
       } catch (e: any) {
         throw new Error('TxClient:sendMsgSubmitEncryptedTx: Could not broadcast Tx: ' + e.message);
+      }
+    },
+
+    msgSubmitEncryptedTx({ value }: msgSubmitEncryptedTxParams): EncodeObject {
+      try {
+        return {
+          typeUrl: '/fairyring.conditionalenc.MsgSubmitEncryptedTx',
+          value: MsgSubmitEncryptedTx.fromPartial(value),
+        };
+      } catch (e: any) {
+        throw new Error('TxClient:MsgSubmitEncryptedTx: Could not create message: ' + e.message);
       }
     },
   };
