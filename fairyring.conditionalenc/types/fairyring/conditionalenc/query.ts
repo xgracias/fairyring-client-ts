@@ -1,7 +1,7 @@
 /* eslint-disable */
 import * as _m0 from 'protobufjs/minimal';
 import { PageRequest, PageResponse } from '../../cosmos/base/query/v1beta1/pagination';
-import { ConditionalencNonce } from './conditionalenc_nonce';
+import { ConditionalencNonce } from './Conditionalenc_nonce';
 import { EncryptedTx, EncryptedTxArray } from './encrypted_tx';
 import { Params } from './params';
 import { ActivePubKey, QueuedPubKey } from './pub_key';
@@ -19,7 +19,7 @@ export interface QueryParamsResponse {
 }
 
 export interface QueryGetEncryptedTxRequest {
-  targetcondition: number;
+  targetcondition: string;
   index: number;
 }
 
@@ -36,8 +36,8 @@ export interface QueryAllEncryptedTxResponse {
   pagination: PageResponse | undefined;
 }
 
-export interface QueryAllEncryptedTxFromconditionRequest {
-  targetcondition: number;
+export interface QueryAllEncryptedTxFromConditionRequest {
+  targetcondition: string;
 }
 
 export interface QueryAllEncryptedTxFromconditionResponse {
@@ -47,7 +47,7 @@ export interface QueryAllEncryptedTxFromconditionResponse {
 export interface QueryLatestconditionRequest {}
 
 export interface QueryLatestconditionResponse {
-  condition: number;
+  condition: string;
 }
 
 export interface QueryGetConditionalencNonceRequest {
@@ -153,9 +153,7 @@ export const QueryParamsResponse = {
   },
 
   fromJSON(object: any): QueryParamsResponse {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-    };
+    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
   },
 
   toJSON(message: QueryParamsResponse): unknown {
@@ -178,13 +176,13 @@ export const QueryParamsResponse = {
 };
 
 function createBaseQueryGetEncryptedTxRequest(): QueryGetEncryptedTxRequest {
-  return { targetcondition: 0, index: 0 };
+  return { targetcondition: '', index: 0 };
 }
 
 export const QueryGetEncryptedTxRequest = {
   encode(message: QueryGetEncryptedTxRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.targetcondition !== 0) {
-      writer.uint32(8).uint64(message.targetcondition);
+    if (message.targetcondition !== '') {
+      writer.uint32(10).string(message.targetcondition);
     }
     if (message.index !== 0) {
       writer.uint32(16).uint64(message.index);
@@ -200,11 +198,11 @@ export const QueryGetEncryptedTxRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.targetcondition = longToNumber(reader.uint64() as Long);
+          message.targetcondition = reader.string();
           continue;
         case 2:
           if (tag !== 16) {
@@ -224,15 +222,15 @@ export const QueryGetEncryptedTxRequest = {
 
   fromJSON(object: any): QueryGetEncryptedTxRequest {
     return {
-      targetcondition: isSet(object.targetcondition) ? globalThis.Number(object.targetcondition) : 0,
+      targetcondition: isSet(object.targetcondition) ? globalThis.String(object.targetcondition) : '',
       index: isSet(object.index) ? globalThis.Number(object.index) : 0,
     };
   },
 
   toJSON(message: QueryGetEncryptedTxRequest): unknown {
     const obj: any = {};
-    if (message.targetcondition !== 0) {
-      obj.targetcondition = Math.round(message.targetcondition);
+    if (message.targetcondition !== '') {
+      obj.targetcondition = message.targetcondition;
     }
     if (message.index !== 0) {
       obj.index = Math.round(message.index);
@@ -245,7 +243,7 @@ export const QueryGetEncryptedTxRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetEncryptedTxRequest>, I>>(object: I): QueryGetEncryptedTxRequest {
     const message = createBaseQueryGetEncryptedTxRequest();
-    message.targetcondition = object.targetcondition ?? 0;
+    message.targetcondition = object.targetcondition ?? '';
     message.index = object.index ?? 0;
     return message;
   },
@@ -287,9 +285,7 @@ export const QueryGetEncryptedTxResponse = {
   },
 
   fromJSON(object: any): QueryGetEncryptedTxResponse {
-    return {
-      encryptedTx: isSet(object.encryptedTx) ? EncryptedTx.fromJSON(object.encryptedTx) : undefined,
-    };
+    return { encryptedTx: isSet(object.encryptedTx) ? EncryptedTx.fromJSON(object.encryptedTx) : undefined };
   },
 
   toJSON(message: QueryGetEncryptedTxResponse): unknown {
@@ -349,9 +345,7 @@ export const QueryAllEncryptedTxRequest = {
   },
 
   fromJSON(object: any): QueryAllEncryptedTxRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
-    };
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
   },
 
   toJSON(message: QueryAllEncryptedTxRequest): unknown {
@@ -454,31 +448,31 @@ export const QueryAllEncryptedTxResponse = {
   },
 };
 
-function createBaseQueryAllEncryptedTxFromconditionRequest(): QueryAllEncryptedTxFromconditionRequest {
-  return { targetcondition: 0 };
+function createBaseQueryAllEncryptedTxFromConditionRequest(): QueryAllEncryptedTxFromConditionRequest {
+  return { targetcondition: '' };
 }
 
-export const QueryAllEncryptedTxFromconditionRequest = {
-  encode(message: QueryAllEncryptedTxFromconditionRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.targetcondition !== 0) {
-      writer.uint32(8).uint64(message.targetcondition);
+export const QueryAllEncryptedTxFromConditionRequest = {
+  encode(message: QueryAllEncryptedTxFromConditionRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.targetcondition !== '') {
+      writer.uint32(10).string(message.targetcondition);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEncryptedTxFromconditionRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEncryptedTxFromConditionRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryAllEncryptedTxFromconditionRequest();
+    const message = createBaseQueryAllEncryptedTxFromConditionRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.targetcondition = longToNumber(reader.uint64() as Long);
+          message.targetcondition = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -489,30 +483,28 @@ export const QueryAllEncryptedTxFromconditionRequest = {
     return message;
   },
 
-  fromJSON(object: any): QueryAllEncryptedTxFromconditionRequest {
-    return {
-      targetcondition: isSet(object.targetcondition) ? globalThis.Number(object.targetcondition) : 0,
-    };
+  fromJSON(object: any): QueryAllEncryptedTxFromConditionRequest {
+    return { targetcondition: isSet(object.targetcondition) ? globalThis.String(object.targetcondition) : '' };
   },
 
-  toJSON(message: QueryAllEncryptedTxFromconditionRequest): unknown {
+  toJSON(message: QueryAllEncryptedTxFromConditionRequest): unknown {
     const obj: any = {};
-    if (message.targetcondition !== 0) {
-      obj.targetcondition = Math.round(message.targetcondition);
+    if (message.targetcondition !== '') {
+      obj.targetcondition = message.targetcondition;
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QueryAllEncryptedTxFromconditionRequest>, I>>(
+  create<I extends Exact<DeepPartial<QueryAllEncryptedTxFromConditionRequest>, I>>(
     base?: I
-  ): QueryAllEncryptedTxFromconditionRequest {
-    return QueryAllEncryptedTxFromconditionRequest.fromPartial(base ?? ({} as any));
+  ): QueryAllEncryptedTxFromConditionRequest {
+    return QueryAllEncryptedTxFromConditionRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxFromconditionRequest>, I>>(
+  fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxFromConditionRequest>, I>>(
     object: I
-  ): QueryAllEncryptedTxFromconditionRequest {
-    const message = createBaseQueryAllEncryptedTxFromconditionRequest();
-    message.targetcondition = object.targetcondition ?? 0;
+  ): QueryAllEncryptedTxFromConditionRequest {
+    const message = createBaseQueryAllEncryptedTxFromConditionRequest();
+    message.targetcondition = object.targetcondition ?? '';
     return message;
   },
 };
@@ -627,13 +619,13 @@ export const QueryLatestconditionRequest = {
 };
 
 function createBaseQueryLatestconditionResponse(): QueryLatestconditionResponse {
-  return { condition: 0 };
+  return { condition: '' };
 }
 
 export const QueryLatestconditionResponse = {
   encode(message: QueryLatestconditionResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.condition !== 0) {
-      writer.uint32(8).uint64(message.condition);
+    if (message.condition !== '') {
+      writer.uint32(10).string(message.condition);
     }
     return writer;
   },
@@ -646,11 +638,11 @@ export const QueryLatestconditionResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.condition = longToNumber(reader.uint64() as Long);
+          message.condition = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -662,15 +654,13 @@ export const QueryLatestconditionResponse = {
   },
 
   fromJSON(object: any): QueryLatestconditionResponse {
-    return {
-      condition: isSet(object.condition) ? globalThis.Number(object.condition) : 0,
-    };
+    return { condition: isSet(object.condition) ? globalThis.String(object.condition) : '' };
   },
 
   toJSON(message: QueryLatestconditionResponse): unknown {
     const obj: any = {};
-    if (message.condition !== 0) {
-      obj.condition = Math.round(message.condition);
+    if (message.condition !== '') {
+      obj.condition = message.condition;
     }
     return obj;
   },
@@ -680,7 +670,7 @@ export const QueryLatestconditionResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryLatestconditionResponse>, I>>(object: I): QueryLatestconditionResponse {
     const message = createBaseQueryLatestconditionResponse();
-    message.condition = object.condition ?? 0;
+    message.condition = object.condition ?? '';
     return message;
   },
 };
@@ -721,9 +711,7 @@ export const QueryGetConditionalencNonceRequest = {
   },
 
   fromJSON(object: any): QueryGetConditionalencNonceRequest {
-    return {
-      address: isSet(object.address) ? globalThis.String(object.address) : '',
-    };
+    return { address: isSet(object.address) ? globalThis.String(object.address) : '' };
   },
 
   toJSON(message: QueryGetConditionalencNonceRequest): unknown {
@@ -852,9 +840,7 @@ export const QueryAllConditionalencNonceRequest = {
   },
 
   fromJSON(object: any): QueryAllConditionalencNonceRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
-    };
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
   },
 
   toJSON(message: QueryAllConditionalencNonceRequest): unknown {
@@ -1098,7 +1084,7 @@ export interface Query {
   EncryptedTxAll(request: QueryAllEncryptedTxRequest): Promise<QueryAllEncryptedTxResponse>;
   /** Queries a list of EncryptedTx items. */
   EncryptedTxAllFromCondition(
-    request: QueryAllEncryptedTxFromconditionRequest
+    request: QueryAllEncryptedTxFromConditionRequest
   ): Promise<QueryAllEncryptedTxFromconditionResponse>;
   /** Queries a list of Latestcondition items. */
   LatestCondition(request: QueryLatestconditionRequest): Promise<QueryLatestconditionResponse>;
@@ -1145,9 +1131,9 @@ export class QueryClientImpl implements Query {
   }
 
   EncryptedTxAllFromCondition(
-    request: QueryAllEncryptedTxFromconditionRequest
+    request: QueryAllEncryptedTxFromConditionRequest
   ): Promise<QueryAllEncryptedTxFromconditionResponse> {
-    const data = QueryAllEncryptedTxFromconditionRequest.encode(request).finish();
+    const data = QueryAllEncryptedTxFromConditionRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, 'EncryptedTxAllFromCondition', data);
     return promise.then((data) => QueryAllEncryptedTxFromconditionResponse.decode(_m0.Reader.create(data)));
   }
@@ -1196,9 +1182,7 @@ export type DeepPartial<T> = T extends Builtin
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin
   ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {

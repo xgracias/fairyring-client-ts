@@ -1,6 +1,6 @@
 /* eslint-disable */
 import * as _m0 from 'protobufjs/minimal';
-import { ConditionalencNonce } from './conditionalenc_nonce';
+import { ConditionalencNonce } from './Conditionalenc_nonce';
 import { AggregatedConditionalKeyShare } from './aggregated_key_share';
 import { EncryptedTxArray } from './encrypted_tx';
 import { Params } from './params';
@@ -209,9 +209,7 @@ export type DeepPartial<T> = T extends Builtin
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin
   ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

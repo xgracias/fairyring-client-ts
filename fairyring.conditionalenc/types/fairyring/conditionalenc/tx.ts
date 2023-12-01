@@ -1,5 +1,4 @@
 /* eslint-disable */
-import Long from 'long';
 import * as _m0 from 'protobufjs/minimal';
 
 export const protobufPackage = 'fairyring.Conditionalenc';
@@ -7,7 +6,7 @@ export const protobufPackage = 'fairyring.Conditionalenc';
 export interface MsgSubmitEncryptedTx {
   creator: string;
   data: string;
-  condition: number;
+  condition: string;
 }
 
 export interface MsgSubmitEncryptedTxResponse {}
@@ -15,14 +14,14 @@ export interface MsgSubmitEncryptedTxResponse {}
 /** this line is used by starport scaffolding # proto/tx/message */
 export interface MsgCreateAggregatedConditionalKeyShare {
   creator: string;
-  condition: number;
+  condition: string;
   data: string;
 }
 
 export interface MsgCreateAggregatedConditionalKeyShareResponse {}
 
 function createBaseMsgSubmitEncryptedTx(): MsgSubmitEncryptedTx {
-  return { creator: '', data: '', condition: 0 };
+  return { creator: '', data: '', condition: '' };
 }
 
 export const MsgSubmitEncryptedTx = {
@@ -33,8 +32,8 @@ export const MsgSubmitEncryptedTx = {
     if (message.data !== '') {
       writer.uint32(18).string(message.data);
     }
-    if (message.condition !== 0) {
-      writer.uint32(24).uint64(message.condition);
+    if (message.condition !== '') {
+      writer.uint32(26).string(message.condition);
     }
     return writer;
   },
@@ -61,11 +60,11 @@ export const MsgSubmitEncryptedTx = {
           message.data = reader.string();
           continue;
         case 3:
-          if (tag !== 24) {
+          if (tag !== 26) {
             break;
           }
 
-          message.condition = longToNumber(reader.uint64() as Long);
+          message.condition = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -80,7 +79,7 @@ export const MsgSubmitEncryptedTx = {
     return {
       creator: isSet(object.creator) ? globalThis.String(object.creator) : '',
       data: isSet(object.data) ? globalThis.String(object.data) : '',
-      condition: isSet(object.condition) ? globalThis.Number(object.condition) : 0,
+      condition: isSet(object.condition) ? globalThis.String(object.condition) : '',
     };
   },
 
@@ -92,8 +91,8 @@ export const MsgSubmitEncryptedTx = {
     if (message.data !== '') {
       obj.data = message.data;
     }
-    if (message.condition !== 0) {
-      obj.condition = Math.round(message.condition);
+    if (message.condition !== '') {
+      obj.condition = message.condition;
     }
     return obj;
   },
@@ -105,7 +104,7 @@ export const MsgSubmitEncryptedTx = {
     const message = createBaseMsgSubmitEncryptedTx();
     message.creator = object.creator ?? '';
     message.data = object.data ?? '';
-    message.condition = object.condition ?? 0;
+    message.condition = object.condition ?? '';
     return message;
   },
 };
@@ -154,7 +153,7 @@ export const MsgSubmitEncryptedTxResponse = {
 };
 
 function createBaseMsgCreateAggregatedConditionalKeyShare(): MsgCreateAggregatedConditionalKeyShare {
-  return { creator: '', condition: 0, data: '' };
+  return { creator: '', condition: '', data: '' };
 }
 
 export const MsgCreateAggregatedConditionalKeyShare = {
@@ -162,8 +161,8 @@ export const MsgCreateAggregatedConditionalKeyShare = {
     if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
-    if (message.condition !== 0) {
-      writer.uint32(16).uint64(message.condition);
+    if (message.condition !== '') {
+      writer.uint32(18).string(message.condition);
     }
     if (message.data !== '') {
       writer.uint32(26).string(message.data);
@@ -186,11 +185,11 @@ export const MsgCreateAggregatedConditionalKeyShare = {
           message.creator = reader.string();
           continue;
         case 2:
-          if (tag !== 16) {
+          if (tag !== 18) {
             break;
           }
 
-          message.condition = longToNumber(reader.uint64() as Long);
+          message.condition = reader.string();
           continue;
         case 3:
           if (tag !== 26) {
@@ -211,7 +210,7 @@ export const MsgCreateAggregatedConditionalKeyShare = {
   fromJSON(object: any): MsgCreateAggregatedConditionalKeyShare {
     return {
       creator: isSet(object.creator) ? globalThis.String(object.creator) : '',
-      condition: isSet(object.condition) ? globalThis.Number(object.condition) : 0,
+      condition: isSet(object.condition) ? globalThis.String(object.condition) : '',
       data: isSet(object.data) ? globalThis.String(object.data) : '',
     };
   },
@@ -221,8 +220,8 @@ export const MsgCreateAggregatedConditionalKeyShare = {
     if (message.creator !== '') {
       obj.creator = message.creator;
     }
-    if (message.condition !== 0) {
-      obj.condition = Math.round(message.condition);
+    if (message.condition !== '') {
+      obj.condition = message.condition;
     }
     if (message.data !== '') {
       obj.data = message.data;
@@ -240,7 +239,7 @@ export const MsgCreateAggregatedConditionalKeyShare = {
   ): MsgCreateAggregatedConditionalKeyShare {
     const message = createBaseMsgCreateAggregatedConditionalKeyShare();
     message.creator = object.creator ?? '';
-    message.condition = object.condition ?? 0;
+    message.condition = object.condition ?? '';
     message.data = object.data ?? '';
     return message;
   },
@@ -346,21 +345,7 @@ export type DeepPartial<T> = T extends Builtin
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin
   ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
-
-function longToNumber(long: Long): number {
-  if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
-  }
-  return long.toNumber();
-}
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
