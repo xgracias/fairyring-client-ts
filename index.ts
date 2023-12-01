@@ -31,6 +31,7 @@ import { Module as CosmosUpgradeV1Beta1, msgTypes as CosmosUpgradeV1Beta1MsgType
 import { Module as CosmosVestingV1Beta1, msgTypes as CosmosVestingV1Beta1MsgTypes } from './cosmos.vesting.v1beta1';
 import { Module as FairyringKeyshare, msgTypes as FairyringKeyshareMsgTypes } from './fairyring.keyshare';
 import { Module as FairyringPep, msgTypes as FairyringPepMsgTypes } from './fairyring.pep';
+import { Module as FairyringConditional, msgTypes as FairyringConditionalMsgTypes } from './fairyring.conditionalenc';
 import {
   Module as IbcApplicationsInterchainAccountsControllerV1,
   msgTypes as IbcApplicationsInterchainAccountsControllerV1MsgTypes,
@@ -71,6 +72,7 @@ const Client = IgniteClient.plugin([
   CosmosVestingV1Beta1,
   FairyringKeyshare,
   FairyringPep,
+  FairyringConditional,
   IbcApplicationsInterchainAccountsControllerV1,
   IbcApplicationsInterchainAccountsHostV1,
   IbcApplicationsTransferV1,
@@ -103,6 +105,7 @@ const registry = new Registry([
   ...CosmosVestingV1Beta1MsgTypes,
   ...FairyringKeyshareMsgTypes,
   ...FairyringPepMsgTypes,
+  ...FairyringConditionalMsgTypes,
   ...IbcApplicationsInterchainAccountsControllerV1MsgTypes,
   ...IbcApplicationsInterchainAccountsHostV1MsgTypes,
   ...IbcApplicationsTransferV1MsgTypes,
