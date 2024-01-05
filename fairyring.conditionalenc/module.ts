@@ -6,6 +6,8 @@ import { IgniteClient } from '../client';
 import { Api } from './rest';
 import { MsgSubmitEncryptedTx } from './types/fairyring/conditionalenc/tx';
 import { EncryptedTx as typeEncryptedTx } from './types';
+import { Params as typeParams } from './types';
+import { ConditionalencNonce as typeConditionalencNonce } from './types';
 
 export const registry = new Registry(msgTypes);
 
@@ -95,7 +97,11 @@ class SDKModule {
   constructor(client: IgniteClient) {
     this.query = queryClient({ addr: client.env.apiURL });
     this.updateTX(client);
-    this.structure = { EncryptedTx: getStructure(typeEncryptedTx.fromPartial({})) };
+    this.structure = {
+      EncryptedTx: getStructure(typeEncryptedTx.fromPartial({})),
+      Params: getStructure(typeParams.fromPartial({})),
+      ConditionalencNonce: getStructure(typeConditionalencNonce.fromPartial({})),
+    };
     client.on('signer-changed', (signer) => {
       this.updateTX(client);
     });
