@@ -645,55 +645,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
-   * @name QueryPubKey
-   * @summary Queries the public keys
-   * @request GET:/fairyring/keyshare/pub_key
+   * @name QueryConditionalencNonce
+   * @summary Queries the nonce
+   * @request GET:/fairyring/conditionalenc/nonce
    */
-  queryPubKey = (params: RequestParams = {}) =>
+  queryConditionalencNonce = (params: RequestParams = {}) =>
     this.request<KeyshareQueryPubKeyResponse, RpcStatus>({
-      path: `/fairyring/keyshare/pub_key`,
-      method: 'GET',
-      format: 'json',
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryValidatorSetAll
-   * @summary Queries a list of ValidatorSet items.
-   * @request GET:/fairyring/keyshare/validator_set
-   */
-  queryValidatorSetAll = (
-    query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
-    },
-    params: RequestParams = {}
-  ) =>
-    this.request<KeyshareQueryAllValidatorSetResponse, RpcStatus>({
-      path: `/fairyring/keyshare/validator_set`,
-      method: 'GET',
-      query: query,
-      format: 'json',
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryValidatorSet
-   * @summary Queries a ValidatorSet by index.
-   * @request GET:/fairyring/keyshare/validator_set/{index}
-   */
-  queryValidatorSet = (index: string, params: RequestParams = {}) =>
-    this.request<KeyshareQueryGetValidatorSetResponse, RpcStatus>({
-      path: `/fairyring/keyshare/validator_set/${index}`,
+      path: `/fairyring/conditionalenc/nonce`,
       method: 'GET',
       format: 'json',
       ...params,
