@@ -649,9 +649,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @summary Queries the nonce
    * @request GET:/fairyring/conditionalenc/nonce
    */
-  queryConditionalencNonce = (address: string, params: RequestParams = {}) =>
+  queryConditionalencNonce = (denom: string, price: string, params: RequestParams = {}) =>
     this.request<KeyshareQueryPubKeyResponse, RpcStatus>({
-      path: `/fairyring/Conditionalenc/Conditionalenc_nonce/${address}`,
+      path: `/pricefeed/current_nonce/${denom}/${price}`,
       method: 'GET',
       format: 'json',
       ...params,
