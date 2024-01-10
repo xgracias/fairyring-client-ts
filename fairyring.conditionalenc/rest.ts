@@ -234,6 +234,10 @@ export interface KeyshareQueryPubKeyResponse {
   queuedPubKey?: KeyshareQueuedPubKey;
 }
 
+export interface ConditionalencNonceResponse {
+  nonce: string;
+}
+
 export interface KeyshareQueuedPubKey {
   publicKey?: string;
   creator?: string;
@@ -647,10 +651,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryConditionalencNonce
    * @summary Queries the nonce
-   * @request GET:/fairyring/conditionalenc/nonce
+   * @request GET:/pricefeed/current_nonce
    */
   queryConditionalencNonce = (denom: string, price: string, params: RequestParams = {}) =>
-    this.request<KeyshareQueryPubKeyResponse, RpcStatus>({
+    this.request<ConditionalencNonceResponse, RpcStatus>({
       path: `/pricefeed/current_nonce/${denom}/${price}`,
       method: 'GET',
       format: 'json',
