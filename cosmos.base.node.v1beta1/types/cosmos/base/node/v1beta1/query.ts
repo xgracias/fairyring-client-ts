@@ -1,10 +1,11 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
+import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = 'cosmos.base.node.v1beta1';
+export const protobufPackage = "cosmos.base.node.v1beta1";
 
 /** ConfigRequest defines the request structure for the Config gRPC query. */
-export interface ConfigRequest {}
+export interface ConfigRequest {
+}
 
 /** ConfigResponse defines the response structure for the Config gRPC query. */
 export interface ConfigResponse {
@@ -51,12 +52,12 @@ export const ConfigRequest = {
 };
 
 function createBaseConfigResponse(): ConfigResponse {
-  return { minimumGasPrice: '' };
+  return { minimumGasPrice: "" };
 }
 
 export const ConfigResponse = {
   encode(message: ConfigResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.minimumGasPrice !== '') {
+    if (message.minimumGasPrice !== "") {
       writer.uint32(10).string(message.minimumGasPrice);
     }
     return writer;
@@ -81,9 +82,7 @@ export const ConfigResponse = {
   },
 
   fromJSON(object: any): ConfigResponse {
-    return {
-      minimumGasPrice: isSet(object.minimumGasPrice) ? String(object.minimumGasPrice) : '',
-    };
+    return { minimumGasPrice: isSet(object.minimumGasPrice) ? String(object.minimumGasPrice) : "" };
   },
 
   toJSON(message: ConfigResponse): unknown {
@@ -94,7 +93,7 @@ export const ConfigResponse = {
 
   fromPartial<I extends Exact<DeepPartial<ConfigResponse>, I>>(object: I): ConfigResponse {
     const message = createBaseConfigResponse();
-    message.minimumGasPrice = object.minimumGasPrice ?? '';
+    message.minimumGasPrice = object.minimumGasPrice ?? "";
     return message;
   },
 };
@@ -113,7 +112,7 @@ export class ServiceClientImpl implements Service {
   }
   Config(request: ConfigRequest): Promise<ConfigResponse> {
     const data = ConfigRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.base.node.v1beta1.Service', 'Config', data);
+    const promise = this.rpc.request("cosmos.base.node.v1beta1.Service", "Config", data);
     return promise.then((data) => ConfigResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -124,22 +123,14 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

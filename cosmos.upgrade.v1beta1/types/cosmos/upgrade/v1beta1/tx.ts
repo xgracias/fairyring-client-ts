@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { Plan } from './upgrade';
+import _m0 from "protobufjs/minimal";
+import { Plan } from "./upgrade";
 
-export const protobufPackage = 'cosmos.upgrade.v1beta1';
+export const protobufPackage = "cosmos.upgrade.v1beta1";
 
 /** Since: cosmos-sdk 0.46 */
 
@@ -23,7 +23,8 @@ export interface MsgSoftwareUpgrade {
  *
  * Since: cosmos-sdk 0.46
  */
-export interface MsgSoftwareUpgradeResponse {}
+export interface MsgSoftwareUpgradeResponse {
+}
 
 /**
  * MsgCancelUpgrade is the Msg/CancelUpgrade request type.
@@ -40,15 +41,16 @@ export interface MsgCancelUpgrade {
  *
  * Since: cosmos-sdk 0.46
  */
-export interface MsgCancelUpgradeResponse {}
+export interface MsgCancelUpgradeResponse {
+}
 
 function createBaseMsgSoftwareUpgrade(): MsgSoftwareUpgrade {
-  return { authority: '', plan: undefined };
+  return { authority: "", plan: undefined };
 }
 
 export const MsgSoftwareUpgrade = {
   encode(message: MsgSoftwareUpgrade, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== '') {
+    if (message.authority !== "") {
       writer.uint32(10).string(message.authority);
     }
     if (message.plan !== undefined) {
@@ -80,7 +82,7 @@ export const MsgSoftwareUpgrade = {
 
   fromJSON(object: any): MsgSoftwareUpgrade {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : '',
+      authority: isSet(object.authority) ? String(object.authority) : "",
       plan: isSet(object.plan) ? Plan.fromJSON(object.plan) : undefined,
     };
   },
@@ -94,8 +96,8 @@ export const MsgSoftwareUpgrade = {
 
   fromPartial<I extends Exact<DeepPartial<MsgSoftwareUpgrade>, I>>(object: I): MsgSoftwareUpgrade {
     const message = createBaseMsgSoftwareUpgrade();
-    message.authority = object.authority ?? '';
-    message.plan = object.plan !== undefined && object.plan !== null ? Plan.fromPartial(object.plan) : undefined;
+    message.authority = object.authority ?? "";
+    message.plan = (object.plan !== undefined && object.plan !== null) ? Plan.fromPartial(object.plan) : undefined;
     return message;
   },
 };
@@ -140,12 +142,12 @@ export const MsgSoftwareUpgradeResponse = {
 };
 
 function createBaseMsgCancelUpgrade(): MsgCancelUpgrade {
-  return { authority: '' };
+  return { authority: "" };
 }
 
 export const MsgCancelUpgrade = {
   encode(message: MsgCancelUpgrade, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== '') {
+    if (message.authority !== "") {
       writer.uint32(10).string(message.authority);
     }
     return writer;
@@ -170,9 +172,7 @@ export const MsgCancelUpgrade = {
   },
 
   fromJSON(object: any): MsgCancelUpgrade {
-    return {
-      authority: isSet(object.authority) ? String(object.authority) : '',
-    };
+    return { authority: isSet(object.authority) ? String(object.authority) : "" };
   },
 
   toJSON(message: MsgCancelUpgrade): unknown {
@@ -183,7 +183,7 @@ export const MsgCancelUpgrade = {
 
   fromPartial<I extends Exact<DeepPartial<MsgCancelUpgrade>, I>>(object: I): MsgCancelUpgrade {
     const message = createBaseMsgCancelUpgrade();
-    message.authority = object.authority ?? '';
+    message.authority = object.authority ?? "";
     return message;
   },
 };
@@ -253,13 +253,13 @@ export class MsgClientImpl implements Msg {
   }
   SoftwareUpgrade(request: MsgSoftwareUpgrade): Promise<MsgSoftwareUpgradeResponse> {
     const data = MsgSoftwareUpgrade.encode(request).finish();
-    const promise = this.rpc.request('cosmos.upgrade.v1beta1.Msg', 'SoftwareUpgrade', data);
+    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Msg", "SoftwareUpgrade", data);
     return promise.then((data) => MsgSoftwareUpgradeResponse.decode(new _m0.Reader(data)));
   }
 
   CancelUpgrade(request: MsgCancelUpgrade): Promise<MsgCancelUpgradeResponse> {
     const data = MsgCancelUpgrade.encode(request).finish();
-    const promise = this.rpc.request('cosmos.upgrade.v1beta1.Msg', 'CancelUpgrade', data);
+    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Msg", "CancelUpgrade", data);
     return promise.then((data) => MsgCancelUpgradeResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -270,22 +270,14 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

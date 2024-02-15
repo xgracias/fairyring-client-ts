@@ -1,16 +1,17 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { PageRequest, PageResponse } from '../../cosmos/base/query/v1beta1/pagination';
-import { EncryptedTx, EncryptedTxArray } from './encrypted_tx';
-import { Params } from './params';
-import { PepNonce } from './pep_nonce';
-import { ActivePubKey, QueuedPubKey } from './pub_key';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
+import { EncryptedTx, EncryptedTxArray } from "./encrypted_tx";
+import { Params } from "./params";
+import { PepNonce } from "./pep_nonce";
+import { ActivePubKey, QueuedPubKey } from "./pub_key";
 
-export const protobufPackage = 'fairyring.pep';
+export const protobufPackage = "fairyring.pep";
 
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
-export interface QueryParamsRequest {}
+export interface QueryParamsRequest {
+}
 
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
 export interface QueryParamsResponse {
@@ -44,7 +45,8 @@ export interface QueryAllEncryptedTxFromHeightResponse {
   encryptedTxArray: EncryptedTxArray | undefined;
 }
 
-export interface QueryLatestHeightRequest {}
+export interface QueryLatestHeightRequest {
+}
 
 export interface QueryLatestHeightResponse {
   height: number;
@@ -67,7 +69,8 @@ export interface QueryAllPepNonceResponse {
   pagination: PageResponse | undefined;
 }
 
-export interface QueryPubKeyRequest {}
+export interface QueryPubKeyRequest {
+}
 
 export interface QueryPubKeyResponse {
   activePubKey: ActivePubKey | undefined;
@@ -144,9 +147,7 @@ export const QueryParamsResponse = {
   },
 
   fromJSON(object: any): QueryParamsResponse {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-    };
+    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
   },
 
   toJSON(message: QueryParamsResponse): unknown {
@@ -157,8 +158,9 @@ export const QueryParamsResponse = {
 
   fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
-    message.params =
-      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
     return message;
   },
 };
@@ -252,24 +254,21 @@ export const QueryGetEncryptedTxResponse = {
   },
 
   fromJSON(object: any): QueryGetEncryptedTxResponse {
-    return {
-      encryptedTx: isSet(object.encryptedTx) ? EncryptedTx.fromJSON(object.encryptedTx) : undefined,
-    };
+    return { encryptedTx: isSet(object.encryptedTx) ? EncryptedTx.fromJSON(object.encryptedTx) : undefined };
   },
 
   toJSON(message: QueryGetEncryptedTxResponse): unknown {
     const obj: any = {};
-    message.encryptedTx !== undefined &&
-      (obj.encryptedTx = message.encryptedTx ? EncryptedTx.toJSON(message.encryptedTx) : undefined);
+    message.encryptedTx !== undefined
+      && (obj.encryptedTx = message.encryptedTx ? EncryptedTx.toJSON(message.encryptedTx) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryGetEncryptedTxResponse>, I>>(object: I): QueryGetEncryptedTxResponse {
     const message = createBaseQueryGetEncryptedTxResponse();
-    message.encryptedTx =
-      object.encryptedTx !== undefined && object.encryptedTx !== null
-        ? EncryptedTx.fromPartial(object.encryptedTx)
-        : undefined;
+    message.encryptedTx = (object.encryptedTx !== undefined && object.encryptedTx !== null)
+      ? EncryptedTx.fromPartial(object.encryptedTx)
+      : undefined;
     return message;
   },
 };
@@ -305,24 +304,21 @@ export const QueryAllEncryptedTxRequest = {
   },
 
   fromJSON(object: any): QueryAllEncryptedTxRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
-    };
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
   },
 
   toJSON(message: QueryAllEncryptedTxRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxRequest>, I>>(object: I): QueryAllEncryptedTxRequest {
     const message = createBaseQueryAllEncryptedTxRequest();
-    message.pagination =
-      object.pagination !== undefined && object.pagination !== null
-        ? PageRequest.fromPartial(object.pagination)
-        : undefined;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
     return message;
   },
 };
@@ -375,22 +371,21 @@ export const QueryAllEncryptedTxResponse = {
   toJSON(message: QueryAllEncryptedTxResponse): unknown {
     const obj: any = {};
     if (message.encryptedTxArray) {
-      obj.encryptedTxArray = message.encryptedTxArray.map((e) => (e ? EncryptedTxArray.toJSON(e) : undefined));
+      obj.encryptedTxArray = message.encryptedTxArray.map((e) => e ? EncryptedTxArray.toJSON(e) : undefined);
     } else {
       obj.encryptedTxArray = [];
     }
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxResponse>, I>>(object: I): QueryAllEncryptedTxResponse {
     const message = createBaseQueryAllEncryptedTxResponse();
     message.encryptedTxArray = object.encryptedTxArray?.map((e) => EncryptedTxArray.fromPartial(e)) || [];
-    message.pagination =
-      object.pagination !== undefined && object.pagination !== null
-        ? PageResponse.fromPartial(object.pagination)
-        : undefined;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
     return message;
   },
 };
@@ -426,9 +421,7 @@ export const QueryAllEncryptedTxFromHeightRequest = {
   },
 
   fromJSON(object: any): QueryAllEncryptedTxFromHeightRequest {
-    return {
-      targetHeight: isSet(object.targetHeight) ? Number(object.targetHeight) : 0,
-    };
+    return { targetHeight: isSet(object.targetHeight) ? Number(object.targetHeight) : 0 };
   },
 
   toJSON(message: QueryAllEncryptedTxFromHeightRequest): unknown {
@@ -438,7 +431,7 @@ export const QueryAllEncryptedTxFromHeightRequest = {
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxFromHeightRequest>, I>>(
-    object: I
+    object: I,
   ): QueryAllEncryptedTxFromHeightRequest {
     const message = createBaseQueryAllEncryptedTxFromHeightRequest();
     message.targetHeight = object.targetHeight ?? 0;
@@ -484,19 +477,19 @@ export const QueryAllEncryptedTxFromHeightResponse = {
 
   toJSON(message: QueryAllEncryptedTxFromHeightResponse): unknown {
     const obj: any = {};
-    message.encryptedTxArray !== undefined &&
-      (obj.encryptedTxArray = message.encryptedTxArray ? EncryptedTxArray.toJSON(message.encryptedTxArray) : undefined);
+    message.encryptedTxArray !== undefined && (obj.encryptedTxArray = message.encryptedTxArray
+      ? EncryptedTxArray.toJSON(message.encryptedTxArray)
+      : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxFromHeightResponse>, I>>(
-    object: I
+    object: I,
   ): QueryAllEncryptedTxFromHeightResponse {
     const message = createBaseQueryAllEncryptedTxFromHeightResponse();
-    message.encryptedTxArray =
-      object.encryptedTxArray !== undefined && object.encryptedTxArray !== null
-        ? EncryptedTxArray.fromPartial(object.encryptedTxArray)
-        : undefined;
+    message.encryptedTxArray = (object.encryptedTxArray !== undefined && object.encryptedTxArray !== null)
+      ? EncryptedTxArray.fromPartial(object.encryptedTxArray)
+      : undefined;
     return message;
   },
 };
@@ -588,12 +581,12 @@ export const QueryLatestHeightResponse = {
 };
 
 function createBaseQueryGetPepNonceRequest(): QueryGetPepNonceRequest {
-  return { address: '' };
+  return { address: "" };
 }
 
 export const QueryGetPepNonceRequest = {
   encode(message: QueryGetPepNonceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== '') {
+    if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
     return writer;
@@ -618,7 +611,7 @@ export const QueryGetPepNonceRequest = {
   },
 
   fromJSON(object: any): QueryGetPepNonceRequest {
-    return { address: isSet(object.address) ? String(object.address) : '' };
+    return { address: isSet(object.address) ? String(object.address) : "" };
   },
 
   toJSON(message: QueryGetPepNonceRequest): unknown {
@@ -629,7 +622,7 @@ export const QueryGetPepNonceRequest = {
 
   fromPartial<I extends Exact<DeepPartial<QueryGetPepNonceRequest>, I>>(object: I): QueryGetPepNonceRequest {
     const message = createBaseQueryGetPepNonceRequest();
-    message.address = object.address ?? '';
+    message.address = object.address ?? "";
     return message;
   },
 };
@@ -665,9 +658,7 @@ export const QueryGetPepNonceResponse = {
   },
 
   fromJSON(object: any): QueryGetPepNonceResponse {
-    return {
-      pepNonce: isSet(object.pepNonce) ? PepNonce.fromJSON(object.pepNonce) : undefined,
-    };
+    return { pepNonce: isSet(object.pepNonce) ? PepNonce.fromJSON(object.pepNonce) : undefined };
   },
 
   toJSON(message: QueryGetPepNonceResponse): unknown {
@@ -678,8 +669,9 @@ export const QueryGetPepNonceResponse = {
 
   fromPartial<I extends Exact<DeepPartial<QueryGetPepNonceResponse>, I>>(object: I): QueryGetPepNonceResponse {
     const message = createBaseQueryGetPepNonceResponse();
-    message.pepNonce =
-      object.pepNonce !== undefined && object.pepNonce !== null ? PepNonce.fromPartial(object.pepNonce) : undefined;
+    message.pepNonce = (object.pepNonce !== undefined && object.pepNonce !== null)
+      ? PepNonce.fromPartial(object.pepNonce)
+      : undefined;
     return message;
   },
 };
@@ -715,24 +707,21 @@ export const QueryAllPepNonceRequest = {
   },
 
   fromJSON(object: any): QueryAllPepNonceRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
-    };
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
   },
 
   toJSON(message: QueryAllPepNonceRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAllPepNonceRequest>, I>>(object: I): QueryAllPepNonceRequest {
     const message = createBaseQueryAllPepNonceRequest();
-    message.pagination =
-      object.pagination !== undefined && object.pagination !== null
-        ? PageRequest.fromPartial(object.pagination)
-        : undefined;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
     return message;
   },
 };
@@ -783,22 +772,21 @@ export const QueryAllPepNonceResponse = {
   toJSON(message: QueryAllPepNonceResponse): unknown {
     const obj: any = {};
     if (message.pepNonce) {
-      obj.pepNonce = message.pepNonce.map((e) => (e ? PepNonce.toJSON(e) : undefined));
+      obj.pepNonce = message.pepNonce.map((e) => e ? PepNonce.toJSON(e) : undefined);
     } else {
       obj.pepNonce = [];
     }
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAllPepNonceResponse>, I>>(object: I): QueryAllPepNonceResponse {
     const message = createBaseQueryAllPepNonceResponse();
     message.pepNonce = object.pepNonce?.map((e) => PepNonce.fromPartial(e)) || [];
-    message.pagination =
-      object.pagination !== undefined && object.pagination !== null
-        ? PageResponse.fromPartial(object.pagination)
-        : undefined;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
     return message;
   },
 };
@@ -887,23 +875,21 @@ export const QueryPubKeyResponse = {
 
   toJSON(message: QueryPubKeyResponse): unknown {
     const obj: any = {};
-    message.activePubKey !== undefined &&
-      (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
-    message.queuedPubKey !== undefined &&
-      (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
+    message.activePubKey !== undefined
+      && (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
+    message.queuedPubKey !== undefined
+      && (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryPubKeyResponse>, I>>(object: I): QueryPubKeyResponse {
     const message = createBaseQueryPubKeyResponse();
-    message.activePubKey =
-      object.activePubKey !== undefined && object.activePubKey !== null
-        ? ActivePubKey.fromPartial(object.activePubKey)
-        : undefined;
-    message.queuedPubKey =
-      object.queuedPubKey !== undefined && object.queuedPubKey !== null
-        ? QueuedPubKey.fromPartial(object.queuedPubKey)
-        : undefined;
+    message.activePubKey = (object.activePubKey !== undefined && object.activePubKey !== null)
+      ? ActivePubKey.fromPartial(object.activePubKey)
+      : undefined;
+    message.queuedPubKey = (object.queuedPubKey !== undefined && object.queuedPubKey !== null)
+      ? QueuedPubKey.fromPartial(object.queuedPubKey)
+      : undefined;
     return message;
   },
 };
@@ -918,7 +904,7 @@ export interface Query {
   EncryptedTxAll(request: QueryAllEncryptedTxRequest): Promise<QueryAllEncryptedTxResponse>;
   /** Queries a list of EncryptedTx items. */
   EncryptedTxAllFromHeight(
-    request: QueryAllEncryptedTxFromHeightRequest
+    request: QueryAllEncryptedTxFromHeightRequest,
   ): Promise<QueryAllEncryptedTxFromHeightResponse>;
   /** Queries a list of LatestHeight items. */
   LatestHeight(request: QueryLatestHeightRequest): Promise<QueryLatestHeightResponse>;
@@ -945,51 +931,51 @@ export class QueryClientImpl implements Query {
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request('fairyring.pep.Query', 'Params', data);
+    const promise = this.rpc.request("fairyring.pep.Query", "Params", data);
     return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
   }
 
   EncryptedTx(request: QueryGetEncryptedTxRequest): Promise<QueryGetEncryptedTxResponse> {
     const data = QueryGetEncryptedTxRequest.encode(request).finish();
-    const promise = this.rpc.request('fairyring.pep.Query', 'EncryptedTx', data);
+    const promise = this.rpc.request("fairyring.pep.Query", "EncryptedTx", data);
     return promise.then((data) => QueryGetEncryptedTxResponse.decode(new _m0.Reader(data)));
   }
 
   EncryptedTxAll(request: QueryAllEncryptedTxRequest): Promise<QueryAllEncryptedTxResponse> {
     const data = QueryAllEncryptedTxRequest.encode(request).finish();
-    const promise = this.rpc.request('fairyring.pep.Query', 'EncryptedTxAll', data);
+    const promise = this.rpc.request("fairyring.pep.Query", "EncryptedTxAll", data);
     return promise.then((data) => QueryAllEncryptedTxResponse.decode(new _m0.Reader(data)));
   }
 
   EncryptedTxAllFromHeight(
-    request: QueryAllEncryptedTxFromHeightRequest
+    request: QueryAllEncryptedTxFromHeightRequest,
   ): Promise<QueryAllEncryptedTxFromHeightResponse> {
     const data = QueryAllEncryptedTxFromHeightRequest.encode(request).finish();
-    const promise = this.rpc.request('fairyring.pep.Query', 'EncryptedTxAllFromHeight', data);
+    const promise = this.rpc.request("fairyring.pep.Query", "EncryptedTxAllFromHeight", data);
     return promise.then((data) => QueryAllEncryptedTxFromHeightResponse.decode(new _m0.Reader(data)));
   }
 
   LatestHeight(request: QueryLatestHeightRequest): Promise<QueryLatestHeightResponse> {
     const data = QueryLatestHeightRequest.encode(request).finish();
-    const promise = this.rpc.request('fairyring.pep.Query', 'LatestHeight', data);
+    const promise = this.rpc.request("fairyring.pep.Query", "LatestHeight", data);
     return promise.then((data) => QueryLatestHeightResponse.decode(new _m0.Reader(data)));
   }
 
   PepNonce(request: QueryGetPepNonceRequest): Promise<QueryGetPepNonceResponse> {
     const data = QueryGetPepNonceRequest.encode(request).finish();
-    const promise = this.rpc.request('fairyring.pep.Query', 'PepNonce', data);
+    const promise = this.rpc.request("fairyring.pep.Query", "PepNonce", data);
     return promise.then((data) => QueryGetPepNonceResponse.decode(new _m0.Reader(data)));
   }
 
   PepNonceAll(request: QueryAllPepNonceRequest): Promise<QueryAllPepNonceResponse> {
     const data = QueryAllPepNonceRequest.encode(request).finish();
-    const promise = this.rpc.request('fairyring.pep.Query', 'PepNonceAll', data);
+    const promise = this.rpc.request("fairyring.pep.Query", "PepNonceAll", data);
     return promise.then((data) => QueryAllPepNonceResponse.decode(new _m0.Reader(data)));
   }
 
   PubKey(request: QueryPubKeyRequest): Promise<QueryPubKeyResponse> {
     const data = QueryPubKeyRequest.encode(request).finish();
-    const promise = this.rpc.request('fairyring.pep.Query', 'PubKey', data);
+    const promise = this.rpc.request("fairyring.pep.Query", "PubKey", data);
     return promise.then((data) => QueryPubKeyResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -1002,43 +988,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

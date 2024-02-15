@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { Class, NFT } from './nft';
+import _m0 from "protobufjs/minimal";
+import { Class, NFT } from "./nft";
 
-export const protobufPackage = 'cosmos.nft.v1beta1';
+export const protobufPackage = "cosmos.nft.v1beta1";
 
 /** GenesisState defines the nft module's genesis state. */
 export interface GenesisState {
@@ -66,12 +66,12 @@ export const GenesisState = {
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     if (message.classes) {
-      obj.classes = message.classes.map((e) => (e ? Class.toJSON(e) : undefined));
+      obj.classes = message.classes.map((e) => e ? Class.toJSON(e) : undefined);
     } else {
       obj.classes = [];
     }
     if (message.entries) {
-      obj.entries = message.entries.map((e) => (e ? Entry.toJSON(e) : undefined));
+      obj.entries = message.entries.map((e) => e ? Entry.toJSON(e) : undefined);
     } else {
       obj.entries = [];
     }
@@ -87,12 +87,12 @@ export const GenesisState = {
 };
 
 function createBaseEntry(): Entry {
-  return { owner: '', nfts: [] };
+  return { owner: "", nfts: [] };
 }
 
 export const Entry = {
   encode(message: Entry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.owner !== '') {
+    if (message.owner !== "") {
       writer.uint32(10).string(message.owner);
     }
     for (const v of message.nfts) {
@@ -124,7 +124,7 @@ export const Entry = {
 
   fromJSON(object: any): Entry {
     return {
-      owner: isSet(object.owner) ? String(object.owner) : '',
+      owner: isSet(object.owner) ? String(object.owner) : "",
       nfts: Array.isArray(object?.nfts) ? object.nfts.map((e: any) => NFT.fromJSON(e)) : [],
     };
   },
@@ -133,7 +133,7 @@ export const Entry = {
     const obj: any = {};
     message.owner !== undefined && (obj.owner = message.owner);
     if (message.nfts) {
-      obj.nfts = message.nfts.map((e) => (e ? NFT.toJSON(e) : undefined));
+      obj.nfts = message.nfts.map((e) => e ? NFT.toJSON(e) : undefined);
     } else {
       obj.nfts = [];
     }
@@ -142,7 +142,7 @@ export const Entry = {
 
   fromPartial<I extends Exact<DeepPartial<Entry>, I>>(object: I): Entry {
     const message = createBaseEntry();
-    message.owner = object.owner ?? '';
+    message.owner = object.owner ?? "";
     message.nfts = object.nfts?.map((e) => NFT.fromPartial(e)) || [];
     return message;
   },
@@ -150,22 +150,14 @@ export const Entry = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

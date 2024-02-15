@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { Coin } from '../../../../cosmos/base/v1beta1/coin';
+import _m0 from "protobufjs/minimal";
+import { Coin } from "../../../../cosmos/base/v1beta1/coin";
 
-export const protobufPackage = 'ibc.applications.transfer.v1';
+export const protobufPackage = "ibc.applications.transfer.v1";
 
 /** Allocation defines the spend limit for a particular port and channel */
 export interface Allocation {
@@ -26,15 +26,15 @@ export interface TransferAuthorization {
 }
 
 function createBaseAllocation(): Allocation {
-  return { sourcePort: '', sourceChannel: '', spendLimit: [], allowList: [] };
+  return { sourcePort: "", sourceChannel: "", spendLimit: [], allowList: [] };
 }
 
 export const Allocation = {
   encode(message: Allocation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.sourcePort !== '') {
+    if (message.sourcePort !== "") {
       writer.uint32(10).string(message.sourcePort);
     }
-    if (message.sourceChannel !== '') {
+    if (message.sourceChannel !== "") {
       writer.uint32(18).string(message.sourceChannel);
     }
     for (const v of message.spendLimit) {
@@ -75,8 +75,8 @@ export const Allocation = {
 
   fromJSON(object: any): Allocation {
     return {
-      sourcePort: isSet(object.sourcePort) ? String(object.sourcePort) : '',
-      sourceChannel: isSet(object.sourceChannel) ? String(object.sourceChannel) : '',
+      sourcePort: isSet(object.sourcePort) ? String(object.sourcePort) : "",
+      sourceChannel: isSet(object.sourceChannel) ? String(object.sourceChannel) : "",
       spendLimit: Array.isArray(object?.spendLimit) ? object.spendLimit.map((e: any) => Coin.fromJSON(e)) : [],
       allowList: Array.isArray(object?.allowList) ? object.allowList.map((e: any) => String(e)) : [],
     };
@@ -87,7 +87,7 @@ export const Allocation = {
     message.sourcePort !== undefined && (obj.sourcePort = message.sourcePort);
     message.sourceChannel !== undefined && (obj.sourceChannel = message.sourceChannel);
     if (message.spendLimit) {
-      obj.spendLimit = message.spendLimit.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.spendLimit = message.spendLimit.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.spendLimit = [];
     }
@@ -101,8 +101,8 @@ export const Allocation = {
 
   fromPartial<I extends Exact<DeepPartial<Allocation>, I>>(object: I): Allocation {
     const message = createBaseAllocation();
-    message.sourcePort = object.sourcePort ?? '';
-    message.sourceChannel = object.sourceChannel ?? '';
+    message.sourcePort = object.sourcePort ?? "";
+    message.sourceChannel = object.sourceChannel ?? "";
     message.spendLimit = object.spendLimit?.map((e) => Coin.fromPartial(e)) || [];
     message.allowList = object.allowList?.map((e) => e) || [];
     return message;
@@ -148,7 +148,7 @@ export const TransferAuthorization = {
   toJSON(message: TransferAuthorization): unknown {
     const obj: any = {};
     if (message.allocations) {
-      obj.allocations = message.allocations.map((e) => (e ? Allocation.toJSON(e) : undefined));
+      obj.allocations = message.allocations.map((e) => e ? Allocation.toJSON(e) : undefined);
     } else {
       obj.allocations = [];
     }
@@ -164,22 +164,14 @@ export const TransferAuthorization = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

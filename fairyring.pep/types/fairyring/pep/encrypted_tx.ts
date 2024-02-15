@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Coin } from '../../cosmos/base/v1beta1/coin';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Coin } from "../../cosmos/base/v1beta1/coin";
 
-export const protobufPackage = 'fairyring.pep';
+export const protobufPackage = "fairyring.pep";
 
 export interface EncryptedTx {
   targetHeight: number;
@@ -18,13 +18,7 @@ export interface EncryptedTxArray {
 }
 
 function createBaseEncryptedTx(): EncryptedTx {
-  return {
-    targetHeight: 0,
-    index: 0,
-    data: '',
-    creator: '',
-    chargedGas: undefined,
-  };
+  return { targetHeight: 0, index: 0, data: "", creator: "", chargedGas: undefined };
 }
 
 export const EncryptedTx = {
@@ -35,10 +29,10 @@ export const EncryptedTx = {
     if (message.index !== 0) {
       writer.uint32(16).uint64(message.index);
     }
-    if (message.data !== '') {
+    if (message.data !== "") {
       writer.uint32(26).string(message.data);
     }
-    if (message.creator !== '') {
+    if (message.creator !== "") {
       writer.uint32(34).string(message.creator);
     }
     if (message.chargedGas !== undefined) {
@@ -81,8 +75,8 @@ export const EncryptedTx = {
     return {
       targetHeight: isSet(object.targetHeight) ? Number(object.targetHeight) : 0,
       index: isSet(object.index) ? Number(object.index) : 0,
-      data: isSet(object.data) ? String(object.data) : '',
-      creator: isSet(object.creator) ? String(object.creator) : '',
+      data: isSet(object.data) ? String(object.data) : "",
+      creator: isSet(object.creator) ? String(object.creator) : "",
       chargedGas: isSet(object.chargedGas) ? Coin.fromJSON(object.chargedGas) : undefined,
     };
   },
@@ -93,8 +87,8 @@ export const EncryptedTx = {
     message.index !== undefined && (obj.index = Math.round(message.index));
     message.data !== undefined && (obj.data = message.data);
     message.creator !== undefined && (obj.creator = message.creator);
-    message.chargedGas !== undefined &&
-      (obj.chargedGas = message.chargedGas ? Coin.toJSON(message.chargedGas) : undefined);
+    message.chargedGas !== undefined
+      && (obj.chargedGas = message.chargedGas ? Coin.toJSON(message.chargedGas) : undefined);
     return obj;
   },
 
@@ -102,10 +96,11 @@ export const EncryptedTx = {
     const message = createBaseEncryptedTx();
     message.targetHeight = object.targetHeight ?? 0;
     message.index = object.index ?? 0;
-    message.data = object.data ?? '';
-    message.creator = object.creator ?? '';
-    message.chargedGas =
-      object.chargedGas !== undefined && object.chargedGas !== null ? Coin.fromPartial(object.chargedGas) : undefined;
+    message.data = object.data ?? "";
+    message.creator = object.creator ?? "";
+    message.chargedGas = (object.chargedGas !== undefined && object.chargedGas !== null)
+      ? Coin.fromPartial(object.chargedGas)
+      : undefined;
     return message;
   },
 };
@@ -151,7 +146,7 @@ export const EncryptedTxArray = {
   toJSON(message: EncryptedTxArray): unknown {
     const obj: any = {};
     if (message.encryptedTx) {
-      obj.encryptedTx = message.encryptedTx.map((e) => (e ? EncryptedTx.toJSON(e) : undefined));
+      obj.encryptedTx = message.encryptedTx.map((e) => e ? EncryptedTx.toJSON(e) : undefined);
     } else {
       obj.encryptedTx = [];
     }
@@ -169,43 +164,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

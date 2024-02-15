@@ -1,7 +1,8 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = 'fairyring.keyshare';
+export const protobufPackage = "fairyring.keyshare";
 
 export interface KeysharePacketData {
   noData: NoData | undefined;
@@ -10,7 +11,8 @@ export interface KeysharePacketData {
   aggrKeyshareDataPacket: AggrKeyshareDataPacketData | undefined;
 }
 
-export interface NoData {}
+export interface NoData {
+}
 
 /** RequestAggrKeysharePacketData defines a struct for the packet payload */
 export interface RequestAggrKeysharePacketData {
@@ -29,7 +31,8 @@ export interface GetAggrKeysharePacketData {
 }
 
 /** GetAggrKeysharePacketAck defines a struct for the packet acknowledgment */
-export interface GetAggrKeysharePacketAck {}
+export interface GetAggrKeysharePacketAck {
+}
 
 /** AggrKeyshareDataPacketData defines a struct for the packet payload */
 export interface AggrKeyshareDataPacketData {
@@ -38,10 +41,12 @@ export interface AggrKeyshareDataPacketData {
   aggrKeyshare: string;
   aggrHeight: string;
   proposalId: string;
+  retries: number;
 }
 
 /** AggrKeyshareDataPacketAck defines a struct for the packet acknowledgment */
-export interface AggrKeyshareDataPacketAck {}
+export interface AggrKeyshareDataPacketAck {
+}
 
 function createBaseKeysharePacketData(): KeysharePacketData {
   return {
@@ -114,35 +119,34 @@ export const KeysharePacketData = {
   toJSON(message: KeysharePacketData): unknown {
     const obj: any = {};
     message.noData !== undefined && (obj.noData = message.noData ? NoData.toJSON(message.noData) : undefined);
-    message.requestAggrKeysharePacket !== undefined &&
-      (obj.requestAggrKeysharePacket = message.requestAggrKeysharePacket
+    message.requestAggrKeysharePacket !== undefined
+      && (obj.requestAggrKeysharePacket = message.requestAggrKeysharePacket
         ? RequestAggrKeysharePacketData.toJSON(message.requestAggrKeysharePacket)
         : undefined);
-    message.getAggrKeysharePacket !== undefined &&
-      (obj.getAggrKeysharePacket = message.getAggrKeysharePacket
-        ? GetAggrKeysharePacketData.toJSON(message.getAggrKeysharePacket)
-        : undefined);
-    message.aggrKeyshareDataPacket !== undefined &&
-      (obj.aggrKeyshareDataPacket = message.aggrKeyshareDataPacket
-        ? AggrKeyshareDataPacketData.toJSON(message.aggrKeyshareDataPacket)
-        : undefined);
+    message.getAggrKeysharePacket !== undefined && (obj.getAggrKeysharePacket = message.getAggrKeysharePacket
+      ? GetAggrKeysharePacketData.toJSON(message.getAggrKeysharePacket)
+      : undefined);
+    message.aggrKeyshareDataPacket !== undefined && (obj.aggrKeyshareDataPacket = message.aggrKeyshareDataPacket
+      ? AggrKeyshareDataPacketData.toJSON(message.aggrKeyshareDataPacket)
+      : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<KeysharePacketData>, I>>(object: I): KeysharePacketData {
     const message = createBaseKeysharePacketData();
-    message.noData =
-      object.noData !== undefined && object.noData !== null ? NoData.fromPartial(object.noData) : undefined;
+    message.noData = (object.noData !== undefined && object.noData !== null)
+      ? NoData.fromPartial(object.noData)
+      : undefined;
     message.requestAggrKeysharePacket =
-      object.requestAggrKeysharePacket !== undefined && object.requestAggrKeysharePacket !== null
+      (object.requestAggrKeysharePacket !== undefined && object.requestAggrKeysharePacket !== null)
         ? RequestAggrKeysharePacketData.fromPartial(object.requestAggrKeysharePacket)
         : undefined;
     message.getAggrKeysharePacket =
-      object.getAggrKeysharePacket !== undefined && object.getAggrKeysharePacket !== null
+      (object.getAggrKeysharePacket !== undefined && object.getAggrKeysharePacket !== null)
         ? GetAggrKeysharePacketData.fromPartial(object.getAggrKeysharePacket)
         : undefined;
     message.aggrKeyshareDataPacket =
-      object.aggrKeyshareDataPacket !== undefined && object.aggrKeyshareDataPacket !== null
+      (object.aggrKeyshareDataPacket !== undefined && object.aggrKeyshareDataPacket !== null)
         ? AggrKeyshareDataPacketData.fromPartial(object.aggrKeyshareDataPacket)
         : undefined;
     return message;
@@ -189,12 +193,12 @@ export const NoData = {
 };
 
 function createBaseRequestAggrKeysharePacketData(): RequestAggrKeysharePacketData {
-  return { proposalId: '' };
+  return { proposalId: "" };
 }
 
 export const RequestAggrKeysharePacketData = {
   encode(message: RequestAggrKeysharePacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.proposalId !== '') {
+    if (message.proposalId !== "") {
       writer.uint32(10).string(message.proposalId);
     }
     return writer;
@@ -219,9 +223,7 @@ export const RequestAggrKeysharePacketData = {
   },
 
   fromJSON(object: any): RequestAggrKeysharePacketData {
-    return {
-      proposalId: isSet(object.proposalId) ? String(object.proposalId) : '',
-    };
+    return { proposalId: isSet(object.proposalId) ? String(object.proposalId) : "" };
   },
 
   toJSON(message: RequestAggrKeysharePacketData): unknown {
@@ -231,24 +233,24 @@ export const RequestAggrKeysharePacketData = {
   },
 
   fromPartial<I extends Exact<DeepPartial<RequestAggrKeysharePacketData>, I>>(
-    object: I
+    object: I,
   ): RequestAggrKeysharePacketData {
     const message = createBaseRequestAggrKeysharePacketData();
-    message.proposalId = object.proposalId ?? '';
+    message.proposalId = object.proposalId ?? "";
     return message;
   },
 };
 
 function createBaseRequestAggrKeysharePacketAck(): RequestAggrKeysharePacketAck {
-  return { identity: '', pubkey: '' };
+  return { identity: "", pubkey: "" };
 }
 
 export const RequestAggrKeysharePacketAck = {
   encode(message: RequestAggrKeysharePacketAck, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.identity !== '') {
+    if (message.identity !== "") {
       writer.uint32(10).string(message.identity);
     }
-    if (message.pubkey !== '') {
+    if (message.pubkey !== "") {
       writer.uint32(18).string(message.pubkey);
     }
     return writer;
@@ -277,8 +279,8 @@ export const RequestAggrKeysharePacketAck = {
 
   fromJSON(object: any): RequestAggrKeysharePacketAck {
     return {
-      identity: isSet(object.identity) ? String(object.identity) : '',
-      pubkey: isSet(object.pubkey) ? String(object.pubkey) : '',
+      identity: isSet(object.identity) ? String(object.identity) : "",
+      pubkey: isSet(object.pubkey) ? String(object.pubkey) : "",
     };
   },
 
@@ -291,19 +293,19 @@ export const RequestAggrKeysharePacketAck = {
 
   fromPartial<I extends Exact<DeepPartial<RequestAggrKeysharePacketAck>, I>>(object: I): RequestAggrKeysharePacketAck {
     const message = createBaseRequestAggrKeysharePacketAck();
-    message.identity = object.identity ?? '';
-    message.pubkey = object.pubkey ?? '';
+    message.identity = object.identity ?? "";
+    message.pubkey = object.pubkey ?? "";
     return message;
   },
 };
 
 function createBaseGetAggrKeysharePacketData(): GetAggrKeysharePacketData {
-  return { identity: '' };
+  return { identity: "" };
 }
 
 export const GetAggrKeysharePacketData = {
   encode(message: GetAggrKeysharePacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.identity !== '') {
+    if (message.identity !== "") {
       writer.uint32(10).string(message.identity);
     }
     return writer;
@@ -328,7 +330,7 @@ export const GetAggrKeysharePacketData = {
   },
 
   fromJSON(object: any): GetAggrKeysharePacketData {
-    return { identity: isSet(object.identity) ? String(object.identity) : '' };
+    return { identity: isSet(object.identity) ? String(object.identity) : "" };
   },
 
   toJSON(message: GetAggrKeysharePacketData): unknown {
@@ -339,7 +341,7 @@ export const GetAggrKeysharePacketData = {
 
   fromPartial<I extends Exact<DeepPartial<GetAggrKeysharePacketData>, I>>(object: I): GetAggrKeysharePacketData {
     const message = createBaseGetAggrKeysharePacketData();
-    message.identity = object.identity ?? '';
+    message.identity = object.identity ?? "";
     return message;
   },
 };
@@ -384,31 +386,28 @@ export const GetAggrKeysharePacketAck = {
 };
 
 function createBaseAggrKeyshareDataPacketData(): AggrKeyshareDataPacketData {
-  return {
-    identity: '',
-    pubkey: '',
-    aggrKeyshare: '',
-    aggrHeight: '',
-    proposalId: '',
-  };
+  return { identity: "", pubkey: "", aggrKeyshare: "", aggrHeight: "", proposalId: "", retries: 0 };
 }
 
 export const AggrKeyshareDataPacketData = {
   encode(message: AggrKeyshareDataPacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.identity !== '') {
+    if (message.identity !== "") {
       writer.uint32(10).string(message.identity);
     }
-    if (message.pubkey !== '') {
+    if (message.pubkey !== "") {
       writer.uint32(18).string(message.pubkey);
     }
-    if (message.aggrKeyshare !== '') {
+    if (message.aggrKeyshare !== "") {
       writer.uint32(26).string(message.aggrKeyshare);
     }
-    if (message.aggrHeight !== '') {
+    if (message.aggrHeight !== "") {
       writer.uint32(34).string(message.aggrHeight);
     }
-    if (message.proposalId !== '') {
+    if (message.proposalId !== "") {
       writer.uint32(42).string(message.proposalId);
+    }
+    if (message.retries !== 0) {
+      writer.uint32(48).uint64(message.retries);
     }
     return writer;
   },
@@ -435,6 +434,9 @@ export const AggrKeyshareDataPacketData = {
         case 5:
           message.proposalId = reader.string();
           break;
+        case 6:
+          message.retries = longToNumber(reader.uint64() as Long);
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -445,11 +447,12 @@ export const AggrKeyshareDataPacketData = {
 
   fromJSON(object: any): AggrKeyshareDataPacketData {
     return {
-      identity: isSet(object.identity) ? String(object.identity) : '',
-      pubkey: isSet(object.pubkey) ? String(object.pubkey) : '',
-      aggrKeyshare: isSet(object.aggrKeyshare) ? String(object.aggrKeyshare) : '',
-      aggrHeight: isSet(object.aggrHeight) ? String(object.aggrHeight) : '',
-      proposalId: isSet(object.proposalId) ? String(object.proposalId) : '',
+      identity: isSet(object.identity) ? String(object.identity) : "",
+      pubkey: isSet(object.pubkey) ? String(object.pubkey) : "",
+      aggrKeyshare: isSet(object.aggrKeyshare) ? String(object.aggrKeyshare) : "",
+      aggrHeight: isSet(object.aggrHeight) ? String(object.aggrHeight) : "",
+      proposalId: isSet(object.proposalId) ? String(object.proposalId) : "",
+      retries: isSet(object.retries) ? Number(object.retries) : 0,
     };
   },
 
@@ -460,16 +463,18 @@ export const AggrKeyshareDataPacketData = {
     message.aggrKeyshare !== undefined && (obj.aggrKeyshare = message.aggrKeyshare);
     message.aggrHeight !== undefined && (obj.aggrHeight = message.aggrHeight);
     message.proposalId !== undefined && (obj.proposalId = message.proposalId);
+    message.retries !== undefined && (obj.retries = Math.round(message.retries));
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<AggrKeyshareDataPacketData>, I>>(object: I): AggrKeyshareDataPacketData {
     const message = createBaseAggrKeyshareDataPacketData();
-    message.identity = object.identity ?? '';
-    message.pubkey = object.pubkey ?? '';
-    message.aggrKeyshare = object.aggrKeyshare ?? '';
-    message.aggrHeight = object.aggrHeight ?? '';
-    message.proposalId = object.proposalId ?? '';
+    message.identity = object.identity ?? "";
+    message.pubkey = object.pubkey ?? "";
+    message.aggrKeyshare = object.aggrKeyshare ?? "";
+    message.aggrHeight = object.aggrHeight ?? "";
+    message.proposalId = object.proposalId ?? "";
+    message.retries = object.retries ?? 0;
     return message;
   },
 };
@@ -513,24 +518,47 @@ export const AggrKeyshareDataPacketAck = {
   },
 };
 
+declare var self: any | undefined;
+declare var window: any | undefined;
+declare var global: any | undefined;
+var globalThis: any = (() => {
+  if (typeof globalThis !== "undefined") {
+    return globalThis;
+  }
+  if (typeof self !== "undefined") {
+    return self;
+  }
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  throw "Unable to locate global object";
+})();
+
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(long: Long): number {
+  if (long.gt(Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Timestamp } from '../../../google/protobuf/timestamp';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Timestamp } from "../../../google/protobuf/timestamp";
 
-export const protobufPackage = 'cosmos.evidence.v1beta1';
+export const protobufPackage = "cosmos.evidence.v1beta1";
 
 /**
  * Equivocation implements the Evidence interface and defines evidence of double
@@ -13,7 +13,9 @@ export interface Equivocation {
   /** height is the equivocation height. */
   height: number;
   /** time is the equivocation time. */
-  time: Date | undefined;
+  time:
+    | Date
+    | undefined;
   /** power is the equivocation validator power. */
   power: number;
   /** consensus_address is the equivocation validator consensus address. */
@@ -21,7 +23,7 @@ export interface Equivocation {
 }
 
 function createBaseEquivocation(): Equivocation {
-  return { height: 0, time: undefined, power: 0, consensusAddress: '' };
+  return { height: 0, time: undefined, power: 0, consensusAddress: "" };
 }
 
 export const Equivocation = {
@@ -35,7 +37,7 @@ export const Equivocation = {
     if (message.power !== 0) {
       writer.uint32(24).int64(message.power);
     }
-    if (message.consensusAddress !== '') {
+    if (message.consensusAddress !== "") {
       writer.uint32(34).string(message.consensusAddress);
     }
     return writer;
@@ -73,7 +75,7 @@ export const Equivocation = {
       height: isSet(object.height) ? Number(object.height) : 0,
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
       power: isSet(object.power) ? Number(object.power) : 0,
-      consensusAddress: isSet(object.consensusAddress) ? String(object.consensusAddress) : '',
+      consensusAddress: isSet(object.consensusAddress) ? String(object.consensusAddress) : "",
     };
   },
 
@@ -91,7 +93,7 @@ export const Equivocation = {
     message.height = object.height ?? 0;
     message.time = object.time ?? undefined;
     message.power = object.power ?? 0;
-    message.consensusAddress = object.consensusAddress ?? '';
+    message.consensusAddress = object.consensusAddress ?? "";
     return message;
   },
 };
@@ -100,39 +102,31 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;
@@ -149,7 +143,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === 'string') {
+  } else if (typeof o === "string") {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -158,7 +152,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

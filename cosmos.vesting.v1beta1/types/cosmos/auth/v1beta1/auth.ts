@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Any } from '../../../google/protobuf/any';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Any } from "../../../google/protobuf/any";
 
-export const protobufPackage = 'cosmos.auth.v1beta1';
+export const protobufPackage = "cosmos.auth.v1beta1";
 
 /**
  * BaseAccount defines a base account type. It contains all the necessary fields
@@ -49,12 +49,12 @@ export interface Params {
 }
 
 function createBaseBaseAccount(): BaseAccount {
-  return { address: '', pubKey: undefined, accountNumber: 0, sequence: 0 };
+  return { address: "", pubKey: undefined, accountNumber: 0, sequence: 0 };
 }
 
 export const BaseAccount = {
   encode(message: BaseAccount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== '') {
+    if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
     if (message.pubKey !== undefined) {
@@ -98,7 +98,7 @@ export const BaseAccount = {
 
   fromJSON(object: any): BaseAccount {
     return {
-      address: isSet(object.address) ? String(object.address) : '',
+      address: isSet(object.address) ? String(object.address) : "",
       pubKey: isSet(object.pubKey) ? Any.fromJSON(object.pubKey) : undefined,
       accountNumber: isSet(object.accountNumber) ? Number(object.accountNumber) : 0,
       sequence: isSet(object.sequence) ? Number(object.sequence) : 0,
@@ -116,8 +116,10 @@ export const BaseAccount = {
 
   fromPartial<I extends Exact<DeepPartial<BaseAccount>, I>>(object: I): BaseAccount {
     const message = createBaseBaseAccount();
-    message.address = object.address ?? '';
-    message.pubKey = object.pubKey !== undefined && object.pubKey !== null ? Any.fromPartial(object.pubKey) : undefined;
+    message.address = object.address ?? "";
+    message.pubKey = (object.pubKey !== undefined && object.pubKey !== null)
+      ? Any.fromPartial(object.pubKey)
+      : undefined;
     message.accountNumber = object.accountNumber ?? 0;
     message.sequence = object.sequence ?? 0;
     return message;
@@ -125,7 +127,7 @@ export const BaseAccount = {
 };
 
 function createBaseModuleAccount(): ModuleAccount {
-  return { baseAccount: undefined, name: '', permissions: [] };
+  return { baseAccount: undefined, name: "", permissions: [] };
 }
 
 export const ModuleAccount = {
@@ -133,7 +135,7 @@ export const ModuleAccount = {
     if (message.baseAccount !== undefined) {
       BaseAccount.encode(message.baseAccount, writer.uint32(10).fork()).ldelim();
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(18).string(message.name);
     }
     for (const v of message.permissions) {
@@ -169,15 +171,15 @@ export const ModuleAccount = {
   fromJSON(object: any): ModuleAccount {
     return {
       baseAccount: isSet(object.baseAccount) ? BaseAccount.fromJSON(object.baseAccount) : undefined,
-      name: isSet(object.name) ? String(object.name) : '',
+      name: isSet(object.name) ? String(object.name) : "",
       permissions: Array.isArray(object?.permissions) ? object.permissions.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: ModuleAccount): unknown {
     const obj: any = {};
-    message.baseAccount !== undefined &&
-      (obj.baseAccount = message.baseAccount ? BaseAccount.toJSON(message.baseAccount) : undefined);
+    message.baseAccount !== undefined
+      && (obj.baseAccount = message.baseAccount ? BaseAccount.toJSON(message.baseAccount) : undefined);
     message.name !== undefined && (obj.name = message.name);
     if (message.permissions) {
       obj.permissions = message.permissions.map((e) => e);
@@ -189,23 +191,22 @@ export const ModuleAccount = {
 
   fromPartial<I extends Exact<DeepPartial<ModuleAccount>, I>>(object: I): ModuleAccount {
     const message = createBaseModuleAccount();
-    message.baseAccount =
-      object.baseAccount !== undefined && object.baseAccount !== null
-        ? BaseAccount.fromPartial(object.baseAccount)
-        : undefined;
-    message.name = object.name ?? '';
+    message.baseAccount = (object.baseAccount !== undefined && object.baseAccount !== null)
+      ? BaseAccount.fromPartial(object.baseAccount)
+      : undefined;
+    message.name = object.name ?? "";
     message.permissions = object.permissions?.map((e) => e) || [];
     return message;
   },
 };
 
 function createBaseModuleCredential(): ModuleCredential {
-  return { moduleName: '', derivationKeys: [] };
+  return { moduleName: "", derivationKeys: [] };
 }
 
 export const ModuleCredential = {
   encode(message: ModuleCredential, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.moduleName !== '') {
+    if (message.moduleName !== "") {
       writer.uint32(10).string(message.moduleName);
     }
     for (const v of message.derivationKeys) {
@@ -237,7 +238,7 @@ export const ModuleCredential = {
 
   fromJSON(object: any): ModuleCredential {
     return {
-      moduleName: isSet(object.moduleName) ? String(object.moduleName) : '',
+      moduleName: isSet(object.moduleName) ? String(object.moduleName) : "",
       derivationKeys: Array.isArray(object?.derivationKeys)
         ? object.derivationKeys.map((e: any) => bytesFromBase64(e))
         : [],
@@ -257,7 +258,7 @@ export const ModuleCredential = {
 
   fromPartial<I extends Exact<DeepPartial<ModuleCredential>, I>>(object: I): ModuleCredential {
     const message = createBaseModuleCredential();
-    message.moduleName = object.moduleName ?? '';
+    message.moduleName = object.moduleName ?? "";
     message.derivationKeys = object.derivationKeys?.map((e) => e) || [];
     return message;
   },
@@ -339,8 +340,8 @@ export const Params = {
     message.txSigLimit !== undefined && (obj.txSigLimit = Math.round(message.txSigLimit));
     message.txSizeCostPerByte !== undefined && (obj.txSizeCostPerByte = Math.round(message.txSizeCostPerByte));
     message.sigVerifyCostEd25519 !== undefined && (obj.sigVerifyCostEd25519 = Math.round(message.sigVerifyCostEd25519));
-    message.sigVerifyCostSecp256k1 !== undefined &&
-      (obj.sigVerifyCostSecp256k1 = Math.round(message.sigVerifyCostSecp256k1));
+    message.sigVerifyCostSecp256k1 !== undefined
+      && (obj.sigVerifyCostSecp256k1 = Math.round(message.sigVerifyCostSecp256k1));
     return obj;
   },
 
@@ -359,24 +360,24 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, 'base64'));
+    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
   } else {
     const bin = globalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -389,38 +390,30 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString('base64');
+    return globalThis.Buffer.from(arr).toString("base64");
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return globalThis.btoa(bin.join(''));
+    return globalThis.btoa(bin.join(""));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

@@ -179,7 +179,7 @@ export interface ProtobufAny {
    * Schemes other than `http`, `https` (or the empty scheme) might be
    * used with implementation specific semantics.
    */
-  '@type'?: string;
+  "@type"?: string;
 }
 
 export interface RpcStatus {
@@ -227,10 +227,10 @@ export interface TypesBlockID {
 }
 
 export enum TypesBlockIDFlag {
-  BLOCK_ID_FLAG_UNKNOWN = 'BLOCK_ID_FLAG_UNKNOWN',
-  BLOCK_ID_FLAG_ABSENT = 'BLOCK_ID_FLAG_ABSENT',
-  BLOCK_ID_FLAG_COMMIT = 'BLOCK_ID_FLAG_COMMIT',
-  BLOCK_ID_FLAG_NIL = 'BLOCK_ID_FLAG_NIL',
+  BLOCK_ID_FLAG_UNKNOWN = "BLOCK_ID_FLAG_UNKNOWN",
+  BLOCK_ID_FLAG_ABSENT = "BLOCK_ID_FLAG_ABSENT",
+  BLOCK_ID_FLAG_COMMIT = "BLOCK_ID_FLAG_COMMIT",
+  BLOCK_ID_FLAG_NIL = "BLOCK_ID_FLAG_NIL",
 }
 
 /**
@@ -425,10 +425,10 @@ export interface TypesSignedHeader {
  - SIGNED_MSG_TYPE_PROPOSAL: Proposals
 */
 export enum TypesSignedMsgType {
-  SIGNED_MSG_TYPE_UNKNOWN = 'SIGNED_MSG_TYPE_UNKNOWN',
-  SIGNED_MSG_TYPE_PREVOTE = 'SIGNED_MSG_TYPE_PREVOTE',
-  SIGNED_MSG_TYPE_PRECOMMIT = 'SIGNED_MSG_TYPE_PRECOMMIT',
-  SIGNED_MSG_TYPE_PROPOSAL = 'SIGNED_MSG_TYPE_PROPOSAL',
+  SIGNED_MSG_TYPE_UNKNOWN = "SIGNED_MSG_TYPE_UNKNOWN",
+  SIGNED_MSG_TYPE_PREVOTE = "SIGNED_MSG_TYPE_PREVOTE",
+  SIGNED_MSG_TYPE_PRECOMMIT = "SIGNED_MSG_TYPE_PRECOMMIT",
+  SIGNED_MSG_TYPE_PROPOSAL = "SIGNED_MSG_TYPE_PROPOSAL",
 }
 
 export interface TypesValidatorSet {
@@ -541,10 +541,10 @@ a CheckTx execution response only.
 immediately.
 */
 export enum V1Beta1BroadcastMode {
-  BROADCAST_MODE_UNSPECIFIED = 'BROADCAST_MODE_UNSPECIFIED',
-  BROADCAST_MODE_BLOCK = 'BROADCAST_MODE_BLOCK',
-  BROADCAST_MODE_SYNC = 'BROADCAST_MODE_SYNC',
-  BROADCAST_MODE_ASYNC = 'BROADCAST_MODE_ASYNC',
+  BROADCAST_MODE_UNSPECIFIED = "BROADCAST_MODE_UNSPECIFIED",
+  BROADCAST_MODE_BLOCK = "BROADCAST_MODE_BLOCK",
+  BROADCAST_MODE_SYNC = "BROADCAST_MODE_SYNC",
+  BROADCAST_MODE_ASYNC = "BROADCAST_MODE_ASYNC",
 }
 
 /**
@@ -775,9 +775,9 @@ export interface V1Beta1ModeInfoSingle {
  - ORDER_BY_DESC: ORDER_BY_DESC defines descending order
 */
 export enum V1Beta1OrderBy {
-  ORDER_BY_UNSPECIFIED = 'ORDER_BY_UNSPECIFIED',
-  ORDER_BY_ASC = 'ORDER_BY_ASC',
-  ORDER_BY_DESC = 'ORDER_BY_DESC',
+  ORDER_BY_UNSPECIFIED = "ORDER_BY_UNSPECIFIED",
+  ORDER_BY_ASC = "ORDER_BY_ASC",
+  ORDER_BY_DESC = "ORDER_BY_DESC",
 }
 
 /**
@@ -889,12 +889,12 @@ EIP-191 in the future.
 Since: cosmos-sdk 0.45.2
 */
 export enum V1Beta1SignMode {
-  SIGN_MODE_UNSPECIFIED = 'SIGN_MODE_UNSPECIFIED',
-  SIGN_MODE_DIRECT = 'SIGN_MODE_DIRECT',
-  SIGN_MODE_TEXTUAL = 'SIGN_MODE_TEXTUAL',
-  SIGN_MODE_DIRECT_AUX = 'SIGN_MODE_DIRECT_AUX',
-  SIGN_MODE_LEGACY_AMINO_JSON = 'SIGN_MODE_LEGACY_AMINO_JSON',
-  SIGNMODEEIP191 = 'SIGN_MODE_EIP_191',
+  SIGN_MODE_UNSPECIFIED = "SIGN_MODE_UNSPECIFIED",
+  SIGN_MODE_DIRECT = "SIGN_MODE_DIRECT",
+  SIGN_MODE_TEXTUAL = "SIGN_MODE_TEXTUAL",
+  SIGN_MODE_DIRECT_AUX = "SIGN_MODE_DIRECT_AUX",
+  SIGN_MODE_LEGACY_AMINO_JSON = "SIGN_MODE_LEGACY_AMINO_JSON",
+  SIGNMODEEIP191 = "SIGN_MODE_EIP_191",
 }
 
 /**
@@ -1225,11 +1225,11 @@ export interface VersionConsensus {
   app?: string;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -1244,34 +1244,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
+export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
   securityWorker?: (
-    securityData: SecurityDataType | null
+    securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = 'application/json',
-  FormData = 'multipart/form-data',
-  UrlEncoded = 'application/x-www-form-urlencoded',
+  Json = "application/json",
+  FormData = "multipart/form-data",
+  UrlEncoded = "application/x-www-form-urlencoded",
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
+  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({
-      ...axiosConfig,
-      baseURL: axiosConfig.baseURL || '',
-    });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -1301,9 +1298,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === 'object' && property !== null
-            ? JSON.stringify(property)
-            : `${property}`
+          : typeof property === "object" && property !== null
+          ? JSON.stringify(property)
+          : `${property}`,
       );
       return formData;
     }, new FormData());
@@ -1319,15 +1316,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === 'boolean' ? secure : this.secure) &&
+      ((typeof secure === "boolean" ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
-      requestParams.headers.common = { Accept: '*/*' };
+    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
+      requestParams.headers.common = { Accept: "*/*" };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -1337,7 +1334,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
+        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -1364,10 +1361,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceTxDecode = (body: V1Beta1TxDecodeRequest, params: RequestParams = {}) =>
     this.request<V1Beta1TxDecodeResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/decode`,
-      method: 'POST',
+      method: "POST",
       body: body,
       type: ContentType.Json,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1382,10 +1379,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceTxDecodeAmino = (body: V1Beta1TxDecodeAminoRequest, params: RequestParams = {}) =>
     this.request<V1Beta1TxDecodeAminoResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/decode/amino`,
-      method: 'POST',
+      method: "POST",
       body: body,
       type: ContentType.Json,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1400,10 +1397,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceTxEncode = (body: V1Beta1TxEncodeRequest, params: RequestParams = {}) =>
     this.request<V1Beta1TxEncodeResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/encode`,
-      method: 'POST',
+      method: "POST",
       body: body,
       type: ContentType.Json,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1418,10 +1415,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceTxEncodeAmino = (body: V1Beta1TxEncodeAminoRequest, params: RequestParams = {}) =>
     this.request<V1Beta1TxEncodeAminoResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/encode/amino`,
-      method: 'POST',
+      method: "POST",
       body: body,
       type: ContentType.Json,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1436,10 +1433,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceSimulate = (body: V1Beta1SimulateRequest, params: RequestParams = {}) =>
     this.request<V1Beta1SimulateResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/simulate`,
-      method: 'POST',
+      method: "POST",
       body: body,
       type: ContentType.Json,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1454,22 +1451,22 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceGetTxsEvent = (
     query?: {
       events?: string[];
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
-      order_by?: 'ORDER_BY_UNSPECIFIED' | 'ORDER_BY_ASC' | 'ORDER_BY_DESC';
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+      order_by?: "ORDER_BY_UNSPECIFIED" | "ORDER_BY_ASC" | "ORDER_BY_DESC";
       page?: string;
       limit?: string;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1GetTxsEventResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1484,10 +1481,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceBroadcastTx = (body: V1Beta1BroadcastTxRequest, params: RequestParams = {}) =>
     this.request<V1Beta1BroadcastTxResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs`,
-      method: 'POST',
+      method: "POST",
       body: body,
       type: ContentType.Json,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1502,19 +1499,19 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceGetBlockWithTxs = (
     height: string,
     query?: {
-      'pagination.key'?: string;
-      'pagination.offset'?: string;
-      'pagination.limit'?: string;
-      'pagination.count_total'?: boolean;
-      'pagination.reverse'?: boolean;
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
     },
-    params: RequestParams = {}
+    params: RequestParams = {},
   ) =>
     this.request<V1Beta1GetBlockWithTxsResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs/block/${height}`,
-      method: 'GET',
+      method: "GET",
       query: query,
-      format: 'json',
+      format: "json",
       ...params,
     });
 
@@ -1529,8 +1526,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceGetTx = (hash: string, params: RequestParams = {}) =>
     this.request<V1Beta1GetTxResponse, RpcStatus>({
       path: `/cosmos/tx/v1beta1/txs/${hash}`,
-      method: 'GET',
-      format: 'json',
+      method: "GET",
+      format: "json",
       ...params,
     });
 }

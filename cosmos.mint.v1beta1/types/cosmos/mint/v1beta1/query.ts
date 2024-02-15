@@ -1,11 +1,12 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { Params } from './mint';
+import _m0 from "protobufjs/minimal";
+import { Params } from "./mint";
 
-export const protobufPackage = 'cosmos.mint.v1beta1';
+export const protobufPackage = "cosmos.mint.v1beta1";
 
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
-export interface QueryParamsRequest {}
+export interface QueryParamsRequest {
+}
 
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 export interface QueryParamsResponse {
@@ -14,7 +15,8 @@ export interface QueryParamsResponse {
 }
 
 /** QueryInflationRequest is the request type for the Query/Inflation RPC method. */
-export interface QueryInflationRequest {}
+export interface QueryInflationRequest {
+}
 
 /**
  * QueryInflationResponse is the response type for the Query/Inflation RPC
@@ -29,7 +31,8 @@ export interface QueryInflationResponse {
  * QueryAnnualProvisionsRequest is the request type for the
  * Query/AnnualProvisions RPC method.
  */
-export interface QueryAnnualProvisionsRequest {}
+export interface QueryAnnualProvisionsRequest {
+}
 
 /**
  * QueryAnnualProvisionsResponse is the response type for the
@@ -110,9 +113,7 @@ export const QueryParamsResponse = {
   },
 
   fromJSON(object: any): QueryParamsResponse {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-    };
+    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
   },
 
   toJSON(message: QueryParamsResponse): unknown {
@@ -123,8 +124,9 @@ export const QueryParamsResponse = {
 
   fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
-    message.params =
-      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
     return message;
   },
 };
@@ -199,15 +201,13 @@ export const QueryInflationResponse = {
   },
 
   fromJSON(object: any): QueryInflationResponse {
-    return {
-      inflation: isSet(object.inflation) ? bytesFromBase64(object.inflation) : new Uint8Array(),
-    };
+    return { inflation: isSet(object.inflation) ? bytesFromBase64(object.inflation) : new Uint8Array() };
   },
 
   toJSON(message: QueryInflationResponse): unknown {
     const obj: any = {};
-    message.inflation !== undefined &&
-      (obj.inflation = base64FromBytes(message.inflation !== undefined ? message.inflation : new Uint8Array()));
+    message.inflation !== undefined
+      && (obj.inflation = base64FromBytes(message.inflation !== undefined ? message.inflation : new Uint8Array()));
     return obj;
   },
 
@@ -295,15 +295,15 @@ export const QueryAnnualProvisionsResponse = {
 
   toJSON(message: QueryAnnualProvisionsResponse): unknown {
     const obj: any = {};
-    message.annualProvisions !== undefined &&
-      (obj.annualProvisions = base64FromBytes(
-        message.annualProvisions !== undefined ? message.annualProvisions : new Uint8Array()
+    message.annualProvisions !== undefined
+      && (obj.annualProvisions = base64FromBytes(
+        message.annualProvisions !== undefined ? message.annualProvisions : new Uint8Array(),
       ));
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAnnualProvisionsResponse>, I>>(
-    object: I
+    object: I,
   ): QueryAnnualProvisionsResponse {
     const message = createBaseQueryAnnualProvisionsResponse();
     message.annualProvisions = object.annualProvisions ?? new Uint8Array();
@@ -331,19 +331,19 @@ export class QueryClientImpl implements Query {
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.mint.v1beta1.Query', 'Params', data);
+    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "Params", data);
     return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
   }
 
   Inflation(request: QueryInflationRequest): Promise<QueryInflationResponse> {
     const data = QueryInflationRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.mint.v1beta1.Query', 'Inflation', data);
+    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "Inflation", data);
     return promise.then((data) => QueryInflationResponse.decode(new _m0.Reader(data)));
   }
 
   AnnualProvisions(request: QueryAnnualProvisionsRequest): Promise<QueryAnnualProvisionsResponse> {
     const data = QueryAnnualProvisionsRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.mint.v1beta1.Query', 'AnnualProvisions', data);
+    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "AnnualProvisions", data);
     return promise.then((data) => QueryAnnualProvisionsResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -356,24 +356,24 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, 'base64'));
+    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
   } else {
     const bin = globalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -386,34 +386,26 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString('base64');
+    return globalThis.Buffer.from(arr).toString("base64");
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return globalThis.btoa(bin.join(''));
+    return globalThis.btoa(bin.join(""));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { Any } from '../../../google/protobuf/any';
-import { Timestamp } from '../../../google/protobuf/timestamp';
+import _m0 from "protobufjs/minimal";
+import { Any } from "../../../google/protobuf/any";
+import { Timestamp } from "../../../google/protobuf/timestamp";
 
-export const protobufPackage = 'cosmos.authz.v1beta1';
+export const protobufPackage = "cosmos.authz.v1beta1";
 
 /** Since: cosmos-sdk 0.43 */
 
@@ -21,7 +21,9 @@ export interface GenericAuthorization {
  * the provide method with expiration time.
  */
 export interface Grant {
-  authorization: Any | undefined;
+  authorization:
+    | Any
+    | undefined;
   /**
    * time when the grant will expire and will be pruned. If null, then the grant
    * doesn't have a time expiration (other conditions  in `authorization`
@@ -48,12 +50,12 @@ export interface GrantQueueItem {
 }
 
 function createBaseGenericAuthorization(): GenericAuthorization {
-  return { msg: '' };
+  return { msg: "" };
 }
 
 export const GenericAuthorization = {
   encode(message: GenericAuthorization, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.msg !== '') {
+    if (message.msg !== "") {
       writer.uint32(10).string(message.msg);
     }
     return writer;
@@ -78,7 +80,7 @@ export const GenericAuthorization = {
   },
 
   fromJSON(object: any): GenericAuthorization {
-    return { msg: isSet(object.msg) ? String(object.msg) : '' };
+    return { msg: isSet(object.msg) ? String(object.msg) : "" };
   },
 
   toJSON(message: GenericAuthorization): unknown {
@@ -89,7 +91,7 @@ export const GenericAuthorization = {
 
   fromPartial<I extends Exact<DeepPartial<GenericAuthorization>, I>>(object: I): GenericAuthorization {
     const message = createBaseGenericAuthorization();
-    message.msg = object.msg ?? '';
+    message.msg = object.msg ?? "";
     return message;
   },
 };
@@ -139,38 +141,32 @@ export const Grant = {
 
   toJSON(message: Grant): unknown {
     const obj: any = {};
-    message.authorization !== undefined &&
-      (obj.authorization = message.authorization ? Any.toJSON(message.authorization) : undefined);
+    message.authorization !== undefined
+      && (obj.authorization = message.authorization ? Any.toJSON(message.authorization) : undefined);
     message.expiration !== undefined && (obj.expiration = message.expiration.toISOString());
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<Grant>, I>>(object: I): Grant {
     const message = createBaseGrant();
-    message.authorization =
-      object.authorization !== undefined && object.authorization !== null
-        ? Any.fromPartial(object.authorization)
-        : undefined;
+    message.authorization = (object.authorization !== undefined && object.authorization !== null)
+      ? Any.fromPartial(object.authorization)
+      : undefined;
     message.expiration = object.expiration ?? undefined;
     return message;
   },
 };
 
 function createBaseGrantAuthorization(): GrantAuthorization {
-  return {
-    granter: '',
-    grantee: '',
-    authorization: undefined,
-    expiration: undefined,
-  };
+  return { granter: "", grantee: "", authorization: undefined, expiration: undefined };
 }
 
 export const GrantAuthorization = {
   encode(message: GrantAuthorization, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.granter !== '') {
+    if (message.granter !== "") {
       writer.uint32(10).string(message.granter);
     }
-    if (message.grantee !== '') {
+    if (message.grantee !== "") {
       writer.uint32(18).string(message.grantee);
     }
     if (message.authorization !== undefined) {
@@ -211,8 +207,8 @@ export const GrantAuthorization = {
 
   fromJSON(object: any): GrantAuthorization {
     return {
-      granter: isSet(object.granter) ? String(object.granter) : '',
-      grantee: isSet(object.grantee) ? String(object.grantee) : '',
+      granter: isSet(object.granter) ? String(object.granter) : "",
+      grantee: isSet(object.grantee) ? String(object.grantee) : "",
       authorization: isSet(object.authorization) ? Any.fromJSON(object.authorization) : undefined,
       expiration: isSet(object.expiration) ? fromJsonTimestamp(object.expiration) : undefined,
     };
@@ -222,20 +218,19 @@ export const GrantAuthorization = {
     const obj: any = {};
     message.granter !== undefined && (obj.granter = message.granter);
     message.grantee !== undefined && (obj.grantee = message.grantee);
-    message.authorization !== undefined &&
-      (obj.authorization = message.authorization ? Any.toJSON(message.authorization) : undefined);
+    message.authorization !== undefined
+      && (obj.authorization = message.authorization ? Any.toJSON(message.authorization) : undefined);
     message.expiration !== undefined && (obj.expiration = message.expiration.toISOString());
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<GrantAuthorization>, I>>(object: I): GrantAuthorization {
     const message = createBaseGrantAuthorization();
-    message.granter = object.granter ?? '';
-    message.grantee = object.grantee ?? '';
-    message.authorization =
-      object.authorization !== undefined && object.authorization !== null
-        ? Any.fromPartial(object.authorization)
-        : undefined;
+    message.granter = object.granter ?? "";
+    message.grantee = object.grantee ?? "";
+    message.authorization = (object.authorization !== undefined && object.authorization !== null)
+      ? Any.fromPartial(object.authorization)
+      : undefined;
     message.expiration = object.expiration ?? undefined;
     return message;
   },
@@ -272,9 +267,7 @@ export const GrantQueueItem = {
   },
 
   fromJSON(object: any): GrantQueueItem {
-    return {
-      msgTypeUrls: Array.isArray(object?.msgTypeUrls) ? object.msgTypeUrls.map((e: any) => String(e)) : [],
-    };
+    return { msgTypeUrls: Array.isArray(object?.msgTypeUrls) ? object.msgTypeUrls.map((e: any) => String(e)) : [] };
   },
 
   toJSON(message: GrantQueueItem): unknown {
@@ -296,22 +289,14 @@ export const GrantQueueItem = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;
@@ -328,7 +313,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === 'string') {
+  } else if (typeof o === "string") {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));

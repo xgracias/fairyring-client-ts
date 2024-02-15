@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { Any } from '../../../google/protobuf/any';
-import { PageRequest, PageResponse } from '../../base/query/v1beta1/pagination';
+import _m0 from "protobufjs/minimal";
+import { Any } from "../../../google/protobuf/any";
+import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination";
 
-export const protobufPackage = 'cosmos.evidence.v1beta1';
+export const protobufPackage = "cosmos.evidence.v1beta1";
 
 /** QueryEvidenceRequest is the request type for the Query/Evidence RPC method. */
 export interface QueryEvidenceRequest {
@@ -49,7 +49,7 @@ export interface QueryAllEvidenceResponse {
 }
 
 function createBaseQueryEvidenceRequest(): QueryEvidenceRequest {
-  return { evidenceHash: new Uint8Array(), hash: '' };
+  return { evidenceHash: new Uint8Array(), hash: "" };
 }
 
 export const QueryEvidenceRequest = {
@@ -57,7 +57,7 @@ export const QueryEvidenceRequest = {
     if (message.evidenceHash.length !== 0) {
       writer.uint32(10).bytes(message.evidenceHash);
     }
-    if (message.hash !== '') {
+    if (message.hash !== "") {
       writer.uint32(18).string(message.hash);
     }
     return writer;
@@ -87,15 +87,15 @@ export const QueryEvidenceRequest = {
   fromJSON(object: any): QueryEvidenceRequest {
     return {
       evidenceHash: isSet(object.evidenceHash) ? bytesFromBase64(object.evidenceHash) : new Uint8Array(),
-      hash: isSet(object.hash) ? String(object.hash) : '',
+      hash: isSet(object.hash) ? String(object.hash) : "",
     };
   },
 
   toJSON(message: QueryEvidenceRequest): unknown {
     const obj: any = {};
-    message.evidenceHash !== undefined &&
-      (obj.evidenceHash = base64FromBytes(
-        message.evidenceHash !== undefined ? message.evidenceHash : new Uint8Array()
+    message.evidenceHash !== undefined
+      && (obj.evidenceHash = base64FromBytes(
+        message.evidenceHash !== undefined ? message.evidenceHash : new Uint8Array(),
       ));
     message.hash !== undefined && (obj.hash = message.hash);
     return obj;
@@ -104,7 +104,7 @@ export const QueryEvidenceRequest = {
   fromPartial<I extends Exact<DeepPartial<QueryEvidenceRequest>, I>>(object: I): QueryEvidenceRequest {
     const message = createBaseQueryEvidenceRequest();
     message.evidenceHash = object.evidenceHash ?? new Uint8Array();
-    message.hash = object.hash ?? '';
+    message.hash = object.hash ?? "";
     return message;
   },
 };
@@ -140,9 +140,7 @@ export const QueryEvidenceResponse = {
   },
 
   fromJSON(object: any): QueryEvidenceResponse {
-    return {
-      evidence: isSet(object.evidence) ? Any.fromJSON(object.evidence) : undefined,
-    };
+    return { evidence: isSet(object.evidence) ? Any.fromJSON(object.evidence) : undefined };
   },
 
   toJSON(message: QueryEvidenceResponse): unknown {
@@ -153,8 +151,9 @@ export const QueryEvidenceResponse = {
 
   fromPartial<I extends Exact<DeepPartial<QueryEvidenceResponse>, I>>(object: I): QueryEvidenceResponse {
     const message = createBaseQueryEvidenceResponse();
-    message.evidence =
-      object.evidence !== undefined && object.evidence !== null ? Any.fromPartial(object.evidence) : undefined;
+    message.evidence = (object.evidence !== undefined && object.evidence !== null)
+      ? Any.fromPartial(object.evidence)
+      : undefined;
     return message;
   },
 };
@@ -190,24 +189,21 @@ export const QueryAllEvidenceRequest = {
   },
 
   fromJSON(object: any): QueryAllEvidenceRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
-    };
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
   },
 
   toJSON(message: QueryAllEvidenceRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAllEvidenceRequest>, I>>(object: I): QueryAllEvidenceRequest {
     const message = createBaseQueryAllEvidenceRequest();
-    message.pagination =
-      object.pagination !== undefined && object.pagination !== null
-        ? PageRequest.fromPartial(object.pagination)
-        : undefined;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
     return message;
   },
 };
@@ -258,22 +254,21 @@ export const QueryAllEvidenceResponse = {
   toJSON(message: QueryAllEvidenceResponse): unknown {
     const obj: any = {};
     if (message.evidence) {
-      obj.evidence = message.evidence.map((e) => (e ? Any.toJSON(e) : undefined));
+      obj.evidence = message.evidence.map((e) => e ? Any.toJSON(e) : undefined);
     } else {
       obj.evidence = [];
     }
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryAllEvidenceResponse>, I>>(object: I): QueryAllEvidenceResponse {
     const message = createBaseQueryAllEvidenceResponse();
     message.evidence = object.evidence?.map((e) => Any.fromPartial(e)) || [];
-    message.pagination =
-      object.pagination !== undefined && object.pagination !== null
-        ? PageResponse.fromPartial(object.pagination)
-        : undefined;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
     return message;
   },
 };
@@ -295,13 +290,13 @@ export class QueryClientImpl implements Query {
   }
   Evidence(request: QueryEvidenceRequest): Promise<QueryEvidenceResponse> {
     const data = QueryEvidenceRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.evidence.v1beta1.Query', 'Evidence', data);
+    const promise = this.rpc.request("cosmos.evidence.v1beta1.Query", "Evidence", data);
     return promise.then((data) => QueryEvidenceResponse.decode(new _m0.Reader(data)));
   }
 
   AllEvidence(request: QueryAllEvidenceRequest): Promise<QueryAllEvidenceResponse> {
     const data = QueryAllEvidenceRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.evidence.v1beta1.Query', 'AllEvidence', data);
+    const promise = this.rpc.request("cosmos.evidence.v1beta1.Query", "AllEvidence", data);
     return promise.then((data) => QueryAllEvidenceResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -314,24 +309,24 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, 'base64'));
+    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
   } else {
     const bin = globalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -344,34 +339,26 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString('base64');
+    return globalThis.Buffer.from(arr).toString("base64");
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return globalThis.btoa(bin.join(''));
+    return globalThis.btoa(bin.join(""));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

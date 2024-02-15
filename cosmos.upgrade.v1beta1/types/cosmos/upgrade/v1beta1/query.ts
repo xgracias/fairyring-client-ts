@@ -1,15 +1,16 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { ModuleVersion, Plan } from './upgrade';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { ModuleVersion, Plan } from "./upgrade";
 
-export const protobufPackage = 'cosmos.upgrade.v1beta1';
+export const protobufPackage = "cosmos.upgrade.v1beta1";
 
 /**
  * QueryCurrentPlanRequest is the request type for the Query/CurrentPlan RPC
  * method.
  */
-export interface QueryCurrentPlanRequest {}
+export interface QueryCurrentPlanRequest {
+}
 
 /**
  * QueryCurrentPlanResponse is the response type for the Query/CurrentPlan RPC
@@ -94,7 +95,8 @@ export interface QueryModuleVersionsResponse {
  *
  * Since: cosmos-sdk 0.46
  */
-export interface QueryAuthorityRequest {}
+export interface QueryAuthorityRequest {
+}
 
 /**
  * QueryAuthorityResponse is the response type for Query/Authority
@@ -175,9 +177,7 @@ export const QueryCurrentPlanResponse = {
   },
 
   fromJSON(object: any): QueryCurrentPlanResponse {
-    return {
-      plan: isSet(object.plan) ? Plan.fromJSON(object.plan) : undefined,
-    };
+    return { plan: isSet(object.plan) ? Plan.fromJSON(object.plan) : undefined };
   },
 
   toJSON(message: QueryCurrentPlanResponse): unknown {
@@ -188,18 +188,18 @@ export const QueryCurrentPlanResponse = {
 
   fromPartial<I extends Exact<DeepPartial<QueryCurrentPlanResponse>, I>>(object: I): QueryCurrentPlanResponse {
     const message = createBaseQueryCurrentPlanResponse();
-    message.plan = object.plan !== undefined && object.plan !== null ? Plan.fromPartial(object.plan) : undefined;
+    message.plan = (object.plan !== undefined && object.plan !== null) ? Plan.fromPartial(object.plan) : undefined;
     return message;
   },
 };
 
 function createBaseQueryAppliedPlanRequest(): QueryAppliedPlanRequest {
-  return { name: '' };
+  return { name: "" };
 }
 
 export const QueryAppliedPlanRequest = {
   encode(message: QueryAppliedPlanRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
@@ -224,7 +224,7 @@ export const QueryAppliedPlanRequest = {
   },
 
   fromJSON(object: any): QueryAppliedPlanRequest {
-    return { name: isSet(object.name) ? String(object.name) : '' };
+    return { name: isSet(object.name) ? String(object.name) : "" };
   },
 
   toJSON(message: QueryAppliedPlanRequest): unknown {
@@ -235,7 +235,7 @@ export const QueryAppliedPlanRequest = {
 
   fromPartial<I extends Exact<DeepPartial<QueryAppliedPlanRequest>, I>>(object: I): QueryAppliedPlanRequest {
     const message = createBaseQueryAppliedPlanRequest();
-    message.name = object.name ?? '';
+    message.name = object.name ?? "";
     return message;
   },
 };
@@ -318,9 +318,7 @@ export const QueryUpgradedConsensusStateRequest = {
   },
 
   fromJSON(object: any): QueryUpgradedConsensusStateRequest {
-    return {
-      lastHeight: isSet(object.lastHeight) ? Number(object.lastHeight) : 0,
-    };
+    return { lastHeight: isSet(object.lastHeight) ? Number(object.lastHeight) : 0 };
   },
 
   toJSON(message: QueryUpgradedConsensusStateRequest): unknown {
@@ -330,7 +328,7 @@ export const QueryUpgradedConsensusStateRequest = {
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryUpgradedConsensusStateRequest>, I>>(
-    object: I
+    object: I,
   ): QueryUpgradedConsensusStateRequest {
     const message = createBaseQueryUpgradedConsensusStateRequest();
     message.lastHeight = object.lastHeight ?? 0;
@@ -378,15 +376,15 @@ export const QueryUpgradedConsensusStateResponse = {
 
   toJSON(message: QueryUpgradedConsensusStateResponse): unknown {
     const obj: any = {};
-    message.upgradedConsensusState !== undefined &&
-      (obj.upgradedConsensusState = base64FromBytes(
-        message.upgradedConsensusState !== undefined ? message.upgradedConsensusState : new Uint8Array()
+    message.upgradedConsensusState !== undefined
+      && (obj.upgradedConsensusState = base64FromBytes(
+        message.upgradedConsensusState !== undefined ? message.upgradedConsensusState : new Uint8Array(),
       ));
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<QueryUpgradedConsensusStateResponse>, I>>(
-    object: I
+    object: I,
   ): QueryUpgradedConsensusStateResponse {
     const message = createBaseQueryUpgradedConsensusStateResponse();
     message.upgradedConsensusState = object.upgradedConsensusState ?? new Uint8Array();
@@ -395,12 +393,12 @@ export const QueryUpgradedConsensusStateResponse = {
 };
 
 function createBaseQueryModuleVersionsRequest(): QueryModuleVersionsRequest {
-  return { moduleName: '' };
+  return { moduleName: "" };
 }
 
 export const QueryModuleVersionsRequest = {
   encode(message: QueryModuleVersionsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.moduleName !== '') {
+    if (message.moduleName !== "") {
       writer.uint32(10).string(message.moduleName);
     }
     return writer;
@@ -425,9 +423,7 @@ export const QueryModuleVersionsRequest = {
   },
 
   fromJSON(object: any): QueryModuleVersionsRequest {
-    return {
-      moduleName: isSet(object.moduleName) ? String(object.moduleName) : '',
-    };
+    return { moduleName: isSet(object.moduleName) ? String(object.moduleName) : "" };
   },
 
   toJSON(message: QueryModuleVersionsRequest): unknown {
@@ -438,7 +434,7 @@ export const QueryModuleVersionsRequest = {
 
   fromPartial<I extends Exact<DeepPartial<QueryModuleVersionsRequest>, I>>(object: I): QueryModuleVersionsRequest {
     const message = createBaseQueryModuleVersionsRequest();
-    message.moduleName = object.moduleName ?? '';
+    message.moduleName = object.moduleName ?? "";
     return message;
   },
 };
@@ -484,7 +480,7 @@ export const QueryModuleVersionsResponse = {
   toJSON(message: QueryModuleVersionsResponse): unknown {
     const obj: any = {};
     if (message.moduleVersions) {
-      obj.moduleVersions = message.moduleVersions.map((e) => (e ? ModuleVersion.toJSON(e) : undefined));
+      obj.moduleVersions = message.moduleVersions.map((e) => e ? ModuleVersion.toJSON(e) : undefined);
     } else {
       obj.moduleVersions = [];
     }
@@ -538,12 +534,12 @@ export const QueryAuthorityRequest = {
 };
 
 function createBaseQueryAuthorityResponse(): QueryAuthorityResponse {
-  return { address: '' };
+  return { address: "" };
 }
 
 export const QueryAuthorityResponse = {
   encode(message: QueryAuthorityResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== '') {
+    if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
     return writer;
@@ -568,7 +564,7 @@ export const QueryAuthorityResponse = {
   },
 
   fromJSON(object: any): QueryAuthorityResponse {
-    return { address: isSet(object.address) ? String(object.address) : '' };
+    return { address: isSet(object.address) ? String(object.address) : "" };
   },
 
   toJSON(message: QueryAuthorityResponse): unknown {
@@ -579,7 +575,7 @@ export const QueryAuthorityResponse = {
 
   fromPartial<I extends Exact<DeepPartial<QueryAuthorityResponse>, I>>(object: I): QueryAuthorityResponse {
     const message = createBaseQueryAuthorityResponse();
-    message.address = object.address ?? '';
+    message.address = object.address ?? "";
     return message;
   },
 };
@@ -627,31 +623,31 @@ export class QueryClientImpl implements Query {
   }
   CurrentPlan(request: QueryCurrentPlanRequest): Promise<QueryCurrentPlanResponse> {
     const data = QueryCurrentPlanRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.upgrade.v1beta1.Query', 'CurrentPlan', data);
+    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "CurrentPlan", data);
     return promise.then((data) => QueryCurrentPlanResponse.decode(new _m0.Reader(data)));
   }
 
   AppliedPlan(request: QueryAppliedPlanRequest): Promise<QueryAppliedPlanResponse> {
     const data = QueryAppliedPlanRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.upgrade.v1beta1.Query', 'AppliedPlan', data);
+    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "AppliedPlan", data);
     return promise.then((data) => QueryAppliedPlanResponse.decode(new _m0.Reader(data)));
   }
 
   UpgradedConsensusState(request: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse> {
     const data = QueryUpgradedConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.upgrade.v1beta1.Query', 'UpgradedConsensusState', data);
+    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "UpgradedConsensusState", data);
     return promise.then((data) => QueryUpgradedConsensusStateResponse.decode(new _m0.Reader(data)));
   }
 
   ModuleVersions(request: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse> {
     const data = QueryModuleVersionsRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.upgrade.v1beta1.Query', 'ModuleVersions', data);
+    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "ModuleVersions", data);
     return promise.then((data) => QueryModuleVersionsResponse.decode(new _m0.Reader(data)));
   }
 
   Authority(request: QueryAuthorityRequest): Promise<QueryAuthorityResponse> {
     const data = QueryAuthorityRequest.encode(request).finish();
-    const promise = this.rpc.request('cosmos.upgrade.v1beta1.Query', 'Authority', data);
+    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "Authority", data);
     return promise.then((data) => QueryAuthorityResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -664,24 +660,24 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, 'base64'));
+    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
   } else {
     const bin = globalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -694,38 +690,30 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString('base64');
+    return globalThis.Buffer.from(arr).toString("base64");
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return globalThis.btoa(bin.join(''));
+    return globalThis.btoa(bin.join(""));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

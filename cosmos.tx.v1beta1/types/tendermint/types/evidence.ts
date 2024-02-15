@@ -1,11 +1,11 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Timestamp } from '../../google/protobuf/timestamp';
-import { LightBlock, Vote } from './types';
-import { Validator } from './validator';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Timestamp } from "../../google/protobuf/timestamp";
+import { LightBlock, Vote } from "./types";
+import { Validator } from "./validator";
 
-export const protobufPackage = 'tendermint.types';
+export const protobufPackage = "tendermint.types";
 
 export interface Evidence {
   duplicateVoteEvidence: DuplicateVoteEvidence | undefined;
@@ -35,10 +35,7 @@ export interface EvidenceList {
 }
 
 function createBaseEvidence(): Evidence {
-  return {
-    duplicateVoteEvidence: undefined,
-    lightClientAttackEvidence: undefined,
-  };
+  return { duplicateVoteEvidence: undefined, lightClientAttackEvidence: undefined };
 }
 
 export const Evidence = {
@@ -86,12 +83,11 @@ export const Evidence = {
 
   toJSON(message: Evidence): unknown {
     const obj: any = {};
-    message.duplicateVoteEvidence !== undefined &&
-      (obj.duplicateVoteEvidence = message.duplicateVoteEvidence
-        ? DuplicateVoteEvidence.toJSON(message.duplicateVoteEvidence)
-        : undefined);
-    message.lightClientAttackEvidence !== undefined &&
-      (obj.lightClientAttackEvidence = message.lightClientAttackEvidence
+    message.duplicateVoteEvidence !== undefined && (obj.duplicateVoteEvidence = message.duplicateVoteEvidence
+      ? DuplicateVoteEvidence.toJSON(message.duplicateVoteEvidence)
+      : undefined);
+    message.lightClientAttackEvidence !== undefined
+      && (obj.lightClientAttackEvidence = message.lightClientAttackEvidence
         ? LightClientAttackEvidence.toJSON(message.lightClientAttackEvidence)
         : undefined);
     return obj;
@@ -100,11 +96,11 @@ export const Evidence = {
   fromPartial<I extends Exact<DeepPartial<Evidence>, I>>(object: I): Evidence {
     const message = createBaseEvidence();
     message.duplicateVoteEvidence =
-      object.duplicateVoteEvidence !== undefined && object.duplicateVoteEvidence !== null
+      (object.duplicateVoteEvidence !== undefined && object.duplicateVoteEvidence !== null)
         ? DuplicateVoteEvidence.fromPartial(object.duplicateVoteEvidence)
         : undefined;
     message.lightClientAttackEvidence =
-      object.lightClientAttackEvidence !== undefined && object.lightClientAttackEvidence !== null
+      (object.lightClientAttackEvidence !== undefined && object.lightClientAttackEvidence !== null)
         ? LightClientAttackEvidence.fromPartial(object.lightClientAttackEvidence)
         : undefined;
     return message;
@@ -112,13 +108,7 @@ export const Evidence = {
 };
 
 function createBaseDuplicateVoteEvidence(): DuplicateVoteEvidence {
-  return {
-    voteA: undefined,
-    voteB: undefined,
-    totalVotingPower: 0,
-    validatorPower: 0,
-    timestamp: undefined,
-  };
+  return { voteA: undefined, voteB: undefined, totalVotingPower: 0, validatorPower: 0, timestamp: undefined };
 }
 
 export const DuplicateVoteEvidence = {
@@ -193,8 +183,8 @@ export const DuplicateVoteEvidence = {
 
   fromPartial<I extends Exact<DeepPartial<DuplicateVoteEvidence>, I>>(object: I): DuplicateVoteEvidence {
     const message = createBaseDuplicateVoteEvidence();
-    message.voteA = object.voteA !== undefined && object.voteA !== null ? Vote.fromPartial(object.voteA) : undefined;
-    message.voteB = object.voteB !== undefined && object.voteB !== null ? Vote.fromPartial(object.voteB) : undefined;
+    message.voteA = (object.voteA !== undefined && object.voteA !== null) ? Vote.fromPartial(object.voteA) : undefined;
+    message.voteB = (object.voteB !== undefined && object.voteB !== null) ? Vote.fromPartial(object.voteB) : undefined;
     message.totalVotingPower = object.totalVotingPower ?? 0;
     message.validatorPower = object.validatorPower ?? 0;
     message.timestamp = object.timestamp ?? undefined;
@@ -276,11 +266,11 @@ export const LightClientAttackEvidence = {
 
   toJSON(message: LightClientAttackEvidence): unknown {
     const obj: any = {};
-    message.conflictingBlock !== undefined &&
-      (obj.conflictingBlock = message.conflictingBlock ? LightBlock.toJSON(message.conflictingBlock) : undefined);
+    message.conflictingBlock !== undefined
+      && (obj.conflictingBlock = message.conflictingBlock ? LightBlock.toJSON(message.conflictingBlock) : undefined);
     message.commonHeight !== undefined && (obj.commonHeight = Math.round(message.commonHeight));
     if (message.byzantineValidators) {
-      obj.byzantineValidators = message.byzantineValidators.map((e) => (e ? Validator.toJSON(e) : undefined));
+      obj.byzantineValidators = message.byzantineValidators.map((e) => e ? Validator.toJSON(e) : undefined);
     } else {
       obj.byzantineValidators = [];
     }
@@ -291,10 +281,9 @@ export const LightClientAttackEvidence = {
 
   fromPartial<I extends Exact<DeepPartial<LightClientAttackEvidence>, I>>(object: I): LightClientAttackEvidence {
     const message = createBaseLightClientAttackEvidence();
-    message.conflictingBlock =
-      object.conflictingBlock !== undefined && object.conflictingBlock !== null
-        ? LightBlock.fromPartial(object.conflictingBlock)
-        : undefined;
+    message.conflictingBlock = (object.conflictingBlock !== undefined && object.conflictingBlock !== null)
+      ? LightBlock.fromPartial(object.conflictingBlock)
+      : undefined;
     message.commonHeight = object.commonHeight ?? 0;
     message.byzantineValidators = object.byzantineValidators?.map((e) => Validator.fromPartial(e)) || [];
     message.totalVotingPower = object.totalVotingPower ?? 0;
@@ -334,15 +323,13 @@ export const EvidenceList = {
   },
 
   fromJSON(object: any): EvidenceList {
-    return {
-      evidence: Array.isArray(object?.evidence) ? object.evidence.map((e: any) => Evidence.fromJSON(e)) : [],
-    };
+    return { evidence: Array.isArray(object?.evidence) ? object.evidence.map((e: any) => Evidence.fromJSON(e)) : [] };
   },
 
   toJSON(message: EvidenceList): unknown {
     const obj: any = {};
     if (message.evidence) {
-      obj.evidence = message.evidence.map((e) => (e ? Evidence.toJSON(e) : undefined));
+      obj.evidence = message.evidence.map((e) => e ? Evidence.toJSON(e) : undefined);
     } else {
       obj.evidence = [];
     }
@@ -360,39 +347,31 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;
@@ -409,7 +388,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === 'string') {
+  } else if (typeof o === "string") {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -418,7 +397,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

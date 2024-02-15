@@ -1,15 +1,15 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { AggregatedKeyShare } from './aggregated_key_share';
-import { AuthorizedAddress } from './authorized_address';
-import { GeneralKeyShare } from './general_key_share';
-import { KeyShare } from './key_share';
-import { Params } from './params';
-import { ActivePubKey, QueuedPubKey } from './pub_key';
-import { ValidatorSet } from './validator_set';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { AggregatedKeyShare } from "./aggregated_key_share";
+import { AuthorizedAddress } from "./authorized_address";
+import { GeneralKeyShare } from "./general_key_share";
+import { KeyShare } from "./key_share";
+import { Params } from "./params";
+import { ActivePubKey, QueuedPubKey } from "./pub_key";
+import { ValidatorSet } from "./validator_set";
 
-export const protobufPackage = 'fairyring.keyshare';
+export const protobufPackage = "fairyring.keyshare";
 
 /** GenesisState defines the keyshare module's genesis state. */
 export interface GenesisState {
@@ -29,7 +29,7 @@ export interface GenesisState {
 function createBaseGenesisState(): GenesisState {
   return {
     params: undefined,
-    portId: '',
+    portId: "",
     validatorSetList: [],
     keyShareList: [],
     aggregatedKeyShareList: [],
@@ -46,7 +46,7 @@ export const GenesisState = {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
-    if (message.portId !== '') {
+    if (message.portId !== "") {
       writer.uint32(18).string(message.portId);
     }
     for (const v of message.validatorSetList) {
@@ -124,7 +124,7 @@ export const GenesisState = {
   fromJSON(object: any): GenesisState {
     return {
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      portId: isSet(object.portId) ? String(object.portId) : '',
+      portId: isSet(object.portId) ? String(object.portId) : "",
       validatorSetList: Array.isArray(object?.validatorSetList)
         ? object.validatorSetList.map((e: any) => ValidatorSet.fromJSON(e))
         : [],
@@ -151,12 +151,12 @@ export const GenesisState = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     message.portId !== undefined && (obj.portId = message.portId);
     if (message.validatorSetList) {
-      obj.validatorSetList = message.validatorSetList.map((e) => (e ? ValidatorSet.toJSON(e) : undefined));
+      obj.validatorSetList = message.validatorSetList.map((e) => e ? ValidatorSet.toJSON(e) : undefined);
     } else {
       obj.validatorSetList = [];
     }
     if (message.keyShareList) {
-      obj.keyShareList = message.keyShareList.map((e) => (e ? KeyShare.toJSON(e) : undefined));
+      obj.keyShareList = message.keyShareList.map((e) => e ? KeyShare.toJSON(e) : undefined);
     } else {
       obj.keyShareList = [];
     }
@@ -167,20 +167,18 @@ export const GenesisState = {
     } else {
       obj.aggregatedKeyShareList = [];
     }
-    message.activePubKey !== undefined &&
-      (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
-    message.queuedPubKey !== undefined &&
-      (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
+    message.activePubKey !== undefined
+      && (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
+    message.queuedPubKey !== undefined
+      && (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
     if (message.authorizedAddressList) {
-      obj.authorizedAddressList = message.authorizedAddressList.map((e) =>
-        e ? AuthorizedAddress.toJSON(e) : undefined
-      );
+      obj.authorizedAddressList = message.authorizedAddressList.map((e) => e ? AuthorizedAddress.toJSON(e) : undefined);
     } else {
       obj.authorizedAddressList = [];
     }
     message.requestCount !== undefined && (obj.requestCount = Math.round(message.requestCount));
     if (message.generalKeyShareList) {
-      obj.generalKeyShareList = message.generalKeyShareList.map((e) => (e ? GeneralKeyShare.toJSON(e) : undefined));
+      obj.generalKeyShareList = message.generalKeyShareList.map((e) => e ? GeneralKeyShare.toJSON(e) : undefined);
     } else {
       obj.generalKeyShareList = [];
     }
@@ -189,20 +187,19 @@ export const GenesisState = {
 
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.params =
-      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
-    message.portId = object.portId ?? '';
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
+    message.portId = object.portId ?? "";
     message.validatorSetList = object.validatorSetList?.map((e) => ValidatorSet.fromPartial(e)) || [];
     message.keyShareList = object.keyShareList?.map((e) => KeyShare.fromPartial(e)) || [];
     message.aggregatedKeyShareList = object.aggregatedKeyShareList?.map((e) => AggregatedKeyShare.fromPartial(e)) || [];
-    message.activePubKey =
-      object.activePubKey !== undefined && object.activePubKey !== null
-        ? ActivePubKey.fromPartial(object.activePubKey)
-        : undefined;
-    message.queuedPubKey =
-      object.queuedPubKey !== undefined && object.queuedPubKey !== null
-        ? QueuedPubKey.fromPartial(object.queuedPubKey)
-        : undefined;
+    message.activePubKey = (object.activePubKey !== undefined && object.activePubKey !== null)
+      ? ActivePubKey.fromPartial(object.activePubKey)
+      : undefined;
+    message.queuedPubKey = (object.queuedPubKey !== undefined && object.queuedPubKey !== null)
+      ? QueuedPubKey.fromPartial(object.queuedPubKey)
+      : undefined;
     message.authorizedAddressList = object.authorizedAddressList?.map((e) => AuthorizedAddress.fromPartial(e)) || [];
     message.requestCount = object.requestCount ?? 0;
     message.generalKeyShareList = object.generalKeyShareList?.map((e) => GeneralKeyShare.fromPartial(e)) || [];
@@ -214,43 +211,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

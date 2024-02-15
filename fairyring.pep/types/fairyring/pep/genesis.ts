@@ -1,12 +1,12 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { AggregatedKeyShare } from './aggregated_key_share';
-import { EncryptedTxArray } from './encrypted_tx';
-import { Params } from './params';
-import { PepNonce } from './pep_nonce';
-import { ActivePubKey, QueuedPubKey } from './pub_key';
+import _m0 from "protobufjs/minimal";
+import { AggregatedKeyShare } from "./aggregated_key_share";
+import { EncryptedTxArray } from "./encrypted_tx";
+import { Params } from "./params";
+import { PepNonce } from "./pep_nonce";
+import { ActivePubKey, QueuedPubKey } from "./pub_key";
 
-export const protobufPackage = 'fairyring.pep';
+export const protobufPackage = "fairyring.pep";
 
 /** GenesisState defines the pep module's genesis state. */
 export interface GenesisState {
@@ -23,7 +23,7 @@ export interface GenesisState {
 function createBaseGenesisState(): GenesisState {
   return {
     params: undefined,
-    portId: '',
+    portId: "",
     encryptedTxArray: [],
     pepNonceList: [],
     aggregatedKeyShareList: [],
@@ -37,7 +37,7 @@ export const GenesisState = {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
-    if (message.portId !== '') {
+    if (message.portId !== "") {
       writer.uint32(18).string(message.portId);
     }
     for (const v of message.encryptedTxArray) {
@@ -97,7 +97,7 @@ export const GenesisState = {
   fromJSON(object: any): GenesisState {
     return {
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      portId: isSet(object.portId) ? String(object.portId) : '',
+      portId: isSet(object.portId) ? String(object.portId) : "",
       encryptedTxArray: Array.isArray(object?.encryptedTxArray)
         ? object.encryptedTxArray.map((e: any) => EncryptedTxArray.fromJSON(e))
         : [],
@@ -117,12 +117,12 @@ export const GenesisState = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     message.portId !== undefined && (obj.portId = message.portId);
     if (message.encryptedTxArray) {
-      obj.encryptedTxArray = message.encryptedTxArray.map((e) => (e ? EncryptedTxArray.toJSON(e) : undefined));
+      obj.encryptedTxArray = message.encryptedTxArray.map((e) => e ? EncryptedTxArray.toJSON(e) : undefined);
     } else {
       obj.encryptedTxArray = [];
     }
     if (message.pepNonceList) {
-      obj.pepNonceList = message.pepNonceList.map((e) => (e ? PepNonce.toJSON(e) : undefined));
+      obj.pepNonceList = message.pepNonceList.map((e) => e ? PepNonce.toJSON(e) : undefined);
     } else {
       obj.pepNonceList = [];
     }
@@ -133,51 +133,42 @@ export const GenesisState = {
     } else {
       obj.aggregatedKeyShareList = [];
     }
-    message.activePubKey !== undefined &&
-      (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
-    message.queuedPubKey !== undefined &&
-      (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
+    message.activePubKey !== undefined
+      && (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
+    message.queuedPubKey !== undefined
+      && (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.params =
-      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
-    message.portId = object.portId ?? '';
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
+    message.portId = object.portId ?? "";
     message.encryptedTxArray = object.encryptedTxArray?.map((e) => EncryptedTxArray.fromPartial(e)) || [];
     message.pepNonceList = object.pepNonceList?.map((e) => PepNonce.fromPartial(e)) || [];
     message.aggregatedKeyShareList = object.aggregatedKeyShareList?.map((e) => AggregatedKeyShare.fromPartial(e)) || [];
-    message.activePubKey =
-      object.activePubKey !== undefined && object.activePubKey !== null
-        ? ActivePubKey.fromPartial(object.activePubKey)
-        : undefined;
-    message.queuedPubKey =
-      object.queuedPubKey !== undefined && object.queuedPubKey !== null
-        ? QueuedPubKey.fromPartial(object.queuedPubKey)
-        : undefined;
+    message.activePubKey = (object.activePubKey !== undefined && object.activePubKey !== null)
+      ? ActivePubKey.fromPartial(object.activePubKey)
+      : undefined;
+    message.queuedPubKey = (object.queuedPubKey !== undefined && object.queuedPubKey !== null)
+      ? QueuedPubKey.fromPartial(object.queuedPubKey)
+      : undefined;
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

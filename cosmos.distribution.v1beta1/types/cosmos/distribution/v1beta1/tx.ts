@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { Coin } from '../../base/v1beta1/coin';
-import { Params } from './distribution';
+import _m0 from "protobufjs/minimal";
+import { Coin } from "../../base/v1beta1/coin";
+import { Params } from "./distribution";
 
-export const protobufPackage = 'cosmos.distribution.v1beta1';
+export const protobufPackage = "cosmos.distribution.v1beta1";
 
 /**
  * MsgSetWithdrawAddress sets the withdraw address for
@@ -18,7 +18,8 @@ export interface MsgSetWithdrawAddress {
  * MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response
  * type.
  */
-export interface MsgSetWithdrawAddressResponse {}
+export interface MsgSetWithdrawAddressResponse {
+}
 
 /**
  * MsgWithdrawDelegatorReward represents delegation withdrawal to a delegator
@@ -65,7 +66,8 @@ export interface MsgFundCommunityPool {
 }
 
 /** MsgFundCommunityPoolResponse defines the Msg/FundCommunityPool response type. */
-export interface MsgFundCommunityPoolResponse {}
+export interface MsgFundCommunityPoolResponse {
+}
 
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
@@ -89,7 +91,8 @@ export interface MsgUpdateParams {
  *
  * Since: cosmos-sdk 0.47
  */
-export interface MsgUpdateParamsResponse {}
+export interface MsgUpdateParamsResponse {
+}
 
 /**
  * MsgCommunityPoolSpend defines a message for sending tokens from the community
@@ -111,18 +114,19 @@ export interface MsgCommunityPoolSpend {
  *
  * Since: cosmos-sdk 0.47
  */
-export interface MsgCommunityPoolSpendResponse {}
+export interface MsgCommunityPoolSpendResponse {
+}
 
 function createBaseMsgSetWithdrawAddress(): MsgSetWithdrawAddress {
-  return { delegatorAddress: '', withdrawAddress: '' };
+  return { delegatorAddress: "", withdrawAddress: "" };
 }
 
 export const MsgSetWithdrawAddress = {
   encode(message: MsgSetWithdrawAddress, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.delegatorAddress !== '') {
+    if (message.delegatorAddress !== "") {
       writer.uint32(10).string(message.delegatorAddress);
     }
-    if (message.withdrawAddress !== '') {
+    if (message.withdrawAddress !== "") {
       writer.uint32(18).string(message.withdrawAddress);
     }
     return writer;
@@ -151,8 +155,8 @@ export const MsgSetWithdrawAddress = {
 
   fromJSON(object: any): MsgSetWithdrawAddress {
     return {
-      delegatorAddress: isSet(object.delegatorAddress) ? String(object.delegatorAddress) : '',
-      withdrawAddress: isSet(object.withdrawAddress) ? String(object.withdrawAddress) : '',
+      delegatorAddress: isSet(object.delegatorAddress) ? String(object.delegatorAddress) : "",
+      withdrawAddress: isSet(object.withdrawAddress) ? String(object.withdrawAddress) : "",
     };
   },
 
@@ -165,8 +169,8 @@ export const MsgSetWithdrawAddress = {
 
   fromPartial<I extends Exact<DeepPartial<MsgSetWithdrawAddress>, I>>(object: I): MsgSetWithdrawAddress {
     const message = createBaseMsgSetWithdrawAddress();
-    message.delegatorAddress = object.delegatorAddress ?? '';
-    message.withdrawAddress = object.withdrawAddress ?? '';
+    message.delegatorAddress = object.delegatorAddress ?? "";
+    message.withdrawAddress = object.withdrawAddress ?? "";
     return message;
   },
 };
@@ -211,15 +215,15 @@ export const MsgSetWithdrawAddressResponse = {
 };
 
 function createBaseMsgWithdrawDelegatorReward(): MsgWithdrawDelegatorReward {
-  return { delegatorAddress: '', validatorAddress: '' };
+  return { delegatorAddress: "", validatorAddress: "" };
 }
 
 export const MsgWithdrawDelegatorReward = {
   encode(message: MsgWithdrawDelegatorReward, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.delegatorAddress !== '') {
+    if (message.delegatorAddress !== "") {
       writer.uint32(10).string(message.delegatorAddress);
     }
-    if (message.validatorAddress !== '') {
+    if (message.validatorAddress !== "") {
       writer.uint32(18).string(message.validatorAddress);
     }
     return writer;
@@ -248,8 +252,8 @@ export const MsgWithdrawDelegatorReward = {
 
   fromJSON(object: any): MsgWithdrawDelegatorReward {
     return {
-      delegatorAddress: isSet(object.delegatorAddress) ? String(object.delegatorAddress) : '',
-      validatorAddress: isSet(object.validatorAddress) ? String(object.validatorAddress) : '',
+      delegatorAddress: isSet(object.delegatorAddress) ? String(object.delegatorAddress) : "",
+      validatorAddress: isSet(object.validatorAddress) ? String(object.validatorAddress) : "",
     };
   },
 
@@ -262,8 +266,8 @@ export const MsgWithdrawDelegatorReward = {
 
   fromPartial<I extends Exact<DeepPartial<MsgWithdrawDelegatorReward>, I>>(object: I): MsgWithdrawDelegatorReward {
     const message = createBaseMsgWithdrawDelegatorReward();
-    message.delegatorAddress = object.delegatorAddress ?? '';
-    message.validatorAddress = object.validatorAddress ?? '';
+    message.delegatorAddress = object.delegatorAddress ?? "";
+    message.validatorAddress = object.validatorAddress ?? "";
     return message;
   },
 };
@@ -299,15 +303,13 @@ export const MsgWithdrawDelegatorRewardResponse = {
   },
 
   fromJSON(object: any): MsgWithdrawDelegatorRewardResponse {
-    return {
-      amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [],
-    };
+    return { amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [] };
   },
 
   toJSON(message: MsgWithdrawDelegatorRewardResponse): unknown {
     const obj: any = {};
     if (message.amount) {
-      obj.amount = message.amount.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.amount = message.amount.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.amount = [];
     }
@@ -315,7 +317,7 @@ export const MsgWithdrawDelegatorRewardResponse = {
   },
 
   fromPartial<I extends Exact<DeepPartial<MsgWithdrawDelegatorRewardResponse>, I>>(
-    object: I
+    object: I,
   ): MsgWithdrawDelegatorRewardResponse {
     const message = createBaseMsgWithdrawDelegatorRewardResponse();
     message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
@@ -324,12 +326,12 @@ export const MsgWithdrawDelegatorRewardResponse = {
 };
 
 function createBaseMsgWithdrawValidatorCommission(): MsgWithdrawValidatorCommission {
-  return { validatorAddress: '' };
+  return { validatorAddress: "" };
 }
 
 export const MsgWithdrawValidatorCommission = {
   encode(message: MsgWithdrawValidatorCommission, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.validatorAddress !== '') {
+    if (message.validatorAddress !== "") {
       writer.uint32(10).string(message.validatorAddress);
     }
     return writer;
@@ -354,9 +356,7 @@ export const MsgWithdrawValidatorCommission = {
   },
 
   fromJSON(object: any): MsgWithdrawValidatorCommission {
-    return {
-      validatorAddress: isSet(object.validatorAddress) ? String(object.validatorAddress) : '',
-    };
+    return { validatorAddress: isSet(object.validatorAddress) ? String(object.validatorAddress) : "" };
   },
 
   toJSON(message: MsgWithdrawValidatorCommission): unknown {
@@ -366,10 +366,10 @@ export const MsgWithdrawValidatorCommission = {
   },
 
   fromPartial<I extends Exact<DeepPartial<MsgWithdrawValidatorCommission>, I>>(
-    object: I
+    object: I,
   ): MsgWithdrawValidatorCommission {
     const message = createBaseMsgWithdrawValidatorCommission();
-    message.validatorAddress = object.validatorAddress ?? '';
+    message.validatorAddress = object.validatorAddress ?? "";
     return message;
   },
 };
@@ -405,15 +405,13 @@ export const MsgWithdrawValidatorCommissionResponse = {
   },
 
   fromJSON(object: any): MsgWithdrawValidatorCommissionResponse {
-    return {
-      amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [],
-    };
+    return { amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [] };
   },
 
   toJSON(message: MsgWithdrawValidatorCommissionResponse): unknown {
     const obj: any = {};
     if (message.amount) {
-      obj.amount = message.amount.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.amount = message.amount.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.amount = [];
     }
@@ -421,7 +419,7 @@ export const MsgWithdrawValidatorCommissionResponse = {
   },
 
   fromPartial<I extends Exact<DeepPartial<MsgWithdrawValidatorCommissionResponse>, I>>(
-    object: I
+    object: I,
   ): MsgWithdrawValidatorCommissionResponse {
     const message = createBaseMsgWithdrawValidatorCommissionResponse();
     message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
@@ -430,7 +428,7 @@ export const MsgWithdrawValidatorCommissionResponse = {
 };
 
 function createBaseMsgFundCommunityPool(): MsgFundCommunityPool {
-  return { amount: [], depositor: '' };
+  return { amount: [], depositor: "" };
 }
 
 export const MsgFundCommunityPool = {
@@ -438,7 +436,7 @@ export const MsgFundCommunityPool = {
     for (const v of message.amount) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.depositor !== '') {
+    if (message.depositor !== "") {
       writer.uint32(18).string(message.depositor);
     }
     return writer;
@@ -468,14 +466,14 @@ export const MsgFundCommunityPool = {
   fromJSON(object: any): MsgFundCommunityPool {
     return {
       amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [],
-      depositor: isSet(object.depositor) ? String(object.depositor) : '',
+      depositor: isSet(object.depositor) ? String(object.depositor) : "",
     };
   },
 
   toJSON(message: MsgFundCommunityPool): unknown {
     const obj: any = {};
     if (message.amount) {
-      obj.amount = message.amount.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.amount = message.amount.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.amount = [];
     }
@@ -486,7 +484,7 @@ export const MsgFundCommunityPool = {
   fromPartial<I extends Exact<DeepPartial<MsgFundCommunityPool>, I>>(object: I): MsgFundCommunityPool {
     const message = createBaseMsgFundCommunityPool();
     message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
-    message.depositor = object.depositor ?? '';
+    message.depositor = object.depositor ?? "";
     return message;
   },
 };
@@ -531,12 +529,12 @@ export const MsgFundCommunityPoolResponse = {
 };
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { authority: '', params: undefined };
+  return { authority: "", params: undefined };
 }
 
 export const MsgUpdateParams = {
   encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== '') {
+    if (message.authority !== "") {
       writer.uint32(10).string(message.authority);
     }
     if (message.params !== undefined) {
@@ -568,7 +566,7 @@ export const MsgUpdateParams = {
 
   fromJSON(object: any): MsgUpdateParams {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : '',
+      authority: isSet(object.authority) ? String(object.authority) : "",
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
     };
   },
@@ -582,9 +580,10 @@ export const MsgUpdateParams = {
 
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
-    message.authority = object.authority ?? '';
-    message.params =
-      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.authority = object.authority ?? "";
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
     return message;
   },
 };
@@ -629,15 +628,15 @@ export const MsgUpdateParamsResponse = {
 };
 
 function createBaseMsgCommunityPoolSpend(): MsgCommunityPoolSpend {
-  return { authority: '', recipient: '', amount: [] };
+  return { authority: "", recipient: "", amount: [] };
 }
 
 export const MsgCommunityPoolSpend = {
   encode(message: MsgCommunityPoolSpend, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== '') {
+    if (message.authority !== "") {
       writer.uint32(10).string(message.authority);
     }
-    if (message.recipient !== '') {
+    if (message.recipient !== "") {
       writer.uint32(18).string(message.recipient);
     }
     for (const v of message.amount) {
@@ -672,8 +671,8 @@ export const MsgCommunityPoolSpend = {
 
   fromJSON(object: any): MsgCommunityPoolSpend {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : '',
-      recipient: isSet(object.recipient) ? String(object.recipient) : '',
+      authority: isSet(object.authority) ? String(object.authority) : "",
+      recipient: isSet(object.recipient) ? String(object.recipient) : "",
       amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [],
     };
   },
@@ -683,7 +682,7 @@ export const MsgCommunityPoolSpend = {
     message.authority !== undefined && (obj.authority = message.authority);
     message.recipient !== undefined && (obj.recipient = message.recipient);
     if (message.amount) {
-      obj.amount = message.amount.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.amount = message.amount.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.amount = [];
     }
@@ -692,8 +691,8 @@ export const MsgCommunityPoolSpend = {
 
   fromPartial<I extends Exact<DeepPartial<MsgCommunityPoolSpend>, I>>(object: I): MsgCommunityPoolSpend {
     const message = createBaseMsgCommunityPoolSpend();
-    message.authority = object.authority ?? '';
-    message.recipient = object.recipient ?? '';
+    message.authority = object.authority ?? "";
+    message.recipient = object.recipient ?? "";
     message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
@@ -791,39 +790,39 @@ export class MsgClientImpl implements Msg {
   }
   SetWithdrawAddress(request: MsgSetWithdrawAddress): Promise<MsgSetWithdrawAddressResponse> {
     const data = MsgSetWithdrawAddress.encode(request).finish();
-    const promise = this.rpc.request('cosmos.distribution.v1beta1.Msg', 'SetWithdrawAddress', data);
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "SetWithdrawAddress", data);
     return promise.then((data) => MsgSetWithdrawAddressResponse.decode(new _m0.Reader(data)));
   }
 
   WithdrawDelegatorReward(request: MsgWithdrawDelegatorReward): Promise<MsgWithdrawDelegatorRewardResponse> {
     const data = MsgWithdrawDelegatorReward.encode(request).finish();
-    const promise = this.rpc.request('cosmos.distribution.v1beta1.Msg', 'WithdrawDelegatorReward', data);
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "WithdrawDelegatorReward", data);
     return promise.then((data) => MsgWithdrawDelegatorRewardResponse.decode(new _m0.Reader(data)));
   }
 
   WithdrawValidatorCommission(
-    request: MsgWithdrawValidatorCommission
+    request: MsgWithdrawValidatorCommission,
   ): Promise<MsgWithdrawValidatorCommissionResponse> {
     const data = MsgWithdrawValidatorCommission.encode(request).finish();
-    const promise = this.rpc.request('cosmos.distribution.v1beta1.Msg', 'WithdrawValidatorCommission', data);
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "WithdrawValidatorCommission", data);
     return promise.then((data) => MsgWithdrawValidatorCommissionResponse.decode(new _m0.Reader(data)));
   }
 
   FundCommunityPool(request: MsgFundCommunityPool): Promise<MsgFundCommunityPoolResponse> {
     const data = MsgFundCommunityPool.encode(request).finish();
-    const promise = this.rpc.request('cosmos.distribution.v1beta1.Msg', 'FundCommunityPool', data);
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "FundCommunityPool", data);
     return promise.then((data) => MsgFundCommunityPoolResponse.decode(new _m0.Reader(data)));
   }
 
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request('cosmos.distribution.v1beta1.Msg', 'UpdateParams', data);
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "UpdateParams", data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(new _m0.Reader(data)));
   }
 
   CommunityPoolSpend(request: MsgCommunityPoolSpend): Promise<MsgCommunityPoolSpendResponse> {
     const data = MsgCommunityPoolSpend.encode(request).finish();
-    const promise = this.rpc.request('cosmos.distribution.v1beta1.Msg', 'CommunityPoolSpend', data);
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "CommunityPoolSpend", data);
     return promise.then((data) => MsgCommunityPoolSpendResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -834,22 +833,14 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

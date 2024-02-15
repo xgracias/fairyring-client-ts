@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { IdentifiedChannel, PacketState } from './channel';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { IdentifiedChannel, PacketState } from "./channel";
 
-export const protobufPackage = 'ibc.core.channel.v1';
+export const protobufPackage = "ibc.core.channel.v1";
 
 /** GenesisState defines the ibc channel submodule's genesis state. */
 export interface GenesisState {
@@ -135,37 +135,37 @@ export const GenesisState = {
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
     if (message.channels) {
-      obj.channels = message.channels.map((e) => (e ? IdentifiedChannel.toJSON(e) : undefined));
+      obj.channels = message.channels.map((e) => e ? IdentifiedChannel.toJSON(e) : undefined);
     } else {
       obj.channels = [];
     }
     if (message.acknowledgements) {
-      obj.acknowledgements = message.acknowledgements.map((e) => (e ? PacketState.toJSON(e) : undefined));
+      obj.acknowledgements = message.acknowledgements.map((e) => e ? PacketState.toJSON(e) : undefined);
     } else {
       obj.acknowledgements = [];
     }
     if (message.commitments) {
-      obj.commitments = message.commitments.map((e) => (e ? PacketState.toJSON(e) : undefined));
+      obj.commitments = message.commitments.map((e) => e ? PacketState.toJSON(e) : undefined);
     } else {
       obj.commitments = [];
     }
     if (message.receipts) {
-      obj.receipts = message.receipts.map((e) => (e ? PacketState.toJSON(e) : undefined));
+      obj.receipts = message.receipts.map((e) => e ? PacketState.toJSON(e) : undefined);
     } else {
       obj.receipts = [];
     }
     if (message.sendSequences) {
-      obj.sendSequences = message.sendSequences.map((e) => (e ? PacketSequence.toJSON(e) : undefined));
+      obj.sendSequences = message.sendSequences.map((e) => e ? PacketSequence.toJSON(e) : undefined);
     } else {
       obj.sendSequences = [];
     }
     if (message.recvSequences) {
-      obj.recvSequences = message.recvSequences.map((e) => (e ? PacketSequence.toJSON(e) : undefined));
+      obj.recvSequences = message.recvSequences.map((e) => e ? PacketSequence.toJSON(e) : undefined);
     } else {
       obj.recvSequences = [];
     }
     if (message.ackSequences) {
-      obj.ackSequences = message.ackSequences.map((e) => (e ? PacketSequence.toJSON(e) : undefined));
+      obj.ackSequences = message.ackSequences.map((e) => e ? PacketSequence.toJSON(e) : undefined);
     } else {
       obj.ackSequences = [];
     }
@@ -188,15 +188,15 @@ export const GenesisState = {
 };
 
 function createBasePacketSequence(): PacketSequence {
-  return { portId: '', channelId: '', sequence: 0 };
+  return { portId: "", channelId: "", sequence: 0 };
 }
 
 export const PacketSequence = {
   encode(message: PacketSequence, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.portId !== '') {
+    if (message.portId !== "") {
       writer.uint32(10).string(message.portId);
     }
-    if (message.channelId !== '') {
+    if (message.channelId !== "") {
       writer.uint32(18).string(message.channelId);
     }
     if (message.sequence !== 0) {
@@ -231,8 +231,8 @@ export const PacketSequence = {
 
   fromJSON(object: any): PacketSequence {
     return {
-      portId: isSet(object.portId) ? String(object.portId) : '',
-      channelId: isSet(object.channelId) ? String(object.channelId) : '',
+      portId: isSet(object.portId) ? String(object.portId) : "",
+      channelId: isSet(object.channelId) ? String(object.channelId) : "",
       sequence: isSet(object.sequence) ? Number(object.sequence) : 0,
     };
   },
@@ -247,8 +247,8 @@ export const PacketSequence = {
 
   fromPartial<I extends Exact<DeepPartial<PacketSequence>, I>>(object: I): PacketSequence {
     const message = createBasePacketSequence();
-    message.portId = object.portId ?? '';
-    message.channelId = object.channelId ?? '';
+    message.portId = object.portId ?? "";
+    message.channelId = object.channelId ?? "";
     message.sequence = object.sequence ?? 0;
     return message;
   },
@@ -258,43 +258,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

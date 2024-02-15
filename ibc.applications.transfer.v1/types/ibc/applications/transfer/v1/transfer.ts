@@ -1,7 +1,7 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
+import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = 'ibc.applications.transfer.v1';
+export const protobufPackage = "ibc.applications.transfer.v1";
 
 /**
  * DenomTrace contains the base denomination for ICS20 fungible tokens and the
@@ -37,15 +37,15 @@ export interface Params {
 }
 
 function createBaseDenomTrace(): DenomTrace {
-  return { path: '', baseDenom: '' };
+  return { path: "", baseDenom: "" };
 }
 
 export const DenomTrace = {
   encode(message: DenomTrace, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.path !== '') {
+    if (message.path !== "") {
       writer.uint32(10).string(message.path);
     }
-    if (message.baseDenom !== '') {
+    if (message.baseDenom !== "") {
       writer.uint32(18).string(message.baseDenom);
     }
     return writer;
@@ -74,8 +74,8 @@ export const DenomTrace = {
 
   fromJSON(object: any): DenomTrace {
     return {
-      path: isSet(object.path) ? String(object.path) : '',
-      baseDenom: isSet(object.baseDenom) ? String(object.baseDenom) : '',
+      path: isSet(object.path) ? String(object.path) : "",
+      baseDenom: isSet(object.baseDenom) ? String(object.baseDenom) : "",
     };
   },
 
@@ -88,8 +88,8 @@ export const DenomTrace = {
 
   fromPartial<I extends Exact<DeepPartial<DenomTrace>, I>>(object: I): DenomTrace {
     const message = createBaseDenomTrace();
-    message.path = object.path ?? '';
-    message.baseDenom = object.baseDenom ?? '';
+    message.path = object.path ?? "";
+    message.baseDenom = object.baseDenom ?? "";
     return message;
   },
 };
@@ -154,22 +154,14 @@ export const Params = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

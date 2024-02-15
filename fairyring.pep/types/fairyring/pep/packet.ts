@@ -1,18 +1,20 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { ActivePubKey, QueuedPubKey } from './pub_key';
+import _m0 from "protobufjs/minimal";
+import { ActivePubKey, QueuedPubKey } from "./pub_key";
 
-export const protobufPackage = 'fairyring.pep';
+export const protobufPackage = "fairyring.pep";
 
 export interface PepPacketData {
   noData: NoData | undefined;
   currentKeysPacket: CurrentKeysPacketData | undefined;
 }
 
-export interface NoData {}
+export interface NoData {
+}
 
 /** CurrentKeysPacketData defines a struct for the packet payload */
-export interface CurrentKeysPacketData {}
+export interface CurrentKeysPacketData {
+}
 
 /** CurrentKeysPacketAck defines a struct for the packet acknowledgment */
 export interface CurrentKeysPacketAck {
@@ -68,21 +70,20 @@ export const PepPacketData = {
   toJSON(message: PepPacketData): unknown {
     const obj: any = {};
     message.noData !== undefined && (obj.noData = message.noData ? NoData.toJSON(message.noData) : undefined);
-    message.currentKeysPacket !== undefined &&
-      (obj.currentKeysPacket = message.currentKeysPacket
-        ? CurrentKeysPacketData.toJSON(message.currentKeysPacket)
-        : undefined);
+    message.currentKeysPacket !== undefined && (obj.currentKeysPacket = message.currentKeysPacket
+      ? CurrentKeysPacketData.toJSON(message.currentKeysPacket)
+      : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<PepPacketData>, I>>(object: I): PepPacketData {
     const message = createBasePepPacketData();
-    message.noData =
-      object.noData !== undefined && object.noData !== null ? NoData.fromPartial(object.noData) : undefined;
-    message.currentKeysPacket =
-      object.currentKeysPacket !== undefined && object.currentKeysPacket !== null
-        ? CurrentKeysPacketData.fromPartial(object.currentKeysPacket)
-        : undefined;
+    message.noData = (object.noData !== undefined && object.noData !== null)
+      ? NoData.fromPartial(object.noData)
+      : undefined;
+    message.currentKeysPacket = (object.currentKeysPacket !== undefined && object.currentKeysPacket !== null)
+      ? CurrentKeysPacketData.fromPartial(object.currentKeysPacket)
+      : undefined;
     return message;
   },
 };
@@ -172,10 +173,10 @@ function createBaseCurrentKeysPacketAck(): CurrentKeysPacketAck {
 export const CurrentKeysPacketAck = {
   encode(message: CurrentKeysPacketAck, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.activeKey !== undefined) {
-      ActivePubKey.encode(message.activeKey, writer.uint32(18).fork()).ldelim();
+      ActivePubKey.encode(message.activeKey, writer.uint32(10).fork()).ldelim();
     }
     if (message.queuedKey !== undefined) {
-      QueuedPubKey.encode(message.queuedKey, writer.uint32(26).fork()).ldelim();
+      QueuedPubKey.encode(message.queuedKey, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -187,10 +188,10 @@ export const CurrentKeysPacketAck = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 2:
+        case 1:
           message.activeKey = ActivePubKey.decode(reader, reader.uint32());
           break;
-        case 3:
+        case 2:
           message.queuedKey = QueuedPubKey.decode(reader, reader.uint32());
           break;
         default:
@@ -210,45 +211,35 @@ export const CurrentKeysPacketAck = {
 
   toJSON(message: CurrentKeysPacketAck): unknown {
     const obj: any = {};
-    message.activeKey !== undefined &&
-      (obj.activeKey = message.activeKey ? ActivePubKey.toJSON(message.activeKey) : undefined);
-    message.queuedKey !== undefined &&
-      (obj.queuedKey = message.queuedKey ? QueuedPubKey.toJSON(message.queuedKey) : undefined);
+    message.activeKey !== undefined
+      && (obj.activeKey = message.activeKey ? ActivePubKey.toJSON(message.activeKey) : undefined);
+    message.queuedKey !== undefined
+      && (obj.queuedKey = message.queuedKey ? QueuedPubKey.toJSON(message.queuedKey) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<CurrentKeysPacketAck>, I>>(object: I): CurrentKeysPacketAck {
     const message = createBaseCurrentKeysPacketAck();
-    message.activeKey =
-      object.activeKey !== undefined && object.activeKey !== null
-        ? ActivePubKey.fromPartial(object.activeKey)
-        : undefined;
-    message.queuedKey =
-      object.queuedKey !== undefined && object.queuedKey !== null
-        ? QueuedPubKey.fromPartial(object.queuedKey)
-        : undefined;
+    message.activeKey = (object.activeKey !== undefined && object.activeKey !== null)
+      ? ActivePubKey.fromPartial(object.activeKey)
+      : undefined;
+    message.queuedKey = (object.queuedKey !== undefined && object.queuedKey !== null)
+      ? QueuedPubKey.fromPartial(object.queuedKey)
+      : undefined;
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

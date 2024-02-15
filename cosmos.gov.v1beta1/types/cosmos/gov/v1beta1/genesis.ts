@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Deposit, DepositParams, Proposal, TallyParams, Vote, VotingParams } from './gov';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Deposit, DepositParams, Proposal, TallyParams, Vote, VotingParams } from "./gov";
 
-export const protobufPackage = 'cosmos.gov.v1beta1';
+export const protobufPackage = "cosmos.gov.v1beta1";
 
 /** GenesisState defines the gov module's genesis state. */
 export interface GenesisState {
@@ -16,9 +16,13 @@ export interface GenesisState {
   /** proposals defines all the proposals present at genesis. */
   proposals: Proposal[];
   /** params defines all the parameters of related to deposit. */
-  depositParams: DepositParams | undefined;
+  depositParams:
+    | DepositParams
+    | undefined;
   /** params defines all the parameters of related to voting. */
-  votingParams: VotingParams | undefined;
+  votingParams:
+    | VotingParams
+    | undefined;
   /** params defines all the parameters of related to tally. */
   tallyParams: TallyParams | undefined;
 }
@@ -113,26 +117,26 @@ export const GenesisState = {
     const obj: any = {};
     message.startingProposalId !== undefined && (obj.startingProposalId = Math.round(message.startingProposalId));
     if (message.deposits) {
-      obj.deposits = message.deposits.map((e) => (e ? Deposit.toJSON(e) : undefined));
+      obj.deposits = message.deposits.map((e) => e ? Deposit.toJSON(e) : undefined);
     } else {
       obj.deposits = [];
     }
     if (message.votes) {
-      obj.votes = message.votes.map((e) => (e ? Vote.toJSON(e) : undefined));
+      obj.votes = message.votes.map((e) => e ? Vote.toJSON(e) : undefined);
     } else {
       obj.votes = [];
     }
     if (message.proposals) {
-      obj.proposals = message.proposals.map((e) => (e ? Proposal.toJSON(e) : undefined));
+      obj.proposals = message.proposals.map((e) => e ? Proposal.toJSON(e) : undefined);
     } else {
       obj.proposals = [];
     }
-    message.depositParams !== undefined &&
-      (obj.depositParams = message.depositParams ? DepositParams.toJSON(message.depositParams) : undefined);
-    message.votingParams !== undefined &&
-      (obj.votingParams = message.votingParams ? VotingParams.toJSON(message.votingParams) : undefined);
-    message.tallyParams !== undefined &&
-      (obj.tallyParams = message.tallyParams ? TallyParams.toJSON(message.tallyParams) : undefined);
+    message.depositParams !== undefined
+      && (obj.depositParams = message.depositParams ? DepositParams.toJSON(message.depositParams) : undefined);
+    message.votingParams !== undefined
+      && (obj.votingParams = message.votingParams ? VotingParams.toJSON(message.votingParams) : undefined);
+    message.tallyParams !== undefined
+      && (obj.tallyParams = message.tallyParams ? TallyParams.toJSON(message.tallyParams) : undefined);
     return obj;
   },
 
@@ -142,18 +146,15 @@ export const GenesisState = {
     message.deposits = object.deposits?.map((e) => Deposit.fromPartial(e)) || [];
     message.votes = object.votes?.map((e) => Vote.fromPartial(e)) || [];
     message.proposals = object.proposals?.map((e) => Proposal.fromPartial(e)) || [];
-    message.depositParams =
-      object.depositParams !== undefined && object.depositParams !== null
-        ? DepositParams.fromPartial(object.depositParams)
-        : undefined;
-    message.votingParams =
-      object.votingParams !== undefined && object.votingParams !== null
-        ? VotingParams.fromPartial(object.votingParams)
-        : undefined;
-    message.tallyParams =
-      object.tallyParams !== undefined && object.tallyParams !== null
-        ? TallyParams.fromPartial(object.tallyParams)
-        : undefined;
+    message.depositParams = (object.depositParams !== undefined && object.depositParams !== null)
+      ? DepositParams.fromPartial(object.depositParams)
+      : undefined;
+    message.votingParams = (object.votingParams !== undefined && object.votingParams !== null)
+      ? VotingParams.fromPartial(object.votingParams)
+      : undefined;
+    message.tallyParams = (object.tallyParams !== undefined && object.tallyParams !== null)
+      ? TallyParams.fromPartial(object.tallyParams)
+      : undefined;
     return message;
   },
 };
@@ -162,43 +163,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

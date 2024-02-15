@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Coin, DecCoin } from '../../base/v1beta1/coin';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Coin, DecCoin } from "../../base/v1beta1/coin";
 
-export const protobufPackage = 'cosmos.distribution.v1beta1';
+export const protobufPackage = "cosmos.distribution.v1beta1";
 
 /** Params defines the set of params for the distribution module. */
 export interface Params {
@@ -146,23 +146,18 @@ export interface CommunityPoolSpendProposalWithDeposit {
 }
 
 function createBaseParams(): Params {
-  return {
-    communityTax: '',
-    baseProposerReward: '',
-    bonusProposerReward: '',
-    withdrawAddrEnabled: false,
-  };
+  return { communityTax: "", baseProposerReward: "", bonusProposerReward: "", withdrawAddrEnabled: false };
 }
 
 export const Params = {
   encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.communityTax !== '') {
+    if (message.communityTax !== "") {
       writer.uint32(10).string(message.communityTax);
     }
-    if (message.baseProposerReward !== '') {
+    if (message.baseProposerReward !== "") {
       writer.uint32(18).string(message.baseProposerReward);
     }
-    if (message.bonusProposerReward !== '') {
+    if (message.bonusProposerReward !== "") {
       writer.uint32(26).string(message.bonusProposerReward);
     }
     if (message.withdrawAddrEnabled === true) {
@@ -200,9 +195,9 @@ export const Params = {
 
   fromJSON(object: any): Params {
     return {
-      communityTax: isSet(object.communityTax) ? String(object.communityTax) : '',
-      baseProposerReward: isSet(object.baseProposerReward) ? String(object.baseProposerReward) : '',
-      bonusProposerReward: isSet(object.bonusProposerReward) ? String(object.bonusProposerReward) : '',
+      communityTax: isSet(object.communityTax) ? String(object.communityTax) : "",
+      baseProposerReward: isSet(object.baseProposerReward) ? String(object.baseProposerReward) : "",
+      bonusProposerReward: isSet(object.bonusProposerReward) ? String(object.bonusProposerReward) : "",
       withdrawAddrEnabled: isSet(object.withdrawAddrEnabled) ? Boolean(object.withdrawAddrEnabled) : false,
     };
   },
@@ -218,9 +213,9 @@ export const Params = {
 
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
-    message.communityTax = object.communityTax ?? '';
-    message.baseProposerReward = object.baseProposerReward ?? '';
-    message.bonusProposerReward = object.bonusProposerReward ?? '';
+    message.communityTax = object.communityTax ?? "";
+    message.baseProposerReward = object.baseProposerReward ?? "";
+    message.bonusProposerReward = object.bonusProposerReward ?? "";
     message.withdrawAddrEnabled = object.withdrawAddrEnabled ?? false;
     return message;
   },
@@ -274,7 +269,7 @@ export const ValidatorHistoricalRewards = {
   toJSON(message: ValidatorHistoricalRewards): unknown {
     const obj: any = {};
     if (message.cumulativeRewardRatio) {
-      obj.cumulativeRewardRatio = message.cumulativeRewardRatio.map((e) => (e ? DecCoin.toJSON(e) : undefined));
+      obj.cumulativeRewardRatio = message.cumulativeRewardRatio.map((e) => e ? DecCoin.toJSON(e) : undefined);
     } else {
       obj.cumulativeRewardRatio = [];
     }
@@ -336,7 +331,7 @@ export const ValidatorCurrentRewards = {
   toJSON(message: ValidatorCurrentRewards): unknown {
     const obj: any = {};
     if (message.rewards) {
-      obj.rewards = message.rewards.map((e) => (e ? DecCoin.toJSON(e) : undefined));
+      obj.rewards = message.rewards.map((e) => e ? DecCoin.toJSON(e) : undefined);
     } else {
       obj.rewards = [];
     }
@@ -391,7 +386,7 @@ export const ValidatorAccumulatedCommission = {
   toJSON(message: ValidatorAccumulatedCommission): unknown {
     const obj: any = {};
     if (message.commission) {
-      obj.commission = message.commission.map((e) => (e ? DecCoin.toJSON(e) : undefined));
+      obj.commission = message.commission.map((e) => e ? DecCoin.toJSON(e) : undefined);
     } else {
       obj.commission = [];
     }
@@ -399,7 +394,7 @@ export const ValidatorAccumulatedCommission = {
   },
 
   fromPartial<I extends Exact<DeepPartial<ValidatorAccumulatedCommission>, I>>(
-    object: I
+    object: I,
   ): ValidatorAccumulatedCommission {
     const message = createBaseValidatorAccumulatedCommission();
     message.commission = object.commission?.map((e) => DecCoin.fromPartial(e)) || [];
@@ -438,15 +433,13 @@ export const ValidatorOutstandingRewards = {
   },
 
   fromJSON(object: any): ValidatorOutstandingRewards {
-    return {
-      rewards: Array.isArray(object?.rewards) ? object.rewards.map((e: any) => DecCoin.fromJSON(e)) : [],
-    };
+    return { rewards: Array.isArray(object?.rewards) ? object.rewards.map((e: any) => DecCoin.fromJSON(e)) : [] };
   },
 
   toJSON(message: ValidatorOutstandingRewards): unknown {
     const obj: any = {};
     if (message.rewards) {
-      obj.rewards = message.rewards.map((e) => (e ? DecCoin.toJSON(e) : undefined));
+      obj.rewards = message.rewards.map((e) => e ? DecCoin.toJSON(e) : undefined);
     } else {
       obj.rewards = [];
     }
@@ -461,7 +454,7 @@ export const ValidatorOutstandingRewards = {
 };
 
 function createBaseValidatorSlashEvent(): ValidatorSlashEvent {
-  return { validatorPeriod: 0, fraction: '' };
+  return { validatorPeriod: 0, fraction: "" };
 }
 
 export const ValidatorSlashEvent = {
@@ -469,7 +462,7 @@ export const ValidatorSlashEvent = {
     if (message.validatorPeriod !== 0) {
       writer.uint32(8).uint64(message.validatorPeriod);
     }
-    if (message.fraction !== '') {
+    if (message.fraction !== "") {
       writer.uint32(18).string(message.fraction);
     }
     return writer;
@@ -499,7 +492,7 @@ export const ValidatorSlashEvent = {
   fromJSON(object: any): ValidatorSlashEvent {
     return {
       validatorPeriod: isSet(object.validatorPeriod) ? Number(object.validatorPeriod) : 0,
-      fraction: isSet(object.fraction) ? String(object.fraction) : '',
+      fraction: isSet(object.fraction) ? String(object.fraction) : "",
     };
   },
 
@@ -513,7 +506,7 @@ export const ValidatorSlashEvent = {
   fromPartial<I extends Exact<DeepPartial<ValidatorSlashEvent>, I>>(object: I): ValidatorSlashEvent {
     const message = createBaseValidatorSlashEvent();
     message.validatorPeriod = object.validatorPeriod ?? 0;
-    message.fraction = object.fraction ?? '';
+    message.fraction = object.fraction ?? "";
     return message;
   },
 };
@@ -559,9 +552,7 @@ export const ValidatorSlashEvents = {
   toJSON(message: ValidatorSlashEvents): unknown {
     const obj: any = {};
     if (message.validatorSlashEvents) {
-      obj.validatorSlashEvents = message.validatorSlashEvents.map((e) =>
-        e ? ValidatorSlashEvent.toJSON(e) : undefined
-      );
+      obj.validatorSlashEvents = message.validatorSlashEvents.map((e) => e ? ValidatorSlashEvent.toJSON(e) : undefined);
     } else {
       obj.validatorSlashEvents = [];
     }
@@ -616,7 +607,7 @@ export const FeePool = {
   toJSON(message: FeePool): unknown {
     const obj: any = {};
     if (message.communityPool) {
-      obj.communityPool = message.communityPool.map((e) => (e ? DecCoin.toJSON(e) : undefined));
+      obj.communityPool = message.communityPool.map((e) => e ? DecCoin.toJSON(e) : undefined);
     } else {
       obj.communityPool = [];
     }
@@ -631,18 +622,18 @@ export const FeePool = {
 };
 
 function createBaseCommunityPoolSpendProposal(): CommunityPoolSpendProposal {
-  return { title: '', description: '', recipient: '', amount: [] };
+  return { title: "", description: "", recipient: "", amount: [] };
 }
 
 export const CommunityPoolSpendProposal = {
   encode(message: CommunityPoolSpendProposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.title !== '') {
+    if (message.title !== "") {
       writer.uint32(10).string(message.title);
     }
-    if (message.description !== '') {
+    if (message.description !== "") {
       writer.uint32(18).string(message.description);
     }
-    if (message.recipient !== '') {
+    if (message.recipient !== "") {
       writer.uint32(26).string(message.recipient);
     }
     for (const v of message.amount) {
@@ -680,9 +671,9 @@ export const CommunityPoolSpendProposal = {
 
   fromJSON(object: any): CommunityPoolSpendProposal {
     return {
-      title: isSet(object.title) ? String(object.title) : '',
-      description: isSet(object.description) ? String(object.description) : '',
-      recipient: isSet(object.recipient) ? String(object.recipient) : '',
+      title: isSet(object.title) ? String(object.title) : "",
+      description: isSet(object.description) ? String(object.description) : "",
+      recipient: isSet(object.recipient) ? String(object.recipient) : "",
       amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [],
     };
   },
@@ -693,7 +684,7 @@ export const CommunityPoolSpendProposal = {
     message.description !== undefined && (obj.description = message.description);
     message.recipient !== undefined && (obj.recipient = message.recipient);
     if (message.amount) {
-      obj.amount = message.amount.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.amount = message.amount.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.amount = [];
     }
@@ -702,16 +693,16 @@ export const CommunityPoolSpendProposal = {
 
   fromPartial<I extends Exact<DeepPartial<CommunityPoolSpendProposal>, I>>(object: I): CommunityPoolSpendProposal {
     const message = createBaseCommunityPoolSpendProposal();
-    message.title = object.title ?? '';
-    message.description = object.description ?? '';
-    message.recipient = object.recipient ?? '';
+    message.title = object.title ?? "";
+    message.description = object.description ?? "";
+    message.recipient = object.recipient ?? "";
     message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseDelegatorStartingInfo(): DelegatorStartingInfo {
-  return { previousPeriod: 0, stake: '', height: 0 };
+  return { previousPeriod: 0, stake: "", height: 0 };
 }
 
 export const DelegatorStartingInfo = {
@@ -719,7 +710,7 @@ export const DelegatorStartingInfo = {
     if (message.previousPeriod !== 0) {
       writer.uint32(8).uint64(message.previousPeriod);
     }
-    if (message.stake !== '') {
+    if (message.stake !== "") {
       writer.uint32(18).string(message.stake);
     }
     if (message.height !== 0) {
@@ -755,7 +746,7 @@ export const DelegatorStartingInfo = {
   fromJSON(object: any): DelegatorStartingInfo {
     return {
       previousPeriod: isSet(object.previousPeriod) ? Number(object.previousPeriod) : 0,
-      stake: isSet(object.stake) ? String(object.stake) : '',
+      stake: isSet(object.stake) ? String(object.stake) : "",
       height: isSet(object.height) ? Number(object.height) : 0,
     };
   },
@@ -771,19 +762,19 @@ export const DelegatorStartingInfo = {
   fromPartial<I extends Exact<DeepPartial<DelegatorStartingInfo>, I>>(object: I): DelegatorStartingInfo {
     const message = createBaseDelegatorStartingInfo();
     message.previousPeriod = object.previousPeriod ?? 0;
-    message.stake = object.stake ?? '';
+    message.stake = object.stake ?? "";
     message.height = object.height ?? 0;
     return message;
   },
 };
 
 function createBaseDelegationDelegatorReward(): DelegationDelegatorReward {
-  return { validatorAddress: '', reward: [] };
+  return { validatorAddress: "", reward: [] };
 }
 
 export const DelegationDelegatorReward = {
   encode(message: DelegationDelegatorReward, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.validatorAddress !== '') {
+    if (message.validatorAddress !== "") {
       writer.uint32(10).string(message.validatorAddress);
     }
     for (const v of message.reward) {
@@ -815,7 +806,7 @@ export const DelegationDelegatorReward = {
 
   fromJSON(object: any): DelegationDelegatorReward {
     return {
-      validatorAddress: isSet(object.validatorAddress) ? String(object.validatorAddress) : '',
+      validatorAddress: isSet(object.validatorAddress) ? String(object.validatorAddress) : "",
       reward: Array.isArray(object?.reward) ? object.reward.map((e: any) => DecCoin.fromJSON(e)) : [],
     };
   },
@@ -824,7 +815,7 @@ export const DelegationDelegatorReward = {
     const obj: any = {};
     message.validatorAddress !== undefined && (obj.validatorAddress = message.validatorAddress);
     if (message.reward) {
-      obj.reward = message.reward.map((e) => (e ? DecCoin.toJSON(e) : undefined));
+      obj.reward = message.reward.map((e) => e ? DecCoin.toJSON(e) : undefined);
     } else {
       obj.reward = [];
     }
@@ -833,31 +824,31 @@ export const DelegationDelegatorReward = {
 
   fromPartial<I extends Exact<DeepPartial<DelegationDelegatorReward>, I>>(object: I): DelegationDelegatorReward {
     const message = createBaseDelegationDelegatorReward();
-    message.validatorAddress = object.validatorAddress ?? '';
+    message.validatorAddress = object.validatorAddress ?? "";
     message.reward = object.reward?.map((e) => DecCoin.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseCommunityPoolSpendProposalWithDeposit(): CommunityPoolSpendProposalWithDeposit {
-  return { title: '', description: '', recipient: '', amount: '', deposit: '' };
+  return { title: "", description: "", recipient: "", amount: "", deposit: "" };
 }
 
 export const CommunityPoolSpendProposalWithDeposit = {
   encode(message: CommunityPoolSpendProposalWithDeposit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.title !== '') {
+    if (message.title !== "") {
       writer.uint32(10).string(message.title);
     }
-    if (message.description !== '') {
+    if (message.description !== "") {
       writer.uint32(18).string(message.description);
     }
-    if (message.recipient !== '') {
+    if (message.recipient !== "") {
       writer.uint32(26).string(message.recipient);
     }
-    if (message.amount !== '') {
+    if (message.amount !== "") {
       writer.uint32(34).string(message.amount);
     }
-    if (message.deposit !== '') {
+    if (message.deposit !== "") {
       writer.uint32(42).string(message.deposit);
     }
     return writer;
@@ -895,11 +886,11 @@ export const CommunityPoolSpendProposalWithDeposit = {
 
   fromJSON(object: any): CommunityPoolSpendProposalWithDeposit {
     return {
-      title: isSet(object.title) ? String(object.title) : '',
-      description: isSet(object.description) ? String(object.description) : '',
-      recipient: isSet(object.recipient) ? String(object.recipient) : '',
-      amount: isSet(object.amount) ? String(object.amount) : '',
-      deposit: isSet(object.deposit) ? String(object.deposit) : '',
+      title: isSet(object.title) ? String(object.title) : "",
+      description: isSet(object.description) ? String(object.description) : "",
+      recipient: isSet(object.recipient) ? String(object.recipient) : "",
+      amount: isSet(object.amount) ? String(object.amount) : "",
+      deposit: isSet(object.deposit) ? String(object.deposit) : "",
     };
   },
 
@@ -914,14 +905,14 @@ export const CommunityPoolSpendProposalWithDeposit = {
   },
 
   fromPartial<I extends Exact<DeepPartial<CommunityPoolSpendProposalWithDeposit>, I>>(
-    object: I
+    object: I,
   ): CommunityPoolSpendProposalWithDeposit {
     const message = createBaseCommunityPoolSpendProposalWithDeposit();
-    message.title = object.title ?? '';
-    message.description = object.description ?? '';
-    message.recipient = object.recipient ?? '';
-    message.amount = object.amount ?? '';
-    message.deposit = object.deposit ?? '';
+    message.title = object.title ?? "";
+    message.description = object.description ?? "";
+    message.recipient = object.recipient ?? "";
+    message.amount = object.amount ?? "";
+    message.deposit = object.deposit ?? "";
     return message;
   },
 };
@@ -930,43 +921,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

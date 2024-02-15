@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { Duration } from '../../google/protobuf/duration';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { Duration } from "../../google/protobuf/duration";
 
-export const protobufPackage = 'tendermint.types';
+export const protobufPackage = "tendermint.types";
 
 /**
  * ConsensusParams contains consensus critical parameters that determine the
@@ -46,7 +46,9 @@ export interface EvidenceParams {
    * mechanism for handling [Nothing-At-Stake
    * attacks](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed).
    */
-  maxAgeDuration: Duration | undefined;
+  maxAgeDuration:
+    | Duration
+    | undefined;
   /**
    * This sets the maximum size of total evidence in bytes that can be committed in a single block.
    * and should fall comfortably under the max block bytes.
@@ -79,12 +81,7 @@ export interface HashedParams {
 }
 
 function createBaseConsensusParams(): ConsensusParams {
-  return {
-    block: undefined,
-    evidence: undefined,
-    validator: undefined,
-    version: undefined,
-  };
+  return { block: undefined, evidence: undefined, validator: undefined, version: undefined };
 }
 
 export const ConsensusParams = {
@@ -143,29 +140,29 @@ export const ConsensusParams = {
   toJSON(message: ConsensusParams): unknown {
     const obj: any = {};
     message.block !== undefined && (obj.block = message.block ? BlockParams.toJSON(message.block) : undefined);
-    message.evidence !== undefined &&
-      (obj.evidence = message.evidence ? EvidenceParams.toJSON(message.evidence) : undefined);
-    message.validator !== undefined &&
-      (obj.validator = message.validator ? ValidatorParams.toJSON(message.validator) : undefined);
-    message.version !== undefined &&
-      (obj.version = message.version ? VersionParams.toJSON(message.version) : undefined);
+    message.evidence !== undefined
+      && (obj.evidence = message.evidence ? EvidenceParams.toJSON(message.evidence) : undefined);
+    message.validator !== undefined
+      && (obj.validator = message.validator ? ValidatorParams.toJSON(message.validator) : undefined);
+    message.version !== undefined
+      && (obj.version = message.version ? VersionParams.toJSON(message.version) : undefined);
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<ConsensusParams>, I>>(object: I): ConsensusParams {
     const message = createBaseConsensusParams();
-    message.block =
-      object.block !== undefined && object.block !== null ? BlockParams.fromPartial(object.block) : undefined;
-    message.evidence =
-      object.evidence !== undefined && object.evidence !== null
-        ? EvidenceParams.fromPartial(object.evidence)
-        : undefined;
-    message.validator =
-      object.validator !== undefined && object.validator !== null
-        ? ValidatorParams.fromPartial(object.validator)
-        : undefined;
-    message.version =
-      object.version !== undefined && object.version !== null ? VersionParams.fromPartial(object.version) : undefined;
+    message.block = (object.block !== undefined && object.block !== null)
+      ? BlockParams.fromPartial(object.block)
+      : undefined;
+    message.evidence = (object.evidence !== undefined && object.evidence !== null)
+      ? EvidenceParams.fromPartial(object.evidence)
+      : undefined;
+    message.validator = (object.validator !== undefined && object.validator !== null)
+      ? ValidatorParams.fromPartial(object.validator)
+      : undefined;
+    message.version = (object.version !== undefined && object.version !== null)
+      ? VersionParams.fromPartial(object.version)
+      : undefined;
     return message;
   },
 };
@@ -281,8 +278,8 @@ export const EvidenceParams = {
   toJSON(message: EvidenceParams): unknown {
     const obj: any = {};
     message.maxAgeNumBlocks !== undefined && (obj.maxAgeNumBlocks = Math.round(message.maxAgeNumBlocks));
-    message.maxAgeDuration !== undefined &&
-      (obj.maxAgeDuration = message.maxAgeDuration ? Duration.toJSON(message.maxAgeDuration) : undefined);
+    message.maxAgeDuration !== undefined
+      && (obj.maxAgeDuration = message.maxAgeDuration ? Duration.toJSON(message.maxAgeDuration) : undefined);
     message.maxBytes !== undefined && (obj.maxBytes = Math.round(message.maxBytes));
     return obj;
   },
@@ -290,10 +287,9 @@ export const EvidenceParams = {
   fromPartial<I extends Exact<DeepPartial<EvidenceParams>, I>>(object: I): EvidenceParams {
     const message = createBaseEvidenceParams();
     message.maxAgeNumBlocks = object.maxAgeNumBlocks ?? 0;
-    message.maxAgeDuration =
-      object.maxAgeDuration !== undefined && object.maxAgeDuration !== null
-        ? Duration.fromPartial(object.maxAgeDuration)
-        : undefined;
+    message.maxAgeDuration = (object.maxAgeDuration !== undefined && object.maxAgeDuration !== null)
+      ? Duration.fromPartial(object.maxAgeDuration)
+      : undefined;
     message.maxBytes = object.maxBytes ?? 0;
     return message;
   },
@@ -330,9 +326,7 @@ export const ValidatorParams = {
   },
 
   fromJSON(object: any): ValidatorParams {
-    return {
-      pubKeyTypes: Array.isArray(object?.pubKeyTypes) ? object.pubKeyTypes.map((e: any) => String(e)) : [],
-    };
+    return { pubKeyTypes: Array.isArray(object?.pubKeyTypes) ? object.pubKeyTypes.map((e: any) => String(e)) : [] };
   },
 
   toJSON(message: ValidatorParams): unknown {
@@ -461,43 +455,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

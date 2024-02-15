@@ -1,7 +1,7 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
+import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = 'cosmos.nft.v1beta1';
+export const protobufPackage = "cosmos.nft.v1beta1";
 
 /** MsgSend represents a message to send a nft from one account to another account. */
 export interface MsgSend {
@@ -16,24 +16,25 @@ export interface MsgSend {
 }
 
 /** MsgSendResponse defines the Msg/Send response type. */
-export interface MsgSendResponse {}
+export interface MsgSendResponse {
+}
 
 function createBaseMsgSend(): MsgSend {
-  return { classId: '', id: '', sender: '', receiver: '' };
+  return { classId: "", id: "", sender: "", receiver: "" };
 }
 
 export const MsgSend = {
   encode(message: MsgSend, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.classId !== '') {
+    if (message.classId !== "") {
       writer.uint32(10).string(message.classId);
     }
-    if (message.id !== '') {
+    if (message.id !== "") {
       writer.uint32(18).string(message.id);
     }
-    if (message.sender !== '') {
+    if (message.sender !== "") {
       writer.uint32(26).string(message.sender);
     }
-    if (message.receiver !== '') {
+    if (message.receiver !== "") {
       writer.uint32(34).string(message.receiver);
     }
     return writer;
@@ -68,10 +69,10 @@ export const MsgSend = {
 
   fromJSON(object: any): MsgSend {
     return {
-      classId: isSet(object.classId) ? String(object.classId) : '',
-      id: isSet(object.id) ? String(object.id) : '',
-      sender: isSet(object.sender) ? String(object.sender) : '',
-      receiver: isSet(object.receiver) ? String(object.receiver) : '',
+      classId: isSet(object.classId) ? String(object.classId) : "",
+      id: isSet(object.id) ? String(object.id) : "",
+      sender: isSet(object.sender) ? String(object.sender) : "",
+      receiver: isSet(object.receiver) ? String(object.receiver) : "",
     };
   },
 
@@ -86,10 +87,10 @@ export const MsgSend = {
 
   fromPartial<I extends Exact<DeepPartial<MsgSend>, I>>(object: I): MsgSend {
     const message = createBaseMsgSend();
-    message.classId = object.classId ?? '';
-    message.id = object.id ?? '';
-    message.sender = object.sender ?? '';
-    message.receiver = object.receiver ?? '';
+    message.classId = object.classId ?? "";
+    message.id = object.id ?? "";
+    message.sender = object.sender ?? "";
+    message.receiver = object.receiver ?? "";
     return message;
   },
 };
@@ -147,7 +148,7 @@ export class MsgClientImpl implements Msg {
   }
   Send(request: MsgSend): Promise<MsgSendResponse> {
     const data = MsgSend.encode(request).finish();
-    const promise = this.rpc.request('cosmos.nft.v1beta1.Msg', 'Send', data);
+    const promise = this.rpc.request("cosmos.nft.v1beta1.Msg", "Send", data);
     return promise.then((data) => MsgSendResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -158,22 +159,14 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

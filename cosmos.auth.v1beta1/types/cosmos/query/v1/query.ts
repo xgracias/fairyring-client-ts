@@ -1,2 +1,2 @@
 /* eslint-disable */
-export const protobufPackage = 'cosmos.query.v1';
+export const protobufPackage = "cosmos.query.v1";

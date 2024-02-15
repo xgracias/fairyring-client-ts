@@ -1,11 +1,11 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
-import { Any } from '../../../google/protobuf/any';
-import { Duration } from '../../../google/protobuf/duration';
-import { Timestamp } from '../../../google/protobuf/timestamp';
-import { Coin } from '../../base/v1beta1/coin';
+import _m0 from "protobufjs/minimal";
+import { Any } from "../../../google/protobuf/any";
+import { Duration } from "../../../google/protobuf/duration";
+import { Timestamp } from "../../../google/protobuf/timestamp";
+import { Coin } from "../../base/v1beta1/coin";
 
-export const protobufPackage = 'cosmos.feegrant.v1beta1';
+export const protobufPackage = "cosmos.feegrant.v1beta1";
 
 /** Since: cosmos-sdk 0.43 */
 
@@ -30,12 +30,16 @@ export interface BasicAllowance {
  */
 export interface PeriodicAllowance {
   /** basic specifies a struct of `BasicAllowance` */
-  basic: BasicAllowance | undefined;
+  basic:
+    | BasicAllowance
+    | undefined;
   /**
    * period specifies the time duration in which period_spend_limit coins can
    * be spent before that allowance is reset
    */
-  period: Duration | undefined;
+  period:
+    | Duration
+    | undefined;
   /**
    * period_spend_limit specifies the maximum number of coins that can be spent
    * in the period
@@ -54,7 +58,9 @@ export interface PeriodicAllowance {
 /** AllowedMsgAllowance creates allowance only for specified message types. */
 export interface AllowedMsgAllowance {
   /** allowance can be any of basic and periodic fee allowance. */
-  allowance: Any | undefined;
+  allowance:
+    | Any
+    | undefined;
   /** allowed_messages are the messages for which the grantee has the access. */
   allowedMessages: string[];
 }
@@ -115,7 +121,7 @@ export const BasicAllowance = {
   toJSON(message: BasicAllowance): unknown {
     const obj: any = {};
     if (message.spendLimit) {
-      obj.spendLimit = message.spendLimit.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.spendLimit = message.spendLimit.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.spendLimit = [];
     }
@@ -132,13 +138,7 @@ export const BasicAllowance = {
 };
 
 function createBasePeriodicAllowance(): PeriodicAllowance {
-  return {
-    basic: undefined,
-    period: undefined,
-    periodSpendLimit: [],
-    periodCanSpend: [],
-    periodReset: undefined,
-  };
+  return { basic: undefined, period: undefined, periodSpendLimit: [], periodCanSpend: [], periodReset: undefined };
 }
 
 export const PeriodicAllowance = {
@@ -210,12 +210,12 @@ export const PeriodicAllowance = {
     message.basic !== undefined && (obj.basic = message.basic ? BasicAllowance.toJSON(message.basic) : undefined);
     message.period !== undefined && (obj.period = message.period ? Duration.toJSON(message.period) : undefined);
     if (message.periodSpendLimit) {
-      obj.periodSpendLimit = message.periodSpendLimit.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.periodSpendLimit = message.periodSpendLimit.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.periodSpendLimit = [];
     }
     if (message.periodCanSpend) {
-      obj.periodCanSpend = message.periodCanSpend.map((e) => (e ? Coin.toJSON(e) : undefined));
+      obj.periodCanSpend = message.periodCanSpend.map((e) => e ? Coin.toJSON(e) : undefined);
     } else {
       obj.periodCanSpend = [];
     }
@@ -225,10 +225,12 @@ export const PeriodicAllowance = {
 
   fromPartial<I extends Exact<DeepPartial<PeriodicAllowance>, I>>(object: I): PeriodicAllowance {
     const message = createBasePeriodicAllowance();
-    message.basic =
-      object.basic !== undefined && object.basic !== null ? BasicAllowance.fromPartial(object.basic) : undefined;
-    message.period =
-      object.period !== undefined && object.period !== null ? Duration.fromPartial(object.period) : undefined;
+    message.basic = (object.basic !== undefined && object.basic !== null)
+      ? BasicAllowance.fromPartial(object.basic)
+      : undefined;
+    message.period = (object.period !== undefined && object.period !== null)
+      ? Duration.fromPartial(object.period)
+      : undefined;
     message.periodSpendLimit = object.periodSpendLimit?.map((e) => Coin.fromPartial(e)) || [];
     message.periodCanSpend = object.periodCanSpend?.map((e) => Coin.fromPartial(e)) || [];
     message.periodReset = object.periodReset ?? undefined;
@@ -292,23 +294,24 @@ export const AllowedMsgAllowance = {
 
   fromPartial<I extends Exact<DeepPartial<AllowedMsgAllowance>, I>>(object: I): AllowedMsgAllowance {
     const message = createBaseAllowedMsgAllowance();
-    message.allowance =
-      object.allowance !== undefined && object.allowance !== null ? Any.fromPartial(object.allowance) : undefined;
+    message.allowance = (object.allowance !== undefined && object.allowance !== null)
+      ? Any.fromPartial(object.allowance)
+      : undefined;
     message.allowedMessages = object.allowedMessages?.map((e) => e) || [];
     return message;
   },
 };
 
 function createBaseGrant(): Grant {
-  return { granter: '', grantee: '', allowance: undefined };
+  return { granter: "", grantee: "", allowance: undefined };
 }
 
 export const Grant = {
   encode(message: Grant, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.granter !== '') {
+    if (message.granter !== "") {
       writer.uint32(10).string(message.granter);
     }
-    if (message.grantee !== '') {
+    if (message.grantee !== "") {
       writer.uint32(18).string(message.grantee);
     }
     if (message.allowance !== undefined) {
@@ -343,8 +346,8 @@ export const Grant = {
 
   fromJSON(object: any): Grant {
     return {
-      granter: isSet(object.granter) ? String(object.granter) : '',
-      grantee: isSet(object.grantee) ? String(object.grantee) : '',
+      granter: isSet(object.granter) ? String(object.granter) : "",
+      grantee: isSet(object.grantee) ? String(object.grantee) : "",
       allowance: isSet(object.allowance) ? Any.fromJSON(object.allowance) : undefined,
     };
   },
@@ -359,32 +362,25 @@ export const Grant = {
 
   fromPartial<I extends Exact<DeepPartial<Grant>, I>>(object: I): Grant {
     const message = createBaseGrant();
-    message.granter = object.granter ?? '';
-    message.grantee = object.grantee ?? '';
-    message.allowance =
-      object.allowance !== undefined && object.allowance !== null ? Any.fromPartial(object.allowance) : undefined;
+    message.granter = object.granter ?? "";
+    message.grantee = object.grantee ?? "";
+    message.allowance = (object.allowance !== undefined && object.allowance !== null)
+      ? Any.fromPartial(object.allowance)
+      : undefined;
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;
@@ -401,7 +397,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === 'string') {
+  } else if (typeof o === "string") {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));

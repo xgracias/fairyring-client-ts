@@ -1,7 +1,7 @@
 /* eslint-disable */
-import _m0 from 'protobufjs/minimal';
+import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = 'cosmos_proto';
+export const protobufPackage = "cosmos_proto";
 
 export enum ScalarType {
   SCALAR_TYPE_UNSPECIFIED = 0,
@@ -13,16 +13,16 @@ export enum ScalarType {
 export function scalarTypeFromJSON(object: any): ScalarType {
   switch (object) {
     case 0:
-    case 'SCALAR_TYPE_UNSPECIFIED':
+    case "SCALAR_TYPE_UNSPECIFIED":
       return ScalarType.SCALAR_TYPE_UNSPECIFIED;
     case 1:
-    case 'SCALAR_TYPE_STRING':
+    case "SCALAR_TYPE_STRING":
       return ScalarType.SCALAR_TYPE_STRING;
     case 2:
-    case 'SCALAR_TYPE_BYTES':
+    case "SCALAR_TYPE_BYTES":
       return ScalarType.SCALAR_TYPE_BYTES;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return ScalarType.UNRECOGNIZED;
   }
@@ -31,14 +31,14 @@ export function scalarTypeFromJSON(object: any): ScalarType {
 export function scalarTypeToJSON(object: ScalarType): string {
   switch (object) {
     case ScalarType.SCALAR_TYPE_UNSPECIFIED:
-      return 'SCALAR_TYPE_UNSPECIFIED';
+      return "SCALAR_TYPE_UNSPECIFIED";
     case ScalarType.SCALAR_TYPE_STRING:
-      return 'SCALAR_TYPE_STRING';
+      return "SCALAR_TYPE_STRING";
     case ScalarType.SCALAR_TYPE_BYTES:
-      return 'SCALAR_TYPE_BYTES';
+      return "SCALAR_TYPE_BYTES";
     case ScalarType.UNRECOGNIZED:
     default:
-      return 'UNRECOGNIZED';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -94,15 +94,15 @@ export interface ScalarDescriptor {
 }
 
 function createBaseInterfaceDescriptor(): InterfaceDescriptor {
-  return { name: '', description: '' };
+  return { name: "", description: "" };
 }
 
 export const InterfaceDescriptor = {
   encode(message: InterfaceDescriptor, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
-    if (message.description !== '') {
+    if (message.description !== "") {
       writer.uint32(18).string(message.description);
     }
     return writer;
@@ -131,8 +131,8 @@ export const InterfaceDescriptor = {
 
   fromJSON(object: any): InterfaceDescriptor {
     return {
-      name: isSet(object.name) ? String(object.name) : '',
-      description: isSet(object.description) ? String(object.description) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      description: isSet(object.description) ? String(object.description) : "",
     };
   },
 
@@ -145,22 +145,22 @@ export const InterfaceDescriptor = {
 
   fromPartial<I extends Exact<DeepPartial<InterfaceDescriptor>, I>>(object: I): InterfaceDescriptor {
     const message = createBaseInterfaceDescriptor();
-    message.name = object.name ?? '';
-    message.description = object.description ?? '';
+    message.name = object.name ?? "";
+    message.description = object.description ?? "";
     return message;
   },
 };
 
 function createBaseScalarDescriptor(): ScalarDescriptor {
-  return { name: '', description: '', fieldType: [] };
+  return { name: "", description: "", fieldType: [] };
 }
 
 export const ScalarDescriptor = {
   encode(message: ScalarDescriptor, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
-    if (message.description !== '') {
+    if (message.description !== "") {
       writer.uint32(18).string(message.description);
     }
     writer.uint32(26).fork();
@@ -204,8 +204,8 @@ export const ScalarDescriptor = {
 
   fromJSON(object: any): ScalarDescriptor {
     return {
-      name: isSet(object.name) ? String(object.name) : '',
-      description: isSet(object.description) ? String(object.description) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      description: isSet(object.description) ? String(object.description) : "",
       fieldType: Array.isArray(object?.fieldType) ? object.fieldType.map((e: any) => scalarTypeFromJSON(e)) : [],
     };
   },
@@ -224,8 +224,8 @@ export const ScalarDescriptor = {
 
   fromPartial<I extends Exact<DeepPartial<ScalarDescriptor>, I>>(object: I): ScalarDescriptor {
     const message = createBaseScalarDescriptor();
-    message.name = object.name ?? '';
-    message.description = object.description ?? '';
+    message.name = object.name ?? "";
+    message.description = object.description ?? "";
     message.fieldType = object.fieldType?.map((e) => e) || [];
     return message;
   },
@@ -233,22 +233,14 @@ export const ScalarDescriptor = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

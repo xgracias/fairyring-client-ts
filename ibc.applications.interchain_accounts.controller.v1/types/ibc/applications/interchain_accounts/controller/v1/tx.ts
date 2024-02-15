@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from 'long';
-import _m0 from 'protobufjs/minimal';
-import { InterchainAccountPacketData } from '../../v1/packet';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { InterchainAccountPacketData } from "../../v1/packet";
 
-export const protobufPackage = 'ibc.applications.interchain_accounts.controller.v1';
+export const protobufPackage = "ibc.applications.interchain_accounts.controller.v1";
 
 /** MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount */
 export interface MsgRegisterInterchainAccount {
@@ -22,7 +22,9 @@ export interface MsgRegisterInterchainAccountResponse {
 export interface MsgSendTx {
   owner: string;
   connectionId: string;
-  packetData: InterchainAccountPacketData | undefined;
+  packetData:
+    | InterchainAccountPacketData
+    | undefined;
   /**
    * Relative timeout timestamp provided will be added to the current block time during transaction execution.
    * The timeout timestamp must be non-zero.
@@ -36,18 +38,18 @@ export interface MsgSendTxResponse {
 }
 
 function createBaseMsgRegisterInterchainAccount(): MsgRegisterInterchainAccount {
-  return { owner: '', connectionId: '', version: '' };
+  return { owner: "", connectionId: "", version: "" };
 }
 
 export const MsgRegisterInterchainAccount = {
   encode(message: MsgRegisterInterchainAccount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.owner !== '') {
+    if (message.owner !== "") {
       writer.uint32(10).string(message.owner);
     }
-    if (message.connectionId !== '') {
+    if (message.connectionId !== "") {
       writer.uint32(18).string(message.connectionId);
     }
-    if (message.version !== '') {
+    if (message.version !== "") {
       writer.uint32(26).string(message.version);
     }
     return writer;
@@ -79,9 +81,9 @@ export const MsgRegisterInterchainAccount = {
 
   fromJSON(object: any): MsgRegisterInterchainAccount {
     return {
-      owner: isSet(object.owner) ? String(object.owner) : '',
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : '',
-      version: isSet(object.version) ? String(object.version) : '',
+      owner: isSet(object.owner) ? String(object.owner) : "",
+      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
+      version: isSet(object.version) ? String(object.version) : "",
     };
   },
 
@@ -95,23 +97,23 @@ export const MsgRegisterInterchainAccount = {
 
   fromPartial<I extends Exact<DeepPartial<MsgRegisterInterchainAccount>, I>>(object: I): MsgRegisterInterchainAccount {
     const message = createBaseMsgRegisterInterchainAccount();
-    message.owner = object.owner ?? '';
-    message.connectionId = object.connectionId ?? '';
-    message.version = object.version ?? '';
+    message.owner = object.owner ?? "";
+    message.connectionId = object.connectionId ?? "";
+    message.version = object.version ?? "";
     return message;
   },
 };
 
 function createBaseMsgRegisterInterchainAccountResponse(): MsgRegisterInterchainAccountResponse {
-  return { channelId: '', portId: '' };
+  return { channelId: "", portId: "" };
 }
 
 export const MsgRegisterInterchainAccountResponse = {
   encode(message: MsgRegisterInterchainAccountResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.channelId !== '') {
+    if (message.channelId !== "") {
       writer.uint32(10).string(message.channelId);
     }
-    if (message.portId !== '') {
+    if (message.portId !== "") {
       writer.uint32(18).string(message.portId);
     }
     return writer;
@@ -140,8 +142,8 @@ export const MsgRegisterInterchainAccountResponse = {
 
   fromJSON(object: any): MsgRegisterInterchainAccountResponse {
     return {
-      channelId: isSet(object.channelId) ? String(object.channelId) : '',
-      portId: isSet(object.portId) ? String(object.portId) : '',
+      channelId: isSet(object.channelId) ? String(object.channelId) : "",
+      portId: isSet(object.portId) ? String(object.portId) : "",
     };
   },
 
@@ -153,30 +155,25 @@ export const MsgRegisterInterchainAccountResponse = {
   },
 
   fromPartial<I extends Exact<DeepPartial<MsgRegisterInterchainAccountResponse>, I>>(
-    object: I
+    object: I,
   ): MsgRegisterInterchainAccountResponse {
     const message = createBaseMsgRegisterInterchainAccountResponse();
-    message.channelId = object.channelId ?? '';
-    message.portId = object.portId ?? '';
+    message.channelId = object.channelId ?? "";
+    message.portId = object.portId ?? "";
     return message;
   },
 };
 
 function createBaseMsgSendTx(): MsgSendTx {
-  return {
-    owner: '',
-    connectionId: '',
-    packetData: undefined,
-    relativeTimeout: 0,
-  };
+  return { owner: "", connectionId: "", packetData: undefined, relativeTimeout: 0 };
 }
 
 export const MsgSendTx = {
   encode(message: MsgSendTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.owner !== '') {
+    if (message.owner !== "") {
       writer.uint32(10).string(message.owner);
     }
-    if (message.connectionId !== '') {
+    if (message.connectionId !== "") {
       writer.uint32(18).string(message.connectionId);
     }
     if (message.packetData !== undefined) {
@@ -217,8 +214,8 @@ export const MsgSendTx = {
 
   fromJSON(object: any): MsgSendTx {
     return {
-      owner: isSet(object.owner) ? String(object.owner) : '',
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : '',
+      owner: isSet(object.owner) ? String(object.owner) : "",
+      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
       packetData: isSet(object.packetData) ? InterchainAccountPacketData.fromJSON(object.packetData) : undefined,
       relativeTimeout: isSet(object.relativeTimeout) ? Number(object.relativeTimeout) : 0,
     };
@@ -228,20 +225,19 @@ export const MsgSendTx = {
     const obj: any = {};
     message.owner !== undefined && (obj.owner = message.owner);
     message.connectionId !== undefined && (obj.connectionId = message.connectionId);
-    message.packetData !== undefined &&
-      (obj.packetData = message.packetData ? InterchainAccountPacketData.toJSON(message.packetData) : undefined);
+    message.packetData !== undefined
+      && (obj.packetData = message.packetData ? InterchainAccountPacketData.toJSON(message.packetData) : undefined);
     message.relativeTimeout !== undefined && (obj.relativeTimeout = Math.round(message.relativeTimeout));
     return obj;
   },
 
   fromPartial<I extends Exact<DeepPartial<MsgSendTx>, I>>(object: I): MsgSendTx {
     const message = createBaseMsgSendTx();
-    message.owner = object.owner ?? '';
-    message.connectionId = object.connectionId ?? '';
-    message.packetData =
-      object.packetData !== undefined && object.packetData !== null
-        ? InterchainAccountPacketData.fromPartial(object.packetData)
-        : undefined;
+    message.owner = object.owner ?? "";
+    message.connectionId = object.connectionId ?? "";
+    message.packetData = (object.packetData !== undefined && object.packetData !== null)
+      ? InterchainAccountPacketData.fromPartial(object.packetData)
+      : undefined;
     message.relativeTimeout = object.relativeTimeout ?? 0;
     return message;
   },
@@ -312,16 +308,16 @@ export class MsgClientImpl implements Msg {
   RegisterInterchainAccount(request: MsgRegisterInterchainAccount): Promise<MsgRegisterInterchainAccountResponse> {
     const data = MsgRegisterInterchainAccount.encode(request).finish();
     const promise = this.rpc.request(
-      'ibc.applications.interchain_accounts.controller.v1.Msg',
-      'RegisterInterchainAccount',
-      data
+      "ibc.applications.interchain_accounts.controller.v1.Msg",
+      "RegisterInterchainAccount",
+      data,
     );
     return promise.then((data) => MsgRegisterInterchainAccountResponse.decode(new _m0.Reader(data)));
   }
 
   SendTx(request: MsgSendTx): Promise<MsgSendTxResponse> {
     const data = MsgSendTx.encode(request).finish();
-    const promise = this.rpc.request('ibc.applications.interchain_accounts.controller.v1.Msg', 'SendTx', data);
+    const promise = this.rpc.request("ibc.applications.interchain_accounts.controller.v1.Msg", "SendTx", data);
     return promise.then((data) => MsgSendTxResponse.decode(new _m0.Reader(data)));
   }
 }
@@ -334,43 +330,35 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== "undefined") {
     return globalThis;
   }
-  if (typeof self !== 'undefined') {
+  if (typeof self !== "undefined") {
     return self;
   }
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window;
   }
-  if (typeof global !== 'undefined') {
+  if (typeof global !== "undefined") {
     return global;
   }
-  throw 'Unable to locate global object';
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-    ? Array<DeepPartial<U>>
-    : T extends ReadonlyArray<infer U>
-      ? ReadonlyArray<DeepPartial<U>>
-      : T extends {}
-        ? { [K in keyof T]?: DeepPartial<T[K]> }
-        : Partial<T>;
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
-      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
-    };
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }
