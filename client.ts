@@ -112,7 +112,7 @@ export class IgniteClient extends EventEmitter {
           const y = {
             coinDenom: (x.denom === "ufairy" ? "fairy": x.denom)?.toUpperCase() ?? "",
             coinMinimalDenom: x.denom === "ufairy" ? "fairy": x.denom ?? "",
-            coinDecimals: 0,
+            coinDecimals: x.denom === "ufairy"?6:0,
           };
           return y;
         }) ?? [];
@@ -129,7 +129,7 @@ export class IgniteClient extends EventEmitter {
           const y = {
             coinDenom: (x.denom === "ufairy" ? "fairy": x.denom)?.toUpperCase() ?? "",
             coinMinimalDenom: (x.denom === "ufairy" ? "fairy": x.denom) ?? "",
-            coinDecimals: 0,
+            coinDecimals: x.denom === "ufairy"?6:0,
           };
           return y;
         }) ?? [];
