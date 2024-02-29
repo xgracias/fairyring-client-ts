@@ -87,7 +87,7 @@ export class IgniteClient extends EventEmitter {
       const qc = queryClient({ addr: this.env.apiURL });
       const node_info = await (await qc.serviceGetNodeInfo()).data;
       const chainId = node_info.default_node_info?.network ?? "";
-      const chainName = chainId?.toUpperCase() + " Network";
+      const chainName = "Fairblock FairyRing Testnet"; // chainId?.toUpperCase() + " Network";
       const bankqc = bankQueryClient({ addr: this.env.apiURL });
       const tokens = await (await bankqc.queryTotalSupply()).data;
       const addrPrefix = this.env.prefix ?? "cosmos";
@@ -110,8 +110,8 @@ export class IgniteClient extends EventEmitter {
       let currencies =
         tokens.supply?.map((x) => {
           const y = {
-            coinDenom: x.denom?.toUpperCase() ?? "",
-            coinMinimalDenom: x.denom ?? "",
+            coinDenom: (x.denom === "ufairy" ? "fairy": x.denom)?.toUpperCase() ?? "",
+            coinMinimalDenom: x.denom === "ufairy" ? "fairy": x.denom ?? "",
             coinDecimals: 0,
           };
           return y;
@@ -127,8 +127,8 @@ export class IgniteClient extends EventEmitter {
       let feeCurrencies =
         tokens.supply?.map((x) => {
           const y = {
-            coinDenom: x.denom?.toUpperCase() ?? "",
-            coinMinimalDenom: x.denom ?? "",
+            coinDenom: (x.denom === "ufairy" ? "fairy": x.denom)?.toUpperCase() ?? "",
+            coinMinimalDenom: (x.denom === "ufairy" ? "fairy": x.denom) ?? "",
             coinDecimals: 0,
           };
           return y;
