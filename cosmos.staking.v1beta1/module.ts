@@ -2127,7 +2127,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		delegation({ value }: delegationParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.staking.v1beta1.Delegation", value: Delegation.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.staking.v1beta1.Delegate", value: Delegation.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:Delegation: Could not create message: ' + e.message)
 			}
@@ -2239,7 +2239,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		delegationResponse({ value }: delegationResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.staking.v1beta1.DelegationResponse", value: DelegationResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.staking.v1beta1.DelegateResponse", value: DelegationResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:DelegationResponse: Could not create message: ' + e.message)
 			}
