@@ -119,7 +119,7 @@ const msgTypes: Array<[string, GeneratedType]>  = [
     ["/cosmos.staking.v1beta1.HistoricalInfo", HistoricalInfo],
     ["/cosmos.staking.v1beta1.ValidatorUpdates", ValidatorUpdates],
     ["/cosmos.staking.v1beta1.QueryUnbondingDelegationResponse", QueryUnbondingDelegationResponse],
-    ["/cosmos.staking.v1beta1.Delegate", Delegation],
+    ["/cosmos.staking.v1beta1.Msg/Delegate", Delegation],
     ["/cosmos.staking.v1beta1.Params", Params],
     ["/cosmos.staking.v1beta1.Pool", Pool],
     ["/cosmos.staking.v1beta1.MsgCancelUnbondingDelegation", MsgCancelUnbondingDelegation],
@@ -133,7 +133,7 @@ const msgTypes: Array<[string, GeneratedType]>  = [
     ["/cosmos.staking.v1beta1.MsgBeginRedelegate", MsgBeginRedelegate],
     ["/cosmos.staking.v1beta1.QueryDelegationResponse", QueryDelegationResponse],
     ["/cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsRequest", QueryDelegatorUnbondingDelegationsRequest],
-    ["/cosmos.staking.v1beta1.DelegateResponse", DelegationResponse],
+    ["/cosmos.staking.v1beta1.Msg/DelegateResponse", DelegationResponse],
     ["/cosmos.staking.v1beta1.RedelegationResponse", RedelegationResponse],
     
 ];
