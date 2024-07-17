@@ -25,7 +25,7 @@ export interface MsgCreateAggregatedKeyShareResponse {
 
 export interface MsgRequestGeneralKeyshare {
   creator: string;
-  requestId: string;
+  // requestId: string;
 }
 
 export interface MsgRequestGeneralKeyshareResponse {
@@ -310,7 +310,7 @@ export const MsgCreateAggregatedKeyShareResponse = {
 };
 
 function createBaseMsgRequestGeneralKeyshare(): MsgRequestGeneralKeyshare {
-  return { creator: "", requestId: "" };
+  return { creator: "" };
 }
 
 export const MsgRequestGeneralKeyshare = {
@@ -318,9 +318,9 @@ export const MsgRequestGeneralKeyshare = {
     if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
-    if (message.requestId !== "") {
-      writer.uint32(18).string(message.requestId);
-    }
+    // if (message.requestId !== "") {
+    //   writer.uint32(18).string(message.requestId);
+    // }
     return writer;
   },
 
@@ -338,13 +338,13 @@ export const MsgRequestGeneralKeyshare = {
 
           message.creator = reader.string();
           continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
+        // case 2:
+        //   if (tag !== 18) {
+        //     break;
+        //   }
 
-          message.requestId = reader.string();
-          continue;
+        //   message.requestId = reader.string();
+        //   continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -357,7 +357,7 @@ export const MsgRequestGeneralKeyshare = {
   fromJSON(object: any): MsgRequestGeneralKeyshare {
     return {
       creator: isSet(object.creator) ? String(object.creator) : "",
-      requestId: isSet(object.requestId) ? String(object.requestId) : "",
+      // requestId: isSet(object.requestId) ? String(object.requestId) : "",
     };
   },
 
@@ -366,9 +366,9 @@ export const MsgRequestGeneralKeyshare = {
     if (message.creator !== "") {
       obj.creator = message.creator;
     }
-    if (message.requestId !== "") {
-      obj.requestId = message.requestId;
-    }
+    // if (message.requestId !== "") {
+    //   obj.requestId = message.requestId;
+    // }
     return obj;
   },
 
@@ -378,7 +378,7 @@ export const MsgRequestGeneralKeyshare = {
   fromPartial<I extends Exact<DeepPartial<MsgRequestGeneralKeyshare>, I>>(object: I): MsgRequestGeneralKeyshare {
     const message = createBaseMsgRequestGeneralKeyshare();
     message.creator = object.creator ?? "";
-    message.requestId = object.requestId ?? "";
+    // message.requestId = object.requestId ?? "";
     return message;
   },
 };
