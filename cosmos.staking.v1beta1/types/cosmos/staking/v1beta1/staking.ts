@@ -250,7 +250,7 @@ export interface Delegation {
   /** validator_address is the bech32-encoded address of the validator. */
   validatorAddress: string;
   /** shares define the delegation shares received. */
-  amount: Coin;
+  shares: string;
 }
 
 /**
