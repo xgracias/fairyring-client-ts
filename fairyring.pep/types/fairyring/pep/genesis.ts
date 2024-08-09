@@ -6,7 +6,6 @@ import { AggregatedKeyShare } from "./aggregated_key_share";
 import { EncryptedTxArray } from "./encrypted_tx";
 import { Params } from "./params";
 import { PepNonce } from "./pep_nonce";
-import { RequestId } from "./request_id";
 
 export const protobufPackage = "fairyring.pep";
 
@@ -22,7 +21,6 @@ export interface GenesisState {
   activePubKey: ActivePublicKey | undefined;
   queuedPubKey: QueuedPublicKey | undefined;
   requestCount: number;
-  requestIdList: RequestId[];
 }
 
 function createBaseGenesisState(): GenesisState {
@@ -35,7 +33,6 @@ function createBaseGenesisState(): GenesisState {
     activePubKey: undefined,
     queuedPubKey: undefined,
     requestCount: 0,
-    requestIdList: [],
   };
 }
 
@@ -64,9 +61,6 @@ export const GenesisState = {
     }
     if (message.requestCount !== 0) {
       writer.uint32(72).uint64(message.requestCount);
-    }
-    for (const v of message.requestIdList) {
-      RequestId.encode(v!, writer.uint32(82).fork()).ldelim();
     }
     return writer;
   },
@@ -134,13 +128,6 @@ export const GenesisState = {
 
           message.requestCount = longToNumber(reader.uint64() as Long);
           continue;
-        case 10:
-          if (tag !== 82) {
-            break;
-          }
-
-          message.requestIdList.push(RequestId.decode(reader, reader.uint32()));
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -166,9 +153,6 @@ export const GenesisState = {
       activePubKey: isSet(object.activePubKey) ? ActivePublicKey.fromJSON(object.activePubKey) : undefined,
       queuedPubKey: isSet(object.queuedPubKey) ? QueuedPublicKey.fromJSON(object.queuedPubKey) : undefined,
       requestCount: isSet(object.requestCount) ? Number(object.requestCount) : 0,
-      requestIdList: Array.isArray(object?.requestIdList)
-        ? object.requestIdList.map((e: any) => RequestId.fromJSON(e))
-        : [],
     };
   },
 
@@ -198,9 +182,6 @@ export const GenesisState = {
     if (message.requestCount !== 0) {
       obj.requestCount = Math.round(message.requestCount);
     }
-    if (message.requestIdList?.length) {
-      obj.requestIdList = message.requestIdList.map((e) => RequestId.toJSON(e));
-    }
     return obj;
   },
 
@@ -223,7 +204,6 @@ export const GenesisState = {
       ? QueuedPublicKey.fromPartial(object.queuedPubKey)
       : undefined;
     message.requestCount = object.requestCount ?? 0;
-    message.requestIdList = object.requestIdList?.map((e) => RequestId.fromPartial(e)) || [];
     return message;
   },
 };

@@ -10,7 +10,11 @@ export const protobufPackage = "fairyring.pep";
 export interface MsgUpdateParams {
   /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
   authority: string;
-  /** NOTE: All parameters must be supplied. */
+  /**
+   * params defines the module parameters to update.
+   *
+   * NOTE: All parameters must be supplied.
+   */
   params: Params | undefined;
 }
 
@@ -49,7 +53,6 @@ export interface MsgCreateAggregatedKeyShareResponse {
 export interface MsgRequestGeneralKeyshare {
   creator: string;
   estimatedDelay: Duration | undefined;
-  reqId: string;
 }
 
 export interface MsgRequestGeneralKeyshareResponse {
@@ -541,7 +544,7 @@ export const MsgCreateAggregatedKeyShareResponse = {
 };
 
 function createBaseMsgRequestGeneralKeyshare(): MsgRequestGeneralKeyshare {
-  return { creator: "", estimatedDelay: undefined, reqId: "" };
+  return { creator: "", estimatedDelay: undefined };
 }
 
 export const MsgRequestGeneralKeyshare = {
@@ -551,9 +554,6 @@ export const MsgRequestGeneralKeyshare = {
     }
     if (message.estimatedDelay !== undefined) {
       Duration.encode(message.estimatedDelay, writer.uint32(18).fork()).ldelim();
-    }
-    if (message.reqId !== "") {
-      writer.uint32(26).string(message.reqId);
     }
     return writer;
   },
@@ -579,13 +579,6 @@ export const MsgRequestGeneralKeyshare = {
 
           message.estimatedDelay = Duration.decode(reader, reader.uint32());
           continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.reqId = reader.string();
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -599,7 +592,6 @@ export const MsgRequestGeneralKeyshare = {
     return {
       creator: isSet(object.creator) ? String(object.creator) : "",
       estimatedDelay: isSet(object.estimatedDelay) ? Duration.fromJSON(object.estimatedDelay) : undefined,
-      reqId: isSet(object.reqId) ? String(object.reqId) : "",
     };
   },
 
@@ -610,9 +602,6 @@ export const MsgRequestGeneralKeyshare = {
     }
     if (message.estimatedDelay !== undefined) {
       obj.estimatedDelay = Duration.toJSON(message.estimatedDelay);
-    }
-    if (message.reqId !== "") {
-      obj.reqId = message.reqId;
     }
     return obj;
   },
@@ -626,7 +615,6 @@ export const MsgRequestGeneralKeyshare = {
     message.estimatedDelay = (object.estimatedDelay !== undefined && object.estimatedDelay !== null)
       ? Duration.fromPartial(object.estimatedDelay)
       : undefined;
-    message.reqId = object.reqId ?? "";
     return message;
   },
 };

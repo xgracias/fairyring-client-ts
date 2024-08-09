@@ -6,47 +6,35 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { QueryBalanceRequest } from "./types/cosmos/nft/v1beta1/query";
-import { QueryBalanceResponse } from "./types/cosmos/nft/v1beta1/query";
-import { QueryNFTsRequest } from "./types/cosmos/nft/v1beta1/query";
-import { MsgSend } from "./types/cosmos/nft/v1beta1/tx";
-import { QuerySupplyResponse } from "./types/cosmos/nft/v1beta1/query";
-import { QueryClassRequest } from "./types/cosmos/nft/v1beta1/query";
-import { QuerySupplyRequest } from "./types/cosmos/nft/v1beta1/query";
-import { Entry } from "./types/cosmos/nft/v1beta1/genesis";
-import { NFT } from "./types/cosmos/nft/v1beta1/nft";
-import { MsgSendResponse } from "./types/cosmos/nft/v1beta1/tx";
-import { Class } from "./types/cosmos/nft/v1beta1/nft";
-import { QueryOwnerRequest } from "./types/cosmos/nft/v1beta1/query";
-import { QueryNFTsResponse } from "./types/cosmos/nft/v1beta1/query";
 import { QueryClassesResponse } from "./types/cosmos/nft/v1beta1/query";
-import { EventMint } from "./types/cosmos/nft/v1beta1/event";
-import { QueryOwnerResponse } from "./types/cosmos/nft/v1beta1/query";
-import { QueryClassesRequest } from "./types/cosmos/nft/v1beta1/query";
-import { GenesisState } from "./types/cosmos/nft/v1beta1/genesis";
-import { QueryNFTRequest } from "./types/cosmos/nft/v1beta1/query";
-import { QueryClassResponse } from "./types/cosmos/nft/v1beta1/query";
-import { EventSend } from "./types/cosmos/nft/v1beta1/event";
-import { EventBurn } from "./types/cosmos/nft/v1beta1/event";
+import { MsgSend } from "./types/cosmos/nft/v1beta1/tx";
 import { QueryNFTResponse } from "./types/cosmos/nft/v1beta1/query";
+import { Class } from "./types/cosmos/nft/v1beta1/nft";
+import { NFT } from "./types/cosmos/nft/v1beta1/nft";
+import { QueryBalanceRequest } from "./types/cosmos/nft/v1beta1/query";
+import { QueryClassesRequest } from "./types/cosmos/nft/v1beta1/query";
+import { QueryOwnerRequest } from "./types/cosmos/nft/v1beta1/query";
+import { QueryNFTRequest } from "./types/cosmos/nft/v1beta1/query";
+import { QueryNFTsRequest } from "./types/cosmos/nft/v1beta1/query";
+import { QueryClassResponse } from "./types/cosmos/nft/v1beta1/query";
+import { GenesisState } from "./types/cosmos/nft/v1beta1/genesis";
+import { Entry } from "./types/cosmos/nft/v1beta1/genesis";
+import { QueryBalanceResponse } from "./types/cosmos/nft/v1beta1/query";
+import { QueryClassRequest } from "./types/cosmos/nft/v1beta1/query";
+import { EventMint } from "./types/cosmos/nft/v1beta1/event";
+import { EventBurn } from "./types/cosmos/nft/v1beta1/event";
+import { QuerySupplyRequest } from "./types/cosmos/nft/v1beta1/query";
+import { MsgSendResponse } from "./types/cosmos/nft/v1beta1/tx";
+import { EventSend } from "./types/cosmos/nft/v1beta1/event";
+import { QueryOwnerResponse } from "./types/cosmos/nft/v1beta1/query";
+import { QuerySupplyResponse } from "./types/cosmos/nft/v1beta1/query";
+import { QueryNFTsResponse } from "./types/cosmos/nft/v1beta1/query";
 
 
-export { QueryBalanceRequest, QueryBalanceResponse, QueryNFTsRequest, MsgSend, QuerySupplyResponse, QueryClassRequest, QuerySupplyRequest, Entry, NFT, MsgSendResponse, Class, QueryOwnerRequest, QueryNFTsResponse, QueryClassesResponse, EventMint, QueryOwnerResponse, QueryClassesRequest, GenesisState, QueryNFTRequest, QueryClassResponse, EventSend, EventBurn, QueryNFTResponse };
+export { QueryClassesResponse, MsgSend, QueryNFTResponse, Class, NFT, QueryBalanceRequest, QueryClassesRequest, QueryOwnerRequest, QueryNFTRequest, QueryNFTsRequest, QueryClassResponse, GenesisState, Entry, QueryBalanceResponse, QueryClassRequest, EventMint, EventBurn, QuerySupplyRequest, MsgSendResponse, EventSend, QueryOwnerResponse, QuerySupplyResponse, QueryNFTsResponse };
 
-type sendQueryBalanceRequestParams = {
-  value: QueryBalanceRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryBalanceResponseParams = {
-  value: QueryBalanceResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryNFTsRequestParams = {
-  value: QueryNFTsRequest,
+type sendQueryClassesResponseParams = {
+  value: QueryClassesResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -57,38 +45,8 @@ type sendMsgSendParams = {
   memo?: string
 };
 
-type sendQuerySupplyResponseParams = {
-  value: QuerySupplyResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryClassRequestParams = {
-  value: QueryClassRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQuerySupplyRequestParams = {
-  value: QuerySupplyRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEntryParams = {
-  value: Entry,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendNFTParams = {
-  value: NFT,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgSendResponseParams = {
-  value: MsgSendResponse,
+type sendQueryNFTResponseParams = {
+  value: QueryNFTResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -99,32 +57,14 @@ type sendClassParams = {
   memo?: string
 };
 
-type sendQueryOwnerRequestParams = {
-  value: QueryOwnerRequest,
+type sendNFTParams = {
+  value: NFT,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryNFTsResponseParams = {
-  value: QueryNFTsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryClassesResponseParams = {
-  value: QueryClassesResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendEventMintParams = {
-  value: EventMint,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryOwnerResponseParams = {
-  value: QueryOwnerResponse,
+type sendQueryBalanceRequestParams = {
+  value: QueryBalanceRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -135,8 +75,8 @@ type sendQueryClassesRequestParams = {
   memo?: string
 };
 
-type sendGenesisStateParams = {
-  value: GenesisState,
+type sendQueryOwnerRequestParams = {
+  value: QueryOwnerRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -147,14 +87,44 @@ type sendQueryNFTRequestParams = {
   memo?: string
 };
 
+type sendQueryNFTsRequestParams = {
+  value: QueryNFTsRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendQueryClassResponseParams = {
   value: QueryClassResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendEventSendParams = {
-  value: EventSend,
+type sendGenesisStateParams = {
+  value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEntryParams = {
+  value: Entry,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryBalanceResponseParams = {
+  value: QueryBalanceResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryClassRequestParams = {
+  value: QueryClassRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventMintParams = {
+  value: EventMint,
   fee?: StdFee,
   memo?: string
 };
@@ -165,103 +135,133 @@ type sendEventBurnParams = {
   memo?: string
 };
 
-type sendQueryNFTResponseParams = {
-  value: QueryNFTResponse,
+type sendQuerySupplyRequestParams = {
+  value: QuerySupplyRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgSendResponseParams = {
+  value: MsgSendResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendEventSendParams = {
+  value: EventSend,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryOwnerResponseParams = {
+  value: QueryOwnerResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQuerySupplyResponseParams = {
+  value: QuerySupplyResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryNFTsResponseParams = {
+  value: QueryNFTsResponse,
   fee?: StdFee,
   memo?: string
 };
 
 
-type queryBalanceRequestParams = {
-  value: QueryBalanceRequest,
-};
-
-type queryBalanceResponseParams = {
-  value: QueryBalanceResponse,
-};
-
-type queryNftsRequestParams = {
-  value: QueryNFTsRequest,
+type queryClassesResponseParams = {
+  value: QueryClassesResponse,
 };
 
 type msgSendParams = {
   value: MsgSend,
 };
 
-type querySupplyResponseParams = {
-  value: QuerySupplyResponse,
-};
-
-type queryClassRequestParams = {
-  value: QueryClassRequest,
-};
-
-type querySupplyRequestParams = {
-  value: QuerySupplyRequest,
-};
-
-type entryParams = {
-  value: Entry,
-};
-
-type nftParams = {
-  value: NFT,
-};
-
-type msgSendResponseParams = {
-  value: MsgSendResponse,
+type queryNftresponseParams = {
+  value: QueryNFTResponse,
 };
 
 type classParams = {
   value: Class,
 };
 
-type queryOwnerRequestParams = {
-  value: QueryOwnerRequest,
+type nftParams = {
+  value: NFT,
 };
 
-type queryNftsResponseParams = {
-  value: QueryNFTsResponse,
-};
-
-type queryClassesResponseParams = {
-  value: QueryClassesResponse,
-};
-
-type eventMintParams = {
-  value: EventMint,
-};
-
-type queryOwnerResponseParams = {
-  value: QueryOwnerResponse,
+type queryBalanceRequestParams = {
+  value: QueryBalanceRequest,
 };
 
 type queryClassesRequestParams = {
   value: QueryClassesRequest,
 };
 
-type genesisStateParams = {
-  value: GenesisState,
+type queryOwnerRequestParams = {
+  value: QueryOwnerRequest,
 };
 
 type queryNftrequestParams = {
   value: QueryNFTRequest,
 };
 
+type queryNftsRequestParams = {
+  value: QueryNFTsRequest,
+};
+
 type queryClassResponseParams = {
   value: QueryClassResponse,
 };
 
-type eventSendParams = {
-  value: EventSend,
+type genesisStateParams = {
+  value: GenesisState,
+};
+
+type entryParams = {
+  value: Entry,
+};
+
+type queryBalanceResponseParams = {
+  value: QueryBalanceResponse,
+};
+
+type queryClassRequestParams = {
+  value: QueryClassRequest,
+};
+
+type eventMintParams = {
+  value: EventMint,
 };
 
 type eventBurnParams = {
   value: EventBurn,
 };
 
-type queryNftresponseParams = {
-  value: QueryNFTResponse,
+type querySupplyRequestParams = {
+  value: QuerySupplyRequest,
+};
+
+type msgSendResponseParams = {
+  value: MsgSendResponse,
+};
+
+type eventSendParams = {
+  value: EventSend,
+};
+
+type queryOwnerResponseParams = {
+  value: QueryOwnerResponse,
+};
+
+type querySupplyResponseParams = {
+  value: QuerySupplyResponse,
+};
+
+type queryNftsResponseParams = {
+  value: QueryNFTsResponse,
 };
 
 
@@ -294,45 +294,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendQueryBalanceRequest({ value, fee, memo }: sendQueryBalanceRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryClassesResponse({ value, fee, memo }: sendQueryClassesResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryBalanceRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryClassesResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryBalanceRequest({ value: QueryBalanceRequest.fromPartial(value) })
+				let msg = this.queryClassesResponse({ value: QueryClassesResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryBalanceRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryBalanceResponse({ value, fee, memo }: sendQueryBalanceResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryBalanceResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryBalanceResponse({ value: QueryBalanceResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryBalanceResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryNFTsRequest({ value, fee, memo }: sendQueryNFTsRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryNFTsRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryNftsRequest({ value: QueryNFTsRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryNFTsRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryClassesResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -350,87 +322,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQuerySupplyResponse({ value, fee, memo }: sendQuerySupplyResponseParams): Promise<DeliverTxResponse> {
+		async sendQueryNFTResponse({ value, fee, memo }: sendQueryNFTResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQuerySupplyResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryNFTResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.querySupplyResponse({ value: QuerySupplyResponse.fromPartial(value) })
+				let msg = this.queryNftresponse({ value: QueryNFTResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQuerySupplyResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryClassRequest({ value, fee, memo }: sendQueryClassRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryClassRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryClassRequest({ value: QueryClassRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryClassRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQuerySupplyRequest({ value, fee, memo }: sendQuerySupplyRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQuerySupplyRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.querySupplyRequest({ value: QuerySupplyRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQuerySupplyRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendEntry({ value, fee, memo }: sendEntryParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEntry: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.entry({ value: Entry.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendEntry: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendNFT({ value, fee, memo }: sendNFTParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendNFT: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.nft({ value: NFT.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendNFT: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgSendResponse({ value, fee, memo }: sendMsgSendResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgSendResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgSendResponse({ value: MsgSendResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgSendResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryNFTResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -448,73 +350,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryOwnerRequest({ value, fee, memo }: sendQueryOwnerRequestParams): Promise<DeliverTxResponse> {
+		async sendNFT({ value, fee, memo }: sendNFTParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryOwnerRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendNFT: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryOwnerRequest({ value: QueryOwnerRequest.fromPartial(value) })
+				let msg = this.nft({ value: NFT.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryOwnerRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendNFT: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryNFTsResponse({ value, fee, memo }: sendQueryNFTsResponseParams): Promise<DeliverTxResponse> {
+		async sendQueryBalanceRequest({ value, fee, memo }: sendQueryBalanceRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryNFTsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryBalanceRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryNftsResponse({ value: QueryNFTsResponse.fromPartial(value) })
+				let msg = this.queryBalanceRequest({ value: QueryBalanceRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryNFTsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryClassesResponse({ value, fee, memo }: sendQueryClassesResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryClassesResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryClassesResponse({ value: QueryClassesResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryClassesResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendEventMint({ value, fee, memo }: sendEventMintParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendEventMint: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventMint({ value: EventMint.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendEventMint: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryOwnerResponse({ value, fee, memo }: sendQueryOwnerResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryOwnerResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryOwnerResponse({ value: QueryOwnerResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryOwnerResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryBalanceRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -532,17 +392,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+		async sendQueryOwnerRequest({ value, fee, memo }: sendQueryOwnerRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryOwnerRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				let msg = this.queryOwnerRequest({ value: QueryOwnerRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryOwnerRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -560,6 +420,20 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendQueryNFTsRequest({ value, fee, memo }: sendQueryNFTsRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryNFTsRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryNftsRequest({ value: QueryNFTsRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryNFTsRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendQueryClassResponse({ value, fee, memo }: sendQueryClassResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryClassResponse: Unable to sign Tx. Signer is not present.')
@@ -574,17 +448,73 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendEventSend({ value, fee, memo }: sendEventSendParams): Promise<DeliverTxResponse> {
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendEventSend: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.eventSend({ value: EventSend.fromPartial(value) })
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendEventSend: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEntry({ value, fee, memo }: sendEntryParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEntry: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.entry({ value: Entry.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEntry: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryBalanceResponse({ value, fee, memo }: sendQueryBalanceResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryBalanceResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryBalanceResponse({ value: QueryBalanceResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryBalanceResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryClassRequest({ value, fee, memo }: sendQueryClassRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryClassRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryClassRequest({ value: QueryClassRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryClassRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventMint({ value, fee, memo }: sendEventMintParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventMint: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventMint({ value: EventMint.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventMint: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -602,42 +532,96 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryNFTResponse({ value, fee, memo }: sendQueryNFTResponseParams): Promise<DeliverTxResponse> {
+		async sendQuerySupplyRequest({ value, fee, memo }: sendQuerySupplyRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryNFTResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQuerySupplyRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryNftresponse({ value: QueryNFTResponse.fromPartial(value) })
+				let msg = this.querySupplyRequest({ value: QuerySupplyRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryNFTResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQuerySupplyRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgSendResponse({ value, fee, memo }: sendMsgSendResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgSendResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgSendResponse({ value: MsgSendResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgSendResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendEventSend({ value, fee, memo }: sendEventSendParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendEventSend: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.eventSend({ value: EventSend.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendEventSend: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryOwnerResponse({ value, fee, memo }: sendQueryOwnerResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryOwnerResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryOwnerResponse({ value: QueryOwnerResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryOwnerResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQuerySupplyResponse({ value, fee, memo }: sendQuerySupplyResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQuerySupplyResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.querySupplyResponse({ value: QuerySupplyResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQuerySupplyResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryNFTsResponse({ value, fee, memo }: sendQueryNFTsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryNFTsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryNftsResponse({ value: QueryNFTsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryNFTsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
 		
-		queryBalanceRequest({ value }: queryBalanceRequestParams): EncodeObject {
+		queryClassesResponse({ value }: queryClassesResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryBalanceRequest", value: QueryBalanceRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryClassesResponse", value: QueryClassesResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryBalanceRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryBalanceResponse({ value }: queryBalanceResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryBalanceResponse", value: QueryBalanceResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryBalanceResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryNftsRequest({ value }: queryNftsRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryNFTsRequest", value: QueryNFTsRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryNFTsRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryClassesResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -649,51 +633,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		querySupplyResponse({ value }: querySupplyResponseParams): EncodeObject {
+		queryNftresponse({ value }: queryNftresponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QuerySupplyResponse", value: QuerySupplyResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryNFTResponse", value: QueryNFTResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QuerySupplyResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryClassRequest({ value }: queryClassRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryClassRequest", value: QueryClassRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryClassRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		querySupplyRequest({ value }: querySupplyRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QuerySupplyRequest", value: QuerySupplyRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QuerySupplyRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		entry({ value }: entryParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.Entry", value: Entry.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Entry: Could not create message: ' + e.message)
-			}
-		},
-		
-		nft({ value }: nftParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.NFT", value: NFT.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:NFT: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgSendResponse({ value }: msgSendResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.MsgSendResponse", value: MsgSendResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgSendResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryNFTResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -705,43 +649,19 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryOwnerRequest({ value }: queryOwnerRequestParams): EncodeObject {
+		nft({ value }: nftParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryOwnerRequest", value: QueryOwnerRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.nft.v1beta1.NFT", value: NFT.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryOwnerRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:NFT: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryNftsResponse({ value }: queryNftsResponseParams): EncodeObject {
+		queryBalanceRequest({ value }: queryBalanceRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryNFTsResponse", value: QueryNFTsResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryBalanceRequest", value: QueryBalanceRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryNFTsResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryClassesResponse({ value }: queryClassesResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryClassesResponse", value: QueryClassesResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryClassesResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		eventMint({ value }: eventMintParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.EventMint", value: EventMint.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:EventMint: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryOwnerResponse({ value }: queryOwnerResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryOwnerResponse", value: QueryOwnerResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryOwnerResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryBalanceRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -753,11 +673,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		genesisState({ value }: genesisStateParams): EncodeObject {
+		queryOwnerRequest({ value }: queryOwnerRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.GenesisState", value: GenesisState.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryOwnerRequest", value: QueryOwnerRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryOwnerRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -769,6 +689,14 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		queryNftsRequest({ value }: queryNftsRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryNFTsRequest", value: QueryNFTsRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryNFTsRequest: Could not create message: ' + e.message)
+			}
+		},
+		
 		queryClassResponse({ value }: queryClassResponseParams): EncodeObject {
 			try {
 				return { typeUrl: "/cosmos.nft.v1beta1.QueryClassResponse", value: QueryClassResponse.fromPartial( value ) }  
@@ -777,11 +705,43 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		eventSend({ value }: eventSendParams): EncodeObject {
+		genesisState({ value }: genesisStateParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.EventSend", value: EventSend.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.nft.v1beta1.GenesisState", value: GenesisState.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:EventSend: Could not create message: ' + e.message)
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
+		entry({ value }: entryParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.Entry", value: Entry.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Entry: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryBalanceResponse({ value }: queryBalanceResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryBalanceResponse", value: QueryBalanceResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryBalanceResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryClassRequest({ value }: queryClassRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryClassRequest", value: QueryClassRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryClassRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventMint({ value }: eventMintParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.EventMint", value: EventMint.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventMint: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -793,11 +753,51 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryNftresponse({ value }: queryNftresponseParams): EncodeObject {
+		querySupplyRequest({ value }: querySupplyRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.nft.v1beta1.QueryNFTResponse", value: QueryNFTResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.nft.v1beta1.QuerySupplyRequest", value: QuerySupplyRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryNFTResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QuerySupplyRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgSendResponse({ value }: msgSendResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.MsgSendResponse", value: MsgSendResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgSendResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		eventSend({ value }: eventSendParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.EventSend", value: EventSend.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:EventSend: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryOwnerResponse({ value }: queryOwnerResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryOwnerResponse", value: QueryOwnerResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryOwnerResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		querySupplyResponse({ value }: querySupplyResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.QuerySupplyResponse", value: QuerySupplyResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QuerySupplyResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryNftsResponse({ value }: queryNftsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.nft.v1beta1.QueryNFTsResponse", value: QueryNFTsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryNFTsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
