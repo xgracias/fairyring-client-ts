@@ -18,6 +18,8 @@ export enum AuthorizationType {
   AUTHORIZATION_TYPE_UNDELEGATE = 2,
   /** AUTHORIZATION_TYPE_REDELEGATE - AUTHORIZATION_TYPE_REDELEGATE defines an authorization type for Msg/BeginRedelegate */
   AUTHORIZATION_TYPE_REDELEGATE = 3,
+  /** AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION - AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION defines an authorization type for Msg/MsgCancelUnbondingDelegation */
+  AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION = 4,
   UNRECOGNIZED = -1,
 }
 
@@ -35,6 +37,9 @@ export function authorizationTypeFromJSON(object: any): AuthorizationType {
     case 3:
     case "AUTHORIZATION_TYPE_REDELEGATE":
       return AuthorizationType.AUTHORIZATION_TYPE_REDELEGATE;
+    case 4:
+    case "AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION":
+      return AuthorizationType.AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -52,6 +57,8 @@ export function authorizationTypeToJSON(object: AuthorizationType): string {
       return "AUTHORIZATION_TYPE_UNDELEGATE";
     case AuthorizationType.AUTHORIZATION_TYPE_REDELEGATE:
       return "AUTHORIZATION_TYPE_REDELEGATE";
+    case AuthorizationType.AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION:
+      return "AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION";
     case AuthorizationType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -75,11 +82,11 @@ export interface StakeAuthorization {
    * allow_list specifies list of validator addresses to whom grantee can delegate tokens on behalf of granter's
    * account.
    */
-  allowList:
+  allowList?:
     | StakeAuthorization_Validators
     | undefined;
   /** deny_list specifies list of validator addresses to whom grantee can not delegate tokens. */
-  denyList:
+  denyList?:
     | StakeAuthorization_Validators
     | undefined;
   /** authorization_type defines one of AuthorizationType. */
@@ -113,28 +120,45 @@ export const StakeAuthorization = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): StakeAuthorization {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseStakeAuthorization();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.maxTokens = Coin.decode(reader, reader.uint32());
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.allowList = StakeAuthorization_Validators.decode(reader, reader.uint32());
-          break;
+          continue;
         case 3:
+          if (tag !== 26) {
+            break;
+          }
+
           message.denyList = StakeAuthorization_Validators.decode(reader, reader.uint32());
-          break;
+          continue;
         case 4:
+          if (tag !== 32) {
+            break;
+          }
+
           message.authorizationType = reader.int32() as any;
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -150,16 +174,24 @@ export const StakeAuthorization = {
 
   toJSON(message: StakeAuthorization): unknown {
     const obj: any = {};
-    message.maxTokens !== undefined && (obj.maxTokens = message.maxTokens ? Coin.toJSON(message.maxTokens) : undefined);
-    message.allowList !== undefined
-      && (obj.allowList = message.allowList ? StakeAuthorization_Validators.toJSON(message.allowList) : undefined);
-    message.denyList !== undefined
-      && (obj.denyList = message.denyList ? StakeAuthorization_Validators.toJSON(message.denyList) : undefined);
-    message.authorizationType !== undefined
-      && (obj.authorizationType = authorizationTypeToJSON(message.authorizationType));
+    if (message.maxTokens !== undefined) {
+      obj.maxTokens = Coin.toJSON(message.maxTokens);
+    }
+    if (message.allowList !== undefined) {
+      obj.allowList = StakeAuthorization_Validators.toJSON(message.allowList);
+    }
+    if (message.denyList !== undefined) {
+      obj.denyList = StakeAuthorization_Validators.toJSON(message.denyList);
+    }
+    if (message.authorizationType !== 0) {
+      obj.authorizationType = authorizationTypeToJSON(message.authorizationType);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<StakeAuthorization>, I>>(base?: I): StakeAuthorization {
+    return StakeAuthorization.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<StakeAuthorization>, I>>(object: I): StakeAuthorization {
     const message = createBaseStakeAuthorization();
     message.maxTokens = (object.maxTokens !== undefined && object.maxTokens !== null)
@@ -189,19 +221,24 @@ export const StakeAuthorization_Validators = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): StakeAuthorization_Validators {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseStakeAuthorization_Validators();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.address.push(reader.string());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -212,14 +249,15 @@ export const StakeAuthorization_Validators = {
 
   toJSON(message: StakeAuthorization_Validators): unknown {
     const obj: any = {};
-    if (message.address) {
-      obj.address = message.address.map((e) => e);
-    } else {
-      obj.address = [];
+    if (message.address?.length) {
+      obj.address = message.address;
     }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<StakeAuthorization_Validators>, I>>(base?: I): StakeAuthorization_Validators {
+    return StakeAuthorization_Validators.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<StakeAuthorization_Validators>, I>>(
     object: I,
   ): StakeAuthorization_Validators {

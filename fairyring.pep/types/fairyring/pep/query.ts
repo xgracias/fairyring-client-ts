@@ -2,10 +2,10 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
-import { EncryptedTx, EncryptedTxArray } from "./encrypted_tx";
+import { ActivePublicKey, QueuedPublicKey } from "../common/shared_types";
+import { EncryptedTx, EncryptedTxArray, GenEncTxExecutionQueue } from "./encrypted_tx";
 import { Params } from "./params";
 import { PepNonce } from "./pep_nonce";
-import { ActivePubKey, QueuedPubKey } from "./pub_key";
 
 export const protobufPackage = "fairyring.pep";
 
@@ -17,6 +17,23 @@ export interface QueryParamsRequest {
 export interface QueryParamsResponse {
   /** params holds all the parameters of this module. */
   params: Params | undefined;
+}
+
+export interface QueryKeyshareRequest {
+  reqId: string;
+}
+
+export interface QueryKeyshareResponse {
+  keyshare: GenEncTxExecutionQueue | undefined;
+}
+
+export interface QueryAllKeyshareRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryAllKeyshareResponse {
+  keyshares: GenEncTxExecutionQueue[];
+  pagination: PageResponse | undefined;
 }
 
 export interface QueryGetEncryptedTxRequest {
@@ -73,8 +90,8 @@ export interface QueryPubKeyRequest {
 }
 
 export interface QueryPubKeyResponse {
-  activePubKey: ActivePubKey | undefined;
-  queuedPubKey: QueuedPubKey | undefined;
+  activePubKey: ActivePublicKey | undefined;
+  queuedPubKey: QueuedPublicKey | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -87,16 +104,17 @@ export const QueryParamsRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryParamsRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -110,6 +128,9 @@ export const QueryParamsRequest = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(base?: I): QueryParamsRequest {
+    return QueryParamsRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
@@ -129,19 +150,24 @@ export const QueryParamsResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryParamsResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.params = Params.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -152,14 +178,272 @@ export const QueryParamsResponse = {
 
   toJSON(message: QueryParamsResponse): unknown {
     const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
+    if (message.params !== undefined) {
+      obj.params = Params.toJSON(message.params);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(base?: I): QueryParamsResponse {
+    return QueryParamsResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = (object.params !== undefined && object.params !== null)
       ? Params.fromPartial(object.params)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryKeyshareRequest(): QueryKeyshareRequest {
+  return { reqId: "" };
+}
+
+export const QueryKeyshareRequest = {
+  encode(message: QueryKeyshareRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.reqId !== "") {
+      writer.uint32(10).string(message.reqId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryKeyshareRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryKeyshareRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.reqId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryKeyshareRequest {
+    return { reqId: isSet(object.reqId) ? String(object.reqId) : "" };
+  },
+
+  toJSON(message: QueryKeyshareRequest): unknown {
+    const obj: any = {};
+    if (message.reqId !== "") {
+      obj.reqId = message.reqId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryKeyshareRequest>, I>>(base?: I): QueryKeyshareRequest {
+    return QueryKeyshareRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryKeyshareRequest>, I>>(object: I): QueryKeyshareRequest {
+    const message = createBaseQueryKeyshareRequest();
+    message.reqId = object.reqId ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryKeyshareResponse(): QueryKeyshareResponse {
+  return { keyshare: undefined };
+}
+
+export const QueryKeyshareResponse = {
+  encode(message: QueryKeyshareResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.keyshare !== undefined) {
+      GenEncTxExecutionQueue.encode(message.keyshare, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryKeyshareResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryKeyshareResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.keyshare = GenEncTxExecutionQueue.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryKeyshareResponse {
+    return { keyshare: isSet(object.keyshare) ? GenEncTxExecutionQueue.fromJSON(object.keyshare) : undefined };
+  },
+
+  toJSON(message: QueryKeyshareResponse): unknown {
+    const obj: any = {};
+    if (message.keyshare !== undefined) {
+      obj.keyshare = GenEncTxExecutionQueue.toJSON(message.keyshare);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryKeyshareResponse>, I>>(base?: I): QueryKeyshareResponse {
+    return QueryKeyshareResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryKeyshareResponse>, I>>(object: I): QueryKeyshareResponse {
+    const message = createBaseQueryKeyshareResponse();
+    message.keyshare = (object.keyshare !== undefined && object.keyshare !== null)
+      ? GenEncTxExecutionQueue.fromPartial(object.keyshare)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllKeyshareRequest(): QueryAllKeyshareRequest {
+  return { pagination: undefined };
+}
+
+export const QueryAllKeyshareRequest = {
+  encode(message: QueryAllKeyshareRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllKeyshareRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllKeyshareRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllKeyshareRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryAllKeyshareRequest): unknown {
+    const obj: any = {};
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryAllKeyshareRequest>, I>>(base?: I): QueryAllKeyshareRequest {
+    return QueryAllKeyshareRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryAllKeyshareRequest>, I>>(object: I): QueryAllKeyshareRequest {
+    const message = createBaseQueryAllKeyshareRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllKeyshareResponse(): QueryAllKeyshareResponse {
+  return { keyshares: [], pagination: undefined };
+}
+
+export const QueryAllKeyshareResponse = {
+  encode(message: QueryAllKeyshareResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.keyshares) {
+      GenEncTxExecutionQueue.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllKeyshareResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllKeyshareResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.keyshares.push(GenEncTxExecutionQueue.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllKeyshareResponse {
+    return {
+      keyshares: Array.isArray(object?.keyshares)
+        ? object.keyshares.map((e: any) => GenEncTxExecutionQueue.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryAllKeyshareResponse): unknown {
+    const obj: any = {};
+    if (message.keyshares?.length) {
+      obj.keyshares = message.keyshares.map((e) => GenEncTxExecutionQueue.toJSON(e));
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryAllKeyshareResponse>, I>>(base?: I): QueryAllKeyshareResponse {
+    return QueryAllKeyshareResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryAllKeyshareResponse>, I>>(object: I): QueryAllKeyshareResponse {
+    const message = createBaseQueryAllKeyshareResponse();
+    message.keyshares = object.keyshares?.map((e) => GenEncTxExecutionQueue.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
       : undefined;
     return message;
   },
@@ -181,22 +465,31 @@ export const QueryGetEncryptedTxRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEncryptedTxRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetEncryptedTxRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 8) {
+            break;
+          }
+
           message.targetHeight = longToNumber(reader.uint64() as Long);
-          break;
+          continue;
         case 2:
+          if (tag !== 16) {
+            break;
+          }
+
           message.index = longToNumber(reader.uint64() as Long);
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -210,11 +503,18 @@ export const QueryGetEncryptedTxRequest = {
 
   toJSON(message: QueryGetEncryptedTxRequest): unknown {
     const obj: any = {};
-    message.targetHeight !== undefined && (obj.targetHeight = Math.round(message.targetHeight));
-    message.index !== undefined && (obj.index = Math.round(message.index));
+    if (message.targetHeight !== 0) {
+      obj.targetHeight = Math.round(message.targetHeight);
+    }
+    if (message.index !== 0) {
+      obj.index = Math.round(message.index);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetEncryptedTxRequest>, I>>(base?: I): QueryGetEncryptedTxRequest {
+    return QueryGetEncryptedTxRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetEncryptedTxRequest>, I>>(object: I): QueryGetEncryptedTxRequest {
     const message = createBaseQueryGetEncryptedTxRequest();
     message.targetHeight = object.targetHeight ?? 0;
@@ -236,19 +536,24 @@ export const QueryGetEncryptedTxResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetEncryptedTxResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetEncryptedTxResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.encryptedTx = EncryptedTx.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -259,11 +564,15 @@ export const QueryGetEncryptedTxResponse = {
 
   toJSON(message: QueryGetEncryptedTxResponse): unknown {
     const obj: any = {};
-    message.encryptedTx !== undefined
-      && (obj.encryptedTx = message.encryptedTx ? EncryptedTx.toJSON(message.encryptedTx) : undefined);
+    if (message.encryptedTx !== undefined) {
+      obj.encryptedTx = EncryptedTx.toJSON(message.encryptedTx);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetEncryptedTxResponse>, I>>(base?: I): QueryGetEncryptedTxResponse {
+    return QueryGetEncryptedTxResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetEncryptedTxResponse>, I>>(object: I): QueryGetEncryptedTxResponse {
     const message = createBaseQueryGetEncryptedTxResponse();
     message.encryptedTx = (object.encryptedTx !== undefined && object.encryptedTx !== null)
@@ -286,19 +595,24 @@ export const QueryAllEncryptedTxRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEncryptedTxRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllEncryptedTxRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -309,11 +623,15 @@ export const QueryAllEncryptedTxRequest = {
 
   toJSON(message: QueryAllEncryptedTxRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllEncryptedTxRequest>, I>>(base?: I): QueryAllEncryptedTxRequest {
+    return QueryAllEncryptedTxRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxRequest>, I>>(object: I): QueryAllEncryptedTxRequest {
     const message = createBaseQueryAllEncryptedTxRequest();
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
@@ -339,22 +657,31 @@ export const QueryAllEncryptedTxResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEncryptedTxResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllEncryptedTxResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.encryptedTxArray.push(EncryptedTxArray.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pagination = PageResponse.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -370,16 +697,18 @@ export const QueryAllEncryptedTxResponse = {
 
   toJSON(message: QueryAllEncryptedTxResponse): unknown {
     const obj: any = {};
-    if (message.encryptedTxArray) {
-      obj.encryptedTxArray = message.encryptedTxArray.map((e) => e ? EncryptedTxArray.toJSON(e) : undefined);
-    } else {
-      obj.encryptedTxArray = [];
+    if (message.encryptedTxArray?.length) {
+      obj.encryptedTxArray = message.encryptedTxArray.map((e) => EncryptedTxArray.toJSON(e));
     }
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllEncryptedTxResponse>, I>>(base?: I): QueryAllEncryptedTxResponse {
+    return QueryAllEncryptedTxResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxResponse>, I>>(object: I): QueryAllEncryptedTxResponse {
     const message = createBaseQueryAllEncryptedTxResponse();
     message.encryptedTxArray = object.encryptedTxArray?.map((e) => EncryptedTxArray.fromPartial(e)) || [];
@@ -403,19 +732,24 @@ export const QueryAllEncryptedTxFromHeightRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEncryptedTxFromHeightRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllEncryptedTxFromHeightRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 8) {
+            break;
+          }
+
           message.targetHeight = longToNumber(reader.uint64() as Long);
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -426,10 +760,17 @@ export const QueryAllEncryptedTxFromHeightRequest = {
 
   toJSON(message: QueryAllEncryptedTxFromHeightRequest): unknown {
     const obj: any = {};
-    message.targetHeight !== undefined && (obj.targetHeight = Math.round(message.targetHeight));
+    if (message.targetHeight !== 0) {
+      obj.targetHeight = Math.round(message.targetHeight);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllEncryptedTxFromHeightRequest>, I>>(
+    base?: I,
+  ): QueryAllEncryptedTxFromHeightRequest {
+    return QueryAllEncryptedTxFromHeightRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxFromHeightRequest>, I>>(
     object: I,
   ): QueryAllEncryptedTxFromHeightRequest {
@@ -452,19 +793,24 @@ export const QueryAllEncryptedTxFromHeightResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEncryptedTxFromHeightResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllEncryptedTxFromHeightResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.encryptedTxArray = EncryptedTxArray.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -477,12 +823,17 @@ export const QueryAllEncryptedTxFromHeightResponse = {
 
   toJSON(message: QueryAllEncryptedTxFromHeightResponse): unknown {
     const obj: any = {};
-    message.encryptedTxArray !== undefined && (obj.encryptedTxArray = message.encryptedTxArray
-      ? EncryptedTxArray.toJSON(message.encryptedTxArray)
-      : undefined);
+    if (message.encryptedTxArray !== undefined) {
+      obj.encryptedTxArray = EncryptedTxArray.toJSON(message.encryptedTxArray);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllEncryptedTxFromHeightResponse>, I>>(
+    base?: I,
+  ): QueryAllEncryptedTxFromHeightResponse {
+    return QueryAllEncryptedTxFromHeightResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllEncryptedTxFromHeightResponse>, I>>(
     object: I,
   ): QueryAllEncryptedTxFromHeightResponse {
@@ -504,16 +855,17 @@ export const QueryLatestHeightRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryLatestHeightRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryLatestHeightRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -527,6 +879,9 @@ export const QueryLatestHeightRequest = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryLatestHeightRequest>, I>>(base?: I): QueryLatestHeightRequest {
+    return QueryLatestHeightRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryLatestHeightRequest>, I>>(_: I): QueryLatestHeightRequest {
     const message = createBaseQueryLatestHeightRequest();
     return message;
@@ -546,19 +901,24 @@ export const QueryLatestHeightResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryLatestHeightResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryLatestHeightResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 8) {
+            break;
+          }
+
           message.height = longToNumber(reader.uint64() as Long);
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -569,10 +929,15 @@ export const QueryLatestHeightResponse = {
 
   toJSON(message: QueryLatestHeightResponse): unknown {
     const obj: any = {};
-    message.height !== undefined && (obj.height = Math.round(message.height));
+    if (message.height !== 0) {
+      obj.height = Math.round(message.height);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryLatestHeightResponse>, I>>(base?: I): QueryLatestHeightResponse {
+    return QueryLatestHeightResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryLatestHeightResponse>, I>>(object: I): QueryLatestHeightResponse {
     const message = createBaseQueryLatestHeightResponse();
     message.height = object.height ?? 0;
@@ -593,19 +958,24 @@ export const QueryGetPepNonceRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPepNonceRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetPepNonceRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.address = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -616,10 +986,15 @@ export const QueryGetPepNonceRequest = {
 
   toJSON(message: QueryGetPepNonceRequest): unknown {
     const obj: any = {};
-    message.address !== undefined && (obj.address = message.address);
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetPepNonceRequest>, I>>(base?: I): QueryGetPepNonceRequest {
+    return QueryGetPepNonceRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetPepNonceRequest>, I>>(object: I): QueryGetPepNonceRequest {
     const message = createBaseQueryGetPepNonceRequest();
     message.address = object.address ?? "";
@@ -640,19 +1015,24 @@ export const QueryGetPepNonceResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPepNonceResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetPepNonceResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pepNonce = PepNonce.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -663,10 +1043,15 @@ export const QueryGetPepNonceResponse = {
 
   toJSON(message: QueryGetPepNonceResponse): unknown {
     const obj: any = {};
-    message.pepNonce !== undefined && (obj.pepNonce = message.pepNonce ? PepNonce.toJSON(message.pepNonce) : undefined);
+    if (message.pepNonce !== undefined) {
+      obj.pepNonce = PepNonce.toJSON(message.pepNonce);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetPepNonceResponse>, I>>(base?: I): QueryGetPepNonceResponse {
+    return QueryGetPepNonceResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetPepNonceResponse>, I>>(object: I): QueryGetPepNonceResponse {
     const message = createBaseQueryGetPepNonceResponse();
     message.pepNonce = (object.pepNonce !== undefined && object.pepNonce !== null)
@@ -689,19 +1074,24 @@ export const QueryAllPepNonceRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllPepNonceRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllPepNonceRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -712,11 +1102,15 @@ export const QueryAllPepNonceRequest = {
 
   toJSON(message: QueryAllPepNonceRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllPepNonceRequest>, I>>(base?: I): QueryAllPepNonceRequest {
+    return QueryAllPepNonceRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllPepNonceRequest>, I>>(object: I): QueryAllPepNonceRequest {
     const message = createBaseQueryAllPepNonceRequest();
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
@@ -742,22 +1136,31 @@ export const QueryAllPepNonceResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllPepNonceResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllPepNonceResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pepNonce.push(PepNonce.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pagination = PageResponse.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -771,16 +1174,18 @@ export const QueryAllPepNonceResponse = {
 
   toJSON(message: QueryAllPepNonceResponse): unknown {
     const obj: any = {};
-    if (message.pepNonce) {
-      obj.pepNonce = message.pepNonce.map((e) => e ? PepNonce.toJSON(e) : undefined);
-    } else {
-      obj.pepNonce = [];
+    if (message.pepNonce?.length) {
+      obj.pepNonce = message.pepNonce.map((e) => PepNonce.toJSON(e));
     }
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllPepNonceResponse>, I>>(base?: I): QueryAllPepNonceResponse {
+    return QueryAllPepNonceResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllPepNonceResponse>, I>>(object: I): QueryAllPepNonceResponse {
     const message = createBaseQueryAllPepNonceResponse();
     message.pepNonce = object.pepNonce?.map((e) => PepNonce.fromPartial(e)) || [];
@@ -801,16 +1206,17 @@ export const QueryPubKeyRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryPubKeyRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryPubKeyRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -824,6 +1230,9 @@ export const QueryPubKeyRequest = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryPubKeyRequest>, I>>(base?: I): QueryPubKeyRequest {
+    return QueryPubKeyRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryPubKeyRequest>, I>>(_: I): QueryPubKeyRequest {
     const message = createBaseQueryPubKeyRequest();
     return message;
@@ -837,58 +1246,72 @@ function createBaseQueryPubKeyResponse(): QueryPubKeyResponse {
 export const QueryPubKeyResponse = {
   encode(message: QueryPubKeyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.activePubKey !== undefined) {
-      ActivePubKey.encode(message.activePubKey, writer.uint32(10).fork()).ldelim();
+      ActivePublicKey.encode(message.activePubKey, writer.uint32(10).fork()).ldelim();
     }
     if (message.queuedPubKey !== undefined) {
-      QueuedPubKey.encode(message.queuedPubKey, writer.uint32(18).fork()).ldelim();
+      QueuedPublicKey.encode(message.queuedPubKey, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryPubKeyResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryPubKeyResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.activePubKey = ActivePubKey.decode(reader, reader.uint32());
-          break;
+          if (tag !== 10) {
+            break;
+          }
+
+          message.activePubKey = ActivePublicKey.decode(reader, reader.uint32());
+          continue;
         case 2:
-          message.queuedPubKey = QueuedPubKey.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          if (tag !== 18) {
+            break;
+          }
+
+          message.queuedPubKey = QueuedPublicKey.decode(reader, reader.uint32());
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
 
   fromJSON(object: any): QueryPubKeyResponse {
     return {
-      activePubKey: isSet(object.activePubKey) ? ActivePubKey.fromJSON(object.activePubKey) : undefined,
-      queuedPubKey: isSet(object.queuedPubKey) ? QueuedPubKey.fromJSON(object.queuedPubKey) : undefined,
+      activePubKey: isSet(object.activePubKey) ? ActivePublicKey.fromJSON(object.activePubKey) : undefined,
+      queuedPubKey: isSet(object.queuedPubKey) ? QueuedPublicKey.fromJSON(object.queuedPubKey) : undefined,
     };
   },
 
   toJSON(message: QueryPubKeyResponse): unknown {
     const obj: any = {};
-    message.activePubKey !== undefined
-      && (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
-    message.queuedPubKey !== undefined
-      && (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
+    if (message.activePubKey !== undefined) {
+      obj.activePubKey = ActivePublicKey.toJSON(message.activePubKey);
+    }
+    if (message.queuedPubKey !== undefined) {
+      obj.queuedPubKey = QueuedPublicKey.toJSON(message.queuedPubKey);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryPubKeyResponse>, I>>(base?: I): QueryPubKeyResponse {
+    return QueryPubKeyResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryPubKeyResponse>, I>>(object: I): QueryPubKeyResponse {
     const message = createBaseQueryPubKeyResponse();
     message.activePubKey = (object.activePubKey !== undefined && object.activePubKey !== null)
-      ? ActivePubKey.fromPartial(object.activePubKey)
+      ? ActivePublicKey.fromPartial(object.activePubKey)
       : undefined;
     message.queuedPubKey = (object.queuedPubKey !== undefined && object.queuedPubKey !== null)
-      ? QueuedPubKey.fromPartial(object.queuedPubKey)
+      ? QueuedPublicKey.fromPartial(object.queuedPubKey)
       : undefined;
     return message;
   },
@@ -914,11 +1337,16 @@ export interface Query {
   PepNonceAll(request: QueryAllPepNonceRequest): Promise<QueryAllPepNonceResponse>;
   /** Queries the public keys */
   PubKey(request: QueryPubKeyRequest): Promise<QueryPubKeyResponse>;
+  KeyshareReq(request: QueryKeyshareRequest): Promise<QueryKeyshareResponse>;
+  KeyshareReqAll(request: QueryAllKeyshareRequest): Promise<QueryAllKeyshareResponse>;
 }
 
+export const QueryServiceName = "fairyring.pep.Query";
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly service: string;
+  constructor(rpc: Rpc, opts?: { service?: string }) {
+    this.service = opts?.service || QueryServiceName;
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
     this.EncryptedTx = this.EncryptedTx.bind(this);
@@ -928,55 +1356,69 @@ export class QueryClientImpl implements Query {
     this.PepNonce = this.PepNonce.bind(this);
     this.PepNonceAll = this.PepNonceAll.bind(this);
     this.PubKey = this.PubKey.bind(this);
+    this.KeyshareReq = this.KeyshareReq.bind(this);
+    this.KeyshareReqAll = this.KeyshareReqAll.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.pep.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "Params", data);
+    return promise.then((data) => QueryParamsResponse.decode(_m0.Reader.create(data)));
   }
 
   EncryptedTx(request: QueryGetEncryptedTxRequest): Promise<QueryGetEncryptedTxResponse> {
     const data = QueryGetEncryptedTxRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.pep.Query", "EncryptedTx", data);
-    return promise.then((data) => QueryGetEncryptedTxResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "EncryptedTx", data);
+    return promise.then((data) => QueryGetEncryptedTxResponse.decode(_m0.Reader.create(data)));
   }
 
   EncryptedTxAll(request: QueryAllEncryptedTxRequest): Promise<QueryAllEncryptedTxResponse> {
     const data = QueryAllEncryptedTxRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.pep.Query", "EncryptedTxAll", data);
-    return promise.then((data) => QueryAllEncryptedTxResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "EncryptedTxAll", data);
+    return promise.then((data) => QueryAllEncryptedTxResponse.decode(_m0.Reader.create(data)));
   }
 
   EncryptedTxAllFromHeight(
     request: QueryAllEncryptedTxFromHeightRequest,
   ): Promise<QueryAllEncryptedTxFromHeightResponse> {
     const data = QueryAllEncryptedTxFromHeightRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.pep.Query", "EncryptedTxAllFromHeight", data);
-    return promise.then((data) => QueryAllEncryptedTxFromHeightResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "EncryptedTxAllFromHeight", data);
+    return promise.then((data) => QueryAllEncryptedTxFromHeightResponse.decode(_m0.Reader.create(data)));
   }
 
   LatestHeight(request: QueryLatestHeightRequest): Promise<QueryLatestHeightResponse> {
     const data = QueryLatestHeightRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.pep.Query", "LatestHeight", data);
-    return promise.then((data) => QueryLatestHeightResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "LatestHeight", data);
+    return promise.then((data) => QueryLatestHeightResponse.decode(_m0.Reader.create(data)));
   }
 
   PepNonce(request: QueryGetPepNonceRequest): Promise<QueryGetPepNonceResponse> {
     const data = QueryGetPepNonceRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.pep.Query", "PepNonce", data);
-    return promise.then((data) => QueryGetPepNonceResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "PepNonce", data);
+    return promise.then((data) => QueryGetPepNonceResponse.decode(_m0.Reader.create(data)));
   }
 
   PepNonceAll(request: QueryAllPepNonceRequest): Promise<QueryAllPepNonceResponse> {
     const data = QueryAllPepNonceRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.pep.Query", "PepNonceAll", data);
-    return promise.then((data) => QueryAllPepNonceResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "PepNonceAll", data);
+    return promise.then((data) => QueryAllPepNonceResponse.decode(_m0.Reader.create(data)));
   }
 
   PubKey(request: QueryPubKeyRequest): Promise<QueryPubKeyResponse> {
     const data = QueryPubKeyRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.pep.Query", "PubKey", data);
-    return promise.then((data) => QueryPubKeyResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "PubKey", data);
+    return promise.then((data) => QueryPubKeyResponse.decode(_m0.Reader.create(data)));
+  }
+
+  KeyshareReq(request: QueryKeyshareRequest): Promise<QueryKeyshareResponse> {
+    const data = QueryKeyshareRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "KeyshareReq", data);
+    return promise.then((data) => QueryKeyshareResponse.decode(_m0.Reader.create(data)));
+  }
+
+  KeyshareReqAll(request: QueryAllKeyshareRequest): Promise<QueryAllKeyshareResponse> {
+    const data = QueryAllKeyshareRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "KeyshareReqAll", data);
+    return promise.then((data) => QueryAllKeyshareResponse.decode(_m0.Reader.create(data)));
   }
 }
 
@@ -984,10 +1426,10 @@ interface Rpc {
   request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var globalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -1016,7 +1458,7 @@ export type Exact<P, I extends P> = P extends Builtin ? P
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

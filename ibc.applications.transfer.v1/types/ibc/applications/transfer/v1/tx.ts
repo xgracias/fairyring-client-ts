@@ -3,6 +3,7 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Coin } from "../../../../cosmos/base/v1beta1/coin";
 import { Height } from "../../../core/client/v1/client";
+import { Params } from "./transfer";
 
 export const protobufPackage = "ibc.applications.transfer.v1";
 
@@ -44,6 +45,25 @@ export interface MsgTransfer {
 export interface MsgTransferResponse {
   /** sequence number of the transfer packet sent */
   sequence: number;
+}
+
+/** MsgUpdateParams is the Msg/UpdateParams request type. */
+export interface MsgUpdateParams {
+  /** signer address */
+  signer: string;
+  /**
+   * params defines the transfer parameters to update.
+   *
+   * NOTE: All parameters must be supplied.
+   */
+  params: Params | undefined;
+}
+
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ */
+export interface MsgUpdateParamsResponse {
 }
 
 function createBaseMsgTransfer(): MsgTransfer {
@@ -89,40 +109,73 @@ export const MsgTransfer = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgTransfer {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgTransfer();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.sourcePort = reader.string();
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.sourceChannel = reader.string();
-          break;
+          continue;
         case 3:
+          if (tag !== 26) {
+            break;
+          }
+
           message.token = Coin.decode(reader, reader.uint32());
-          break;
+          continue;
         case 4:
+          if (tag !== 34) {
+            break;
+          }
+
           message.sender = reader.string();
-          break;
+          continue;
         case 5:
+          if (tag !== 42) {
+            break;
+          }
+
           message.receiver = reader.string();
-          break;
+          continue;
         case 6:
+          if (tag !== 50) {
+            break;
+          }
+
           message.timeoutHeight = Height.decode(reader, reader.uint32());
-          break;
+          continue;
         case 7:
+          if (tag !== 56) {
+            break;
+          }
+
           message.timeoutTimestamp = longToNumber(reader.uint64() as Long);
-          break;
+          continue;
         case 8:
+          if (tag !== 66) {
+            break;
+          }
+
           message.memo = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -142,18 +195,36 @@ export const MsgTransfer = {
 
   toJSON(message: MsgTransfer): unknown {
     const obj: any = {};
-    message.sourcePort !== undefined && (obj.sourcePort = message.sourcePort);
-    message.sourceChannel !== undefined && (obj.sourceChannel = message.sourceChannel);
-    message.token !== undefined && (obj.token = message.token ? Coin.toJSON(message.token) : undefined);
-    message.sender !== undefined && (obj.sender = message.sender);
-    message.receiver !== undefined && (obj.receiver = message.receiver);
-    message.timeoutHeight !== undefined
-      && (obj.timeoutHeight = message.timeoutHeight ? Height.toJSON(message.timeoutHeight) : undefined);
-    message.timeoutTimestamp !== undefined && (obj.timeoutTimestamp = Math.round(message.timeoutTimestamp));
-    message.memo !== undefined && (obj.memo = message.memo);
+    if (message.sourcePort !== "") {
+      obj.sourcePort = message.sourcePort;
+    }
+    if (message.sourceChannel !== "") {
+      obj.sourceChannel = message.sourceChannel;
+    }
+    if (message.token !== undefined) {
+      obj.token = Coin.toJSON(message.token);
+    }
+    if (message.sender !== "") {
+      obj.sender = message.sender;
+    }
+    if (message.receiver !== "") {
+      obj.receiver = message.receiver;
+    }
+    if (message.timeoutHeight !== undefined) {
+      obj.timeoutHeight = Height.toJSON(message.timeoutHeight);
+    }
+    if (message.timeoutTimestamp !== 0) {
+      obj.timeoutTimestamp = Math.round(message.timeoutTimestamp);
+    }
+    if (message.memo !== "") {
+      obj.memo = message.memo;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<MsgTransfer>, I>>(base?: I): MsgTransfer {
+    return MsgTransfer.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<MsgTransfer>, I>>(object: I): MsgTransfer {
     const message = createBaseMsgTransfer();
     message.sourcePort = object.sourcePort ?? "";
@@ -183,19 +254,24 @@ export const MsgTransferResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgTransferResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgTransferResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 8) {
+            break;
+          }
+
           message.sequence = longToNumber(reader.uint64() as Long);
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -206,13 +282,137 @@ export const MsgTransferResponse = {
 
   toJSON(message: MsgTransferResponse): unknown {
     const obj: any = {};
-    message.sequence !== undefined && (obj.sequence = Math.round(message.sequence));
+    if (message.sequence !== 0) {
+      obj.sequence = Math.round(message.sequence);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<MsgTransferResponse>, I>>(base?: I): MsgTransferResponse {
+    return MsgTransferResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<MsgTransferResponse>, I>>(object: I): MsgTransferResponse {
     const message = createBaseMsgTransferResponse();
     message.sequence = object.sequence ?? 0;
+    return message;
+  },
+};
+
+function createBaseMsgUpdateParams(): MsgUpdateParams {
+  return { signer: "", params: undefined };
+}
+
+export const MsgUpdateParams = {
+  encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
+    }
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParams {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.signer = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.params = Params.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgUpdateParams {
+    return {
+      signer: isSet(object.signer) ? String(object.signer) : "",
+      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
+    };
+  },
+
+  toJSON(message: MsgUpdateParams): unknown {
+    const obj: any = {};
+    if (message.signer !== "") {
+      obj.signer = message.signer;
+    }
+    if (message.params !== undefined) {
+      obj.params = Params.toJSON(message.params);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(base?: I): MsgUpdateParams {
+    return MsgUpdateParams.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
+    const message = createBaseMsgUpdateParams();
+    message.signer = object.signer ?? "";
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
+  return {};
+}
+
+export const MsgUpdateParamsResponse = {
+  encode(_: MsgUpdateParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParamsResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateParamsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgUpdateParamsResponse {
+    return {};
+  },
+
+  toJSON(_: MsgUpdateParamsResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(base?: I): MsgUpdateParamsResponse {
+    return MsgUpdateParamsResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse {
+    const message = createBaseMsgUpdateParamsResponse();
     return message;
   },
 };
@@ -221,18 +421,30 @@ export const MsgTransferResponse = {
 export interface Msg {
   /** Transfer defines a rpc handler method for MsgTransfer. */
   Transfer(request: MsgTransfer): Promise<MsgTransferResponse>;
+  /** UpdateParams defines a rpc handler for MsgUpdateParams. */
+  UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 
+export const MsgServiceName = "ibc.applications.transfer.v1.Msg";
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly service: string;
+  constructor(rpc: Rpc, opts?: { service?: string }) {
+    this.service = opts?.service || MsgServiceName;
     this.rpc = rpc;
     this.Transfer = this.Transfer.bind(this);
+    this.UpdateParams = this.UpdateParams.bind(this);
   }
   Transfer(request: MsgTransfer): Promise<MsgTransferResponse> {
     const data = MsgTransfer.encode(request).finish();
-    const promise = this.rpc.request("ibc.applications.transfer.v1.Msg", "Transfer", data);
-    return promise.then((data) => MsgTransferResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "Transfer", data);
+    return promise.then((data) => MsgTransferResponse.decode(_m0.Reader.create(data)));
+  }
+
+  UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
+    const data = MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request(this.service, "UpdateParams", data);
+    return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 }
 
@@ -240,10 +452,10 @@ interface Rpc {
   request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var globalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -272,7 +484,7 @@ export type Exact<P, I extends P> = P extends Builtin ? P
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

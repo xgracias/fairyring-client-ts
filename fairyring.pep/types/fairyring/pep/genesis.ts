@@ -1,23 +1,28 @@
 /* eslint-disable */
+import Long from "long";
 import _m0 from "protobufjs/minimal";
+import { ActivePublicKey, QueuedPublicKey } from "../common/shared_types";
 import { AggregatedKeyShare } from "./aggregated_key_share";
 import { EncryptedTxArray } from "./encrypted_tx";
 import { Params } from "./params";
 import { PepNonce } from "./pep_nonce";
-import { ActivePubKey, QueuedPubKey } from "./pub_key";
+import { RequestId } from "./request_id";
 
 export const protobufPackage = "fairyring.pep";
 
 /** GenesisState defines the pep module's genesis state. */
 export interface GenesisState {
+  /** params defines all the parameters of the module. */
   params: Params | undefined;
   portId: string;
   encryptedTxArray: EncryptedTxArray[];
   pepNonceList: PepNonce[];
   /** this line is used by starport scaffolding # genesis/proto/state */
   aggregatedKeyShareList: AggregatedKeyShare[];
-  activePubKey: ActivePubKey | undefined;
-  queuedPubKey: QueuedPubKey | undefined;
+  activePubKey: ActivePublicKey | undefined;
+  queuedPubKey: QueuedPublicKey | undefined;
+  requestCount: number;
+  requestIdList: RequestId[];
 }
 
 function createBaseGenesisState(): GenesisState {
@@ -29,6 +34,8 @@ function createBaseGenesisState(): GenesisState {
     aggregatedKeyShareList: [],
     activePubKey: undefined,
     queuedPubKey: undefined,
+    requestCount: 0,
+    requestIdList: [],
   };
 }
 
@@ -50,46 +57,95 @@ export const GenesisState = {
       AggregatedKeyShare.encode(v!, writer.uint32(50).fork()).ldelim();
     }
     if (message.activePubKey !== undefined) {
-      ActivePubKey.encode(message.activePubKey, writer.uint32(58).fork()).ldelim();
+      ActivePublicKey.encode(message.activePubKey, writer.uint32(58).fork()).ldelim();
     }
     if (message.queuedPubKey !== undefined) {
-      QueuedPubKey.encode(message.queuedPubKey, writer.uint32(66).fork()).ldelim();
+      QueuedPublicKey.encode(message.queuedPubKey, writer.uint32(66).fork()).ldelim();
+    }
+    if (message.requestCount !== 0) {
+      writer.uint32(72).uint64(message.requestCount);
+    }
+    for (const v of message.requestIdList) {
+      RequestId.encode(v!, writer.uint32(82).fork()).ldelim();
     }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGenesisState();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.params = Params.decode(reader, reader.uint32());
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.portId = reader.string();
-          break;
+          continue;
         case 3:
+          if (tag !== 26) {
+            break;
+          }
+
           message.encryptedTxArray.push(EncryptedTxArray.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 4:
+          if (tag !== 34) {
+            break;
+          }
+
           message.pepNonceList.push(PepNonce.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 6:
+          if (tag !== 50) {
+            break;
+          }
+
           message.aggregatedKeyShareList.push(AggregatedKeyShare.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 7:
-          message.activePubKey = ActivePubKey.decode(reader, reader.uint32());
-          break;
+          if (tag !== 58) {
+            break;
+          }
+
+          message.activePubKey = ActivePublicKey.decode(reader, reader.uint32());
+          continue;
         case 8:
-          message.queuedPubKey = QueuedPubKey.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          if (tag !== 66) {
+            break;
+          }
+
+          message.queuedPubKey = QueuedPublicKey.decode(reader, reader.uint32());
+          continue;
+        case 9:
+          if (tag !== 72) {
+            break;
+          }
+
+          message.requestCount = longToNumber(reader.uint64() as Long);
+          continue;
+        case 10:
+          if (tag !== 82) {
+            break;
+          }
+
+          message.requestIdList.push(RequestId.decode(reader, reader.uint32()));
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -107,39 +163,50 @@ export const GenesisState = {
       aggregatedKeyShareList: Array.isArray(object?.aggregatedKeyShareList)
         ? object.aggregatedKeyShareList.map((e: any) => AggregatedKeyShare.fromJSON(e))
         : [],
-      activePubKey: isSet(object.activePubKey) ? ActivePubKey.fromJSON(object.activePubKey) : undefined,
-      queuedPubKey: isSet(object.queuedPubKey) ? QueuedPubKey.fromJSON(object.queuedPubKey) : undefined,
+      activePubKey: isSet(object.activePubKey) ? ActivePublicKey.fromJSON(object.activePubKey) : undefined,
+      queuedPubKey: isSet(object.queuedPubKey) ? QueuedPublicKey.fromJSON(object.queuedPubKey) : undefined,
+      requestCount: isSet(object.requestCount) ? Number(object.requestCount) : 0,
+      requestIdList: Array.isArray(object?.requestIdList)
+        ? object.requestIdList.map((e: any) => RequestId.fromJSON(e))
+        : [],
     };
   },
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    message.portId !== undefined && (obj.portId = message.portId);
-    if (message.encryptedTxArray) {
-      obj.encryptedTxArray = message.encryptedTxArray.map((e) => e ? EncryptedTxArray.toJSON(e) : undefined);
-    } else {
-      obj.encryptedTxArray = [];
+    if (message.params !== undefined) {
+      obj.params = Params.toJSON(message.params);
     }
-    if (message.pepNonceList) {
-      obj.pepNonceList = message.pepNonceList.map((e) => e ? PepNonce.toJSON(e) : undefined);
-    } else {
-      obj.pepNonceList = [];
+    if (message.portId !== "") {
+      obj.portId = message.portId;
     }
-    if (message.aggregatedKeyShareList) {
-      obj.aggregatedKeyShareList = message.aggregatedKeyShareList.map((e) =>
-        e ? AggregatedKeyShare.toJSON(e) : undefined
-      );
-    } else {
-      obj.aggregatedKeyShareList = [];
+    if (message.encryptedTxArray?.length) {
+      obj.encryptedTxArray = message.encryptedTxArray.map((e) => EncryptedTxArray.toJSON(e));
     }
-    message.activePubKey !== undefined
-      && (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
-    message.queuedPubKey !== undefined
-      && (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
+    if (message.pepNonceList?.length) {
+      obj.pepNonceList = message.pepNonceList.map((e) => PepNonce.toJSON(e));
+    }
+    if (message.aggregatedKeyShareList?.length) {
+      obj.aggregatedKeyShareList = message.aggregatedKeyShareList.map((e) => AggregatedKeyShare.toJSON(e));
+    }
+    if (message.activePubKey !== undefined) {
+      obj.activePubKey = ActivePublicKey.toJSON(message.activePubKey);
+    }
+    if (message.queuedPubKey !== undefined) {
+      obj.queuedPubKey = QueuedPublicKey.toJSON(message.queuedPubKey);
+    }
+    if (message.requestCount !== 0) {
+      obj.requestCount = Math.round(message.requestCount);
+    }
+    if (message.requestIdList?.length) {
+      obj.requestIdList = message.requestIdList.map((e) => RequestId.toJSON(e));
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<GenesisState>, I>>(base?: I): GenesisState {
+    return GenesisState.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
     message.params = (object.params !== undefined && object.params !== null)
@@ -150,14 +217,35 @@ export const GenesisState = {
     message.pepNonceList = object.pepNonceList?.map((e) => PepNonce.fromPartial(e)) || [];
     message.aggregatedKeyShareList = object.aggregatedKeyShareList?.map((e) => AggregatedKeyShare.fromPartial(e)) || [];
     message.activePubKey = (object.activePubKey !== undefined && object.activePubKey !== null)
-      ? ActivePubKey.fromPartial(object.activePubKey)
+      ? ActivePublicKey.fromPartial(object.activePubKey)
       : undefined;
     message.queuedPubKey = (object.queuedPubKey !== undefined && object.queuedPubKey !== null)
-      ? QueuedPubKey.fromPartial(object.queuedPubKey)
+      ? QueuedPublicKey.fromPartial(object.queuedPubKey)
       : undefined;
+    message.requestCount = object.requestCount ?? 0;
+    message.requestIdList = object.requestIdList?.map((e) => RequestId.fromPartial(e)) || [];
     return message;
   },
 };
+
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
+  if (typeof globalThis !== "undefined") {
+    return globalThis;
+  }
+  if (typeof self !== "undefined") {
+    return self;
+  }
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  throw "Unable to locate global object";
+})();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
@@ -169,6 +257,18 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(long: Long): number {
+  if (long.gt(Number.MAX_SAFE_INTEGER)) {
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

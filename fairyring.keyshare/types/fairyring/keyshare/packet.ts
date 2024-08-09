@@ -1,14 +1,17 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
+import { Duration } from "../../google/protobuf/duration";
+import { ActivePublicKey, QueuedPublicKey } from "../common/shared_types";
 
 export const protobufPackage = "fairyring.keyshare";
 
 export interface KeysharePacketData {
-  noData: NoData | undefined;
-  requestAggrKeysharePacket: RequestAggrKeysharePacketData | undefined;
-  getAggrKeysharePacket: GetAggrKeysharePacketData | undefined;
-  aggrKeyshareDataPacket: AggrKeyshareDataPacketData | undefined;
+  noData?: NoData | undefined;
+  requestAggrKeysharePacket?: RequestAggrKeysharePacketData | undefined;
+  getAggrKeysharePacket?: GetAggrKeysharePacketData | undefined;
+  aggrKeyshareDataPacket?: AggrKeyshareDataPacketData | undefined;
+  currentKeysPacket?: CurrentKeysPacketData | undefined;
 }
 
 export interface NoData {
@@ -16,7 +19,10 @@ export interface NoData {
 
 /** RequestAggrKeysharePacketData defines a struct for the packet payload */
 export interface RequestAggrKeysharePacketData {
-  proposalId: string;
+  requester: string;
+  proposalId?: string | undefined;
+  requestId?: string | undefined;
+  estimatedDelay: Duration | undefined;
 }
 
 /** RequestAggrKeysharePacketAck defines a struct for the packet acknowledgment */
@@ -40,12 +46,25 @@ export interface AggrKeyshareDataPacketData {
   pubkey: string;
   aggrKeyshare: string;
   aggrHeight: string;
+  /** used for private governance */
   proposalId: string;
+  /** might be useful to destination chains to sort out the response */
+  requestId: string;
   retries: number;
 }
 
 /** AggrKeyshareDataPacketAck defines a struct for the packet acknowledgment */
 export interface AggrKeyshareDataPacketAck {
+}
+
+/** CurrentKeysPacketData defines a struct for the packet payload */
+export interface CurrentKeysPacketData {
+}
+
+/** CurrentKeysPacketAck defines a struct for the packet acknowledgment */
+export interface CurrentKeysPacketAck {
+  activeKey: ActivePublicKey | undefined;
+  queuedKey: QueuedPublicKey | undefined;
 }
 
 function createBaseKeysharePacketData(): KeysharePacketData {
@@ -54,6 +73,7 @@ function createBaseKeysharePacketData(): KeysharePacketData {
     requestAggrKeysharePacket: undefined,
     getAggrKeysharePacket: undefined,
     aggrKeyshareDataPacket: undefined,
+    currentKeysPacket: undefined,
   };
 }
 
@@ -71,32 +91,59 @@ export const KeysharePacketData = {
     if (message.aggrKeyshareDataPacket !== undefined) {
       AggrKeyshareDataPacketData.encode(message.aggrKeyshareDataPacket, writer.uint32(34).fork()).ldelim();
     }
+    if (message.currentKeysPacket !== undefined) {
+      CurrentKeysPacketData.encode(message.currentKeysPacket, writer.uint32(42).fork()).ldelim();
+    }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): KeysharePacketData {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseKeysharePacketData();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.noData = NoData.decode(reader, reader.uint32());
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.requestAggrKeysharePacket = RequestAggrKeysharePacketData.decode(reader, reader.uint32());
-          break;
+          continue;
         case 3:
+          if (tag !== 26) {
+            break;
+          }
+
           message.getAggrKeysharePacket = GetAggrKeysharePacketData.decode(reader, reader.uint32());
-          break;
+          continue;
         case 4:
+          if (tag !== 34) {
+            break;
+          }
+
           message.aggrKeyshareDataPacket = AggrKeyshareDataPacketData.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.currentKeysPacket = CurrentKeysPacketData.decode(reader, reader.uint32());
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -113,25 +160,35 @@ export const KeysharePacketData = {
       aggrKeyshareDataPacket: isSet(object.aggrKeyshareDataPacket)
         ? AggrKeyshareDataPacketData.fromJSON(object.aggrKeyshareDataPacket)
         : undefined,
+      currentKeysPacket: isSet(object.currentKeysPacket)
+        ? CurrentKeysPacketData.fromJSON(object.currentKeysPacket)
+        : undefined,
     };
   },
 
   toJSON(message: KeysharePacketData): unknown {
     const obj: any = {};
-    message.noData !== undefined && (obj.noData = message.noData ? NoData.toJSON(message.noData) : undefined);
-    message.requestAggrKeysharePacket !== undefined
-      && (obj.requestAggrKeysharePacket = message.requestAggrKeysharePacket
-        ? RequestAggrKeysharePacketData.toJSON(message.requestAggrKeysharePacket)
-        : undefined);
-    message.getAggrKeysharePacket !== undefined && (obj.getAggrKeysharePacket = message.getAggrKeysharePacket
-      ? GetAggrKeysharePacketData.toJSON(message.getAggrKeysharePacket)
-      : undefined);
-    message.aggrKeyshareDataPacket !== undefined && (obj.aggrKeyshareDataPacket = message.aggrKeyshareDataPacket
-      ? AggrKeyshareDataPacketData.toJSON(message.aggrKeyshareDataPacket)
-      : undefined);
+    if (message.noData !== undefined) {
+      obj.noData = NoData.toJSON(message.noData);
+    }
+    if (message.requestAggrKeysharePacket !== undefined) {
+      obj.requestAggrKeysharePacket = RequestAggrKeysharePacketData.toJSON(message.requestAggrKeysharePacket);
+    }
+    if (message.getAggrKeysharePacket !== undefined) {
+      obj.getAggrKeysharePacket = GetAggrKeysharePacketData.toJSON(message.getAggrKeysharePacket);
+    }
+    if (message.aggrKeyshareDataPacket !== undefined) {
+      obj.aggrKeyshareDataPacket = AggrKeyshareDataPacketData.toJSON(message.aggrKeyshareDataPacket);
+    }
+    if (message.currentKeysPacket !== undefined) {
+      obj.currentKeysPacket = CurrentKeysPacketData.toJSON(message.currentKeysPacket);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<KeysharePacketData>, I>>(base?: I): KeysharePacketData {
+    return KeysharePacketData.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<KeysharePacketData>, I>>(object: I): KeysharePacketData {
     const message = createBaseKeysharePacketData();
     message.noData = (object.noData !== undefined && object.noData !== null)
@@ -149,6 +206,9 @@ export const KeysharePacketData = {
       (object.aggrKeyshareDataPacket !== undefined && object.aggrKeyshareDataPacket !== null)
         ? AggrKeyshareDataPacketData.fromPartial(object.aggrKeyshareDataPacket)
         : undefined;
+    message.currentKeysPacket = (object.currentKeysPacket !== undefined && object.currentKeysPacket !== null)
+      ? CurrentKeysPacketData.fromPartial(object.currentKeysPacket)
+      : undefined;
     return message;
   },
 };
@@ -163,16 +223,17 @@ export const NoData = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): NoData {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNoData();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -186,6 +247,9 @@ export const NoData = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<NoData>, I>>(base?: I): NoData {
+    return NoData.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<NoData>, I>>(_: I): NoData {
     const message = createBaseNoData();
     return message;
@@ -193,50 +257,109 @@ export const NoData = {
 };
 
 function createBaseRequestAggrKeysharePacketData(): RequestAggrKeysharePacketData {
-  return { proposalId: "" };
+  return { requester: "", proposalId: undefined, requestId: undefined, estimatedDelay: undefined };
 }
 
 export const RequestAggrKeysharePacketData = {
   encode(message: RequestAggrKeysharePacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.proposalId !== "") {
-      writer.uint32(10).string(message.proposalId);
+    if (message.requester !== "") {
+      writer.uint32(10).string(message.requester);
+    }
+    if (message.proposalId !== undefined) {
+      writer.uint32(18).string(message.proposalId);
+    }
+    if (message.requestId !== undefined) {
+      writer.uint32(26).string(message.requestId);
+    }
+    if (message.estimatedDelay !== undefined) {
+      Duration.encode(message.estimatedDelay, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): RequestAggrKeysharePacketData {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseRequestAggrKeysharePacketData();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.requester = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.proposalId = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.requestId = reader.string();
+          continue;
+        case 4:
+          if (tag !== 34) {
+            break;
+          }
+
+          message.estimatedDelay = Duration.decode(reader, reader.uint32());
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
 
   fromJSON(object: any): RequestAggrKeysharePacketData {
-    return { proposalId: isSet(object.proposalId) ? String(object.proposalId) : "" };
+    return {
+      requester: isSet(object.requester) ? String(object.requester) : "",
+      proposalId: isSet(object.proposalId) ? String(object.proposalId) : undefined,
+      requestId: isSet(object.requestId) ? String(object.requestId) : undefined,
+      estimatedDelay: isSet(object.estimatedDelay) ? Duration.fromJSON(object.estimatedDelay) : undefined,
+    };
   },
 
   toJSON(message: RequestAggrKeysharePacketData): unknown {
     const obj: any = {};
-    message.proposalId !== undefined && (obj.proposalId = message.proposalId);
+    if (message.requester !== "") {
+      obj.requester = message.requester;
+    }
+    if (message.proposalId !== undefined) {
+      obj.proposalId = message.proposalId;
+    }
+    if (message.requestId !== undefined) {
+      obj.requestId = message.requestId;
+    }
+    if (message.estimatedDelay !== undefined) {
+      obj.estimatedDelay = Duration.toJSON(message.estimatedDelay);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<RequestAggrKeysharePacketData>, I>>(base?: I): RequestAggrKeysharePacketData {
+    return RequestAggrKeysharePacketData.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<RequestAggrKeysharePacketData>, I>>(
     object: I,
   ): RequestAggrKeysharePacketData {
     const message = createBaseRequestAggrKeysharePacketData();
-    message.proposalId = object.proposalId ?? "";
+    message.requester = object.requester ?? "";
+    message.proposalId = object.proposalId ?? undefined;
+    message.requestId = object.requestId ?? undefined;
+    message.estimatedDelay = (object.estimatedDelay !== undefined && object.estimatedDelay !== null)
+      ? Duration.fromPartial(object.estimatedDelay)
+      : undefined;
     return message;
   },
 };
@@ -257,22 +380,31 @@ export const RequestAggrKeysharePacketAck = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): RequestAggrKeysharePacketAck {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseRequestAggrKeysharePacketAck();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.identity = reader.string();
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pubkey = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -286,11 +418,18 @@ export const RequestAggrKeysharePacketAck = {
 
   toJSON(message: RequestAggrKeysharePacketAck): unknown {
     const obj: any = {};
-    message.identity !== undefined && (obj.identity = message.identity);
-    message.pubkey !== undefined && (obj.pubkey = message.pubkey);
+    if (message.identity !== "") {
+      obj.identity = message.identity;
+    }
+    if (message.pubkey !== "") {
+      obj.pubkey = message.pubkey;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<RequestAggrKeysharePacketAck>, I>>(base?: I): RequestAggrKeysharePacketAck {
+    return RequestAggrKeysharePacketAck.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<RequestAggrKeysharePacketAck>, I>>(object: I): RequestAggrKeysharePacketAck {
     const message = createBaseRequestAggrKeysharePacketAck();
     message.identity = object.identity ?? "";
@@ -312,19 +451,24 @@ export const GetAggrKeysharePacketData = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): GetAggrKeysharePacketData {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetAggrKeysharePacketData();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.identity = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -335,10 +479,15 @@ export const GetAggrKeysharePacketData = {
 
   toJSON(message: GetAggrKeysharePacketData): unknown {
     const obj: any = {};
-    message.identity !== undefined && (obj.identity = message.identity);
+    if (message.identity !== "") {
+      obj.identity = message.identity;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<GetAggrKeysharePacketData>, I>>(base?: I): GetAggrKeysharePacketData {
+    return GetAggrKeysharePacketData.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<GetAggrKeysharePacketData>, I>>(object: I): GetAggrKeysharePacketData {
     const message = createBaseGetAggrKeysharePacketData();
     message.identity = object.identity ?? "";
@@ -356,16 +505,17 @@ export const GetAggrKeysharePacketAck = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): GetAggrKeysharePacketAck {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetAggrKeysharePacketAck();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -379,6 +529,9 @@ export const GetAggrKeysharePacketAck = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<GetAggrKeysharePacketAck>, I>>(base?: I): GetAggrKeysharePacketAck {
+    return GetAggrKeysharePacketAck.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<GetAggrKeysharePacketAck>, I>>(_: I): GetAggrKeysharePacketAck {
     const message = createBaseGetAggrKeysharePacketAck();
     return message;
@@ -386,7 +539,7 @@ export const GetAggrKeysharePacketAck = {
 };
 
 function createBaseAggrKeyshareDataPacketData(): AggrKeyshareDataPacketData {
-  return { identity: "", pubkey: "", aggrKeyshare: "", aggrHeight: "", proposalId: "", retries: 0 };
+  return { identity: "", pubkey: "", aggrKeyshare: "", aggrHeight: "", proposalId: "", requestId: "", retries: 0 };
 }
 
 export const AggrKeyshareDataPacketData = {
@@ -406,41 +559,76 @@ export const AggrKeyshareDataPacketData = {
     if (message.proposalId !== "") {
       writer.uint32(42).string(message.proposalId);
     }
+    if (message.requestId !== "") {
+      writer.uint32(50).string(message.requestId);
+    }
     if (message.retries !== 0) {
-      writer.uint32(48).uint64(message.retries);
+      writer.uint32(56).uint64(message.retries);
     }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): AggrKeyshareDataPacketData {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseAggrKeyshareDataPacketData();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.identity = reader.string();
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pubkey = reader.string();
-          break;
+          continue;
         case 3:
+          if (tag !== 26) {
+            break;
+          }
+
           message.aggrKeyshare = reader.string();
-          break;
+          continue;
         case 4:
+          if (tag !== 34) {
+            break;
+          }
+
           message.aggrHeight = reader.string();
-          break;
+          continue;
         case 5:
+          if (tag !== 42) {
+            break;
+          }
+
           message.proposalId = reader.string();
-          break;
+          continue;
         case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.requestId = reader.string();
+          continue;
+        case 7:
+          if (tag !== 56) {
+            break;
+          }
+
           message.retries = longToNumber(reader.uint64() as Long);
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -452,21 +640,40 @@ export const AggrKeyshareDataPacketData = {
       aggrKeyshare: isSet(object.aggrKeyshare) ? String(object.aggrKeyshare) : "",
       aggrHeight: isSet(object.aggrHeight) ? String(object.aggrHeight) : "",
       proposalId: isSet(object.proposalId) ? String(object.proposalId) : "",
+      requestId: isSet(object.requestId) ? String(object.requestId) : "",
       retries: isSet(object.retries) ? Number(object.retries) : 0,
     };
   },
 
   toJSON(message: AggrKeyshareDataPacketData): unknown {
     const obj: any = {};
-    message.identity !== undefined && (obj.identity = message.identity);
-    message.pubkey !== undefined && (obj.pubkey = message.pubkey);
-    message.aggrKeyshare !== undefined && (obj.aggrKeyshare = message.aggrKeyshare);
-    message.aggrHeight !== undefined && (obj.aggrHeight = message.aggrHeight);
-    message.proposalId !== undefined && (obj.proposalId = message.proposalId);
-    message.retries !== undefined && (obj.retries = Math.round(message.retries));
+    if (message.identity !== "") {
+      obj.identity = message.identity;
+    }
+    if (message.pubkey !== "") {
+      obj.pubkey = message.pubkey;
+    }
+    if (message.aggrKeyshare !== "") {
+      obj.aggrKeyshare = message.aggrKeyshare;
+    }
+    if (message.aggrHeight !== "") {
+      obj.aggrHeight = message.aggrHeight;
+    }
+    if (message.proposalId !== "") {
+      obj.proposalId = message.proposalId;
+    }
+    if (message.requestId !== "") {
+      obj.requestId = message.requestId;
+    }
+    if (message.retries !== 0) {
+      obj.retries = Math.round(message.retries);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<AggrKeyshareDataPacketData>, I>>(base?: I): AggrKeyshareDataPacketData {
+    return AggrKeyshareDataPacketData.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<AggrKeyshareDataPacketData>, I>>(object: I): AggrKeyshareDataPacketData {
     const message = createBaseAggrKeyshareDataPacketData();
     message.identity = object.identity ?? "";
@@ -474,6 +681,7 @@ export const AggrKeyshareDataPacketData = {
     message.aggrKeyshare = object.aggrKeyshare ?? "";
     message.aggrHeight = object.aggrHeight ?? "";
     message.proposalId = object.proposalId ?? "";
+    message.requestId = object.requestId ?? "";
     message.retries = object.retries ?? 0;
     return message;
   },
@@ -489,16 +697,17 @@ export const AggrKeyshareDataPacketAck = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): AggrKeyshareDataPacketAck {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseAggrKeyshareDataPacketAck();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -512,16 +721,140 @@ export const AggrKeyshareDataPacketAck = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<AggrKeyshareDataPacketAck>, I>>(base?: I): AggrKeyshareDataPacketAck {
+    return AggrKeyshareDataPacketAck.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<AggrKeyshareDataPacketAck>, I>>(_: I): AggrKeyshareDataPacketAck {
     const message = createBaseAggrKeyshareDataPacketAck();
     return message;
   },
 };
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var globalThis: any = (() => {
+function createBaseCurrentKeysPacketData(): CurrentKeysPacketData {
+  return {};
+}
+
+export const CurrentKeysPacketData = {
+  encode(_: CurrentKeysPacketData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CurrentKeysPacketData {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCurrentKeysPacketData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): CurrentKeysPacketData {
+    return {};
+  },
+
+  toJSON(_: CurrentKeysPacketData): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CurrentKeysPacketData>, I>>(base?: I): CurrentKeysPacketData {
+    return CurrentKeysPacketData.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CurrentKeysPacketData>, I>>(_: I): CurrentKeysPacketData {
+    const message = createBaseCurrentKeysPacketData();
+    return message;
+  },
+};
+
+function createBaseCurrentKeysPacketAck(): CurrentKeysPacketAck {
+  return { activeKey: undefined, queuedKey: undefined };
+}
+
+export const CurrentKeysPacketAck = {
+  encode(message: CurrentKeysPacketAck, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.activeKey !== undefined) {
+      ActivePublicKey.encode(message.activeKey, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.queuedKey !== undefined) {
+      QueuedPublicKey.encode(message.queuedKey, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CurrentKeysPacketAck {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCurrentKeysPacketAck();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.activeKey = ActivePublicKey.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.queuedKey = QueuedPublicKey.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CurrentKeysPacketAck {
+    return {
+      activeKey: isSet(object.activeKey) ? ActivePublicKey.fromJSON(object.activeKey) : undefined,
+      queuedKey: isSet(object.queuedKey) ? QueuedPublicKey.fromJSON(object.queuedKey) : undefined,
+    };
+  },
+
+  toJSON(message: CurrentKeysPacketAck): unknown {
+    const obj: any = {};
+    if (message.activeKey !== undefined) {
+      obj.activeKey = ActivePublicKey.toJSON(message.activeKey);
+    }
+    if (message.queuedKey !== undefined) {
+      obj.queuedKey = QueuedPublicKey.toJSON(message.queuedKey);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<CurrentKeysPacketAck>, I>>(base?: I): CurrentKeysPacketAck {
+    return CurrentKeysPacketAck.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CurrentKeysPacketAck>, I>>(object: I): CurrentKeysPacketAck {
+    const message = createBaseCurrentKeysPacketAck();
+    message.activeKey = (object.activeKey !== undefined && object.activeKey !== null)
+      ? ActivePublicKey.fromPartial(object.activeKey)
+      : undefined;
+    message.queuedKey = (object.queuedKey !== undefined && object.queuedKey !== null)
+      ? QueuedPublicKey.fromPartial(object.queuedKey)
+      : undefined;
+    return message;
+  },
+};
+
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -550,7 +883,7 @@ export type Exact<P, I extends P> = P extends Builtin ? P
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

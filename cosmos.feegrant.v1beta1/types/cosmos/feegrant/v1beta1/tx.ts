@@ -35,6 +35,24 @@ export interface MsgRevokeAllowance {
 export interface MsgRevokeAllowanceResponse {
 }
 
+/**
+ * MsgPruneAllowances prunes expired fee allowances.
+ *
+ * Since cosmos-sdk 0.50
+ */
+export interface MsgPruneAllowances {
+  /** pruner is the address of the user pruning expired allowances. */
+  pruner: string;
+}
+
+/**
+ * MsgPruneAllowancesResponse defines the Msg/PruneAllowancesResponse response type.
+ *
+ * Since cosmos-sdk 0.50
+ */
+export interface MsgPruneAllowancesResponse {
+}
+
 function createBaseMsgGrantAllowance(): MsgGrantAllowance {
   return { granter: "", grantee: "", allowance: undefined };
 }
@@ -54,25 +72,38 @@ export const MsgGrantAllowance = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgGrantAllowance {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgGrantAllowance();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.granter = reader.string();
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.grantee = reader.string();
-          break;
+          continue;
         case 3:
+          if (tag !== 26) {
+            break;
+          }
+
           message.allowance = Any.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -87,12 +118,21 @@ export const MsgGrantAllowance = {
 
   toJSON(message: MsgGrantAllowance): unknown {
     const obj: any = {};
-    message.granter !== undefined && (obj.granter = message.granter);
-    message.grantee !== undefined && (obj.grantee = message.grantee);
-    message.allowance !== undefined && (obj.allowance = message.allowance ? Any.toJSON(message.allowance) : undefined);
+    if (message.granter !== "") {
+      obj.granter = message.granter;
+    }
+    if (message.grantee !== "") {
+      obj.grantee = message.grantee;
+    }
+    if (message.allowance !== undefined) {
+      obj.allowance = Any.toJSON(message.allowance);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<MsgGrantAllowance>, I>>(base?: I): MsgGrantAllowance {
+    return MsgGrantAllowance.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<MsgGrantAllowance>, I>>(object: I): MsgGrantAllowance {
     const message = createBaseMsgGrantAllowance();
     message.granter = object.granter ?? "";
@@ -114,16 +154,17 @@ export const MsgGrantAllowanceResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgGrantAllowanceResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgGrantAllowanceResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -137,6 +178,9 @@ export const MsgGrantAllowanceResponse = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<MsgGrantAllowanceResponse>, I>>(base?: I): MsgGrantAllowanceResponse {
+    return MsgGrantAllowanceResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<MsgGrantAllowanceResponse>, I>>(_: I): MsgGrantAllowanceResponse {
     const message = createBaseMsgGrantAllowanceResponse();
     return message;
@@ -159,22 +203,31 @@ export const MsgRevokeAllowance = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRevokeAllowance {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgRevokeAllowance();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.granter = reader.string();
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.grantee = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -188,11 +241,18 @@ export const MsgRevokeAllowance = {
 
   toJSON(message: MsgRevokeAllowance): unknown {
     const obj: any = {};
-    message.granter !== undefined && (obj.granter = message.granter);
-    message.grantee !== undefined && (obj.grantee = message.grantee);
+    if (message.granter !== "") {
+      obj.granter = message.granter;
+    }
+    if (message.grantee !== "") {
+      obj.grantee = message.grantee;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<MsgRevokeAllowance>, I>>(base?: I): MsgRevokeAllowance {
+    return MsgRevokeAllowance.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<MsgRevokeAllowance>, I>>(object: I): MsgRevokeAllowance {
     const message = createBaseMsgRevokeAllowance();
     message.granter = object.granter ?? "";
@@ -211,16 +271,17 @@ export const MsgRevokeAllowanceResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgRevokeAllowanceResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgRevokeAllowanceResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -234,8 +295,111 @@ export const MsgRevokeAllowanceResponse = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<MsgRevokeAllowanceResponse>, I>>(base?: I): MsgRevokeAllowanceResponse {
+    return MsgRevokeAllowanceResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<MsgRevokeAllowanceResponse>, I>>(_: I): MsgRevokeAllowanceResponse {
     const message = createBaseMsgRevokeAllowanceResponse();
+    return message;
+  },
+};
+
+function createBaseMsgPruneAllowances(): MsgPruneAllowances {
+  return { pruner: "" };
+}
+
+export const MsgPruneAllowances = {
+  encode(message: MsgPruneAllowances, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pruner !== "") {
+      writer.uint32(10).string(message.pruner);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgPruneAllowances {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgPruneAllowances();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.pruner = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgPruneAllowances {
+    return { pruner: isSet(object.pruner) ? String(object.pruner) : "" };
+  },
+
+  toJSON(message: MsgPruneAllowances): unknown {
+    const obj: any = {};
+    if (message.pruner !== "") {
+      obj.pruner = message.pruner;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgPruneAllowances>, I>>(base?: I): MsgPruneAllowances {
+    return MsgPruneAllowances.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgPruneAllowances>, I>>(object: I): MsgPruneAllowances {
+    const message = createBaseMsgPruneAllowances();
+    message.pruner = object.pruner ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgPruneAllowancesResponse(): MsgPruneAllowancesResponse {
+  return {};
+}
+
+export const MsgPruneAllowancesResponse = {
+  encode(_: MsgPruneAllowancesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgPruneAllowancesResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgPruneAllowancesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgPruneAllowancesResponse {
+    return {};
+  },
+
+  toJSON(_: MsgPruneAllowancesResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgPruneAllowancesResponse>, I>>(base?: I): MsgPruneAllowancesResponse {
+    return MsgPruneAllowancesResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgPruneAllowancesResponse>, I>>(_: I): MsgPruneAllowancesResponse {
+    const message = createBaseMsgPruneAllowancesResponse();
     return message;
   },
 };
@@ -252,25 +416,41 @@ export interface Msg {
    * has been granted to the grantee.
    */
   RevokeAllowance(request: MsgRevokeAllowance): Promise<MsgRevokeAllowanceResponse>;
+  /**
+   * PruneAllowances prunes expired fee allowances, currently up to 75 at a time.
+   *
+   * Since cosmos-sdk 0.50
+   */
+  PruneAllowances(request: MsgPruneAllowances): Promise<MsgPruneAllowancesResponse>;
 }
 
+export const MsgServiceName = "cosmos.feegrant.v1beta1.Msg";
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly service: string;
+  constructor(rpc: Rpc, opts?: { service?: string }) {
+    this.service = opts?.service || MsgServiceName;
     this.rpc = rpc;
     this.GrantAllowance = this.GrantAllowance.bind(this);
     this.RevokeAllowance = this.RevokeAllowance.bind(this);
+    this.PruneAllowances = this.PruneAllowances.bind(this);
   }
   GrantAllowance(request: MsgGrantAllowance): Promise<MsgGrantAllowanceResponse> {
     const data = MsgGrantAllowance.encode(request).finish();
-    const promise = this.rpc.request("cosmos.feegrant.v1beta1.Msg", "GrantAllowance", data);
-    return promise.then((data) => MsgGrantAllowanceResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "GrantAllowance", data);
+    return promise.then((data) => MsgGrantAllowanceResponse.decode(_m0.Reader.create(data)));
   }
 
   RevokeAllowance(request: MsgRevokeAllowance): Promise<MsgRevokeAllowanceResponse> {
     const data = MsgRevokeAllowance.encode(request).finish();
-    const promise = this.rpc.request("cosmos.feegrant.v1beta1.Msg", "RevokeAllowance", data);
-    return promise.then((data) => MsgRevokeAllowanceResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "RevokeAllowance", data);
+    return promise.then((data) => MsgRevokeAllowanceResponse.decode(_m0.Reader.create(data)));
+  }
+
+  PruneAllowances(request: MsgPruneAllowances): Promise<MsgPruneAllowancesResponse> {
+    const data = MsgPruneAllowances.encode(request).finish();
+    const promise = this.rpc.request(this.service, "PruneAllowances", data);
+    return promise.then((data) => MsgPruneAllowancesResponse.decode(_m0.Reader.create(data)));
   }
 }
 

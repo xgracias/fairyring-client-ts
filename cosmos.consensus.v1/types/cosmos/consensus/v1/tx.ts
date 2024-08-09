@@ -1,6 +1,6 @@
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
-import { BlockParams, EvidenceParams, ValidatorParams } from "../../../tendermint/types/params";
+import { ABCIParams, BlockParams, EvidenceParams, ValidatorParams } from "../../../tendermint/types/params";
 
 export const protobufPackage = "cosmos.consensus.v1";
 
@@ -19,7 +19,11 @@ export interface MsgUpdateParams {
    */
   block: BlockParams | undefined;
   evidence: EvidenceParams | undefined;
-  validator: ValidatorParams | undefined;
+  validator:
+    | ValidatorParams
+    | undefined;
+  /** Since: cosmos-sdk 0.50 */
+  abci: ABCIParams | undefined;
 }
 
 /**
@@ -30,7 +34,7 @@ export interface MsgUpdateParamsResponse {
 }
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { authority: "", block: undefined, evidence: undefined, validator: undefined };
+  return { authority: "", block: undefined, evidence: undefined, validator: undefined, abci: undefined };
 }
 
 export const MsgUpdateParams = {
@@ -47,32 +51,59 @@ export const MsgUpdateParams = {
     if (message.validator !== undefined) {
       ValidatorParams.encode(message.validator, writer.uint32(34).fork()).ldelim();
     }
+    if (message.abci !== undefined) {
+      ABCIParams.encode(message.abci, writer.uint32(42).fork()).ldelim();
+    }
     return writer;
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParams {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgUpdateParams();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.authority = reader.string();
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.block = BlockParams.decode(reader, reader.uint32());
-          break;
+          continue;
         case 3:
+          if (tag !== 26) {
+            break;
+          }
+
           message.evidence = EvidenceParams.decode(reader, reader.uint32());
-          break;
+          continue;
         case 4:
+          if (tag !== 34) {
+            break;
+          }
+
           message.validator = ValidatorParams.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.abci = ABCIParams.decode(reader, reader.uint32());
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -83,20 +114,33 @@ export const MsgUpdateParams = {
       block: isSet(object.block) ? BlockParams.fromJSON(object.block) : undefined,
       evidence: isSet(object.evidence) ? EvidenceParams.fromJSON(object.evidence) : undefined,
       validator: isSet(object.validator) ? ValidatorParams.fromJSON(object.validator) : undefined,
+      abci: isSet(object.abci) ? ABCIParams.fromJSON(object.abci) : undefined,
     };
   },
 
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
-    message.authority !== undefined && (obj.authority = message.authority);
-    message.block !== undefined && (obj.block = message.block ? BlockParams.toJSON(message.block) : undefined);
-    message.evidence !== undefined
-      && (obj.evidence = message.evidence ? EvidenceParams.toJSON(message.evidence) : undefined);
-    message.validator !== undefined
-      && (obj.validator = message.validator ? ValidatorParams.toJSON(message.validator) : undefined);
+    if (message.authority !== "") {
+      obj.authority = message.authority;
+    }
+    if (message.block !== undefined) {
+      obj.block = BlockParams.toJSON(message.block);
+    }
+    if (message.evidence !== undefined) {
+      obj.evidence = EvidenceParams.toJSON(message.evidence);
+    }
+    if (message.validator !== undefined) {
+      obj.validator = ValidatorParams.toJSON(message.validator);
+    }
+    if (message.abci !== undefined) {
+      obj.abci = ABCIParams.toJSON(message.abci);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(base?: I): MsgUpdateParams {
+    return MsgUpdateParams.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
@@ -108,6 +152,9 @@ export const MsgUpdateParams = {
       : undefined;
     message.validator = (object.validator !== undefined && object.validator !== null)
       ? ValidatorParams.fromPartial(object.validator)
+      : undefined;
+    message.abci = (object.abci !== undefined && object.abci !== null)
+      ? ABCIParams.fromPartial(object.abci)
       : undefined;
     return message;
   },
@@ -123,16 +170,17 @@ export const MsgUpdateParamsResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateParamsResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgUpdateParamsResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -146,16 +194,19 @@ export const MsgUpdateParamsResponse = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(base?: I): MsgUpdateParamsResponse {
+    return MsgUpdateParamsResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParamsResponse>, I>>(_: I): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
   },
 };
 
-/** Msg defines the bank Msg service. */
+/** Msg defines the consensus Msg service. */
 export interface Msg {
   /**
-   * UpdateParams defines a governance operation for updating the x/consensus_param module parameters.
+   * UpdateParams defines a governance operation for updating the x/consensus module parameters.
    * The authority is defined in the keeper.
    *
    * Since: cosmos-sdk 0.47
@@ -163,16 +214,19 @@ export interface Msg {
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 
+export const MsgServiceName = "cosmos.consensus.v1.Msg";
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly service: string;
+  constructor(rpc: Rpc, opts?: { service?: string }) {
+    this.service = opts?.service || MsgServiceName;
     this.rpc = rpc;
     this.UpdateParams = this.UpdateParams.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request("cosmos.consensus.v1.Msg", "UpdateParams", data);
-    return promise.then((data) => MsgUpdateParamsResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "UpdateParams", data);
+    return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 }
 

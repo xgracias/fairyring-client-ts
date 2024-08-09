@@ -13,12 +13,12 @@ import { ValidatorSet } from "./validator_set";
 
 export const protobufPackage = "fairyring.keyshare";
 
-export interface QueryCommitmentsRequest {
+export interface QueryVerifiableRandomnessQuery {
 }
 
-export interface QueryCommitmentsResponse {
-  activeCommitments: Commitments | undefined;
-  queuedCommitments: Commitments | undefined;
+export interface QueryVerifiableRandomnessResponse {
+  randomness: string;
+  round: number;
 }
 
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -29,6 +29,14 @@ export interface QueryParamsRequest {
 export interface QueryParamsResponse {
   /** params holds all the parameters of this module. */
   params: Params | undefined;
+}
+
+export interface QueryCommitmentsRequest {
+}
+
+export interface QueryCommitmentsResponse {
+  activeCommitments: Commitments | undefined;
+  queuedCommitments: Commitments | undefined;
 }
 
 export interface QueryGetValidatorSetRequest {
@@ -128,6 +136,229 @@ export interface QueryAllGeneralKeyShareResponse {
   pagination: PageResponse | undefined;
 }
 
+function createBaseQueryVerifiableRandomnessQuery(): QueryVerifiableRandomnessQuery {
+  return {};
+}
+
+export const QueryVerifiableRandomnessQuery = {
+  encode(_: QueryVerifiableRandomnessQuery, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryVerifiableRandomnessQuery {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryVerifiableRandomnessQuery();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryVerifiableRandomnessQuery {
+    return {};
+  },
+
+  toJSON(_: QueryVerifiableRandomnessQuery): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryVerifiableRandomnessQuery>, I>>(base?: I): QueryVerifiableRandomnessQuery {
+    return QueryVerifiableRandomnessQuery.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryVerifiableRandomnessQuery>, I>>(_: I): QueryVerifiableRandomnessQuery {
+    const message = createBaseQueryVerifiableRandomnessQuery();
+    return message;
+  },
+};
+
+function createBaseQueryVerifiableRandomnessResponse(): QueryVerifiableRandomnessResponse {
+  return { randomness: "", round: 0 };
+}
+
+export const QueryVerifiableRandomnessResponse = {
+  encode(message: QueryVerifiableRandomnessResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.randomness !== "") {
+      writer.uint32(10).string(message.randomness);
+    }
+    if (message.round !== 0) {
+      writer.uint32(16).uint64(message.round);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryVerifiableRandomnessResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryVerifiableRandomnessResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.randomness = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.round = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryVerifiableRandomnessResponse {
+    return {
+      randomness: isSet(object.randomness) ? String(object.randomness) : "",
+      round: isSet(object.round) ? Number(object.round) : 0,
+    };
+  },
+
+  toJSON(message: QueryVerifiableRandomnessResponse): unknown {
+    const obj: any = {};
+    if (message.randomness !== "") {
+      obj.randomness = message.randomness;
+    }
+    if (message.round !== 0) {
+      obj.round = Math.round(message.round);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryVerifiableRandomnessResponse>, I>>(
+    base?: I,
+  ): QueryVerifiableRandomnessResponse {
+    return QueryVerifiableRandomnessResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryVerifiableRandomnessResponse>, I>>(
+    object: I,
+  ): QueryVerifiableRandomnessResponse {
+    const message = createBaseQueryVerifiableRandomnessResponse();
+    message.randomness = object.randomness ?? "";
+    message.round = object.round ?? 0;
+    return message;
+  },
+};
+
+function createBaseQueryParamsRequest(): QueryParamsRequest {
+  return {};
+}
+
+export const QueryParamsRequest = {
+  encode(_: QueryParamsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryParamsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryParamsRequest {
+    return {};
+  },
+
+  toJSON(_: QueryParamsRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(base?: I): QueryParamsRequest {
+    return QueryParamsRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
+    const message = createBaseQueryParamsRequest();
+    return message;
+  },
+};
+
+function createBaseQueryParamsResponse(): QueryParamsResponse {
+  return { params: undefined };
+}
+
+export const QueryParamsResponse = {
+  encode(message: QueryParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryParamsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.params = Params.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryParamsResponse {
+    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
+  },
+
+  toJSON(message: QueryParamsResponse): unknown {
+    const obj: any = {};
+    if (message.params !== undefined) {
+      obj.params = Params.toJSON(message.params);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(base?: I): QueryParamsResponse {
+    return QueryParamsResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
+    const message = createBaseQueryParamsResponse();
+    message.params = (object.params !== undefined && object.params !== null)
+      ? Params.fromPartial(object.params)
+      : undefined;
+    return message;
+  },
+};
+
 function createBaseQueryCommitmentsRequest(): QueryCommitmentsRequest {
   return {};
 }
@@ -138,16 +369,17 @@ export const QueryCommitmentsRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryCommitmentsRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryCommitmentsRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -161,6 +393,9 @@ export const QueryCommitmentsRequest = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryCommitmentsRequest>, I>>(base?: I): QueryCommitmentsRequest {
+    return QueryCommitmentsRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryCommitmentsRequest>, I>>(_: I): QueryCommitmentsRequest {
     const message = createBaseQueryCommitmentsRequest();
     return message;
@@ -183,22 +418,31 @@ export const QueryCommitmentsResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryCommitmentsResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryCommitmentsResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.activeCommitments = Commitments.decode(reader, reader.uint32());
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.queuedCommitments = Commitments.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -212,17 +456,18 @@ export const QueryCommitmentsResponse = {
 
   toJSON(message: QueryCommitmentsResponse): unknown {
     const obj: any = {};
-    message.activeCommitments !== undefined
-      && (obj.activeCommitments = message.activeCommitments
-        ? Commitments.toJSON(message.activeCommitments)
-        : undefined);
-    message.queuedCommitments !== undefined
-      && (obj.queuedCommitments = message.queuedCommitments
-        ? Commitments.toJSON(message.queuedCommitments)
-        : undefined);
+    if (message.activeCommitments !== undefined) {
+      obj.activeCommitments = Commitments.toJSON(message.activeCommitments);
+    }
+    if (message.queuedCommitments !== undefined) {
+      obj.queuedCommitments = Commitments.toJSON(message.queuedCommitments);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryCommitmentsResponse>, I>>(base?: I): QueryCommitmentsResponse {
+    return QueryCommitmentsResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryCommitmentsResponse>, I>>(object: I): QueryCommitmentsResponse {
     const message = createBaseQueryCommitmentsResponse();
     message.activeCommitments = (object.activeCommitments !== undefined && object.activeCommitments !== null)
@@ -230,94 +475,6 @@ export const QueryCommitmentsResponse = {
       : undefined;
     message.queuedCommitments = (object.queuedCommitments !== undefined && object.queuedCommitments !== null)
       ? Commitments.fromPartial(object.queuedCommitments)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseQueryParamsRequest(): QueryParamsRequest {
-  return {};
-}
-
-export const QueryParamsRequest = {
-  encode(_: QueryParamsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryParamsRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(_: any): QueryParamsRequest {
-    return {};
-  },
-
-  toJSON(_: QueryParamsRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(_: I): QueryParamsRequest {
-    const message = createBaseQueryParamsRequest();
-    return message;
-  },
-};
-
-function createBaseQueryParamsResponse(): QueryParamsResponse {
-  return { params: undefined };
-}
-
-export const QueryParamsResponse = {
-  encode(message: QueryParamsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.params !== undefined) {
-      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQueryParamsResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.params = Params.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryParamsResponse {
-    return { params: isSet(object.params) ? Params.fromJSON(object.params) : undefined };
-  },
-
-  toJSON(message: QueryParamsResponse): unknown {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
-    const message = createBaseQueryParamsResponse();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
       : undefined;
     return message;
   },
@@ -336,19 +493,24 @@ export const QueryGetValidatorSetRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetValidatorSetRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetValidatorSetRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.index = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -359,10 +521,15 @@ export const QueryGetValidatorSetRequest = {
 
   toJSON(message: QueryGetValidatorSetRequest): unknown {
     const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
+    if (message.index !== "") {
+      obj.index = message.index;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetValidatorSetRequest>, I>>(base?: I): QueryGetValidatorSetRequest {
+    return QueryGetValidatorSetRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetValidatorSetRequest>, I>>(object: I): QueryGetValidatorSetRequest {
     const message = createBaseQueryGetValidatorSetRequest();
     message.index = object.index ?? "";
@@ -383,19 +550,24 @@ export const QueryGetValidatorSetResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetValidatorSetResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetValidatorSetResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.validatorSet = ValidatorSet.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -406,11 +578,15 @@ export const QueryGetValidatorSetResponse = {
 
   toJSON(message: QueryGetValidatorSetResponse): unknown {
     const obj: any = {};
-    message.validatorSet !== undefined
-      && (obj.validatorSet = message.validatorSet ? ValidatorSet.toJSON(message.validatorSet) : undefined);
+    if (message.validatorSet !== undefined) {
+      obj.validatorSet = ValidatorSet.toJSON(message.validatorSet);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetValidatorSetResponse>, I>>(base?: I): QueryGetValidatorSetResponse {
+    return QueryGetValidatorSetResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetValidatorSetResponse>, I>>(object: I): QueryGetValidatorSetResponse {
     const message = createBaseQueryGetValidatorSetResponse();
     message.validatorSet = (object.validatorSet !== undefined && object.validatorSet !== null)
@@ -433,19 +609,24 @@ export const QueryAllValidatorSetRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllValidatorSetRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllValidatorSetRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -456,11 +637,15 @@ export const QueryAllValidatorSetRequest = {
 
   toJSON(message: QueryAllValidatorSetRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllValidatorSetRequest>, I>>(base?: I): QueryAllValidatorSetRequest {
+    return QueryAllValidatorSetRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllValidatorSetRequest>, I>>(object: I): QueryAllValidatorSetRequest {
     const message = createBaseQueryAllValidatorSetRequest();
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
@@ -486,22 +671,31 @@ export const QueryAllValidatorSetResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllValidatorSetResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllValidatorSetResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.validatorSet.push(ValidatorSet.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pagination = PageResponse.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -517,16 +711,18 @@ export const QueryAllValidatorSetResponse = {
 
   toJSON(message: QueryAllValidatorSetResponse): unknown {
     const obj: any = {};
-    if (message.validatorSet) {
-      obj.validatorSet = message.validatorSet.map((e) => e ? ValidatorSet.toJSON(e) : undefined);
-    } else {
-      obj.validatorSet = [];
+    if (message.validatorSet?.length) {
+      obj.validatorSet = message.validatorSet.map((e) => ValidatorSet.toJSON(e));
     }
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllValidatorSetResponse>, I>>(base?: I): QueryAllValidatorSetResponse {
+    return QueryAllValidatorSetResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllValidatorSetResponse>, I>>(object: I): QueryAllValidatorSetResponse {
     const message = createBaseQueryAllValidatorSetResponse();
     message.validatorSet = object.validatorSet?.map((e) => ValidatorSet.fromPartial(e)) || [];
@@ -553,22 +749,31 @@ export const QueryGetKeyShareRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetKeyShareRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetKeyShareRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.validator = reader.string();
-          break;
+          continue;
         case 2:
+          if (tag !== 16) {
+            break;
+          }
+
           message.blockHeight = longToNumber(reader.uint64() as Long);
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -582,11 +787,18 @@ export const QueryGetKeyShareRequest = {
 
   toJSON(message: QueryGetKeyShareRequest): unknown {
     const obj: any = {};
-    message.validator !== undefined && (obj.validator = message.validator);
-    message.blockHeight !== undefined && (obj.blockHeight = Math.round(message.blockHeight));
+    if (message.validator !== "") {
+      obj.validator = message.validator;
+    }
+    if (message.blockHeight !== 0) {
+      obj.blockHeight = Math.round(message.blockHeight);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetKeyShareRequest>, I>>(base?: I): QueryGetKeyShareRequest {
+    return QueryGetKeyShareRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetKeyShareRequest>, I>>(object: I): QueryGetKeyShareRequest {
     const message = createBaseQueryGetKeyShareRequest();
     message.validator = object.validator ?? "";
@@ -608,19 +820,24 @@ export const QueryGetKeyShareResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetKeyShareResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetKeyShareResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.keyShare = KeyShare.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -631,10 +848,15 @@ export const QueryGetKeyShareResponse = {
 
   toJSON(message: QueryGetKeyShareResponse): unknown {
     const obj: any = {};
-    message.keyShare !== undefined && (obj.keyShare = message.keyShare ? KeyShare.toJSON(message.keyShare) : undefined);
+    if (message.keyShare !== undefined) {
+      obj.keyShare = KeyShare.toJSON(message.keyShare);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetKeyShareResponse>, I>>(base?: I): QueryGetKeyShareResponse {
+    return QueryGetKeyShareResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetKeyShareResponse>, I>>(object: I): QueryGetKeyShareResponse {
     const message = createBaseQueryGetKeyShareResponse();
     message.keyShare = (object.keyShare !== undefined && object.keyShare !== null)
@@ -657,19 +879,24 @@ export const QueryAllKeyShareRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllKeyShareRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllKeyShareRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -680,11 +907,15 @@ export const QueryAllKeyShareRequest = {
 
   toJSON(message: QueryAllKeyShareRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllKeyShareRequest>, I>>(base?: I): QueryAllKeyShareRequest {
+    return QueryAllKeyShareRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllKeyShareRequest>, I>>(object: I): QueryAllKeyShareRequest {
     const message = createBaseQueryAllKeyShareRequest();
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
@@ -710,22 +941,31 @@ export const QueryAllKeyShareResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllKeyShareResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllKeyShareResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.keyShare.push(KeyShare.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pagination = PageResponse.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -739,16 +979,18 @@ export const QueryAllKeyShareResponse = {
 
   toJSON(message: QueryAllKeyShareResponse): unknown {
     const obj: any = {};
-    if (message.keyShare) {
-      obj.keyShare = message.keyShare.map((e) => e ? KeyShare.toJSON(e) : undefined);
-    } else {
-      obj.keyShare = [];
+    if (message.keyShare?.length) {
+      obj.keyShare = message.keyShare.map((e) => KeyShare.toJSON(e));
     }
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllKeyShareResponse>, I>>(base?: I): QueryAllKeyShareResponse {
+    return QueryAllKeyShareResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllKeyShareResponse>, I>>(object: I): QueryAllKeyShareResponse {
     const message = createBaseQueryAllKeyShareResponse();
     message.keyShare = object.keyShare?.map((e) => KeyShare.fromPartial(e)) || [];
@@ -772,19 +1014,24 @@ export const QueryGetAggregatedKeyShareRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAggregatedKeyShareRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetAggregatedKeyShareRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 8) {
+            break;
+          }
+
           message.height = longToNumber(reader.uint64() as Long);
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -795,10 +1042,17 @@ export const QueryGetAggregatedKeyShareRequest = {
 
   toJSON(message: QueryGetAggregatedKeyShareRequest): unknown {
     const obj: any = {};
-    message.height !== undefined && (obj.height = Math.round(message.height));
+    if (message.height !== 0) {
+      obj.height = Math.round(message.height);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetAggregatedKeyShareRequest>, I>>(
+    base?: I,
+  ): QueryGetAggregatedKeyShareRequest {
+    return QueryGetAggregatedKeyShareRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetAggregatedKeyShareRequest>, I>>(
     object: I,
   ): QueryGetAggregatedKeyShareRequest {
@@ -821,19 +1075,24 @@ export const QueryGetAggregatedKeyShareResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAggregatedKeyShareResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetAggregatedKeyShareResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.aggregatedKeyShare = AggregatedKeyShare.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -848,12 +1107,17 @@ export const QueryGetAggregatedKeyShareResponse = {
 
   toJSON(message: QueryGetAggregatedKeyShareResponse): unknown {
     const obj: any = {};
-    message.aggregatedKeyShare !== undefined && (obj.aggregatedKeyShare = message.aggregatedKeyShare
-      ? AggregatedKeyShare.toJSON(message.aggregatedKeyShare)
-      : undefined);
+    if (message.aggregatedKeyShare !== undefined) {
+      obj.aggregatedKeyShare = AggregatedKeyShare.toJSON(message.aggregatedKeyShare);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetAggregatedKeyShareResponse>, I>>(
+    base?: I,
+  ): QueryGetAggregatedKeyShareResponse {
+    return QueryGetAggregatedKeyShareResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetAggregatedKeyShareResponse>, I>>(
     object: I,
   ): QueryGetAggregatedKeyShareResponse {
@@ -878,19 +1142,24 @@ export const QueryAllAggregatedKeyShareRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllAggregatedKeyShareRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllAggregatedKeyShareRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -901,11 +1170,17 @@ export const QueryAllAggregatedKeyShareRequest = {
 
   toJSON(message: QueryAllAggregatedKeyShareRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllAggregatedKeyShareRequest>, I>>(
+    base?: I,
+  ): QueryAllAggregatedKeyShareRequest {
+    return QueryAllAggregatedKeyShareRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllAggregatedKeyShareRequest>, I>>(
     object: I,
   ): QueryAllAggregatedKeyShareRequest {
@@ -933,22 +1208,31 @@ export const QueryAllAggregatedKeyShareResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllAggregatedKeyShareResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllAggregatedKeyShareResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.aggregatedKeyShare.push(AggregatedKeyShare.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pagination = PageResponse.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -964,16 +1248,20 @@ export const QueryAllAggregatedKeyShareResponse = {
 
   toJSON(message: QueryAllAggregatedKeyShareResponse): unknown {
     const obj: any = {};
-    if (message.aggregatedKeyShare) {
-      obj.aggregatedKeyShare = message.aggregatedKeyShare.map((e) => e ? AggregatedKeyShare.toJSON(e) : undefined);
-    } else {
-      obj.aggregatedKeyShare = [];
+    if (message.aggregatedKeyShare?.length) {
+      obj.aggregatedKeyShare = message.aggregatedKeyShare.map((e) => AggregatedKeyShare.toJSON(e));
     }
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllAggregatedKeyShareResponse>, I>>(
+    base?: I,
+  ): QueryAllAggregatedKeyShareResponse {
+    return QueryAllAggregatedKeyShareResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllAggregatedKeyShareResponse>, I>>(
     object: I,
   ): QueryAllAggregatedKeyShareResponse {
@@ -996,16 +1284,17 @@ export const QueryPubKeyRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryPubKeyRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryPubKeyRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1019,6 +1308,9 @@ export const QueryPubKeyRequest = {
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryPubKeyRequest>, I>>(base?: I): QueryPubKeyRequest {
+    return QueryPubKeyRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryPubKeyRequest>, I>>(_: I): QueryPubKeyRequest {
     const message = createBaseQueryPubKeyRequest();
     return message;
@@ -1041,22 +1333,31 @@ export const QueryPubKeyResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryPubKeyResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryPubKeyResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.activePubKey = ActivePubKey.decode(reader, reader.uint32());
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.queuedPubKey = QueuedPubKey.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1070,13 +1371,18 @@ export const QueryPubKeyResponse = {
 
   toJSON(message: QueryPubKeyResponse): unknown {
     const obj: any = {};
-    message.activePubKey !== undefined
-      && (obj.activePubKey = message.activePubKey ? ActivePubKey.toJSON(message.activePubKey) : undefined);
-    message.queuedPubKey !== undefined
-      && (obj.queuedPubKey = message.queuedPubKey ? QueuedPubKey.toJSON(message.queuedPubKey) : undefined);
+    if (message.activePubKey !== undefined) {
+      obj.activePubKey = ActivePubKey.toJSON(message.activePubKey);
+    }
+    if (message.queuedPubKey !== undefined) {
+      obj.queuedPubKey = QueuedPubKey.toJSON(message.queuedPubKey);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryPubKeyResponse>, I>>(base?: I): QueryPubKeyResponse {
+    return QueryPubKeyResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryPubKeyResponse>, I>>(object: I): QueryPubKeyResponse {
     const message = createBaseQueryPubKeyResponse();
     message.activePubKey = (object.activePubKey !== undefined && object.activePubKey !== null)
@@ -1102,19 +1408,24 @@ export const QueryGetAuthorizedAddressRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAuthorizedAddressRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetAuthorizedAddressRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.target = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1125,10 +1436,17 @@ export const QueryGetAuthorizedAddressRequest = {
 
   toJSON(message: QueryGetAuthorizedAddressRequest): unknown {
     const obj: any = {};
-    message.target !== undefined && (obj.target = message.target);
+    if (message.target !== "") {
+      obj.target = message.target;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetAuthorizedAddressRequest>, I>>(
+    base?: I,
+  ): QueryGetAuthorizedAddressRequest {
+    return QueryGetAuthorizedAddressRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetAuthorizedAddressRequest>, I>>(
     object: I,
   ): QueryGetAuthorizedAddressRequest {
@@ -1151,19 +1469,24 @@ export const QueryGetAuthorizedAddressResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetAuthorizedAddressResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetAuthorizedAddressResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.authorizedAddress = AuthorizedAddress.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1178,12 +1501,17 @@ export const QueryGetAuthorizedAddressResponse = {
 
   toJSON(message: QueryGetAuthorizedAddressResponse): unknown {
     const obj: any = {};
-    message.authorizedAddress !== undefined && (obj.authorizedAddress = message.authorizedAddress
-      ? AuthorizedAddress.toJSON(message.authorizedAddress)
-      : undefined);
+    if (message.authorizedAddress !== undefined) {
+      obj.authorizedAddress = AuthorizedAddress.toJSON(message.authorizedAddress);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetAuthorizedAddressResponse>, I>>(
+    base?: I,
+  ): QueryGetAuthorizedAddressResponse {
+    return QueryGetAuthorizedAddressResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetAuthorizedAddressResponse>, I>>(
     object: I,
   ): QueryGetAuthorizedAddressResponse {
@@ -1208,19 +1536,24 @@ export const QueryAllAuthorizedAddressRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllAuthorizedAddressRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllAuthorizedAddressRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1231,11 +1564,17 @@ export const QueryAllAuthorizedAddressRequest = {
 
   toJSON(message: QueryAllAuthorizedAddressRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllAuthorizedAddressRequest>, I>>(
+    base?: I,
+  ): QueryAllAuthorizedAddressRequest {
+    return QueryAllAuthorizedAddressRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllAuthorizedAddressRequest>, I>>(
     object: I,
   ): QueryAllAuthorizedAddressRequest {
@@ -1263,22 +1602,31 @@ export const QueryAllAuthorizedAddressResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllAuthorizedAddressResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllAuthorizedAddressResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.authorizedAddress.push(AuthorizedAddress.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pagination = PageResponse.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1294,16 +1642,20 @@ export const QueryAllAuthorizedAddressResponse = {
 
   toJSON(message: QueryAllAuthorizedAddressResponse): unknown {
     const obj: any = {};
-    if (message.authorizedAddress) {
-      obj.authorizedAddress = message.authorizedAddress.map((e) => e ? AuthorizedAddress.toJSON(e) : undefined);
-    } else {
-      obj.authorizedAddress = [];
+    if (message.authorizedAddress?.length) {
+      obj.authorizedAddress = message.authorizedAddress.map((e) => AuthorizedAddress.toJSON(e));
     }
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllAuthorizedAddressResponse>, I>>(
+    base?: I,
+  ): QueryAllAuthorizedAddressResponse {
+    return QueryAllAuthorizedAddressResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllAuthorizedAddressResponse>, I>>(
     object: I,
   ): QueryAllAuthorizedAddressResponse {
@@ -1335,25 +1687,38 @@ export const QueryGetGeneralKeyShareRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetGeneralKeyShareRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetGeneralKeyShareRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.validator = reader.string();
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.idType = reader.string();
-          break;
+          continue;
         case 3:
+          if (tag !== 26) {
+            break;
+          }
+
           message.idValue = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1368,12 +1733,21 @@ export const QueryGetGeneralKeyShareRequest = {
 
   toJSON(message: QueryGetGeneralKeyShareRequest): unknown {
     const obj: any = {};
-    message.validator !== undefined && (obj.validator = message.validator);
-    message.idType !== undefined && (obj.idType = message.idType);
-    message.idValue !== undefined && (obj.idValue = message.idValue);
+    if (message.validator !== "") {
+      obj.validator = message.validator;
+    }
+    if (message.idType !== "") {
+      obj.idType = message.idType;
+    }
+    if (message.idValue !== "") {
+      obj.idValue = message.idValue;
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetGeneralKeyShareRequest>, I>>(base?: I): QueryGetGeneralKeyShareRequest {
+    return QueryGetGeneralKeyShareRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetGeneralKeyShareRequest>, I>>(
     object: I,
   ): QueryGetGeneralKeyShareRequest {
@@ -1398,19 +1772,24 @@ export const QueryGetGeneralKeyShareResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetGeneralKeyShareResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryGetGeneralKeyShareResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.generalKeyShare = GeneralKeyShare.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1423,11 +1802,15 @@ export const QueryGetGeneralKeyShareResponse = {
 
   toJSON(message: QueryGetGeneralKeyShareResponse): unknown {
     const obj: any = {};
-    message.generalKeyShare !== undefined
-      && (obj.generalKeyShare = message.generalKeyShare ? GeneralKeyShare.toJSON(message.generalKeyShare) : undefined);
+    if (message.generalKeyShare !== undefined) {
+      obj.generalKeyShare = GeneralKeyShare.toJSON(message.generalKeyShare);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryGetGeneralKeyShareResponse>, I>>(base?: I): QueryGetGeneralKeyShareResponse {
+    return QueryGetGeneralKeyShareResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryGetGeneralKeyShareResponse>, I>>(
     object: I,
   ): QueryGetGeneralKeyShareResponse {
@@ -1452,19 +1835,24 @@ export const QueryAllGeneralKeyShareRequest = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllGeneralKeyShareRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllGeneralKeyShareRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1475,11 +1863,15 @@ export const QueryAllGeneralKeyShareRequest = {
 
   toJSON(message: QueryAllGeneralKeyShareRequest): unknown {
     const obj: any = {};
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllGeneralKeyShareRequest>, I>>(base?: I): QueryAllGeneralKeyShareRequest {
+    return QueryAllGeneralKeyShareRequest.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllGeneralKeyShareRequest>, I>>(
     object: I,
   ): QueryAllGeneralKeyShareRequest {
@@ -1507,22 +1899,31 @@ export const QueryAllGeneralKeyShareResponse = {
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllGeneralKeyShareResponse {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseQueryAllGeneralKeyShareResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
+          if (tag !== 10) {
+            break;
+          }
+
           message.generalKeyShare.push(GeneralKeyShare.decode(reader, reader.uint32()));
-          break;
+          continue;
         case 2:
+          if (tag !== 18) {
+            break;
+          }
+
           message.pagination = PageResponse.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
+          continue;
       }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
     }
     return message;
   },
@@ -1538,16 +1939,18 @@ export const QueryAllGeneralKeyShareResponse = {
 
   toJSON(message: QueryAllGeneralKeyShareResponse): unknown {
     const obj: any = {};
-    if (message.generalKeyShare) {
-      obj.generalKeyShare = message.generalKeyShare.map((e) => e ? GeneralKeyShare.toJSON(e) : undefined);
-    } else {
-      obj.generalKeyShare = [];
+    if (message.generalKeyShare?.length) {
+      obj.generalKeyShare = message.generalKeyShare.map((e) => GeneralKeyShare.toJSON(e));
     }
-    message.pagination !== undefined
-      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
     return obj;
   },
 
+  create<I extends Exact<DeepPartial<QueryAllGeneralKeyShareResponse>, I>>(base?: I): QueryAllGeneralKeyShareResponse {
+    return QueryAllGeneralKeyShareResponse.fromPartial(base ?? ({} as any));
+  },
   fromPartial<I extends Exact<DeepPartial<QueryAllGeneralKeyShareResponse>, I>>(
     object: I,
   ): QueryAllGeneralKeyShareResponse {
@@ -1562,9 +1965,9 @@ export const QueryAllGeneralKeyShareResponse = {
 
 /** Query defines the gRPC querier service. */
 export interface Query {
-  Commitments(request: QueryCommitmentsRequest): Promise<QueryCommitmentsResponse>;
   /** Parameters queries the parameters of the module. */
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
+  Commitments(request: QueryCommitmentsRequest): Promise<QueryCommitmentsResponse>;
   /** Queries a ValidatorSet by index. */
   ValidatorSet(request: QueryGetValidatorSetRequest): Promise<QueryGetValidatorSetResponse>;
   /** Queries a list of ValidatorSet items. */
@@ -1584,14 +1987,18 @@ export interface Query {
   /** Queries a list of GeneralKeyShare items. */
   GeneralKeyShare(request: QueryGetGeneralKeyShareRequest): Promise<QueryGetGeneralKeyShareResponse>;
   GeneralKeyShareAll(request: QueryAllGeneralKeyShareRequest): Promise<QueryAllGeneralKeyShareResponse>;
+  VerifiableRandomness(request: QueryVerifiableRandomnessQuery): Promise<QueryVerifiableRandomnessResponse>;
 }
 
+export const QueryServiceName = "fairyring.keyshare.Query";
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly service: string;
+  constructor(rpc: Rpc, opts?: { service?: string }) {
+    this.service = opts?.service || QueryServiceName;
     this.rpc = rpc;
-    this.Commitments = this.Commitments.bind(this);
     this.Params = this.Params.bind(this);
+    this.Commitments = this.Commitments.bind(this);
     this.ValidatorSet = this.ValidatorSet.bind(this);
     this.ValidatorSetAll = this.ValidatorSetAll.bind(this);
     this.KeyShare = this.KeyShare.bind(this);
@@ -1603,83 +2010,90 @@ export class QueryClientImpl implements Query {
     this.AuthorizedAddressAll = this.AuthorizedAddressAll.bind(this);
     this.GeneralKeyShare = this.GeneralKeyShare.bind(this);
     this.GeneralKeyShareAll = this.GeneralKeyShareAll.bind(this);
+    this.VerifiableRandomness = this.VerifiableRandomness.bind(this);
   }
-  Commitments(request: QueryCommitmentsRequest): Promise<QueryCommitmentsResponse> {
-    const data = QueryCommitmentsRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "Commitments", data);
-    return promise.then((data) => QueryCommitmentsResponse.decode(new _m0.Reader(data)));
-  }
-
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "Params", data);
-    return promise.then((data) => QueryParamsResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "Params", data);
+    return promise.then((data) => QueryParamsResponse.decode(_m0.Reader.create(data)));
+  }
+
+  Commitments(request: QueryCommitmentsRequest): Promise<QueryCommitmentsResponse> {
+    const data = QueryCommitmentsRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "Commitments", data);
+    return promise.then((data) => QueryCommitmentsResponse.decode(_m0.Reader.create(data)));
   }
 
   ValidatorSet(request: QueryGetValidatorSetRequest): Promise<QueryGetValidatorSetResponse> {
     const data = QueryGetValidatorSetRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "ValidatorSet", data);
-    return promise.then((data) => QueryGetValidatorSetResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "ValidatorSet", data);
+    return promise.then((data) => QueryGetValidatorSetResponse.decode(_m0.Reader.create(data)));
   }
 
   ValidatorSetAll(request: QueryAllValidatorSetRequest): Promise<QueryAllValidatorSetResponse> {
     const data = QueryAllValidatorSetRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "ValidatorSetAll", data);
-    return promise.then((data) => QueryAllValidatorSetResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "ValidatorSetAll", data);
+    return promise.then((data) => QueryAllValidatorSetResponse.decode(_m0.Reader.create(data)));
   }
 
   KeyShare(request: QueryGetKeyShareRequest): Promise<QueryGetKeyShareResponse> {
     const data = QueryGetKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "KeyShare", data);
-    return promise.then((data) => QueryGetKeyShareResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "KeyShare", data);
+    return promise.then((data) => QueryGetKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   KeyShareAll(request: QueryAllKeyShareRequest): Promise<QueryAllKeyShareResponse> {
     const data = QueryAllKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "KeyShareAll", data);
-    return promise.then((data) => QueryAllKeyShareResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "KeyShareAll", data);
+    return promise.then((data) => QueryAllKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   AggregatedKeyShare(request: QueryGetAggregatedKeyShareRequest): Promise<QueryGetAggregatedKeyShareResponse> {
     const data = QueryGetAggregatedKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "AggregatedKeyShare", data);
-    return promise.then((data) => QueryGetAggregatedKeyShareResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "AggregatedKeyShare", data);
+    return promise.then((data) => QueryGetAggregatedKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   AggregatedKeyShareAll(request: QueryAllAggregatedKeyShareRequest): Promise<QueryAllAggregatedKeyShareResponse> {
     const data = QueryAllAggregatedKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "AggregatedKeyShareAll", data);
-    return promise.then((data) => QueryAllAggregatedKeyShareResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "AggregatedKeyShareAll", data);
+    return promise.then((data) => QueryAllAggregatedKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   PubKey(request: QueryPubKeyRequest): Promise<QueryPubKeyResponse> {
     const data = QueryPubKeyRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "PubKey", data);
-    return promise.then((data) => QueryPubKeyResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "PubKey", data);
+    return promise.then((data) => QueryPubKeyResponse.decode(_m0.Reader.create(data)));
   }
 
   AuthorizedAddress(request: QueryGetAuthorizedAddressRequest): Promise<QueryGetAuthorizedAddressResponse> {
     const data = QueryGetAuthorizedAddressRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "AuthorizedAddress", data);
-    return promise.then((data) => QueryGetAuthorizedAddressResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "AuthorizedAddress", data);
+    return promise.then((data) => QueryGetAuthorizedAddressResponse.decode(_m0.Reader.create(data)));
   }
 
   AuthorizedAddressAll(request: QueryAllAuthorizedAddressRequest): Promise<QueryAllAuthorizedAddressResponse> {
     const data = QueryAllAuthorizedAddressRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "AuthorizedAddressAll", data);
-    return promise.then((data) => QueryAllAuthorizedAddressResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "AuthorizedAddressAll", data);
+    return promise.then((data) => QueryAllAuthorizedAddressResponse.decode(_m0.Reader.create(data)));
   }
 
   GeneralKeyShare(request: QueryGetGeneralKeyShareRequest): Promise<QueryGetGeneralKeyShareResponse> {
     const data = QueryGetGeneralKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "GeneralKeyShare", data);
-    return promise.then((data) => QueryGetGeneralKeyShareResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "GeneralKeyShare", data);
+    return promise.then((data) => QueryGetGeneralKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   GeneralKeyShareAll(request: QueryAllGeneralKeyShareRequest): Promise<QueryAllGeneralKeyShareResponse> {
     const data = QueryAllGeneralKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request("fairyring.keyshare.Query", "GeneralKeyShareAll", data);
-    return promise.then((data) => QueryAllGeneralKeyShareResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(this.service, "GeneralKeyShareAll", data);
+    return promise.then((data) => QueryAllGeneralKeyShareResponse.decode(_m0.Reader.create(data)));
+  }
+
+  VerifiableRandomness(request: QueryVerifiableRandomnessQuery): Promise<QueryVerifiableRandomnessResponse> {
+    const data = QueryVerifiableRandomnessQuery.encode(request).finish();
+    const promise = this.rpc.request(this.service, "VerifiableRandomness", data);
+    return promise.then((data) => QueryVerifiableRandomnessResponse.decode(_m0.Reader.create(data)));
   }
 }
 
@@ -1687,10 +2101,10 @@ interface Rpc {
   request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var globalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -1719,7 +2133,7 @@ export type Exact<P, I extends P> = P extends Builtin ? P
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }
