@@ -853,6 +853,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				let msg = this.msgRequestGeneralKeyshare({ value: MsgRequestGeneralKeyshare.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
+				console.log("Error: TxClient:sendMsgRequestGeneralKeyshare: Could not broadcast Tx:", e)
 				throw new Error('TxClient:sendMsgRequestGeneralKeyshare: Could not broadcast Tx: '+ e.message)
 			}
 		},
