@@ -1,8 +1,13 @@
 {
   "name": "fairyring-client-ts",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "TypeScript client for the FairyRing blockchain.",
   "author": "https://github.com/xgracias",
+  "homepage": "https://fairblock.network",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xgracias/fairyring-client-ts.git"
+  },
   "license": "Apache-2.0",
   "licenses": [
     {
@@ -14,7 +19,8 @@
     "fairblock",
     "fairyring",
     "blockchain",
-    "client-sdk"
+    "client-sdk",
+    "cosmos"
   ],
   "main": "lib/index.js",
   "publishConfig": {
@@ -38,7 +44,6 @@
   },
   "devDependencies": {
     "@types/events": "^3.0.0",
-    "prettier": "^3.4.2",
     "typescript": "^4.8.4"
   }
 }
