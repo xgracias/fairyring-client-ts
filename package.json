@@ -1,6 +1,6 @@
 {
   "name": "fairyring-client-ts",
-  "version": "1.7.25",
+  "version": "1.8.0",
   "description": "TypeScript client for the FairyRing blockchain.",
   "author": "https://github.com/xgracias",
   "license": "Apache-2.0",
