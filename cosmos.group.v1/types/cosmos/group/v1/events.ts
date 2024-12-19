@@ -1,6 +1,6 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 import {
   ProposalExecutorResult,
   proposalExecutorResultFromJSON,
@@ -9,9 +9,9 @@ import {
   proposalStatusFromJSON,
   proposalStatusToJSON,
   TallyResult,
-} from "./types";
+} from './types';
 
-export const protobufPackage = "cosmos.group.v1";
+export const protobufPackage = 'cosmos.group.v1';
 
 /** Since: cosmos-sdk 0.46 */
 
@@ -200,12 +200,12 @@ export const EventUpdateGroup = {
 };
 
 function createBaseEventCreateGroupPolicy(): EventCreateGroupPolicy {
-  return { address: "" };
+  return { address: '' };
 }
 
 export const EventCreateGroupPolicy = {
   encode(message: EventCreateGroupPolicy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     return writer;
@@ -235,12 +235,12 @@ export const EventCreateGroupPolicy = {
   },
 
   fromJSON(object: any): EventCreateGroupPolicy {
-    return { address: isSet(object.address) ? String(object.address) : "" };
+    return { address: isSet(object.address) ? String(object.address) : '' };
   },
 
   toJSON(message: EventCreateGroupPolicy): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     return obj;
@@ -251,18 +251,18 @@ export const EventCreateGroupPolicy = {
   },
   fromPartial<I extends Exact<DeepPartial<EventCreateGroupPolicy>, I>>(object: I): EventCreateGroupPolicy {
     const message = createBaseEventCreateGroupPolicy();
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     return message;
   },
 };
 
 function createBaseEventUpdateGroupPolicy(): EventUpdateGroupPolicy {
-  return { address: "" };
+  return { address: '' };
 }
 
 export const EventUpdateGroupPolicy = {
   encode(message: EventUpdateGroupPolicy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     return writer;
@@ -292,12 +292,12 @@ export const EventUpdateGroupPolicy = {
   },
 
   fromJSON(object: any): EventUpdateGroupPolicy {
-    return { address: isSet(object.address) ? String(object.address) : "" };
+    return { address: isSet(object.address) ? String(object.address) : '' };
   },
 
   toJSON(message: EventUpdateGroupPolicy): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     return obj;
@@ -308,7 +308,7 @@ export const EventUpdateGroupPolicy = {
   },
   fromPartial<I extends Exact<DeepPartial<EventUpdateGroupPolicy>, I>>(object: I): EventUpdateGroupPolicy {
     const message = createBaseEventUpdateGroupPolicy();
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     return message;
   },
 };
@@ -485,7 +485,7 @@ export const EventVote = {
 };
 
 function createBaseEventExec(): EventExec {
-  return { proposalId: 0, result: 0, logs: "" };
+  return { proposalId: 0, result: 0, logs: '' };
 }
 
 export const EventExec = {
@@ -496,7 +496,7 @@ export const EventExec = {
     if (message.result !== 0) {
       writer.uint32(16).int32(message.result);
     }
-    if (message.logs !== "") {
+    if (message.logs !== '') {
       writer.uint32(26).string(message.logs);
     }
     return writer;
@@ -543,7 +543,7 @@ export const EventExec = {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
       result: isSet(object.result) ? proposalExecutorResultFromJSON(object.result) : 0,
-      logs: isSet(object.logs) ? String(object.logs) : "",
+      logs: isSet(object.logs) ? String(object.logs) : '',
     };
   },
 
@@ -555,7 +555,7 @@ export const EventExec = {
     if (message.result !== 0) {
       obj.result = proposalExecutorResultToJSON(message.result);
     }
-    if (message.logs !== "") {
+    if (message.logs !== '') {
       obj.logs = message.logs;
     }
     return obj;
@@ -568,13 +568,13 @@ export const EventExec = {
     const message = createBaseEventExec();
     message.proposalId = object.proposalId ?? 0;
     message.result = object.result ?? 0;
-    message.logs = object.logs ?? "";
+    message.logs = object.logs ?? '';
     return message;
   },
 };
 
 function createBaseEventLeaveGroup(): EventLeaveGroup {
-  return { groupId: 0, address: "" };
+  return { groupId: 0, address: '' };
 }
 
 export const EventLeaveGroup = {
@@ -582,7 +582,7 @@ export const EventLeaveGroup = {
     if (message.groupId !== 0) {
       writer.uint32(8).uint64(message.groupId);
     }
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(18).string(message.address);
     }
     return writer;
@@ -621,7 +621,7 @@ export const EventLeaveGroup = {
   fromJSON(object: any): EventLeaveGroup {
     return {
       groupId: isSet(object.groupId) ? Number(object.groupId) : 0,
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
     };
   },
 
@@ -630,7 +630,7 @@ export const EventLeaveGroup = {
     if (message.groupId !== 0) {
       obj.groupId = Math.round(message.groupId);
     }
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     return obj;
@@ -642,7 +642,7 @@ export const EventLeaveGroup = {
   fromPartial<I extends Exact<DeepPartial<EventLeaveGroup>, I>>(object: I): EventLeaveGroup {
     const message = createBaseEventLeaveGroup();
     message.groupId = object.groupId ?? 0;
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     return message;
   },
 };
@@ -731,9 +731,10 @@ export const EventProposalPruned = {
     const message = createBaseEventProposalPruned();
     message.proposalId = object.proposalId ?? 0;
     message.status = object.status ?? 0;
-    message.tallyResult = (object.tallyResult !== undefined && object.tallyResult !== null)
-      ? TallyResult.fromPartial(object.tallyResult)
-      : undefined;
+    message.tallyResult =
+      object.tallyResult !== undefined && object.tallyResult !== null
+        ? TallyResult.fromPartial(object.tallyResult)
+        : undefined;
     return message;
   },
 };
@@ -742,35 +743,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

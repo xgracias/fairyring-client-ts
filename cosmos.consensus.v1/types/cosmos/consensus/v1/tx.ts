@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { ABCIParams, BlockParams, EvidenceParams, ValidatorParams } from "../../../tendermint/types/params";
+import _m0 from 'protobufjs/minimal';
+import { ABCIParams, BlockParams, EvidenceParams, ValidatorParams } from '../../../tendermint/types/params';
 
-export const protobufPackage = "cosmos.consensus.v1";
+export const protobufPackage = 'cosmos.consensus.v1';
 
 /** Since: cosmos-sdk 0.47 */
 
@@ -19,9 +19,7 @@ export interface MsgUpdateParams {
    */
   block: BlockParams | undefined;
   evidence: EvidenceParams | undefined;
-  validator:
-    | ValidatorParams
-    | undefined;
+  validator: ValidatorParams | undefined;
   /** Since: cosmos-sdk 0.50 */
   abci: ABCIParams | undefined;
 }
@@ -30,16 +28,15 @@ export interface MsgUpdateParams {
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
  */
-export interface MsgUpdateParamsResponse {
-}
+export interface MsgUpdateParamsResponse {}
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { authority: "", block: undefined, evidence: undefined, validator: undefined, abci: undefined };
+  return { authority: '', block: undefined, evidence: undefined, validator: undefined, abci: undefined };
 }
 
 export const MsgUpdateParams = {
   encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
     if (message.block !== undefined) {
@@ -110,7 +107,7 @@ export const MsgUpdateParams = {
 
   fromJSON(object: any): MsgUpdateParams {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
       block: isSet(object.block) ? BlockParams.fromJSON(object.block) : undefined,
       evidence: isSet(object.evidence) ? EvidenceParams.fromJSON(object.evidence) : undefined,
       validator: isSet(object.validator) ? ValidatorParams.fromJSON(object.validator) : undefined,
@@ -120,7 +117,7 @@ export const MsgUpdateParams = {
 
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     if (message.block !== undefined) {
@@ -143,19 +140,18 @@ export const MsgUpdateParams = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
-    message.authority = object.authority ?? "";
-    message.block = (object.block !== undefined && object.block !== null)
-      ? BlockParams.fromPartial(object.block)
-      : undefined;
-    message.evidence = (object.evidence !== undefined && object.evidence !== null)
-      ? EvidenceParams.fromPartial(object.evidence)
-      : undefined;
-    message.validator = (object.validator !== undefined && object.validator !== null)
-      ? ValidatorParams.fromPartial(object.validator)
-      : undefined;
-    message.abci = (object.abci !== undefined && object.abci !== null)
-      ? ABCIParams.fromPartial(object.abci)
-      : undefined;
+    message.authority = object.authority ?? '';
+    message.block =
+      object.block !== undefined && object.block !== null ? BlockParams.fromPartial(object.block) : undefined;
+    message.evidence =
+      object.evidence !== undefined && object.evidence !== null
+        ? EvidenceParams.fromPartial(object.evidence)
+        : undefined;
+    message.validator =
+      object.validator !== undefined && object.validator !== null
+        ? ValidatorParams.fromPartial(object.validator)
+        : undefined;
+    message.abci = object.abci !== undefined && object.abci !== null ? ABCIParams.fromPartial(object.abci) : undefined;
     return message;
   },
 };
@@ -214,7 +210,7 @@ export interface Msg {
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 
-export const MsgServiceName = "cosmos.consensus.v1.Msg";
+export const MsgServiceName = 'cosmos.consensus.v1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -225,7 +221,7 @@ export class MsgClientImpl implements Msg {
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateParams", data);
+    const promise = this.rpc.request(this.service, 'UpdateParams', data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -236,13 +232,19 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

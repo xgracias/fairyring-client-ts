@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { CodeInfo, ContractCodeHistoryEntry, ContractInfo, Model, Params } from "./types";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { CodeInfo, ContractCodeHistoryEntry, ContractInfo, Model, Params } from './types';
 
-export const protobufPackage = "cosmwasm.wasm.v1";
+export const protobufPackage = 'cosmwasm.wasm.v1';
 
 /** GenesisState - genesis state of x/wasm */
 export interface GenesisState {
@@ -132,9 +132,8 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.codes = object.codes?.map((e) => Code.fromPartial(e)) || [];
     message.contracts = object.contracts?.map((e) => Contract.fromPartial(e)) || [];
     message.sequences = object.sequences?.map((e) => Sequence.fromPartial(e)) || [];
@@ -239,9 +238,8 @@ export const Code = {
   fromPartial<I extends Exact<DeepPartial<Code>, I>>(object: I): Code {
     const message = createBaseCode();
     message.codeId = object.codeId ?? 0;
-    message.codeInfo = (object.codeInfo !== undefined && object.codeInfo !== null)
-      ? CodeInfo.fromPartial(object.codeInfo)
-      : undefined;
+    message.codeInfo =
+      object.codeInfo !== undefined && object.codeInfo !== null ? CodeInfo.fromPartial(object.codeInfo) : undefined;
     message.codeBytes = object.codeBytes ?? new Uint8Array(0);
     message.pinned = object.pinned ?? false;
     return message;
@@ -249,12 +247,12 @@ export const Code = {
 };
 
 function createBaseContract(): Contract {
-  return { contractAddress: "", contractInfo: undefined, contractState: [], contractCodeHistory: [] };
+  return { contractAddress: '', contractInfo: undefined, contractState: [], contractCodeHistory: [] };
 }
 
 export const Contract = {
   encode(message: Contract, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.contractAddress !== "") {
+    if (message.contractAddress !== '') {
       writer.uint32(10).string(message.contractAddress);
     }
     if (message.contractInfo !== undefined) {
@@ -315,7 +313,7 @@ export const Contract = {
 
   fromJSON(object: any): Contract {
     return {
-      contractAddress: isSet(object.contractAddress) ? String(object.contractAddress) : "",
+      contractAddress: isSet(object.contractAddress) ? String(object.contractAddress) : '',
       contractInfo: isSet(object.contractInfo) ? ContractInfo.fromJSON(object.contractInfo) : undefined,
       contractState: Array.isArray(object?.contractState)
         ? object.contractState.map((e: any) => Model.fromJSON(e))
@@ -328,7 +326,7 @@ export const Contract = {
 
   toJSON(message: Contract): unknown {
     const obj: any = {};
-    if (message.contractAddress !== "") {
+    if (message.contractAddress !== '') {
       obj.contractAddress = message.contractAddress;
     }
     if (message.contractInfo !== undefined) {
@@ -348,10 +346,11 @@ export const Contract = {
   },
   fromPartial<I extends Exact<DeepPartial<Contract>, I>>(object: I): Contract {
     const message = createBaseContract();
-    message.contractAddress = object.contractAddress ?? "";
-    message.contractInfo = (object.contractInfo !== undefined && object.contractInfo !== null)
-      ? ContractInfo.fromPartial(object.contractInfo)
-      : undefined;
+    message.contractAddress = object.contractAddress ?? '';
+    message.contractInfo =
+      object.contractInfo !== undefined && object.contractInfo !== null
+        ? ContractInfo.fromPartial(object.contractInfo)
+        : undefined;
     message.contractState = object.contractState?.map((e) => Model.fromPartial(e)) || [];
     message.contractCodeHistory = object.contractCodeHistory?.map((e) => ContractCodeHistoryEntry.fromPartial(e)) || [];
     return message;
@@ -436,24 +435,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -466,30 +465,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

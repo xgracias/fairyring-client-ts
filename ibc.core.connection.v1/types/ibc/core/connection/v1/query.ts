@@ -1,12 +1,12 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
-import { Any } from "../../../../google/protobuf/any";
-import { Height, IdentifiedClientState } from "../../client/v1/client";
-import { ConnectionEnd, IdentifiedConnection, Params } from "./connection";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { PageRequest, PageResponse } from '../../../../cosmos/base/query/v1beta1/pagination';
+import { Any } from '../../../../google/protobuf/any';
+import { Height, IdentifiedClientState } from '../../client/v1/client';
+import { ConnectionEnd, IdentifiedConnection, Params } from './connection';
 
-export const protobufPackage = "ibc.core.connection.v1";
+export const protobufPackage = 'ibc.core.connection.v1';
 
 /**
  * QueryConnectionRequest is the request type for the Query/Connection RPC
@@ -24,9 +24,7 @@ export interface QueryConnectionRequest {
  */
 export interface QueryConnectionResponse {
   /** connection associated with the request identifier */
-  connection:
-    | ConnectionEnd
-    | undefined;
+  connection: ConnectionEnd | undefined;
   /** merkle proof of existence */
   proof: Uint8Array;
   /** height at which the proof was retrieved */
@@ -49,9 +47,7 @@ export interface QueryConnectionsResponse {
   /** list of stored connections of the chain. */
   connections: IdentifiedConnection[];
   /** pagination response */
-  pagination:
-    | PageResponse
-    | undefined;
+  pagination: PageResponse | undefined;
   /** query block height */
   height: Height | undefined;
 }
@@ -93,9 +89,7 @@ export interface QueryConnectionClientStateRequest {
  */
 export interface QueryConnectionClientStateResponse {
   /** client state associated with the channel */
-  identifiedClientState:
-    | IdentifiedClientState
-    | undefined;
+  identifiedClientState: IdentifiedClientState | undefined;
   /** merkle proof of existence */
   proof: Uint8Array;
   /** height at which the proof was retrieved */
@@ -119,9 +113,7 @@ export interface QueryConnectionConsensusStateRequest {
  */
 export interface QueryConnectionConsensusStateResponse {
   /** consensus state associated with the channel */
-  consensusState:
-    | Any
-    | undefined;
+  consensusState: Any | undefined;
   /** client ID associated with the consensus state */
   clientId: string;
   /** merkle proof of existence */
@@ -131,8 +123,7 @@ export interface QueryConnectionConsensusStateResponse {
 }
 
 /** QueryConnectionParamsRequest is the request type for the Query/ConnectionParams RPC method. */
-export interface QueryConnectionParamsRequest {
-}
+export interface QueryConnectionParamsRequest {}
 
 /** QueryConnectionParamsResponse is the response type for the Query/ConnectionParams RPC method. */
 export interface QueryConnectionParamsResponse {
@@ -141,12 +132,12 @@ export interface QueryConnectionParamsResponse {
 }
 
 function createBaseQueryConnectionRequest(): QueryConnectionRequest {
-  return { connectionId: "" };
+  return { connectionId: '' };
 }
 
 export const QueryConnectionRequest = {
   encode(message: QueryConnectionRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       writer.uint32(10).string(message.connectionId);
     }
     return writer;
@@ -176,12 +167,12 @@ export const QueryConnectionRequest = {
   },
 
   fromJSON(object: any): QueryConnectionRequest {
-    return { connectionId: isSet(object.connectionId) ? String(object.connectionId) : "" };
+    return { connectionId: isSet(object.connectionId) ? String(object.connectionId) : '' };
   },
 
   toJSON(message: QueryConnectionRequest): unknown {
     const obj: any = {};
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       obj.connectionId = message.connectionId;
     }
     return obj;
@@ -192,7 +183,7 @@ export const QueryConnectionRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryConnectionRequest>, I>>(object: I): QueryConnectionRequest {
     const message = createBaseQueryConnectionRequest();
-    message.connectionId = object.connectionId ?? "";
+    message.connectionId = object.connectionId ?? '';
     return message;
   },
 };
@@ -279,13 +270,15 @@ export const QueryConnectionResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryConnectionResponse>, I>>(object: I): QueryConnectionResponse {
     const message = createBaseQueryConnectionResponse();
-    message.connection = (object.connection !== undefined && object.connection !== null)
-      ? ConnectionEnd.fromPartial(object.connection)
-      : undefined;
+    message.connection =
+      object.connection !== undefined && object.connection !== null
+        ? ConnectionEnd.fromPartial(object.connection)
+        : undefined;
     message.proof = object.proof ?? new Uint8Array(0);
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
     return message;
   },
 };
@@ -342,9 +335,10 @@ export const QueryConnectionsRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryConnectionsRequest>, I>>(object: I): QueryConnectionsRequest {
     const message = createBaseQueryConnectionsRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -434,23 +428,23 @@ export const QueryConnectionsResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryConnectionsResponse>, I>>(object: I): QueryConnectionsResponse {
     const message = createBaseQueryConnectionsResponse();
     message.connections = object.connections?.map((e) => IdentifiedConnection.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
-    message.height = (object.height !== undefined && object.height !== null)
-      ? Height.fromPartial(object.height)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
+    message.height =
+      object.height !== undefined && object.height !== null ? Height.fromPartial(object.height) : undefined;
     return message;
   },
 };
 
 function createBaseQueryClientConnectionsRequest(): QueryClientConnectionsRequest {
-  return { clientId: "" };
+  return { clientId: '' };
 }
 
 export const QueryClientConnectionsRequest = {
   encode(message: QueryClientConnectionsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     return writer;
@@ -480,12 +474,12 @@ export const QueryClientConnectionsRequest = {
   },
 
   fromJSON(object: any): QueryClientConnectionsRequest {
-    return { clientId: isSet(object.clientId) ? String(object.clientId) : "" };
+    return { clientId: isSet(object.clientId) ? String(object.clientId) : '' };
   },
 
   toJSON(message: QueryClientConnectionsRequest): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     return obj;
@@ -495,10 +489,10 @@ export const QueryClientConnectionsRequest = {
     return QueryClientConnectionsRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryClientConnectionsRequest>, I>>(
-    object: I,
+    object: I
   ): QueryClientConnectionsRequest {
     const message = createBaseQueryClientConnectionsRequest();
-    message.clientId = object.clientId ?? "";
+    message.clientId = object.clientId ?? '';
     return message;
   },
 };
@@ -584,25 +578,26 @@ export const QueryClientConnectionsResponse = {
     return QueryClientConnectionsResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryClientConnectionsResponse>, I>>(
-    object: I,
+    object: I
   ): QueryClientConnectionsResponse {
     const message = createBaseQueryClientConnectionsResponse();
     message.connectionPaths = object.connectionPaths?.map((e) => e) || [];
     message.proof = object.proof ?? new Uint8Array(0);
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryConnectionClientStateRequest(): QueryConnectionClientStateRequest {
-  return { connectionId: "" };
+  return { connectionId: '' };
 }
 
 export const QueryConnectionClientStateRequest = {
   encode(message: QueryConnectionClientStateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       writer.uint32(10).string(message.connectionId);
     }
     return writer;
@@ -632,27 +627,27 @@ export const QueryConnectionClientStateRequest = {
   },
 
   fromJSON(object: any): QueryConnectionClientStateRequest {
-    return { connectionId: isSet(object.connectionId) ? String(object.connectionId) : "" };
+    return { connectionId: isSet(object.connectionId) ? String(object.connectionId) : '' };
   },
 
   toJSON(message: QueryConnectionClientStateRequest): unknown {
     const obj: any = {};
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       obj.connectionId = message.connectionId;
     }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<QueryConnectionClientStateRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryConnectionClientStateRequest {
     return QueryConnectionClientStateRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryConnectionClientStateRequest>, I>>(
-    object: I,
+    object: I
   ): QueryConnectionClientStateRequest {
     const message = createBaseQueryConnectionClientStateRequest();
-    message.connectionId = object.connectionId ?? "";
+    message.connectionId = object.connectionId ?? '';
     return message;
   },
 };
@@ -737,33 +732,34 @@ export const QueryConnectionClientStateResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryConnectionClientStateResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryConnectionClientStateResponse {
     return QueryConnectionClientStateResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryConnectionClientStateResponse>, I>>(
-    object: I,
+    object: I
   ): QueryConnectionClientStateResponse {
     const message = createBaseQueryConnectionClientStateResponse();
     message.identifiedClientState =
-      (object.identifiedClientState !== undefined && object.identifiedClientState !== null)
+      object.identifiedClientState !== undefined && object.identifiedClientState !== null
         ? IdentifiedClientState.fromPartial(object.identifiedClientState)
         : undefined;
     message.proof = object.proof ?? new Uint8Array(0);
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryConnectionConsensusStateRequest(): QueryConnectionConsensusStateRequest {
-  return { connectionId: "", revisionNumber: 0, revisionHeight: 0 };
+  return { connectionId: '', revisionNumber: 0, revisionHeight: 0 };
 }
 
 export const QueryConnectionConsensusStateRequest = {
   encode(message: QueryConnectionConsensusStateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       writer.uint32(10).string(message.connectionId);
     }
     if (message.revisionNumber !== 0) {
@@ -814,7 +810,7 @@ export const QueryConnectionConsensusStateRequest = {
 
   fromJSON(object: any): QueryConnectionConsensusStateRequest {
     return {
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
+      connectionId: isSet(object.connectionId) ? String(object.connectionId) : '',
       revisionNumber: isSet(object.revisionNumber) ? Number(object.revisionNumber) : 0,
       revisionHeight: isSet(object.revisionHeight) ? Number(object.revisionHeight) : 0,
     };
@@ -822,7 +818,7 @@ export const QueryConnectionConsensusStateRequest = {
 
   toJSON(message: QueryConnectionConsensusStateRequest): unknown {
     const obj: any = {};
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       obj.connectionId = message.connectionId;
     }
     if (message.revisionNumber !== 0) {
@@ -835,15 +831,15 @@ export const QueryConnectionConsensusStateRequest = {
   },
 
   create<I extends Exact<DeepPartial<QueryConnectionConsensusStateRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryConnectionConsensusStateRequest {
     return QueryConnectionConsensusStateRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryConnectionConsensusStateRequest>, I>>(
-    object: I,
+    object: I
   ): QueryConnectionConsensusStateRequest {
     const message = createBaseQueryConnectionConsensusStateRequest();
-    message.connectionId = object.connectionId ?? "";
+    message.connectionId = object.connectionId ?? '';
     message.revisionNumber = object.revisionNumber ?? 0;
     message.revisionHeight = object.revisionHeight ?? 0;
     return message;
@@ -851,7 +847,7 @@ export const QueryConnectionConsensusStateRequest = {
 };
 
 function createBaseQueryConnectionConsensusStateResponse(): QueryConnectionConsensusStateResponse {
-  return { consensusState: undefined, clientId: "", proof: new Uint8Array(0), proofHeight: undefined };
+  return { consensusState: undefined, clientId: '', proof: new Uint8Array(0), proofHeight: undefined };
 }
 
 export const QueryConnectionConsensusStateResponse = {
@@ -859,7 +855,7 @@ export const QueryConnectionConsensusStateResponse = {
     if (message.consensusState !== undefined) {
       Any.encode(message.consensusState, writer.uint32(10).fork()).ldelim();
     }
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(18).string(message.clientId);
     }
     if (message.proof.length !== 0) {
@@ -918,7 +914,7 @@ export const QueryConnectionConsensusStateResponse = {
   fromJSON(object: any): QueryConnectionConsensusStateResponse {
     return {
       consensusState: isSet(object.consensusState) ? Any.fromJSON(object.consensusState) : undefined,
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
       proof: isSet(object.proof) ? bytesFromBase64(object.proof) : new Uint8Array(0),
       proofHeight: isSet(object.proofHeight) ? Height.fromJSON(object.proofHeight) : undefined,
     };
@@ -929,7 +925,7 @@ export const QueryConnectionConsensusStateResponse = {
     if (message.consensusState !== undefined) {
       obj.consensusState = Any.toJSON(message.consensusState);
     }
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     if (message.proof.length !== 0) {
@@ -942,22 +938,24 @@ export const QueryConnectionConsensusStateResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryConnectionConsensusStateResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryConnectionConsensusStateResponse {
     return QueryConnectionConsensusStateResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryConnectionConsensusStateResponse>, I>>(
-    object: I,
+    object: I
   ): QueryConnectionConsensusStateResponse {
     const message = createBaseQueryConnectionConsensusStateResponse();
-    message.consensusState = (object.consensusState !== undefined && object.consensusState !== null)
-      ? Any.fromPartial(object.consensusState)
-      : undefined;
-    message.clientId = object.clientId ?? "";
+    message.consensusState =
+      object.consensusState !== undefined && object.consensusState !== null
+        ? Any.fromPartial(object.consensusState)
+        : undefined;
+    message.clientId = object.clientId ?? '';
     message.proof = object.proof ?? new Uint8Array(0);
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
     return message;
   },
 };
@@ -1056,12 +1054,11 @@ export const QueryConnectionParamsResponse = {
     return QueryConnectionParamsResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryConnectionParamsResponse>, I>>(
-    object: I,
+    object: I
   ): QueryConnectionParamsResponse {
     const message = createBaseQueryConnectionParamsResponse();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -1087,13 +1084,13 @@ export interface Query {
    * connection.
    */
   ConnectionConsensusState(
-    request: QueryConnectionConsensusStateRequest,
+    request: QueryConnectionConsensusStateRequest
   ): Promise<QueryConnectionConsensusStateResponse>;
   /** ConnectionParams queries all parameters of the ibc connection submodule. */
   ConnectionParams(request: QueryConnectionParamsRequest): Promise<QueryConnectionParamsResponse>;
 }
 
-export const QueryServiceName = "ibc.core.connection.v1.Query";
+export const QueryServiceName = 'ibc.core.connection.v1.Query';
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -1109,39 +1106,39 @@ export class QueryClientImpl implements Query {
   }
   Connection(request: QueryConnectionRequest): Promise<QueryConnectionResponse> {
     const data = QueryConnectionRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Connection", data);
+    const promise = this.rpc.request(this.service, 'Connection', data);
     return promise.then((data) => QueryConnectionResponse.decode(_m0.Reader.create(data)));
   }
 
   Connections(request: QueryConnectionsRequest): Promise<QueryConnectionsResponse> {
     const data = QueryConnectionsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Connections", data);
+    const promise = this.rpc.request(this.service, 'Connections', data);
     return promise.then((data) => QueryConnectionsResponse.decode(_m0.Reader.create(data)));
   }
 
   ClientConnections(request: QueryClientConnectionsRequest): Promise<QueryClientConnectionsResponse> {
     const data = QueryClientConnectionsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ClientConnections", data);
+    const promise = this.rpc.request(this.service, 'ClientConnections', data);
     return promise.then((data) => QueryClientConnectionsResponse.decode(_m0.Reader.create(data)));
   }
 
   ConnectionClientState(request: QueryConnectionClientStateRequest): Promise<QueryConnectionClientStateResponse> {
     const data = QueryConnectionClientStateRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConnectionClientState", data);
+    const promise = this.rpc.request(this.service, 'ConnectionClientState', data);
     return promise.then((data) => QueryConnectionClientStateResponse.decode(_m0.Reader.create(data)));
   }
 
   ConnectionConsensusState(
-    request: QueryConnectionConsensusStateRequest,
+    request: QueryConnectionConsensusStateRequest
   ): Promise<QueryConnectionConsensusStateResponse> {
     const data = QueryConnectionConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConnectionConsensusState", data);
+    const promise = this.rpc.request(this.service, 'ConnectionConsensusState', data);
     return promise.then((data) => QueryConnectionConsensusStateResponse.decode(_m0.Reader.create(data)));
   }
 
   ConnectionParams(request: QueryConnectionParamsRequest): Promise<QueryConnectionParamsResponse> {
     const data = QueryConnectionParamsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConnectionParams", data);
+    const promise = this.rpc.request(this.service, 'ConnectionParams', data);
     return promise.then((data) => QueryConnectionParamsResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -1154,24 +1151,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -1184,30 +1181,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

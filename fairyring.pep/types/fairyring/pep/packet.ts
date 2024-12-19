@@ -1,20 +1,18 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { ActivePubKey, QueuedPubKey } from "./pub_key";
+import _m0 from 'protobufjs/minimal';
+import { ActivePubKey, QueuedPubKey } from './pub_key';
 
-export const protobufPackage = "fairyring.pep";
+export const protobufPackage = 'fairyring.pep';
 
 export interface PepPacketData {
   noData?: NoData | undefined;
   currentKeysPacket?: CurrentKeysPacketData | undefined;
 }
 
-export interface NoData {
-}
+export interface NoData {}
 
 /** CurrentKeysPacketData defines a struct for the packet payload */
-export interface CurrentKeysPacketData {
-}
+export interface CurrentKeysPacketData {}
 
 /** CurrentKeysPacketAck defines a struct for the packet acknowledgment */
 export interface CurrentKeysPacketAck {
@@ -92,12 +90,12 @@ export const PepPacketData = {
   },
   fromPartial<I extends Exact<DeepPartial<PepPacketData>, I>>(object: I): PepPacketData {
     const message = createBasePepPacketData();
-    message.noData = (object.noData !== undefined && object.noData !== null)
-      ? NoData.fromPartial(object.noData)
-      : undefined;
-    message.currentKeysPacket = (object.currentKeysPacket !== undefined && object.currentKeysPacket !== null)
-      ? CurrentKeysPacketData.fromPartial(object.currentKeysPacket)
-      : undefined;
+    message.noData =
+      object.noData !== undefined && object.noData !== null ? NoData.fromPartial(object.noData) : undefined;
+    message.currentKeysPacket =
+      object.currentKeysPacket !== undefined && object.currentKeysPacket !== null
+        ? CurrentKeysPacketData.fromPartial(object.currentKeysPacket)
+        : undefined;
     return message;
   },
 };
@@ -256,25 +254,33 @@ export const CurrentKeysPacketAck = {
   },
   fromPartial<I extends Exact<DeepPartial<CurrentKeysPacketAck>, I>>(object: I): CurrentKeysPacketAck {
     const message = createBaseCurrentKeysPacketAck();
-    message.activeKey = (object.activeKey !== undefined && object.activeKey !== null)
-      ? ActivePubKey.fromPartial(object.activeKey)
-      : undefined;
-    message.queuedKey = (object.queuedKey !== undefined && object.queuedKey !== null)
-      ? QueuedPubKey.fromPartial(object.queuedKey)
-      : undefined;
+    message.activeKey =
+      object.activeKey !== undefined && object.activeKey !== null
+        ? ActivePubKey.fromPartial(object.activeKey)
+        : undefined;
+    message.queuedKey =
+      object.queuedKey !== undefined && object.queuedKey !== null
+        ? QueuedPubKey.fromPartial(object.queuedKey)
+        : undefined;
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

@@ -1,11 +1,11 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Coin } from "../../../../cosmos/base/v1beta1/coin";
-import { Height } from "../../../core/client/v1/client";
-import { Params } from "./transfer";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Coin } from '../../../../cosmos/base/v1beta1/coin';
+import { Height } from '../../../core/client/v1/client';
+import { Params } from './transfer';
 
-export const protobufPackage = "ibc.applications.transfer.v1";
+export const protobufPackage = 'ibc.applications.transfer.v1';
 
 /**
  * MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
@@ -18,9 +18,7 @@ export interface MsgTransfer {
   /** the channel by which the packet will be sent */
   sourceChannel: string;
   /** the tokens to be transferred */
-  token:
-    | Coin
-    | undefined;
+  token: Coin | undefined;
   /** the sender address */
   sender: string;
   /** the recipient address on the destination chain */
@@ -29,9 +27,7 @@ export interface MsgTransfer {
    * Timeout height relative to the current block height.
    * The timeout is disabled when set to 0.
    */
-  timeoutHeight:
-    | Height
-    | undefined;
+  timeoutHeight: Height | undefined;
   /**
    * Timeout timestamp in absolute nanoseconds since unix epoch.
    * The timeout is disabled when set to 0.
@@ -63,37 +59,36 @@ export interface MsgUpdateParams {
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
  */
-export interface MsgUpdateParamsResponse {
-}
+export interface MsgUpdateParamsResponse {}
 
 function createBaseMsgTransfer(): MsgTransfer {
   return {
-    sourcePort: "",
-    sourceChannel: "",
+    sourcePort: '',
+    sourceChannel: '',
     token: undefined,
-    sender: "",
-    receiver: "",
+    sender: '',
+    receiver: '',
     timeoutHeight: undefined,
     timeoutTimestamp: 0,
-    memo: "",
+    memo: '',
   };
 }
 
 export const MsgTransfer = {
   encode(message: MsgTransfer, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.sourcePort !== "") {
+    if (message.sourcePort !== '') {
       writer.uint32(10).string(message.sourcePort);
     }
-    if (message.sourceChannel !== "") {
+    if (message.sourceChannel !== '') {
       writer.uint32(18).string(message.sourceChannel);
     }
     if (message.token !== undefined) {
       Coin.encode(message.token, writer.uint32(26).fork()).ldelim();
     }
-    if (message.sender !== "") {
+    if (message.sender !== '') {
       writer.uint32(34).string(message.sender);
     }
-    if (message.receiver !== "") {
+    if (message.receiver !== '') {
       writer.uint32(42).string(message.receiver);
     }
     if (message.timeoutHeight !== undefined) {
@@ -102,7 +97,7 @@ export const MsgTransfer = {
     if (message.timeoutTimestamp !== 0) {
       writer.uint32(56).uint64(message.timeoutTimestamp);
     }
-    if (message.memo !== "") {
+    if (message.memo !== '') {
       writer.uint32(66).string(message.memo);
     }
     return writer;
@@ -182,32 +177,32 @@ export const MsgTransfer = {
 
   fromJSON(object: any): MsgTransfer {
     return {
-      sourcePort: isSet(object.sourcePort) ? String(object.sourcePort) : "",
-      sourceChannel: isSet(object.sourceChannel) ? String(object.sourceChannel) : "",
+      sourcePort: isSet(object.sourcePort) ? String(object.sourcePort) : '',
+      sourceChannel: isSet(object.sourceChannel) ? String(object.sourceChannel) : '',
       token: isSet(object.token) ? Coin.fromJSON(object.token) : undefined,
-      sender: isSet(object.sender) ? String(object.sender) : "",
-      receiver: isSet(object.receiver) ? String(object.receiver) : "",
+      sender: isSet(object.sender) ? String(object.sender) : '',
+      receiver: isSet(object.receiver) ? String(object.receiver) : '',
       timeoutHeight: isSet(object.timeoutHeight) ? Height.fromJSON(object.timeoutHeight) : undefined,
       timeoutTimestamp: isSet(object.timeoutTimestamp) ? Number(object.timeoutTimestamp) : 0,
-      memo: isSet(object.memo) ? String(object.memo) : "",
+      memo: isSet(object.memo) ? String(object.memo) : '',
     };
   },
 
   toJSON(message: MsgTransfer): unknown {
     const obj: any = {};
-    if (message.sourcePort !== "") {
+    if (message.sourcePort !== '') {
       obj.sourcePort = message.sourcePort;
     }
-    if (message.sourceChannel !== "") {
+    if (message.sourceChannel !== '') {
       obj.sourceChannel = message.sourceChannel;
     }
     if (message.token !== undefined) {
       obj.token = Coin.toJSON(message.token);
     }
-    if (message.sender !== "") {
+    if (message.sender !== '') {
       obj.sender = message.sender;
     }
-    if (message.receiver !== "") {
+    if (message.receiver !== '') {
       obj.receiver = message.receiver;
     }
     if (message.timeoutHeight !== undefined) {
@@ -216,7 +211,7 @@ export const MsgTransfer = {
     if (message.timeoutTimestamp !== 0) {
       obj.timeoutTimestamp = Math.round(message.timeoutTimestamp);
     }
-    if (message.memo !== "") {
+    if (message.memo !== '') {
       obj.memo = message.memo;
     }
     return obj;
@@ -227,16 +222,17 @@ export const MsgTransfer = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgTransfer>, I>>(object: I): MsgTransfer {
     const message = createBaseMsgTransfer();
-    message.sourcePort = object.sourcePort ?? "";
-    message.sourceChannel = object.sourceChannel ?? "";
-    message.token = (object.token !== undefined && object.token !== null) ? Coin.fromPartial(object.token) : undefined;
-    message.sender = object.sender ?? "";
-    message.receiver = object.receiver ?? "";
-    message.timeoutHeight = (object.timeoutHeight !== undefined && object.timeoutHeight !== null)
-      ? Height.fromPartial(object.timeoutHeight)
-      : undefined;
+    message.sourcePort = object.sourcePort ?? '';
+    message.sourceChannel = object.sourceChannel ?? '';
+    message.token = object.token !== undefined && object.token !== null ? Coin.fromPartial(object.token) : undefined;
+    message.sender = object.sender ?? '';
+    message.receiver = object.receiver ?? '';
+    message.timeoutHeight =
+      object.timeoutHeight !== undefined && object.timeoutHeight !== null
+        ? Height.fromPartial(object.timeoutHeight)
+        : undefined;
     message.timeoutTimestamp = object.timeoutTimestamp ?? 0;
-    message.memo = object.memo ?? "";
+    message.memo = object.memo ?? '';
     return message;
   },
 };
@@ -299,12 +295,12 @@ export const MsgTransferResponse = {
 };
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { signer: "", params: undefined };
+  return { signer: '', params: undefined };
 }
 
 export const MsgUpdateParams = {
   encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       writer.uint32(10).string(message.signer);
     }
     if (message.params !== undefined) {
@@ -345,14 +341,14 @@ export const MsgUpdateParams = {
 
   fromJSON(object: any): MsgUpdateParams {
     return {
-      signer: isSet(object.signer) ? String(object.signer) : "",
+      signer: isSet(object.signer) ? String(object.signer) : '',
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
     };
   },
 
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       obj.signer = message.signer;
     }
     if (message.params !== undefined) {
@@ -366,10 +362,9 @@ export const MsgUpdateParams = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
-    message.signer = object.signer ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.signer = object.signer ?? '';
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -425,7 +420,7 @@ export interface Msg {
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 
-export const MsgServiceName = "ibc.applications.transfer.v1.Msg";
+export const MsgServiceName = 'ibc.applications.transfer.v1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -437,13 +432,13 @@ export class MsgClientImpl implements Msg {
   }
   Transfer(request: MsgTransfer): Promise<MsgTransferResponse> {
     const data = MsgTransfer.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Transfer", data);
+    const promise = this.rpc.request(this.service, 'Transfer', data);
     return promise.then((data) => MsgTransferResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateParams", data);
+    const promise = this.rpc.request(this.service, 'UpdateParams', data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -456,35 +451,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

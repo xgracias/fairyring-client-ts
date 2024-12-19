@@ -1,11 +1,11 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
-import { Any } from "../../../../google/protobuf/any";
-import { ConsensusStateWithHeight, Height, IdentifiedClientState, Params } from "./client";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { PageRequest, PageResponse } from '../../../../cosmos/base/query/v1beta1/pagination';
+import { Any } from '../../../../google/protobuf/any';
+import { ConsensusStateWithHeight, Height, IdentifiedClientState, Params } from './client';
 
-export const protobufPackage = "ibc.core.client.v1";
+export const protobufPackage = 'ibc.core.client.v1';
 
 /**
  * QueryClientStateRequest is the request type for the Query/ClientState RPC
@@ -23,9 +23,7 @@ export interface QueryClientStateRequest {
  */
 export interface QueryClientStateResponse {
   /** client state associated with the request identifier */
-  clientState:
-    | Any
-    | undefined;
+  clientState: Any | undefined;
   /** merkle proof of existence */
   proof: Uint8Array;
   /** height at which the proof was retrieved */
@@ -77,9 +75,7 @@ export interface QueryConsensusStateRequest {
  */
 export interface QueryConsensusStateResponse {
   /** consensus state associated with the client identifier at the given height */
-  consensusState:
-    | Any
-    | undefined;
+  consensusState: Any | undefined;
   /** merkle proof of existence */
   proof: Uint8Array;
   /** height at which the proof was retrieved */
@@ -151,8 +147,7 @@ export interface QueryClientStatusResponse {
  * QueryClientParamsRequest is the request type for the Query/ClientParams RPC
  * method.
  */
-export interface QueryClientParamsRequest {
-}
+export interface QueryClientParamsRequest {}
 
 /**
  * QueryClientParamsResponse is the response type for the Query/ClientParams RPC
@@ -167,8 +162,7 @@ export interface QueryClientParamsResponse {
  * QueryUpgradedClientStateRequest is the request type for the
  * Query/UpgradedClientState RPC method
  */
-export interface QueryUpgradedClientStateRequest {
-}
+export interface QueryUpgradedClientStateRequest {}
 
 /**
  * QueryUpgradedClientStateResponse is the response type for the
@@ -183,8 +177,7 @@ export interface QueryUpgradedClientStateResponse {
  * QueryUpgradedConsensusStateRequest is the request type for the
  * Query/UpgradedConsensusState RPC method
  */
-export interface QueryUpgradedConsensusStateRequest {
-}
+export interface QueryUpgradedConsensusStateRequest {}
 
 /**
  * QueryUpgradedConsensusStateResponse is the response type for the
@@ -196,12 +189,12 @@ export interface QueryUpgradedConsensusStateResponse {
 }
 
 function createBaseQueryClientStateRequest(): QueryClientStateRequest {
-  return { clientId: "" };
+  return { clientId: '' };
 }
 
 export const QueryClientStateRequest = {
   encode(message: QueryClientStateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     return writer;
@@ -231,12 +224,12 @@ export const QueryClientStateRequest = {
   },
 
   fromJSON(object: any): QueryClientStateRequest {
-    return { clientId: isSet(object.clientId) ? String(object.clientId) : "" };
+    return { clientId: isSet(object.clientId) ? String(object.clientId) : '' };
   },
 
   toJSON(message: QueryClientStateRequest): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     return obj;
@@ -247,7 +240,7 @@ export const QueryClientStateRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryClientStateRequest>, I>>(object: I): QueryClientStateRequest {
     const message = createBaseQueryClientStateRequest();
-    message.clientId = object.clientId ?? "";
+    message.clientId = object.clientId ?? '';
     return message;
   },
 };
@@ -334,13 +327,13 @@ export const QueryClientStateResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryClientStateResponse>, I>>(object: I): QueryClientStateResponse {
     const message = createBaseQueryClientStateResponse();
-    message.clientState = (object.clientState !== undefined && object.clientState !== null)
-      ? Any.fromPartial(object.clientState)
-      : undefined;
+    message.clientState =
+      object.clientState !== undefined && object.clientState !== null ? Any.fromPartial(object.clientState) : undefined;
     message.proof = object.proof ?? new Uint8Array(0);
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
     return message;
   },
 };
@@ -397,9 +390,10 @@ export const QueryClientStatesRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryClientStatesRequest>, I>>(object: I): QueryClientStatesRequest {
     const message = createBaseQueryClientStatesRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -475,20 +469,21 @@ export const QueryClientStatesResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryClientStatesResponse>, I>>(object: I): QueryClientStatesResponse {
     const message = createBaseQueryClientStatesResponse();
     message.clientStates = object.clientStates?.map((e) => IdentifiedClientState.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryConsensusStateRequest(): QueryConsensusStateRequest {
-  return { clientId: "", revisionNumber: 0, revisionHeight: 0, latestHeight: false };
+  return { clientId: '', revisionNumber: 0, revisionHeight: 0, latestHeight: false };
 }
 
 export const QueryConsensusStateRequest = {
   encode(message: QueryConsensusStateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     if (message.revisionNumber !== 0) {
@@ -549,7 +544,7 @@ export const QueryConsensusStateRequest = {
 
   fromJSON(object: any): QueryConsensusStateRequest {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
       revisionNumber: isSet(object.revisionNumber) ? Number(object.revisionNumber) : 0,
       revisionHeight: isSet(object.revisionHeight) ? Number(object.revisionHeight) : 0,
       latestHeight: isSet(object.latestHeight) ? Boolean(object.latestHeight) : false,
@@ -558,7 +553,7 @@ export const QueryConsensusStateRequest = {
 
   toJSON(message: QueryConsensusStateRequest): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     if (message.revisionNumber !== 0) {
@@ -578,7 +573,7 @@ export const QueryConsensusStateRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryConsensusStateRequest>, I>>(object: I): QueryConsensusStateRequest {
     const message = createBaseQueryConsensusStateRequest();
-    message.clientId = object.clientId ?? "";
+    message.clientId = object.clientId ?? '';
     message.revisionNumber = object.revisionNumber ?? 0;
     message.revisionHeight = object.revisionHeight ?? 0;
     message.latestHeight = object.latestHeight ?? false;
@@ -668,24 +663,26 @@ export const QueryConsensusStateResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryConsensusStateResponse>, I>>(object: I): QueryConsensusStateResponse {
     const message = createBaseQueryConsensusStateResponse();
-    message.consensusState = (object.consensusState !== undefined && object.consensusState !== null)
-      ? Any.fromPartial(object.consensusState)
-      : undefined;
+    message.consensusState =
+      object.consensusState !== undefined && object.consensusState !== null
+        ? Any.fromPartial(object.consensusState)
+        : undefined;
     message.proof = object.proof ?? new Uint8Array(0);
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryConsensusStatesRequest(): QueryConsensusStatesRequest {
-  return { clientId: "", pagination: undefined };
+  return { clientId: '', pagination: undefined };
 }
 
 export const QueryConsensusStatesRequest = {
   encode(message: QueryConsensusStatesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     if (message.pagination !== undefined) {
@@ -726,14 +723,14 @@ export const QueryConsensusStatesRequest = {
 
   fromJSON(object: any): QueryConsensusStatesRequest {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
   toJSON(message: QueryConsensusStatesRequest): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     if (message.pagination !== undefined) {
@@ -747,10 +744,11 @@ export const QueryConsensusStatesRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryConsensusStatesRequest>, I>>(object: I): QueryConsensusStatesRequest {
     const message = createBaseQueryConsensusStatesRequest();
-    message.clientId = object.clientId ?? "";
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.clientId = object.clientId ?? '';
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -826,20 +824,21 @@ export const QueryConsensusStatesResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryConsensusStatesResponse>, I>>(object: I): QueryConsensusStatesResponse {
     const message = createBaseQueryConsensusStatesResponse();
     message.consensusStates = object.consensusStates?.map((e) => ConsensusStateWithHeight.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryConsensusStateHeightsRequest(): QueryConsensusStateHeightsRequest {
-  return { clientId: "", pagination: undefined };
+  return { clientId: '', pagination: undefined };
 }
 
 export const QueryConsensusStateHeightsRequest = {
   encode(message: QueryConsensusStateHeightsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     if (message.pagination !== undefined) {
@@ -880,14 +879,14 @@ export const QueryConsensusStateHeightsRequest = {
 
   fromJSON(object: any): QueryConsensusStateHeightsRequest {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
   toJSON(message: QueryConsensusStateHeightsRequest): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     if (message.pagination !== undefined) {
@@ -897,18 +896,19 @@ export const QueryConsensusStateHeightsRequest = {
   },
 
   create<I extends Exact<DeepPartial<QueryConsensusStateHeightsRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryConsensusStateHeightsRequest {
     return QueryConsensusStateHeightsRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryConsensusStateHeightsRequest>, I>>(
-    object: I,
+    object: I
   ): QueryConsensusStateHeightsRequest {
     const message = createBaseQueryConsensusStateHeightsRequest();
-    message.clientId = object.clientId ?? "";
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.clientId = object.clientId ?? '';
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -979,29 +979,30 @@ export const QueryConsensusStateHeightsResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryConsensusStateHeightsResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryConsensusStateHeightsResponse {
     return QueryConsensusStateHeightsResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryConsensusStateHeightsResponse>, I>>(
-    object: I,
+    object: I
   ): QueryConsensusStateHeightsResponse {
     const message = createBaseQueryConsensusStateHeightsResponse();
     message.consensusStateHeights = object.consensusStateHeights?.map((e) => Height.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryClientStatusRequest(): QueryClientStatusRequest {
-  return { clientId: "" };
+  return { clientId: '' };
 }
 
 export const QueryClientStatusRequest = {
   encode(message: QueryClientStatusRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     return writer;
@@ -1031,12 +1032,12 @@ export const QueryClientStatusRequest = {
   },
 
   fromJSON(object: any): QueryClientStatusRequest {
-    return { clientId: isSet(object.clientId) ? String(object.clientId) : "" };
+    return { clientId: isSet(object.clientId) ? String(object.clientId) : '' };
   },
 
   toJSON(message: QueryClientStatusRequest): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     return obj;
@@ -1047,18 +1048,18 @@ export const QueryClientStatusRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryClientStatusRequest>, I>>(object: I): QueryClientStatusRequest {
     const message = createBaseQueryClientStatusRequest();
-    message.clientId = object.clientId ?? "";
+    message.clientId = object.clientId ?? '';
     return message;
   },
 };
 
 function createBaseQueryClientStatusResponse(): QueryClientStatusResponse {
-  return { status: "" };
+  return { status: '' };
 }
 
 export const QueryClientStatusResponse = {
   encode(message: QueryClientStatusResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.status !== "") {
+    if (message.status !== '') {
       writer.uint32(10).string(message.status);
     }
     return writer;
@@ -1088,12 +1089,12 @@ export const QueryClientStatusResponse = {
   },
 
   fromJSON(object: any): QueryClientStatusResponse {
-    return { status: isSet(object.status) ? String(object.status) : "" };
+    return { status: isSet(object.status) ? String(object.status) : '' };
   },
 
   toJSON(message: QueryClientStatusResponse): unknown {
     const obj: any = {};
-    if (message.status !== "") {
+    if (message.status !== '') {
       obj.status = message.status;
     }
     return obj;
@@ -1104,7 +1105,7 @@ export const QueryClientStatusResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryClientStatusResponse>, I>>(object: I): QueryClientStatusResponse {
     const message = createBaseQueryClientStatusResponse();
-    message.status = object.status ?? "";
+    message.status = object.status ?? '';
     return message;
   },
 };
@@ -1204,9 +1205,8 @@ export const QueryClientParamsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryClientParamsResponse>, I>>(object: I): QueryClientParamsResponse {
     const message = createBaseQueryClientParamsResponse();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -1304,17 +1304,18 @@ export const QueryUpgradedClientStateResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryUpgradedClientStateResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryUpgradedClientStateResponse {
     return QueryUpgradedClientStateResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryUpgradedClientStateResponse>, I>>(
-    object: I,
+    object: I
   ): QueryUpgradedClientStateResponse {
     const message = createBaseQueryUpgradedClientStateResponse();
-    message.upgradedClientState = (object.upgradedClientState !== undefined && object.upgradedClientState !== null)
-      ? Any.fromPartial(object.upgradedClientState)
-      : undefined;
+    message.upgradedClientState =
+      object.upgradedClientState !== undefined && object.upgradedClientState !== null
+        ? Any.fromPartial(object.upgradedClientState)
+        : undefined;
     return message;
   },
 };
@@ -1354,12 +1355,12 @@ export const QueryUpgradedConsensusStateRequest = {
   },
 
   create<I extends Exact<DeepPartial<QueryUpgradedConsensusStateRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryUpgradedConsensusStateRequest {
     return QueryUpgradedConsensusStateRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryUpgradedConsensusStateRequest>, I>>(
-    _: I,
+    _: I
   ): QueryUpgradedConsensusStateRequest {
     const message = createBaseQueryUpgradedConsensusStateRequest();
     return message;
@@ -1418,16 +1419,16 @@ export const QueryUpgradedConsensusStateResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryUpgradedConsensusStateResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryUpgradedConsensusStateResponse {
     return QueryUpgradedConsensusStateResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryUpgradedConsensusStateResponse>, I>>(
-    object: I,
+    object: I
   ): QueryUpgradedConsensusStateResponse {
     const message = createBaseQueryUpgradedConsensusStateResponse();
     message.upgradedConsensusState =
-      (object.upgradedConsensusState !== undefined && object.upgradedConsensusState !== null)
+      object.upgradedConsensusState !== undefined && object.upgradedConsensusState !== null
         ? Any.fromPartial(object.upgradedConsensusState)
         : undefined;
     return message;
@@ -1462,7 +1463,7 @@ export interface Query {
   UpgradedConsensusState(request: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse>;
 }
 
-export const QueryServiceName = "ibc.core.client.v1.Query";
+export const QueryServiceName = 'ibc.core.client.v1.Query';
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -1481,55 +1482,55 @@ export class QueryClientImpl implements Query {
   }
   ClientState(request: QueryClientStateRequest): Promise<QueryClientStateResponse> {
     const data = QueryClientStateRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ClientState", data);
+    const promise = this.rpc.request(this.service, 'ClientState', data);
     return promise.then((data) => QueryClientStateResponse.decode(_m0.Reader.create(data)));
   }
 
   ClientStates(request: QueryClientStatesRequest): Promise<QueryClientStatesResponse> {
     const data = QueryClientStatesRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ClientStates", data);
+    const promise = this.rpc.request(this.service, 'ClientStates', data);
     return promise.then((data) => QueryClientStatesResponse.decode(_m0.Reader.create(data)));
   }
 
   ConsensusState(request: QueryConsensusStateRequest): Promise<QueryConsensusStateResponse> {
     const data = QueryConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConsensusState", data);
+    const promise = this.rpc.request(this.service, 'ConsensusState', data);
     return promise.then((data) => QueryConsensusStateResponse.decode(_m0.Reader.create(data)));
   }
 
   ConsensusStates(request: QueryConsensusStatesRequest): Promise<QueryConsensusStatesResponse> {
     const data = QueryConsensusStatesRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConsensusStates", data);
+    const promise = this.rpc.request(this.service, 'ConsensusStates', data);
     return promise.then((data) => QueryConsensusStatesResponse.decode(_m0.Reader.create(data)));
   }
 
   ConsensusStateHeights(request: QueryConsensusStateHeightsRequest): Promise<QueryConsensusStateHeightsResponse> {
     const data = QueryConsensusStateHeightsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConsensusStateHeights", data);
+    const promise = this.rpc.request(this.service, 'ConsensusStateHeights', data);
     return promise.then((data) => QueryConsensusStateHeightsResponse.decode(_m0.Reader.create(data)));
   }
 
   ClientStatus(request: QueryClientStatusRequest): Promise<QueryClientStatusResponse> {
     const data = QueryClientStatusRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ClientStatus", data);
+    const promise = this.rpc.request(this.service, 'ClientStatus', data);
     return promise.then((data) => QueryClientStatusResponse.decode(_m0.Reader.create(data)));
   }
 
   ClientParams(request: QueryClientParamsRequest): Promise<QueryClientParamsResponse> {
     const data = QueryClientParamsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ClientParams", data);
+    const promise = this.rpc.request(this.service, 'ClientParams', data);
     return promise.then((data) => QueryClientParamsResponse.decode(_m0.Reader.create(data)));
   }
 
   UpgradedClientState(request: QueryUpgradedClientStateRequest): Promise<QueryUpgradedClientStateResponse> {
     const data = QueryUpgradedClientStateRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpgradedClientState", data);
+    const promise = this.rpc.request(this.service, 'UpgradedClientState', data);
     return promise.then((data) => QueryUpgradedClientStateResponse.decode(_m0.Reader.create(data)));
   }
 
   UpgradedConsensusState(request: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse> {
     const data = QueryUpgradedConsensusStateRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpgradedConsensusState", data);
+    const promise = this.rpc.request(this.service, 'UpgradedConsensusState', data);
     return promise.then((data) => QueryUpgradedConsensusStateResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -1542,24 +1543,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -1572,30 +1573,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

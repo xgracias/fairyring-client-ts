@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Coin } from "../../../../cosmos/base/v1beta1/coin";
-import { PacketId } from "../../../core/channel/v1/channel";
+import _m0 from 'protobufjs/minimal';
+import { Coin } from '../../../../cosmos/base/v1beta1/coin';
+import { PacketId } from '../../../core/channel/v1/channel';
 
-export const protobufPackage = "ibc.applications.fee.v1";
+export const protobufPackage = 'ibc.applications.fee.v1';
 
 /** Fee defines the ICS29 receive, acknowledgement and timeout fees */
 export interface Fee {
@@ -18,9 +18,7 @@ export interface Fee {
 /** PacketFee contains ICS29 relayer fees, refund address and optional list of permitted relayers */
 export interface PacketFee {
   /** fee encapsulates the recv, ack and timeout fees associated with an IBC packet */
-  fee:
-    | Fee
-    | undefined;
+  fee: Fee | undefined;
   /** the refund address for unspent fees */
   refundAddress: string;
   /** optional list of relayers permitted to receive fees */
@@ -36,9 +34,7 @@ export interface PacketFees {
 /** IdentifiedPacketFees contains a list of type PacketFee and associated PacketId */
 export interface IdentifiedPacketFees {
   /** unique packet identifier comprised of the channel ID, port ID and sequence */
-  packetId:
-    | PacketId
-    | undefined;
+  packetId: PacketId | undefined;
   /** list of packet fees */
   packetFees: PacketFee[];
 }
@@ -133,7 +129,7 @@ export const Fee = {
 };
 
 function createBasePacketFee(): PacketFee {
-  return { fee: undefined, refundAddress: "", relayers: [] };
+  return { fee: undefined, refundAddress: '', relayers: [] };
 }
 
 export const PacketFee = {
@@ -141,7 +137,7 @@ export const PacketFee = {
     if (message.fee !== undefined) {
       Fee.encode(message.fee, writer.uint32(10).fork()).ldelim();
     }
-    if (message.refundAddress !== "") {
+    if (message.refundAddress !== '') {
       writer.uint32(18).string(message.refundAddress);
     }
     for (const v of message.relayers) {
@@ -190,7 +186,7 @@ export const PacketFee = {
   fromJSON(object: any): PacketFee {
     return {
       fee: isSet(object.fee) ? Fee.fromJSON(object.fee) : undefined,
-      refundAddress: isSet(object.refundAddress) ? String(object.refundAddress) : "",
+      refundAddress: isSet(object.refundAddress) ? String(object.refundAddress) : '',
       relayers: Array.isArray(object?.relayers) ? object.relayers.map((e: any) => String(e)) : [],
     };
   },
@@ -200,7 +196,7 @@ export const PacketFee = {
     if (message.fee !== undefined) {
       obj.fee = Fee.toJSON(message.fee);
     }
-    if (message.refundAddress !== "") {
+    if (message.refundAddress !== '') {
       obj.refundAddress = message.refundAddress;
     }
     if (message.relayers?.length) {
@@ -214,8 +210,8 @@ export const PacketFee = {
   },
   fromPartial<I extends Exact<DeepPartial<PacketFee>, I>>(object: I): PacketFee {
     const message = createBasePacketFee();
-    message.fee = (object.fee !== undefined && object.fee !== null) ? Fee.fromPartial(object.fee) : undefined;
-    message.refundAddress = object.refundAddress ?? "";
+    message.fee = object.fee !== undefined && object.fee !== null ? Fee.fromPartial(object.fee) : undefined;
+    message.refundAddress = object.refundAddress ?? '';
     message.relayers = object.relayers?.map((e) => e) || [];
     return message;
   },
@@ -348,9 +344,8 @@ export const IdentifiedPacketFees = {
   },
   fromPartial<I extends Exact<DeepPartial<IdentifiedPacketFees>, I>>(object: I): IdentifiedPacketFees {
     const message = createBaseIdentifiedPacketFees();
-    message.packetId = (object.packetId !== undefined && object.packetId !== null)
-      ? PacketId.fromPartial(object.packetId)
-      : undefined;
+    message.packetId =
+      object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
     message.packetFees = object.packetFees?.map((e) => PacketFee.fromPartial(e)) || [];
     return message;
   },
@@ -358,13 +353,19 @@ export const IdentifiedPacketFees = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

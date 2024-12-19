@@ -1,7 +1,7 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
+import _m0 from 'protobufjs/minimal';
 
-export const protobufPackage = "ibc.applications.fee.v1";
+export const protobufPackage = 'ibc.applications.fee.v1';
 
 /**
  * Metadata defines the ICS29 channel specific metadata encoded into the channel version bytestring
@@ -15,15 +15,15 @@ export interface Metadata {
 }
 
 function createBaseMetadata(): Metadata {
-  return { feeVersion: "", appVersion: "" };
+  return { feeVersion: '', appVersion: '' };
 }
 
 export const Metadata = {
   encode(message: Metadata, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.feeVersion !== "") {
+    if (message.feeVersion !== '') {
       writer.uint32(10).string(message.feeVersion);
     }
-    if (message.appVersion !== "") {
+    if (message.appVersion !== '') {
       writer.uint32(18).string(message.appVersion);
     }
     return writer;
@@ -61,17 +61,17 @@ export const Metadata = {
 
   fromJSON(object: any): Metadata {
     return {
-      feeVersion: isSet(object.feeVersion) ? String(object.feeVersion) : "",
-      appVersion: isSet(object.appVersion) ? String(object.appVersion) : "",
+      feeVersion: isSet(object.feeVersion) ? String(object.feeVersion) : '',
+      appVersion: isSet(object.appVersion) ? String(object.appVersion) : '',
     };
   },
 
   toJSON(message: Metadata): unknown {
     const obj: any = {};
-    if (message.feeVersion !== "") {
+    if (message.feeVersion !== '') {
       obj.feeVersion = message.feeVersion;
     }
-    if (message.appVersion !== "") {
+    if (message.appVersion !== '') {
       obj.appVersion = message.appVersion;
     }
     return obj;
@@ -82,21 +82,27 @@ export const Metadata = {
   },
   fromPartial<I extends Exact<DeepPartial<Metadata>, I>>(object: I): Metadata {
     const message = createBaseMetadata();
-    message.feeVersion = object.feeVersion ?? "";
-    message.appVersion = object.appVersion ?? "";
+    message.feeVersion = object.feeVersion ?? '';
+    message.appVersion = object.appVersion ?? '';
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

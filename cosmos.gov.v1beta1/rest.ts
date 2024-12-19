@@ -10,14 +10,14 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface Coin {
@@ -52,12 +52,12 @@ export interface PageResponse {
 }
 
 export enum ProposalStatus {
-  PROPOSAL_STATUS_UNSPECIFIED = "PROPOSAL_STATUS_UNSPECIFIED",
-  PROPOSAL_STATUS_DEPOSIT_PERIOD = "PROPOSAL_STATUS_DEPOSIT_PERIOD",
-  PROPOSAL_STATUS_VOTING_PERIOD = "PROPOSAL_STATUS_VOTING_PERIOD",
-  PROPOSAL_STATUS_PASSED = "PROPOSAL_STATUS_PASSED",
-  PROPOSAL_STATUS_REJECTED = "PROPOSAL_STATUS_REJECTED",
-  PROPOSAL_STATUS_FAILED = "PROPOSAL_STATUS_FAILED",
+  PROPOSAL_STATUS_UNSPECIFIED = 'PROPOSAL_STATUS_UNSPECIFIED',
+  PROPOSAL_STATUS_DEPOSIT_PERIOD = 'PROPOSAL_STATUS_DEPOSIT_PERIOD',
+  PROPOSAL_STATUS_VOTING_PERIOD = 'PROPOSAL_STATUS_VOTING_PERIOD',
+  PROPOSAL_STATUS_PASSED = 'PROPOSAL_STATUS_PASSED',
+  PROPOSAL_STATUS_REJECTED = 'PROPOSAL_STATUS_REJECTED',
+  PROPOSAL_STATUS_FAILED = 'PROPOSAL_STATUS_FAILED',
 }
 
 export interface QueryDepositResponse {
@@ -78,14 +78,14 @@ export interface QueryParamsResponse {
 export interface QueryProposalResponse {
   proposal?: {
     proposal_id?: string;
-    content?: { "@type"?: string };
+    content?: { '@type'?: string };
     status?:
-      | "PROPOSAL_STATUS_UNSPECIFIED"
-      | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
-      | "PROPOSAL_STATUS_VOTING_PERIOD"
-      | "PROPOSAL_STATUS_PASSED"
-      | "PROPOSAL_STATUS_REJECTED"
-      | "PROPOSAL_STATUS_FAILED";
+      | 'PROPOSAL_STATUS_UNSPECIFIED'
+      | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
+      | 'PROPOSAL_STATUS_VOTING_PERIOD'
+      | 'PROPOSAL_STATUS_PASSED'
+      | 'PROPOSAL_STATUS_REJECTED'
+      | 'PROPOSAL_STATUS_FAILED';
     final_tally_result?: { yes?: string; abstain?: string; no?: string; no_with_veto?: string; encrypted?: string };
     submit_time?: string;
     deposit_end_time?: string;
@@ -102,14 +102,14 @@ export interface QueryProposalResponse {
 export interface QueryProposalsResponse {
   proposals?: {
     proposal_id?: string;
-    content?: { "@type"?: string };
+    content?: { '@type'?: string };
     status?:
-      | "PROPOSAL_STATUS_UNSPECIFIED"
-      | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
-      | "PROPOSAL_STATUS_VOTING_PERIOD"
-      | "PROPOSAL_STATUS_PASSED"
-      | "PROPOSAL_STATUS_REJECTED"
-      | "PROPOSAL_STATUS_FAILED";
+      | 'PROPOSAL_STATUS_UNSPECIFIED'
+      | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
+      | 'PROPOSAL_STATUS_VOTING_PERIOD'
+      | 'PROPOSAL_STATUS_PASSED'
+      | 'PROPOSAL_STATUS_REJECTED'
+      | 'PROPOSAL_STATUS_FAILED';
     final_tally_result?: { yes?: string; abstain?: string; no?: string; no_with_veto?: string; encrypted?: string };
     submit_time?: string;
     deposit_end_time?: string;
@@ -133,20 +133,20 @@ export interface QueryVoteResponse {
     proposal_id?: string;
     voter?: string;
     option?:
-      | "VOTE_OPTION_UNSPECIFIED"
-      | "VOTE_OPTION_YES"
-      | "VOTE_OPTION_ABSTAIN"
-      | "VOTE_OPTION_NO"
-      | "VOTE_OPTION_NO_WITH_VETO"
-      | "VOTE_OPTION_ENCRYPTED";
+      | 'VOTE_OPTION_UNSPECIFIED'
+      | 'VOTE_OPTION_YES'
+      | 'VOTE_OPTION_ABSTAIN'
+      | 'VOTE_OPTION_NO'
+      | 'VOTE_OPTION_NO_WITH_VETO'
+      | 'VOTE_OPTION_ENCRYPTED';
     options?: {
       option?:
-        | "VOTE_OPTION_UNSPECIFIED"
-        | "VOTE_OPTION_YES"
-        | "VOTE_OPTION_ABSTAIN"
-        | "VOTE_OPTION_NO"
-        | "VOTE_OPTION_NO_WITH_VETO"
-        | "VOTE_OPTION_ENCRYPTED";
+        | 'VOTE_OPTION_UNSPECIFIED'
+        | 'VOTE_OPTION_YES'
+        | 'VOTE_OPTION_ABSTAIN'
+        | 'VOTE_OPTION_NO'
+        | 'VOTE_OPTION_NO_WITH_VETO'
+        | 'VOTE_OPTION_ENCRYPTED';
       weight?: string;
     }[];
     encrypted_vote_data?: string;
@@ -158,20 +158,20 @@ export interface QueryVotesResponse {
     proposal_id?: string;
     voter?: string;
     option?:
-      | "VOTE_OPTION_UNSPECIFIED"
-      | "VOTE_OPTION_YES"
-      | "VOTE_OPTION_ABSTAIN"
-      | "VOTE_OPTION_NO"
-      | "VOTE_OPTION_NO_WITH_VETO"
-      | "VOTE_OPTION_ENCRYPTED";
+      | 'VOTE_OPTION_UNSPECIFIED'
+      | 'VOTE_OPTION_YES'
+      | 'VOTE_OPTION_ABSTAIN'
+      | 'VOTE_OPTION_NO'
+      | 'VOTE_OPTION_NO_WITH_VETO'
+      | 'VOTE_OPTION_ENCRYPTED';
     options?: {
       option?:
-        | "VOTE_OPTION_UNSPECIFIED"
-        | "VOTE_OPTION_YES"
-        | "VOTE_OPTION_ABSTAIN"
-        | "VOTE_OPTION_NO"
-        | "VOTE_OPTION_NO_WITH_VETO"
-        | "VOTE_OPTION_ENCRYPTED";
+        | 'VOTE_OPTION_UNSPECIFIED'
+        | 'VOTE_OPTION_YES'
+        | 'VOTE_OPTION_ABSTAIN'
+        | 'VOTE_OPTION_NO'
+        | 'VOTE_OPTION_NO_WITH_VETO'
+        | 'VOTE_OPTION_ENCRYPTED';
       weight?: string;
     }[];
     encrypted_vote_data?: string;
@@ -191,12 +191,12 @@ export interface TallyParams {
 }
 
 export enum VoteOption {
-  VOTE_OPTION_UNSPECIFIED = "VOTE_OPTION_UNSPECIFIED",
-  VOTE_OPTION_YES = "VOTE_OPTION_YES",
-  VOTE_OPTION_ABSTAIN = "VOTE_OPTION_ABSTAIN",
-  VOTE_OPTION_NO = "VOTE_OPTION_NO",
-  VOTE_OPTION_NO_WITH_VETO = "VOTE_OPTION_NO_WITH_VETO",
-  VOTE_OPTION_ENCRYPTED = "VOTE_OPTION_ENCRYPTED",
+  VOTE_OPTION_UNSPECIFIED = 'VOTE_OPTION_UNSPECIFIED',
+  VOTE_OPTION_YES = 'VOTE_OPTION_YES',
+  VOTE_OPTION_ABSTAIN = 'VOTE_OPTION_ABSTAIN',
+  VOTE_OPTION_NO = 'VOTE_OPTION_NO',
+  VOTE_OPTION_NO_WITH_VETO = 'VOTE_OPTION_NO_WITH_VETO',
+  VOTE_OPTION_ENCRYPTED = 'VOTE_OPTION_ENCRYPTED',
 }
 
 export interface VotingParams {
@@ -205,12 +205,12 @@ export interface VotingParams {
 
 export interface WeightedVoteOption {
   option?:
-    | "VOTE_OPTION_UNSPECIFIED"
-    | "VOTE_OPTION_YES"
-    | "VOTE_OPTION_ABSTAIN"
-    | "VOTE_OPTION_NO"
-    | "VOTE_OPTION_NO_WITH_VETO"
-    | "VOTE_OPTION_ENCRYPTED";
+    | 'VOTE_OPTION_UNSPECIFIED'
+    | 'VOTE_OPTION_YES'
+    | 'VOTE_OPTION_ABSTAIN'
+    | 'VOTE_OPTION_NO'
+    | 'VOTE_OPTION_NO_WITH_VETO'
+    | 'VOTE_OPTION_ENCRYPTED';
   weight?: string;
 }
 
@@ -224,14 +224,14 @@ export interface V1Beta1Deposit {
 export interface V1Beta1Proposal {
   /** @format uint64 */
   proposal_id?: string;
-  content?: { "@type"?: string };
+  content?: { '@type'?: string };
   status?:
-    | "PROPOSAL_STATUS_UNSPECIFIED"
-    | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
-    | "PROPOSAL_STATUS_VOTING_PERIOD"
-    | "PROPOSAL_STATUS_PASSED"
-    | "PROPOSAL_STATUS_REJECTED"
-    | "PROPOSAL_STATUS_FAILED";
+    | 'PROPOSAL_STATUS_UNSPECIFIED'
+    | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
+    | 'PROPOSAL_STATUS_VOTING_PERIOD'
+    | 'PROPOSAL_STATUS_PASSED'
+    | 'PROPOSAL_STATUS_REJECTED'
+    | 'PROPOSAL_STATUS_FAILED';
   final_tally_result?: { yes?: string; abstain?: string; no?: string; no_with_veto?: string; encrypted?: string };
 
   /** @format date-time */
@@ -265,20 +265,20 @@ export interface V1Beta1Vote {
   proposal_id?: string;
   voter?: string;
   option?:
-    | "VOTE_OPTION_UNSPECIFIED"
-    | "VOTE_OPTION_YES"
-    | "VOTE_OPTION_ABSTAIN"
-    | "VOTE_OPTION_NO"
-    | "VOTE_OPTION_NO_WITH_VETO"
-    | "VOTE_OPTION_ENCRYPTED";
+    | 'VOTE_OPTION_UNSPECIFIED'
+    | 'VOTE_OPTION_YES'
+    | 'VOTE_OPTION_ABSTAIN'
+    | 'VOTE_OPTION_NO'
+    | 'VOTE_OPTION_NO_WITH_VETO'
+    | 'VOTE_OPTION_ENCRYPTED';
   options?: {
     option?:
-      | "VOTE_OPTION_UNSPECIFIED"
-      | "VOTE_OPTION_YES"
-      | "VOTE_OPTION_ABSTAIN"
-      | "VOTE_OPTION_NO"
-      | "VOTE_OPTION_NO_WITH_VETO"
-      | "VOTE_OPTION_ENCRYPTED";
+      | 'VOTE_OPTION_UNSPECIFIED'
+      | 'VOTE_OPTION_YES'
+      | 'VOTE_OPTION_ABSTAIN'
+      | 'VOTE_OPTION_NO'
+      | 'VOTE_OPTION_NO_WITH_VETO'
+      | 'VOTE_OPTION_ENCRYPTED';
     weight?: string;
   }[];
   encrypted_vote_data?: string;
@@ -297,11 +297,11 @@ export type MsgVoteResponse = object;
 
 export type MsgVoteWeightedResponse = object;
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -316,31 +316,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -370,9 +370,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -388,15 +388,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -406,7 +406,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -435,10 +435,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         deposit_params?: { min_deposit?: { denom?: string; amount?: string }[]; max_deposit_period?: string };
         tally_params?: { quorum?: string; threshold?: string; veto_threshold?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/gov/v1beta1/params/${paramsType}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -452,34 +452,34 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryProposals = (
     query?: {
       proposal_status?:
-        | "PROPOSAL_STATUS_UNSPECIFIED"
-        | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
-        | "PROPOSAL_STATUS_VOTING_PERIOD"
-        | "PROPOSAL_STATUS_PASSED"
-        | "PROPOSAL_STATUS_REJECTED"
-        | "PROPOSAL_STATUS_FAILED";
+        | 'PROPOSAL_STATUS_UNSPECIFIED'
+        | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
+        | 'PROPOSAL_STATUS_VOTING_PERIOD'
+        | 'PROPOSAL_STATUS_PASSED'
+        | 'PROPOSAL_STATUS_REJECTED'
+        | 'PROPOSAL_STATUS_FAILED';
       voter?: string;
       depositor?: string;
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         proposals?: {
           proposal_id?: string;
-          content?: { "@type"?: string };
+          content?: { '@type'?: string };
           status?:
-            | "PROPOSAL_STATUS_UNSPECIFIED"
-            | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
-            | "PROPOSAL_STATUS_VOTING_PERIOD"
-            | "PROPOSAL_STATUS_PASSED"
-            | "PROPOSAL_STATUS_REJECTED"
-            | "PROPOSAL_STATUS_FAILED";
+            | 'PROPOSAL_STATUS_UNSPECIFIED'
+            | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
+            | 'PROPOSAL_STATUS_VOTING_PERIOD'
+            | 'PROPOSAL_STATUS_PASSED'
+            | 'PROPOSAL_STATUS_REJECTED'
+            | 'PROPOSAL_STATUS_FAILED';
           final_tally_result?: {
             yes?: string;
             abstain?: string;
@@ -499,10 +499,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/gov/v1beta1/proposals`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -519,14 +519,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       {
         proposal?: {
           proposal_id?: string;
-          content?: { "@type"?: string };
+          content?: { '@type'?: string };
           status?:
-            | "PROPOSAL_STATUS_UNSPECIFIED"
-            | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
-            | "PROPOSAL_STATUS_VOTING_PERIOD"
-            | "PROPOSAL_STATUS_PASSED"
-            | "PROPOSAL_STATUS_REJECTED"
-            | "PROPOSAL_STATUS_FAILED";
+            | 'PROPOSAL_STATUS_UNSPECIFIED'
+            | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
+            | 'PROPOSAL_STATUS_VOTING_PERIOD'
+            | 'PROPOSAL_STATUS_PASSED'
+            | 'PROPOSAL_STATUS_REJECTED'
+            | 'PROPOSAL_STATUS_FAILED';
           final_tally_result?: {
             yes?: string;
             abstain?: string;
@@ -545,10 +545,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           aggr_keyshare?: string;
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/gov/v1beta1/proposals/${proposalId}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -562,23 +562,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDeposits = (
     proposalId: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         deposits?: { proposal_id?: string; depositor?: string; amount?: { denom?: string; amount?: string }[] }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/gov/v1beta1/proposals/${proposalId}/deposits`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -593,10 +593,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDeposit = (proposalId: string, depositor: string, params: RequestParams = {}) =>
     this.request<
       { deposit?: { proposal_id?: string; depositor?: string; amount?: { denom?: string; amount?: string }[] } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/gov/v1beta1/proposals/${proposalId}/deposits/${depositor}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -610,10 +610,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryTallyResult = (proposalId: string, params: RequestParams = {}) =>
     this.request<
       { tally?: { yes?: string; abstain?: string; no?: string; no_with_veto?: string; encrypted?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/gov/v1beta1/proposals/${proposalId}/tally`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -627,13 +627,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryVotes = (
     proposalId: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -641,30 +641,30 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           proposal_id?: string;
           voter?: string;
           option?:
-            | "VOTE_OPTION_UNSPECIFIED"
-            | "VOTE_OPTION_YES"
-            | "VOTE_OPTION_ABSTAIN"
-            | "VOTE_OPTION_NO"
-            | "VOTE_OPTION_NO_WITH_VETO"
-            | "VOTE_OPTION_ENCRYPTED";
+            | 'VOTE_OPTION_UNSPECIFIED'
+            | 'VOTE_OPTION_YES'
+            | 'VOTE_OPTION_ABSTAIN'
+            | 'VOTE_OPTION_NO'
+            | 'VOTE_OPTION_NO_WITH_VETO'
+            | 'VOTE_OPTION_ENCRYPTED';
           options?: {
             option?:
-              | "VOTE_OPTION_UNSPECIFIED"
-              | "VOTE_OPTION_YES"
-              | "VOTE_OPTION_ABSTAIN"
-              | "VOTE_OPTION_NO"
-              | "VOTE_OPTION_NO_WITH_VETO"
-              | "VOTE_OPTION_ENCRYPTED";
+              | 'VOTE_OPTION_UNSPECIFIED'
+              | 'VOTE_OPTION_YES'
+              | 'VOTE_OPTION_ABSTAIN'
+              | 'VOTE_OPTION_NO'
+              | 'VOTE_OPTION_NO_WITH_VETO'
+              | 'VOTE_OPTION_ENCRYPTED';
             weight?: string;
           }[];
           encrypted_vote_data?: string;
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/gov/v1beta1/proposals/${proposalId}/votes`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -683,29 +683,29 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           proposal_id?: string;
           voter?: string;
           option?:
-            | "VOTE_OPTION_UNSPECIFIED"
-            | "VOTE_OPTION_YES"
-            | "VOTE_OPTION_ABSTAIN"
-            | "VOTE_OPTION_NO"
-            | "VOTE_OPTION_NO_WITH_VETO"
-            | "VOTE_OPTION_ENCRYPTED";
+            | 'VOTE_OPTION_UNSPECIFIED'
+            | 'VOTE_OPTION_YES'
+            | 'VOTE_OPTION_ABSTAIN'
+            | 'VOTE_OPTION_NO'
+            | 'VOTE_OPTION_NO_WITH_VETO'
+            | 'VOTE_OPTION_ENCRYPTED';
           options?: {
             option?:
-              | "VOTE_OPTION_UNSPECIFIED"
-              | "VOTE_OPTION_YES"
-              | "VOTE_OPTION_ABSTAIN"
-              | "VOTE_OPTION_NO"
-              | "VOTE_OPTION_NO_WITH_VETO"
-              | "VOTE_OPTION_ENCRYPTED";
+              | 'VOTE_OPTION_UNSPECIFIED'
+              | 'VOTE_OPTION_YES'
+              | 'VOTE_OPTION_ABSTAIN'
+              | 'VOTE_OPTION_NO'
+              | 'VOTE_OPTION_NO_WITH_VETO'
+              | 'VOTE_OPTION_ENCRYPTED';
             weight?: string;
           }[];
           encrypted_vote_data?: string;
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/gov/v1beta1/proposals/${proposalId}/votes/${voter}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 }

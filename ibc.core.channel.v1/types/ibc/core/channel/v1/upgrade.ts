@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Order, orderFromJSON, orderToJSON, Timeout } from "./channel";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Order, orderFromJSON, orderToJSON, Timeout } from './channel';
 
-export const protobufPackage = "ibc.core.channel.v1";
+export const protobufPackage = 'ibc.core.channel.v1';
 
 /**
  * Upgrade is a verifiable type which contains the relevant information
@@ -122,19 +122,17 @@ export const Upgrade = {
   },
   fromPartial<I extends Exact<DeepPartial<Upgrade>, I>>(object: I): Upgrade {
     const message = createBaseUpgrade();
-    message.fields = (object.fields !== undefined && object.fields !== null)
-      ? UpgradeFields.fromPartial(object.fields)
-      : undefined;
-    message.timeout = (object.timeout !== undefined && object.timeout !== null)
-      ? Timeout.fromPartial(object.timeout)
-      : undefined;
+    message.fields =
+      object.fields !== undefined && object.fields !== null ? UpgradeFields.fromPartial(object.fields) : undefined;
+    message.timeout =
+      object.timeout !== undefined && object.timeout !== null ? Timeout.fromPartial(object.timeout) : undefined;
     message.nextSequenceSend = object.nextSequenceSend ?? 0;
     return message;
   },
 };
 
 function createBaseUpgradeFields(): UpgradeFields {
-  return { ordering: 0, connectionHops: [], version: "" };
+  return { ordering: 0, connectionHops: [], version: '' };
 }
 
 export const UpgradeFields = {
@@ -145,7 +143,7 @@ export const UpgradeFields = {
     for (const v of message.connectionHops) {
       writer.uint32(18).string(v!);
     }
-    if (message.version !== "") {
+    if (message.version !== '') {
       writer.uint32(26).string(message.version);
     }
     return writer;
@@ -192,7 +190,7 @@ export const UpgradeFields = {
     return {
       ordering: isSet(object.ordering) ? orderFromJSON(object.ordering) : 0,
       connectionHops: Array.isArray(object?.connectionHops) ? object.connectionHops.map((e: any) => String(e)) : [],
-      version: isSet(object.version) ? String(object.version) : "",
+      version: isSet(object.version) ? String(object.version) : '',
     };
   },
 
@@ -204,7 +202,7 @@ export const UpgradeFields = {
     if (message.connectionHops?.length) {
       obj.connectionHops = message.connectionHops;
     }
-    if (message.version !== "") {
+    if (message.version !== '') {
       obj.version = message.version;
     }
     return obj;
@@ -217,13 +215,13 @@ export const UpgradeFields = {
     const message = createBaseUpgradeFields();
     message.ordering = object.ordering ?? 0;
     message.connectionHops = object.connectionHops?.map((e) => e) || [];
-    message.version = object.version ?? "";
+    message.version = object.version ?? '';
     return message;
   },
 };
 
 function createBaseErrorReceipt(): ErrorReceipt {
-  return { sequence: 0, message: "" };
+  return { sequence: 0, message: '' };
 }
 
 export const ErrorReceipt = {
@@ -231,7 +229,7 @@ export const ErrorReceipt = {
     if (message.sequence !== 0) {
       writer.uint32(8).uint64(message.sequence);
     }
-    if (message.message !== "") {
+    if (message.message !== '') {
       writer.uint32(18).string(message.message);
     }
     return writer;
@@ -270,7 +268,7 @@ export const ErrorReceipt = {
   fromJSON(object: any): ErrorReceipt {
     return {
       sequence: isSet(object.sequence) ? Number(object.sequence) : 0,
-      message: isSet(object.message) ? String(object.message) : "",
+      message: isSet(object.message) ? String(object.message) : '',
     };
   },
 
@@ -279,7 +277,7 @@ export const ErrorReceipt = {
     if (message.sequence !== 0) {
       obj.sequence = Math.round(message.sequence);
     }
-    if (message.message !== "") {
+    if (message.message !== '') {
       obj.message = message.message;
     }
     return obj;
@@ -291,7 +289,7 @@ export const ErrorReceipt = {
   fromPartial<I extends Exact<DeepPartial<ErrorReceipt>, I>>(object: I): ErrorReceipt {
     const message = createBaseErrorReceipt();
     message.sequence = object.sequence ?? 0;
-    message.message = object.message ?? "";
+    message.message = object.message ?? '';
     return message;
   },
 };
@@ -300,35 +298,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

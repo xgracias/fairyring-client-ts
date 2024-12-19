@@ -1,10 +1,10 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination";
-import { Coin } from "../../base/v1beta1/coin";
-import { Metadata, Params, SendEnabled } from "./bank";
+import _m0 from 'protobufjs/minimal';
+import { PageRequest, PageResponse } from '../../base/query/v1beta1/pagination';
+import { Coin } from '../../base/v1beta1/coin';
+import { Metadata, Params, SendEnabled } from './bank';
 
-export const protobufPackage = "cosmos.bank.v1beta1";
+export const protobufPackage = 'cosmos.bank.v1beta1';
 
 /** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
 export interface QueryBalanceRequest {
@@ -25,9 +25,7 @@ export interface QueryAllBalancesRequest {
   /** address is the address to query balances for. */
   address: string;
   /** pagination defines an optional pagination for the request. */
-  pagination:
-    | PageRequest
-    | undefined;
+  pagination: PageRequest | undefined;
   /**
    * resolve_denom is the flag to resolve the denom into a human-readable form from the metadata.
    *
@@ -138,8 +136,7 @@ export interface QuerySupplyOfResponse {
 }
 
 /** QueryParamsRequest defines the request type for querying x/bank parameters. */
-export interface QueryParamsRequest {
-}
+export interface QueryParamsRequest {}
 
 /** QueryParamsResponse defines the response type for querying x/bank parameters. */
 export interface QueryParamsResponse {
@@ -289,15 +286,15 @@ export interface QuerySendEnabledResponse {
 }
 
 function createBaseQueryBalanceRequest(): QueryBalanceRequest {
-  return { address: "", denom: "" };
+  return { address: '', denom: '' };
 }
 
 export const QueryBalanceRequest = {
   encode(message: QueryBalanceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       writer.uint32(18).string(message.denom);
     }
     return writer;
@@ -335,17 +332,17 @@ export const QueryBalanceRequest = {
 
   fromJSON(object: any): QueryBalanceRequest {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
-      denom: isSet(object.denom) ? String(object.denom) : "",
+      address: isSet(object.address) ? String(object.address) : '',
+      denom: isSet(object.denom) ? String(object.denom) : '',
     };
   },
 
   toJSON(message: QueryBalanceRequest): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       obj.denom = message.denom;
     }
     return obj;
@@ -356,8 +353,8 @@ export const QueryBalanceRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryBalanceRequest>, I>>(object: I): QueryBalanceRequest {
     const message = createBaseQueryBalanceRequest();
-    message.address = object.address ?? "";
-    message.denom = object.denom ?? "";
+    message.address = object.address ?? '';
+    message.denom = object.denom ?? '';
     return message;
   },
 };
@@ -414,20 +411,19 @@ export const QueryBalanceResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryBalanceResponse>, I>>(object: I): QueryBalanceResponse {
     const message = createBaseQueryBalanceResponse();
-    message.balance = (object.balance !== undefined && object.balance !== null)
-      ? Coin.fromPartial(object.balance)
-      : undefined;
+    message.balance =
+      object.balance !== undefined && object.balance !== null ? Coin.fromPartial(object.balance) : undefined;
     return message;
   },
 };
 
 function createBaseQueryAllBalancesRequest(): QueryAllBalancesRequest {
-  return { address: "", pagination: undefined, resolveDenom: false };
+  return { address: '', pagination: undefined, resolveDenom: false };
 }
 
 export const QueryAllBalancesRequest = {
   encode(message: QueryAllBalancesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.pagination !== undefined) {
@@ -478,7 +474,7 @@ export const QueryAllBalancesRequest = {
 
   fromJSON(object: any): QueryAllBalancesRequest {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
       resolveDenom: isSet(object.resolveDenom) ? Boolean(object.resolveDenom) : false,
     };
@@ -486,7 +482,7 @@ export const QueryAllBalancesRequest = {
 
   toJSON(message: QueryAllBalancesRequest): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.pagination !== undefined) {
@@ -503,10 +499,11 @@ export const QueryAllBalancesRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllBalancesRequest>, I>>(object: I): QueryAllBalancesRequest {
     const message = createBaseQueryAllBalancesRequest();
-    message.address = object.address ?? "";
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.address = object.address ?? '';
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     message.resolveDenom = object.resolveDenom ?? false;
     return message;
   },
@@ -581,20 +578,21 @@ export const QueryAllBalancesResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryAllBalancesResponse>, I>>(object: I): QueryAllBalancesResponse {
     const message = createBaseQueryAllBalancesResponse();
     message.balances = object.balances?.map((e) => Coin.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQuerySpendableBalancesRequest(): QuerySpendableBalancesRequest {
-  return { address: "", pagination: undefined };
+  return { address: '', pagination: undefined };
 }
 
 export const QuerySpendableBalancesRequest = {
   encode(message: QuerySpendableBalancesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.pagination !== undefined) {
@@ -635,14 +633,14 @@ export const QuerySpendableBalancesRequest = {
 
   fromJSON(object: any): QuerySpendableBalancesRequest {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
   toJSON(message: QuerySpendableBalancesRequest): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.pagination !== undefined) {
@@ -655,13 +653,14 @@ export const QuerySpendableBalancesRequest = {
     return QuerySpendableBalancesRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QuerySpendableBalancesRequest>, I>>(
-    object: I,
+    object: I
   ): QuerySpendableBalancesRequest {
     const message = createBaseQuerySpendableBalancesRequest();
-    message.address = object.address ?? "";
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.address = object.address ?? '';
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -733,27 +732,28 @@ export const QuerySpendableBalancesResponse = {
     return QuerySpendableBalancesResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QuerySpendableBalancesResponse>, I>>(
-    object: I,
+    object: I
   ): QuerySpendableBalancesResponse {
     const message = createBaseQuerySpendableBalancesResponse();
     message.balances = object.balances?.map((e) => Coin.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQuerySpendableBalanceByDenomRequest(): QuerySpendableBalanceByDenomRequest {
-  return { address: "", denom: "" };
+  return { address: '', denom: '' };
 }
 
 export const QuerySpendableBalanceByDenomRequest = {
   encode(message: QuerySpendableBalanceByDenomRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       writer.uint32(18).string(message.denom);
     }
     return writer;
@@ -791,33 +791,33 @@ export const QuerySpendableBalanceByDenomRequest = {
 
   fromJSON(object: any): QuerySpendableBalanceByDenomRequest {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
-      denom: isSet(object.denom) ? String(object.denom) : "",
+      address: isSet(object.address) ? String(object.address) : '',
+      denom: isSet(object.denom) ? String(object.denom) : '',
     };
   },
 
   toJSON(message: QuerySpendableBalanceByDenomRequest): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       obj.denom = message.denom;
     }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<QuerySpendableBalanceByDenomRequest>, I>>(
-    base?: I,
+    base?: I
   ): QuerySpendableBalanceByDenomRequest {
     return QuerySpendableBalanceByDenomRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QuerySpendableBalanceByDenomRequest>, I>>(
-    object: I,
+    object: I
   ): QuerySpendableBalanceByDenomRequest {
     const message = createBaseQuerySpendableBalanceByDenomRequest();
-    message.address = object.address ?? "";
-    message.denom = object.denom ?? "";
+    message.address = object.address ?? '';
+    message.denom = object.denom ?? '';
     return message;
   },
 };
@@ -870,17 +870,16 @@ export const QuerySpendableBalanceByDenomResponse = {
   },
 
   create<I extends Exact<DeepPartial<QuerySpendableBalanceByDenomResponse>, I>>(
-    base?: I,
+    base?: I
   ): QuerySpendableBalanceByDenomResponse {
     return QuerySpendableBalanceByDenomResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QuerySpendableBalanceByDenomResponse>, I>>(
-    object: I,
+    object: I
   ): QuerySpendableBalanceByDenomResponse {
     const message = createBaseQuerySpendableBalanceByDenomResponse();
-    message.balance = (object.balance !== undefined && object.balance !== null)
-      ? Coin.fromPartial(object.balance)
-      : undefined;
+    message.balance =
+      object.balance !== undefined && object.balance !== null ? Coin.fromPartial(object.balance) : undefined;
     return message;
   },
 };
@@ -937,9 +936,10 @@ export const QueryTotalSupplyRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryTotalSupplyRequest>, I>>(object: I): QueryTotalSupplyRequest {
     const message = createBaseQueryTotalSupplyRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1013,20 +1013,21 @@ export const QueryTotalSupplyResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryTotalSupplyResponse>, I>>(object: I): QueryTotalSupplyResponse {
     const message = createBaseQueryTotalSupplyResponse();
     message.supply = object.supply?.map((e) => Coin.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQuerySupplyOfRequest(): QuerySupplyOfRequest {
-  return { denom: "" };
+  return { denom: '' };
 }
 
 export const QuerySupplyOfRequest = {
   encode(message: QuerySupplyOfRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       writer.uint32(10).string(message.denom);
     }
     return writer;
@@ -1056,12 +1057,12 @@ export const QuerySupplyOfRequest = {
   },
 
   fromJSON(object: any): QuerySupplyOfRequest {
-    return { denom: isSet(object.denom) ? String(object.denom) : "" };
+    return { denom: isSet(object.denom) ? String(object.denom) : '' };
   },
 
   toJSON(message: QuerySupplyOfRequest): unknown {
     const obj: any = {};
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       obj.denom = message.denom;
     }
     return obj;
@@ -1072,7 +1073,7 @@ export const QuerySupplyOfRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QuerySupplyOfRequest>, I>>(object: I): QuerySupplyOfRequest {
     const message = createBaseQuerySupplyOfRequest();
-    message.denom = object.denom ?? "";
+    message.denom = object.denom ?? '';
     return message;
   },
 };
@@ -1129,9 +1130,8 @@ export const QuerySupplyOfResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QuerySupplyOfResponse>, I>>(object: I): QuerySupplyOfResponse {
     const message = createBaseQuerySupplyOfResponse();
-    message.amount = (object.amount !== undefined && object.amount !== null)
-      ? Coin.fromPartial(object.amount)
-      : undefined;
+    message.amount =
+      object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;
   },
 };
@@ -1231,9 +1231,8 @@ export const QueryParamsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -1290,9 +1289,10 @@ export const QueryDenomsMetadataRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryDenomsMetadataRequest>, I>>(object: I): QueryDenomsMetadataRequest {
     const message = createBaseQueryDenomsMetadataRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1366,20 +1366,21 @@ export const QueryDenomsMetadataResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryDenomsMetadataResponse>, I>>(object: I): QueryDenomsMetadataResponse {
     const message = createBaseQueryDenomsMetadataResponse();
     message.metadatas = object.metadatas?.map((e) => Metadata.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryDenomMetadataRequest(): QueryDenomMetadataRequest {
-  return { denom: "" };
+  return { denom: '' };
 }
 
 export const QueryDenomMetadataRequest = {
   encode(message: QueryDenomMetadataRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       writer.uint32(10).string(message.denom);
     }
     return writer;
@@ -1409,12 +1410,12 @@ export const QueryDenomMetadataRequest = {
   },
 
   fromJSON(object: any): QueryDenomMetadataRequest {
-    return { denom: isSet(object.denom) ? String(object.denom) : "" };
+    return { denom: isSet(object.denom) ? String(object.denom) : '' };
   },
 
   toJSON(message: QueryDenomMetadataRequest): unknown {
     const obj: any = {};
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       obj.denom = message.denom;
     }
     return obj;
@@ -1425,7 +1426,7 @@ export const QueryDenomMetadataRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryDenomMetadataRequest>, I>>(object: I): QueryDenomMetadataRequest {
     const message = createBaseQueryDenomMetadataRequest();
-    message.denom = object.denom ?? "";
+    message.denom = object.denom ?? '';
     return message;
   },
 };
@@ -1482,20 +1483,19 @@ export const QueryDenomMetadataResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryDenomMetadataResponse>, I>>(object: I): QueryDenomMetadataResponse {
     const message = createBaseQueryDenomMetadataResponse();
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? Metadata.fromPartial(object.metadata)
-      : undefined;
+    message.metadata =
+      object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
     return message;
   },
 };
 
 function createBaseQueryDenomMetadataByQueryStringRequest(): QueryDenomMetadataByQueryStringRequest {
-  return { denom: "" };
+  return { denom: '' };
 }
 
 export const QueryDenomMetadataByQueryStringRequest = {
   encode(message: QueryDenomMetadataByQueryStringRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       writer.uint32(10).string(message.denom);
     }
     return writer;
@@ -1525,27 +1525,27 @@ export const QueryDenomMetadataByQueryStringRequest = {
   },
 
   fromJSON(object: any): QueryDenomMetadataByQueryStringRequest {
-    return { denom: isSet(object.denom) ? String(object.denom) : "" };
+    return { denom: isSet(object.denom) ? String(object.denom) : '' };
   },
 
   toJSON(message: QueryDenomMetadataByQueryStringRequest): unknown {
     const obj: any = {};
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       obj.denom = message.denom;
     }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<QueryDenomMetadataByQueryStringRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryDenomMetadataByQueryStringRequest {
     return QueryDenomMetadataByQueryStringRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryDenomMetadataByQueryStringRequest>, I>>(
-    object: I,
+    object: I
   ): QueryDenomMetadataByQueryStringRequest {
     const message = createBaseQueryDenomMetadataByQueryStringRequest();
-    message.denom = object.denom ?? "";
+    message.denom = object.denom ?? '';
     return message;
   },
 };
@@ -1598,28 +1598,27 @@ export const QueryDenomMetadataByQueryStringResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryDenomMetadataByQueryStringResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryDenomMetadataByQueryStringResponse {
     return QueryDenomMetadataByQueryStringResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryDenomMetadataByQueryStringResponse>, I>>(
-    object: I,
+    object: I
   ): QueryDenomMetadataByQueryStringResponse {
     const message = createBaseQueryDenomMetadataByQueryStringResponse();
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? Metadata.fromPartial(object.metadata)
-      : undefined;
+    message.metadata =
+      object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
     return message;
   },
 };
 
 function createBaseQueryDenomOwnersRequest(): QueryDenomOwnersRequest {
-  return { denom: "", pagination: undefined };
+  return { denom: '', pagination: undefined };
 }
 
 export const QueryDenomOwnersRequest = {
   encode(message: QueryDenomOwnersRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       writer.uint32(10).string(message.denom);
     }
     if (message.pagination !== undefined) {
@@ -1660,14 +1659,14 @@ export const QueryDenomOwnersRequest = {
 
   fromJSON(object: any): QueryDenomOwnersRequest {
     return {
-      denom: isSet(object.denom) ? String(object.denom) : "",
+      denom: isSet(object.denom) ? String(object.denom) : '',
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
   toJSON(message: QueryDenomOwnersRequest): unknown {
     const obj: any = {};
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       obj.denom = message.denom;
     }
     if (message.pagination !== undefined) {
@@ -1681,21 +1680,22 @@ export const QueryDenomOwnersRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryDenomOwnersRequest>, I>>(object: I): QueryDenomOwnersRequest {
     const message = createBaseQueryDenomOwnersRequest();
-    message.denom = object.denom ?? "";
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.denom = object.denom ?? '';
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseDenomOwner(): DenomOwner {
-  return { address: "", balance: undefined };
+  return { address: '', balance: undefined };
 }
 
 export const DenomOwner = {
   encode(message: DenomOwner, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.balance !== undefined) {
@@ -1736,14 +1736,14 @@ export const DenomOwner = {
 
   fromJSON(object: any): DenomOwner {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       balance: isSet(object.balance) ? Coin.fromJSON(object.balance) : undefined,
     };
   },
 
   toJSON(message: DenomOwner): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.balance !== undefined) {
@@ -1757,10 +1757,9 @@ export const DenomOwner = {
   },
   fromPartial<I extends Exact<DeepPartial<DenomOwner>, I>>(object: I): DenomOwner {
     const message = createBaseDenomOwner();
-    message.address = object.address ?? "";
-    message.balance = (object.balance !== undefined && object.balance !== null)
-      ? Coin.fromPartial(object.balance)
-      : undefined;
+    message.address = object.address ?? '';
+    message.balance =
+      object.balance !== undefined && object.balance !== null ? Coin.fromPartial(object.balance) : undefined;
     return message;
   },
 };
@@ -1834,20 +1833,21 @@ export const QueryDenomOwnersResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryDenomOwnersResponse>, I>>(object: I): QueryDenomOwnersResponse {
     const message = createBaseQueryDenomOwnersResponse();
     message.denomOwners = object.denomOwners?.map((e) => DenomOwner.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryDenomOwnersByQueryRequest(): QueryDenomOwnersByQueryRequest {
-  return { denom: "", pagination: undefined };
+  return { denom: '', pagination: undefined };
 }
 
 export const QueryDenomOwnersByQueryRequest = {
   encode(message: QueryDenomOwnersByQueryRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       writer.uint32(10).string(message.denom);
     }
     if (message.pagination !== undefined) {
@@ -1888,14 +1888,14 @@ export const QueryDenomOwnersByQueryRequest = {
 
   fromJSON(object: any): QueryDenomOwnersByQueryRequest {
     return {
-      denom: isSet(object.denom) ? String(object.denom) : "",
+      denom: isSet(object.denom) ? String(object.denom) : '',
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
     };
   },
 
   toJSON(message: QueryDenomOwnersByQueryRequest): unknown {
     const obj: any = {};
-    if (message.denom !== "") {
+    if (message.denom !== '') {
       obj.denom = message.denom;
     }
     if (message.pagination !== undefined) {
@@ -1908,13 +1908,14 @@ export const QueryDenomOwnersByQueryRequest = {
     return QueryDenomOwnersByQueryRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryDenomOwnersByQueryRequest>, I>>(
-    object: I,
+    object: I
   ): QueryDenomOwnersByQueryRequest {
     const message = createBaseQueryDenomOwnersByQueryRequest();
-    message.denom = object.denom ?? "";
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.denom = object.denom ?? '';
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1986,13 +1987,14 @@ export const QueryDenomOwnersByQueryResponse = {
     return QueryDenomOwnersByQueryResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryDenomOwnersByQueryResponse>, I>>(
-    object: I,
+    object: I
   ): QueryDenomOwnersByQueryResponse {
     const message = createBaseQueryDenomOwnersByQueryResponse();
     message.denomOwners = object.denomOwners?.map((e) => DenomOwner.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -2066,9 +2068,10 @@ export const QuerySendEnabledRequest = {
   fromPartial<I extends Exact<DeepPartial<QuerySendEnabledRequest>, I>>(object: I): QuerySendEnabledRequest {
     const message = createBaseQuerySendEnabledRequest();
     message.denoms = object.denoms?.map((e) => e) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -2144,9 +2147,10 @@ export const QuerySendEnabledResponse = {
   fromPartial<I extends Exact<DeepPartial<QuerySendEnabledResponse>, I>>(object: I): QuerySendEnabledResponse {
     const message = createBaseQuerySendEnabledResponse();
     message.sendEnabled = object.sendEnabled?.map((e) => SendEnabled.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -2202,7 +2206,7 @@ export interface Query {
   DenomMetadata(request: QueryDenomMetadataRequest): Promise<QueryDenomMetadataResponse>;
   /** DenomMetadataByQueryString queries the client metadata of a given coin denomination. */
   DenomMetadataByQueryString(
-    request: QueryDenomMetadataByQueryStringRequest,
+    request: QueryDenomMetadataByQueryStringRequest
   ): Promise<QueryDenomMetadataByQueryStringResponse>;
   /**
    * DenomsMetadata queries the client metadata for all registered coin
@@ -2238,7 +2242,7 @@ export interface Query {
   SendEnabled(request: QuerySendEnabledRequest): Promise<QuerySendEnabledResponse>;
 }
 
-export const QueryServiceName = "cosmos.bank.v1beta1.Query";
+export const QueryServiceName = 'cosmos.bank.v1beta1.Query';
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -2261,81 +2265,81 @@ export class QueryClientImpl implements Query {
   }
   Balance(request: QueryBalanceRequest): Promise<QueryBalanceResponse> {
     const data = QueryBalanceRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Balance", data);
+    const promise = this.rpc.request(this.service, 'Balance', data);
     return promise.then((data) => QueryBalanceResponse.decode(_m0.Reader.create(data)));
   }
 
   AllBalances(request: QueryAllBalancesRequest): Promise<QueryAllBalancesResponse> {
     const data = QueryAllBalancesRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "AllBalances", data);
+    const promise = this.rpc.request(this.service, 'AllBalances', data);
     return promise.then((data) => QueryAllBalancesResponse.decode(_m0.Reader.create(data)));
   }
 
   SpendableBalances(request: QuerySpendableBalancesRequest): Promise<QuerySpendableBalancesResponse> {
     const data = QuerySpendableBalancesRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "SpendableBalances", data);
+    const promise = this.rpc.request(this.service, 'SpendableBalances', data);
     return promise.then((data) => QuerySpendableBalancesResponse.decode(_m0.Reader.create(data)));
   }
 
   SpendableBalanceByDenom(request: QuerySpendableBalanceByDenomRequest): Promise<QuerySpendableBalanceByDenomResponse> {
     const data = QuerySpendableBalanceByDenomRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "SpendableBalanceByDenom", data);
+    const promise = this.rpc.request(this.service, 'SpendableBalanceByDenom', data);
     return promise.then((data) => QuerySpendableBalanceByDenomResponse.decode(_m0.Reader.create(data)));
   }
 
   TotalSupply(request: QueryTotalSupplyRequest): Promise<QueryTotalSupplyResponse> {
     const data = QueryTotalSupplyRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "TotalSupply", data);
+    const promise = this.rpc.request(this.service, 'TotalSupply', data);
     return promise.then((data) => QueryTotalSupplyResponse.decode(_m0.Reader.create(data)));
   }
 
   SupplyOf(request: QuerySupplyOfRequest): Promise<QuerySupplyOfResponse> {
     const data = QuerySupplyOfRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "SupplyOf", data);
+    const promise = this.rpc.request(this.service, 'SupplyOf', data);
     return promise.then((data) => QuerySupplyOfResponse.decode(_m0.Reader.create(data)));
   }
 
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Params", data);
+    const promise = this.rpc.request(this.service, 'Params', data);
     return promise.then((data) => QueryParamsResponse.decode(_m0.Reader.create(data)));
   }
 
   DenomMetadata(request: QueryDenomMetadataRequest): Promise<QueryDenomMetadataResponse> {
     const data = QueryDenomMetadataRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DenomMetadata", data);
+    const promise = this.rpc.request(this.service, 'DenomMetadata', data);
     return promise.then((data) => QueryDenomMetadataResponse.decode(_m0.Reader.create(data)));
   }
 
   DenomMetadataByQueryString(
-    request: QueryDenomMetadataByQueryStringRequest,
+    request: QueryDenomMetadataByQueryStringRequest
   ): Promise<QueryDenomMetadataByQueryStringResponse> {
     const data = QueryDenomMetadataByQueryStringRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DenomMetadataByQueryString", data);
+    const promise = this.rpc.request(this.service, 'DenomMetadataByQueryString', data);
     return promise.then((data) => QueryDenomMetadataByQueryStringResponse.decode(_m0.Reader.create(data)));
   }
 
   DenomsMetadata(request: QueryDenomsMetadataRequest): Promise<QueryDenomsMetadataResponse> {
     const data = QueryDenomsMetadataRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DenomsMetadata", data);
+    const promise = this.rpc.request(this.service, 'DenomsMetadata', data);
     return promise.then((data) => QueryDenomsMetadataResponse.decode(_m0.Reader.create(data)));
   }
 
   DenomOwners(request: QueryDenomOwnersRequest): Promise<QueryDenomOwnersResponse> {
     const data = QueryDenomOwnersRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DenomOwners", data);
+    const promise = this.rpc.request(this.service, 'DenomOwners', data);
     return promise.then((data) => QueryDenomOwnersResponse.decode(_m0.Reader.create(data)));
   }
 
   DenomOwnersByQuery(request: QueryDenomOwnersByQueryRequest): Promise<QueryDenomOwnersByQueryResponse> {
     const data = QueryDenomOwnersByQueryRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DenomOwnersByQuery", data);
+    const promise = this.rpc.request(this.service, 'DenomOwnersByQuery', data);
     return promise.then((data) => QueryDenomOwnersByQueryResponse.decode(_m0.Reader.create(data)));
   }
 
   SendEnabled(request: QuerySendEnabledRequest): Promise<QuerySendEnabledResponse> {
     const data = QuerySendEnabledRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "SendEnabled", data);
+    const promise = this.rpc.request(this.service, 'SendEnabled', data);
     return promise.then((data) => QuerySendEnabledResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -2346,13 +2350,19 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

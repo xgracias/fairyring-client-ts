@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { PacketId } from "../../../core/channel/v1/channel";
-import { Fee, PacketFee } from "./fee";
+import _m0 from 'protobufjs/minimal';
+import { PacketId } from '../../../core/channel/v1/channel';
+import { Fee, PacketFee } from './fee';
 
-export const protobufPackage = "ibc.applications.fee.v1";
+export const protobufPackage = 'ibc.applications.fee.v1';
 
 /** MsgRegisterPayee defines the request type for the RegisterPayee rpc */
 export interface MsgRegisterPayee {
@@ -18,8 +18,7 @@ export interface MsgRegisterPayee {
 }
 
 /** MsgRegisterPayeeResponse defines the response type for the RegisterPayee rpc */
-export interface MsgRegisterPayeeResponse {
-}
+export interface MsgRegisterPayeeResponse {}
 
 /** MsgRegisterCounterpartyPayee defines the request type for the RegisterCounterpartyPayee rpc */
 export interface MsgRegisterCounterpartyPayee {
@@ -34,8 +33,7 @@ export interface MsgRegisterCounterpartyPayee {
 }
 
 /** MsgRegisterCounterpartyPayeeResponse defines the response type for the RegisterCounterpartyPayee rpc */
-export interface MsgRegisterCounterpartyPayeeResponse {
-}
+export interface MsgRegisterCounterpartyPayeeResponse {}
 
 /**
  * MsgPayPacketFee defines the request type for the PayPacketFee rpc
@@ -44,9 +42,7 @@ export interface MsgRegisterCounterpartyPayeeResponse {
  */
 export interface MsgPayPacketFee {
   /** fee encapsulates the recv, ack and timeout fees associated with an IBC packet */
-  fee:
-    | Fee
-    | undefined;
+  fee: Fee | undefined;
   /** the source port unique identifier */
   sourcePortId: string;
   /** the source channel unique identifer */
@@ -58,8 +54,7 @@ export interface MsgPayPacketFee {
 }
 
 /** MsgPayPacketFeeResponse defines the response type for the PayPacketFee rpc */
-export interface MsgPayPacketFeeResponse {
-}
+export interface MsgPayPacketFeeResponse {}
 
 /**
  * MsgPayPacketFeeAsync defines the request type for the PayPacketFeeAsync rpc
@@ -67,33 +62,30 @@ export interface MsgPayPacketFeeResponse {
  */
 export interface MsgPayPacketFeeAsync {
   /** unique packet identifier comprised of the channel ID, port ID and sequence */
-  packetId:
-    | PacketId
-    | undefined;
+  packetId: PacketId | undefined;
   /** the packet fee associated with a particular IBC packet */
   packetFee: PacketFee | undefined;
 }
 
 /** MsgPayPacketFeeAsyncResponse defines the response type for the PayPacketFeeAsync rpc */
-export interface MsgPayPacketFeeAsyncResponse {
-}
+export interface MsgPayPacketFeeAsyncResponse {}
 
 function createBaseMsgRegisterPayee(): MsgRegisterPayee {
-  return { portId: "", channelId: "", relayer: "", payee: "" };
+  return { portId: '', channelId: '', relayer: '', payee: '' };
 }
 
 export const MsgRegisterPayee = {
   encode(message: MsgRegisterPayee, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(18).string(message.channelId);
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       writer.uint32(26).string(message.relayer);
     }
-    if (message.payee !== "") {
+    if (message.payee !== '') {
       writer.uint32(34).string(message.payee);
     }
     return writer;
@@ -145,25 +137,25 @@ export const MsgRegisterPayee = {
 
   fromJSON(object: any): MsgRegisterPayee {
     return {
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
-      relayer: isSet(object.relayer) ? String(object.relayer) : "",
-      payee: isSet(object.payee) ? String(object.payee) : "",
+      portId: isSet(object.portId) ? String(object.portId) : '',
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
+      relayer: isSet(object.relayer) ? String(object.relayer) : '',
+      payee: isSet(object.payee) ? String(object.payee) : '',
     };
   },
 
   toJSON(message: MsgRegisterPayee): unknown {
     const obj: any = {};
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       obj.portId = message.portId;
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       obj.relayer = message.relayer;
     }
-    if (message.payee !== "") {
+    if (message.payee !== '') {
       obj.payee = message.payee;
     }
     return obj;
@@ -174,10 +166,10 @@ export const MsgRegisterPayee = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgRegisterPayee>, I>>(object: I): MsgRegisterPayee {
     const message = createBaseMsgRegisterPayee();
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
-    message.relayer = object.relayer ?? "";
-    message.payee = object.payee ?? "";
+    message.portId = object.portId ?? '';
+    message.channelId = object.channelId ?? '';
+    message.relayer = object.relayer ?? '';
+    message.payee = object.payee ?? '';
     return message;
   },
 };
@@ -226,21 +218,21 @@ export const MsgRegisterPayeeResponse = {
 };
 
 function createBaseMsgRegisterCounterpartyPayee(): MsgRegisterCounterpartyPayee {
-  return { portId: "", channelId: "", relayer: "", counterpartyPayee: "" };
+  return { portId: '', channelId: '', relayer: '', counterpartyPayee: '' };
 }
 
 export const MsgRegisterCounterpartyPayee = {
   encode(message: MsgRegisterCounterpartyPayee, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(18).string(message.channelId);
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       writer.uint32(26).string(message.relayer);
     }
-    if (message.counterpartyPayee !== "") {
+    if (message.counterpartyPayee !== '') {
       writer.uint32(34).string(message.counterpartyPayee);
     }
     return writer;
@@ -292,25 +284,25 @@ export const MsgRegisterCounterpartyPayee = {
 
   fromJSON(object: any): MsgRegisterCounterpartyPayee {
     return {
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
-      relayer: isSet(object.relayer) ? String(object.relayer) : "",
-      counterpartyPayee: isSet(object.counterpartyPayee) ? String(object.counterpartyPayee) : "",
+      portId: isSet(object.portId) ? String(object.portId) : '',
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
+      relayer: isSet(object.relayer) ? String(object.relayer) : '',
+      counterpartyPayee: isSet(object.counterpartyPayee) ? String(object.counterpartyPayee) : '',
     };
   },
 
   toJSON(message: MsgRegisterCounterpartyPayee): unknown {
     const obj: any = {};
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       obj.portId = message.portId;
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       obj.relayer = message.relayer;
     }
-    if (message.counterpartyPayee !== "") {
+    if (message.counterpartyPayee !== '') {
       obj.counterpartyPayee = message.counterpartyPayee;
     }
     return obj;
@@ -321,10 +313,10 @@ export const MsgRegisterCounterpartyPayee = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgRegisterCounterpartyPayee>, I>>(object: I): MsgRegisterCounterpartyPayee {
     const message = createBaseMsgRegisterCounterpartyPayee();
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
-    message.relayer = object.relayer ?? "";
-    message.counterpartyPayee = object.counterpartyPayee ?? "";
+    message.portId = object.portId ?? '';
+    message.channelId = object.channelId ?? '';
+    message.relayer = object.relayer ?? '';
+    message.counterpartyPayee = object.counterpartyPayee ?? '';
     return message;
   },
 };
@@ -364,12 +356,12 @@ export const MsgRegisterCounterpartyPayeeResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgRegisterCounterpartyPayeeResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgRegisterCounterpartyPayeeResponse {
     return MsgRegisterCounterpartyPayeeResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgRegisterCounterpartyPayeeResponse>, I>>(
-    _: I,
+    _: I
   ): MsgRegisterCounterpartyPayeeResponse {
     const message = createBaseMsgRegisterCounterpartyPayeeResponse();
     return message;
@@ -377,7 +369,7 @@ export const MsgRegisterCounterpartyPayeeResponse = {
 };
 
 function createBaseMsgPayPacketFee(): MsgPayPacketFee {
-  return { fee: undefined, sourcePortId: "", sourceChannelId: "", signer: "", relayers: [] };
+  return { fee: undefined, sourcePortId: '', sourceChannelId: '', signer: '', relayers: [] };
 }
 
 export const MsgPayPacketFee = {
@@ -385,13 +377,13 @@ export const MsgPayPacketFee = {
     if (message.fee !== undefined) {
       Fee.encode(message.fee, writer.uint32(10).fork()).ldelim();
     }
-    if (message.sourcePortId !== "") {
+    if (message.sourcePortId !== '') {
       writer.uint32(18).string(message.sourcePortId);
     }
-    if (message.sourceChannelId !== "") {
+    if (message.sourceChannelId !== '') {
       writer.uint32(26).string(message.sourceChannelId);
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       writer.uint32(34).string(message.signer);
     }
     for (const v of message.relayers) {
@@ -454,9 +446,9 @@ export const MsgPayPacketFee = {
   fromJSON(object: any): MsgPayPacketFee {
     return {
       fee: isSet(object.fee) ? Fee.fromJSON(object.fee) : undefined,
-      sourcePortId: isSet(object.sourcePortId) ? String(object.sourcePortId) : "",
-      sourceChannelId: isSet(object.sourceChannelId) ? String(object.sourceChannelId) : "",
-      signer: isSet(object.signer) ? String(object.signer) : "",
+      sourcePortId: isSet(object.sourcePortId) ? String(object.sourcePortId) : '',
+      sourceChannelId: isSet(object.sourceChannelId) ? String(object.sourceChannelId) : '',
+      signer: isSet(object.signer) ? String(object.signer) : '',
       relayers: Array.isArray(object?.relayers) ? object.relayers.map((e: any) => String(e)) : [],
     };
   },
@@ -466,13 +458,13 @@ export const MsgPayPacketFee = {
     if (message.fee !== undefined) {
       obj.fee = Fee.toJSON(message.fee);
     }
-    if (message.sourcePortId !== "") {
+    if (message.sourcePortId !== '') {
       obj.sourcePortId = message.sourcePortId;
     }
-    if (message.sourceChannelId !== "") {
+    if (message.sourceChannelId !== '') {
       obj.sourceChannelId = message.sourceChannelId;
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       obj.signer = message.signer;
     }
     if (message.relayers?.length) {
@@ -486,10 +478,10 @@ export const MsgPayPacketFee = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgPayPacketFee>, I>>(object: I): MsgPayPacketFee {
     const message = createBaseMsgPayPacketFee();
-    message.fee = (object.fee !== undefined && object.fee !== null) ? Fee.fromPartial(object.fee) : undefined;
-    message.sourcePortId = object.sourcePortId ?? "";
-    message.sourceChannelId = object.sourceChannelId ?? "";
-    message.signer = object.signer ?? "";
+    message.fee = object.fee !== undefined && object.fee !== null ? Fee.fromPartial(object.fee) : undefined;
+    message.sourcePortId = object.sourcePortId ?? '';
+    message.sourceChannelId = object.sourceChannelId ?? '';
+    message.signer = object.signer ?? '';
     message.relayers = object.relayers?.map((e) => e) || [];
     return message;
   },
@@ -606,12 +598,10 @@ export const MsgPayPacketFeeAsync = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgPayPacketFeeAsync>, I>>(object: I): MsgPayPacketFeeAsync {
     const message = createBaseMsgPayPacketFeeAsync();
-    message.packetId = (object.packetId !== undefined && object.packetId !== null)
-      ? PacketId.fromPartial(object.packetId)
-      : undefined;
-    message.packetFee = (object.packetFee !== undefined && object.packetFee !== null)
-      ? PacketFee.fromPartial(object.packetFee)
-      : undefined;
+    message.packetId =
+      object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
+    message.packetFee =
+      object.packetFee !== undefined && object.packetFee !== null ? PacketFee.fromPartial(object.packetFee) : undefined;
     return message;
   },
 };
@@ -693,7 +683,7 @@ export interface Msg {
   PayPacketFeeAsync(request: MsgPayPacketFeeAsync): Promise<MsgPayPacketFeeAsyncResponse>;
 }
 
-export const MsgServiceName = "ibc.applications.fee.v1.Msg";
+export const MsgServiceName = 'ibc.applications.fee.v1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -707,25 +697,25 @@ export class MsgClientImpl implements Msg {
   }
   RegisterPayee(request: MsgRegisterPayee): Promise<MsgRegisterPayeeResponse> {
     const data = MsgRegisterPayee.encode(request).finish();
-    const promise = this.rpc.request(this.service, "RegisterPayee", data);
+    const promise = this.rpc.request(this.service, 'RegisterPayee', data);
     return promise.then((data) => MsgRegisterPayeeResponse.decode(_m0.Reader.create(data)));
   }
 
   RegisterCounterpartyPayee(request: MsgRegisterCounterpartyPayee): Promise<MsgRegisterCounterpartyPayeeResponse> {
     const data = MsgRegisterCounterpartyPayee.encode(request).finish();
-    const promise = this.rpc.request(this.service, "RegisterCounterpartyPayee", data);
+    const promise = this.rpc.request(this.service, 'RegisterCounterpartyPayee', data);
     return promise.then((data) => MsgRegisterCounterpartyPayeeResponse.decode(_m0.Reader.create(data)));
   }
 
   PayPacketFee(request: MsgPayPacketFee): Promise<MsgPayPacketFeeResponse> {
     const data = MsgPayPacketFee.encode(request).finish();
-    const promise = this.rpc.request(this.service, "PayPacketFee", data);
+    const promise = this.rpc.request(this.service, 'PayPacketFee', data);
     return promise.then((data) => MsgPayPacketFeeResponse.decode(_m0.Reader.create(data)));
   }
 
   PayPacketFeeAsync(request: MsgPayPacketFeeAsync): Promise<MsgPayPacketFeeAsyncResponse> {
     const data = MsgPayPacketFeeAsync.encode(request).finish();
-    const promise = this.rpc.request(this.service, "PayPacketFeeAsync", data);
+    const promise = this.rpc.request(this.service, 'PayPacketFeeAsync', data);
     return promise.then((data) => MsgPayPacketFeeAsyncResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -736,13 +726,19 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

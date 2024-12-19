@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Any } from "../../../google/protobuf/any";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Any } from '../../../google/protobuf/any';
 
-export const protobufPackage = "cosmwasm.wasm.v1";
+export const protobufPackage = 'cosmwasm.wasm.v1';
 
 /** AccessType permission types */
 export enum AccessType {
@@ -21,19 +21,19 @@ export enum AccessType {
 export function accessTypeFromJSON(object: any): AccessType {
   switch (object) {
     case 0:
-    case "ACCESS_TYPE_UNSPECIFIED":
+    case 'ACCESS_TYPE_UNSPECIFIED':
       return AccessType.ACCESS_TYPE_UNSPECIFIED;
     case 1:
-    case "ACCESS_TYPE_NOBODY":
+    case 'ACCESS_TYPE_NOBODY':
       return AccessType.ACCESS_TYPE_NOBODY;
     case 3:
-    case "ACCESS_TYPE_EVERYBODY":
+    case 'ACCESS_TYPE_EVERYBODY':
       return AccessType.ACCESS_TYPE_EVERYBODY;
     case 4:
-    case "ACCESS_TYPE_ANY_OF_ADDRESSES":
+    case 'ACCESS_TYPE_ANY_OF_ADDRESSES':
       return AccessType.ACCESS_TYPE_ANY_OF_ADDRESSES;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return AccessType.UNRECOGNIZED;
   }
@@ -42,16 +42,16 @@ export function accessTypeFromJSON(object: any): AccessType {
 export function accessTypeToJSON(object: AccessType): string {
   switch (object) {
     case AccessType.ACCESS_TYPE_UNSPECIFIED:
-      return "ACCESS_TYPE_UNSPECIFIED";
+      return 'ACCESS_TYPE_UNSPECIFIED';
     case AccessType.ACCESS_TYPE_NOBODY:
-      return "ACCESS_TYPE_NOBODY";
+      return 'ACCESS_TYPE_NOBODY';
     case AccessType.ACCESS_TYPE_EVERYBODY:
-      return "ACCESS_TYPE_EVERYBODY";
+      return 'ACCESS_TYPE_EVERYBODY';
     case AccessType.ACCESS_TYPE_ANY_OF_ADDRESSES:
-      return "ACCESS_TYPE_ANY_OF_ADDRESSES";
+      return 'ACCESS_TYPE_ANY_OF_ADDRESSES';
     case AccessType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -71,19 +71,19 @@ export enum ContractCodeHistoryOperationType {
 export function contractCodeHistoryOperationTypeFromJSON(object: any): ContractCodeHistoryOperationType {
   switch (object) {
     case 0:
-    case "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED":
+    case 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED':
       return ContractCodeHistoryOperationType.CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED;
     case 1:
-    case "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT":
+    case 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT':
       return ContractCodeHistoryOperationType.CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT;
     case 2:
-    case "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE":
+    case 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE':
       return ContractCodeHistoryOperationType.CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE;
     case 3:
-    case "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS":
+    case 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS':
       return ContractCodeHistoryOperationType.CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return ContractCodeHistoryOperationType.UNRECOGNIZED;
   }
@@ -92,16 +92,16 @@ export function contractCodeHistoryOperationTypeFromJSON(object: any): ContractC
 export function contractCodeHistoryOperationTypeToJSON(object: ContractCodeHistoryOperationType): string {
   switch (object) {
     case ContractCodeHistoryOperationType.CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED:
-      return "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED";
+      return 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED';
     case ContractCodeHistoryOperationType.CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT:
-      return "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT";
+      return 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT';
     case ContractCodeHistoryOperationType.CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE:
-      return "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE";
+      return 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE';
     case ContractCodeHistoryOperationType.CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS:
-      return "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS";
+      return 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS';
     case ContractCodeHistoryOperationType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -385,16 +385,17 @@ export const Params = {
   },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
-    message.codeUploadAccess = (object.codeUploadAccess !== undefined && object.codeUploadAccess !== null)
-      ? AccessConfig.fromPartial(object.codeUploadAccess)
-      : undefined;
+    message.codeUploadAccess =
+      object.codeUploadAccess !== undefined && object.codeUploadAccess !== null
+        ? AccessConfig.fromPartial(object.codeUploadAccess)
+        : undefined;
     message.instantiateDefaultPermission = object.instantiateDefaultPermission ?? 0;
     return message;
   },
 };
 
 function createBaseCodeInfo(): CodeInfo {
-  return { codeHash: new Uint8Array(0), creator: "", instantiateConfig: undefined };
+  return { codeHash: new Uint8Array(0), creator: '', instantiateConfig: undefined };
 }
 
 export const CodeInfo = {
@@ -402,7 +403,7 @@ export const CodeInfo = {
     if (message.codeHash.length !== 0) {
       writer.uint32(10).bytes(message.codeHash);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(18).string(message.creator);
     }
     if (message.instantiateConfig !== undefined) {
@@ -451,7 +452,7 @@ export const CodeInfo = {
   fromJSON(object: any): CodeInfo {
     return {
       codeHash: isSet(object.codeHash) ? bytesFromBase64(object.codeHash) : new Uint8Array(0),
-      creator: isSet(object.creator) ? String(object.creator) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
       instantiateConfig: isSet(object.instantiateConfig) ? AccessConfig.fromJSON(object.instantiateConfig) : undefined,
     };
   },
@@ -461,7 +462,7 @@ export const CodeInfo = {
     if (message.codeHash.length !== 0) {
       obj.codeHash = base64FromBytes(message.codeHash);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     if (message.instantiateConfig !== undefined) {
@@ -476,16 +477,17 @@ export const CodeInfo = {
   fromPartial<I extends Exact<DeepPartial<CodeInfo>, I>>(object: I): CodeInfo {
     const message = createBaseCodeInfo();
     message.codeHash = object.codeHash ?? new Uint8Array(0);
-    message.creator = object.creator ?? "";
-    message.instantiateConfig = (object.instantiateConfig !== undefined && object.instantiateConfig !== null)
-      ? AccessConfig.fromPartial(object.instantiateConfig)
-      : undefined;
+    message.creator = object.creator ?? '';
+    message.instantiateConfig =
+      object.instantiateConfig !== undefined && object.instantiateConfig !== null
+        ? AccessConfig.fromPartial(object.instantiateConfig)
+        : undefined;
     return message;
   },
 };
 
 function createBaseContractInfo(): ContractInfo {
-  return { codeId: 0, creator: "", admin: "", label: "", created: undefined, ibcPortId: "", extension: undefined };
+  return { codeId: 0, creator: '', admin: '', label: '', created: undefined, ibcPortId: '', extension: undefined };
 }
 
 export const ContractInfo = {
@@ -493,19 +495,19 @@ export const ContractInfo = {
     if (message.codeId !== 0) {
       writer.uint32(8).uint64(message.codeId);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(18).string(message.creator);
     }
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(26).string(message.admin);
     }
-    if (message.label !== "") {
+    if (message.label !== '') {
       writer.uint32(34).string(message.label);
     }
     if (message.created !== undefined) {
       AbsoluteTxPosition.encode(message.created, writer.uint32(42).fork()).ldelim();
     }
-    if (message.ibcPortId !== "") {
+    if (message.ibcPortId !== '') {
       writer.uint32(50).string(message.ibcPortId);
     }
     if (message.extension !== undefined) {
@@ -582,11 +584,11 @@ export const ContractInfo = {
   fromJSON(object: any): ContractInfo {
     return {
       codeId: isSet(object.codeId) ? Number(object.codeId) : 0,
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      admin: isSet(object.admin) ? String(object.admin) : "",
-      label: isSet(object.label) ? String(object.label) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
+      admin: isSet(object.admin) ? String(object.admin) : '',
+      label: isSet(object.label) ? String(object.label) : '',
       created: isSet(object.created) ? AbsoluteTxPosition.fromJSON(object.created) : undefined,
-      ibcPortId: isSet(object.ibcPortId) ? String(object.ibcPortId) : "",
+      ibcPortId: isSet(object.ibcPortId) ? String(object.ibcPortId) : '',
       extension: isSet(object.extension) ? Any.fromJSON(object.extension) : undefined,
     };
   },
@@ -596,19 +598,19 @@ export const ContractInfo = {
     if (message.codeId !== 0) {
       obj.codeId = Math.round(message.codeId);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
-    if (message.label !== "") {
+    if (message.label !== '') {
       obj.label = message.label;
     }
     if (message.created !== undefined) {
       obj.created = AbsoluteTxPosition.toJSON(message.created);
     }
-    if (message.ibcPortId !== "") {
+    if (message.ibcPortId !== '') {
       obj.ibcPortId = message.ibcPortId;
     }
     if (message.extension !== undefined) {
@@ -623,16 +625,16 @@ export const ContractInfo = {
   fromPartial<I extends Exact<DeepPartial<ContractInfo>, I>>(object: I): ContractInfo {
     const message = createBaseContractInfo();
     message.codeId = object.codeId ?? 0;
-    message.creator = object.creator ?? "";
-    message.admin = object.admin ?? "";
-    message.label = object.label ?? "";
-    message.created = (object.created !== undefined && object.created !== null)
-      ? AbsoluteTxPosition.fromPartial(object.created)
-      : undefined;
-    message.ibcPortId = object.ibcPortId ?? "";
-    message.extension = (object.extension !== undefined && object.extension !== null)
-      ? Any.fromPartial(object.extension)
-      : undefined;
+    message.creator = object.creator ?? '';
+    message.admin = object.admin ?? '';
+    message.label = object.label ?? '';
+    message.created =
+      object.created !== undefined && object.created !== null
+        ? AbsoluteTxPosition.fromPartial(object.created)
+        : undefined;
+    message.ibcPortId = object.ibcPortId ?? '';
+    message.extension =
+      object.extension !== undefined && object.extension !== null ? Any.fromPartial(object.extension) : undefined;
     return message;
   },
 };
@@ -735,9 +737,10 @@ export const ContractCodeHistoryEntry = {
     const message = createBaseContractCodeHistoryEntry();
     message.operation = object.operation ?? 0;
     message.codeId = object.codeId ?? 0;
-    message.updated = (object.updated !== undefined && object.updated !== null)
-      ? AbsoluteTxPosition.fromPartial(object.updated)
-      : undefined;
+    message.updated =
+      object.updated !== undefined && object.updated !== null
+        ? AbsoluteTxPosition.fromPartial(object.updated)
+        : undefined;
     message.msg = object.msg ?? new Uint8Array(0);
     return message;
   },
@@ -895,24 +898,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -925,30 +928,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

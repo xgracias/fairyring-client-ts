@@ -10,14 +10,14 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface AddressBytesToStringResponse {
@@ -31,7 +31,7 @@ export interface AddressStringToBytesResponse {
 
 export interface BaseAccount {
   address?: string;
-  pub_key?: { "@type"?: string };
+  pub_key?: { '@type'?: string };
 
   /** @format uint64 */
   account_number?: string;
@@ -70,24 +70,24 @@ export interface QueryAccountAddressByIDResponse {
 }
 
 export interface QueryAccountInfoResponse {
-  info?: { address?: string; pub_key?: { "@type"?: string }; account_number?: string; sequence?: string };
+  info?: { address?: string; pub_key?: { '@type'?: string }; account_number?: string; sequence?: string };
 }
 
 export interface QueryAccountResponse {
-  account?: { "@type"?: string };
+  account?: { '@type'?: string };
 }
 
 export interface QueryAccountsResponse {
-  accounts?: { "@type"?: string }[];
+  accounts?: { '@type'?: string }[];
   pagination?: { next_key?: string; total?: string };
 }
 
 export interface QueryModuleAccountByNameResponse {
-  account?: { "@type"?: string };
+  account?: { '@type'?: string };
 }
 
 export interface QueryModuleAccountsResponse {
-  accounts?: { "@type"?: string }[];
+  accounts?: { '@type'?: string }[];
 }
 
 export interface QueryParamsResponse {
@@ -136,11 +136,11 @@ export interface Params {
   sig_verify_cost_secp256k1?: string;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -155,31 +155,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -209,9 +209,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -227,15 +227,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -245,7 +245,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -269,11 +269,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryAccountInfo = (address: string, params: RequestParams = {}) =>
     this.request<
-      { info?: { address?: string; pub_key?: { "@type"?: string }; account_number?: string; sequence?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { info?: { address?: string; pub_key?: { '@type'?: string }; account_number?: string; sequence?: string } },
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/auth/v1beta1/account_info/${address}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -286,20 +286,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryAccounts = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
-      { accounts?: { "@type"?: string }[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { accounts?: { '@type'?: string }[]; pagination?: { next_key?: string; total?: string } },
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/auth/v1beta1/accounts`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -313,11 +313,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryAccount = (address: string, params: RequestParams = {}) =>
     this.request<
-      { account?: { "@type"?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { account?: { '@type'?: string } },
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/auth/v1beta1/accounts/${address}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -329,9 +329,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmos/auth/v1beta1/address_by_id/{id}
    */
   queryAccountAddressByID = (id: string, query?: { account_id?: string }, params: RequestParams = {}) =>
-    this.request<{ account_address?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ account_address?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmos/auth/v1beta1/address_by_id/${id}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -344,9 +344,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmos/auth/v1beta1/bech32
    */
   queryBech32Prefix = (params: RequestParams = {}) =>
-    this.request<{ bech32_prefix?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ bech32_prefix?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmos/auth/v1beta1/bech32`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -358,9 +358,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmos/auth/v1beta1/bech32/{address_bytes}
    */
   queryAddressBytesToString = (addressBytes: string, params: RequestParams = {}) =>
-    this.request<{ address_string?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ address_string?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmos/auth/v1beta1/bech32/${addressBytes}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -372,9 +372,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmos/auth/v1beta1/bech32/{address_string}
    */
   queryAddressStringToBytes = (addressString: string, params: RequestParams = {}) =>
-    this.request<{ address_bytes?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ address_bytes?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmos/auth/v1beta1/bech32/${addressString}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -387,11 +387,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryModuleAccounts = (params: RequestParams = {}) =>
     this.request<
-      { accounts?: { "@type"?: string }[] },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { accounts?: { '@type'?: string }[] },
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/auth/v1beta1/module_accounts`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -404,11 +404,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryModuleAccountByName = (name: string, params: RequestParams = {}) =>
     this.request<
-      { account?: { "@type"?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { account?: { '@type'?: string } },
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/auth/v1beta1/module_accounts/${name}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -430,10 +430,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           sig_verify_cost_secp256k1?: string;
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/auth/v1beta1/params`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 }

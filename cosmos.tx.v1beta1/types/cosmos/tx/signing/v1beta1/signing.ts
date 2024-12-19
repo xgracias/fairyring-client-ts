@@ -1,10 +1,10 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Any } from "../../../../google/protobuf/any";
-import { CompactBitArray } from "../../../crypto/multisig/v1beta1/multisig";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Any } from '../../../../google/protobuf/any';
+import { CompactBitArray } from '../../../crypto/multisig/v1beta1/multisig';
 
-export const protobufPackage = "cosmos.tx.signing.v1beta1";
+export const protobufPackage = 'cosmos.tx.signing.v1beta1';
 
 /**
  * SignMode represents a signing mode with its own security guarantees.
@@ -67,25 +67,25 @@ export enum SignMode {
 export function signModeFromJSON(object: any): SignMode {
   switch (object) {
     case 0:
-    case "SIGN_MODE_UNSPECIFIED":
+    case 'SIGN_MODE_UNSPECIFIED':
       return SignMode.SIGN_MODE_UNSPECIFIED;
     case 1:
-    case "SIGN_MODE_DIRECT":
+    case 'SIGN_MODE_DIRECT':
       return SignMode.SIGN_MODE_DIRECT;
     case 2:
-    case "SIGN_MODE_TEXTUAL":
+    case 'SIGN_MODE_TEXTUAL':
       return SignMode.SIGN_MODE_TEXTUAL;
     case 3:
-    case "SIGN_MODE_DIRECT_AUX":
+    case 'SIGN_MODE_DIRECT_AUX':
       return SignMode.SIGN_MODE_DIRECT_AUX;
     case 127:
-    case "SIGN_MODE_LEGACY_AMINO_JSON":
+    case 'SIGN_MODE_LEGACY_AMINO_JSON':
       return SignMode.SIGN_MODE_LEGACY_AMINO_JSON;
     case 191:
-    case "SIGN_MODE_EIP_191":
+    case 'SIGN_MODE_EIP_191':
       return SignMode.SIGN_MODE_EIP_191;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return SignMode.UNRECOGNIZED;
   }
@@ -94,20 +94,20 @@ export function signModeFromJSON(object: any): SignMode {
 export function signModeToJSON(object: SignMode): string {
   switch (object) {
     case SignMode.SIGN_MODE_UNSPECIFIED:
-      return "SIGN_MODE_UNSPECIFIED";
+      return 'SIGN_MODE_UNSPECIFIED';
     case SignMode.SIGN_MODE_DIRECT:
-      return "SIGN_MODE_DIRECT";
+      return 'SIGN_MODE_DIRECT';
     case SignMode.SIGN_MODE_TEXTUAL:
-      return "SIGN_MODE_TEXTUAL";
+      return 'SIGN_MODE_TEXTUAL';
     case SignMode.SIGN_MODE_DIRECT_AUX:
-      return "SIGN_MODE_DIRECT_AUX";
+      return 'SIGN_MODE_DIRECT_AUX';
     case SignMode.SIGN_MODE_LEGACY_AMINO_JSON:
-      return "SIGN_MODE_LEGACY_AMINO_JSON";
+      return 'SIGN_MODE_LEGACY_AMINO_JSON';
     case SignMode.SIGN_MODE_EIP_191:
-      return "SIGN_MODE_EIP_191";
+      return 'SIGN_MODE_EIP_191';
     case SignMode.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -126,9 +126,7 @@ export interface SignatureDescriptors {
 export interface SignatureDescriptor {
   /** public_key is the public key of the signer */
   publicKey: Any | undefined;
-  data:
-    | SignatureDescriptor_Data
-    | undefined;
+  data: SignatureDescriptor_Data | undefined;
   /**
    * sequence is the sequence of the account, which describes the
    * number of committed transactions signed by a given address. It is used to prevent
@@ -140,9 +138,7 @@ export interface SignatureDescriptor {
 /** Data represents signature data */
 export interface SignatureDescriptor_Data {
   /** single represents a single signer */
-  single?:
-    | SignatureDescriptor_Data_Single
-    | undefined;
+  single?: SignatureDescriptor_Data_Single | undefined;
   /** multi represents a multisig signer */
   multi?: SignatureDescriptor_Data_Multi | undefined;
 }
@@ -158,9 +154,7 @@ export interface SignatureDescriptor_Data_Single {
 /** Multi is the signature data for a multisig public key */
 export interface SignatureDescriptor_Data_Multi {
   /** bitarray specifies which keys within the multisig are signing */
-  bitarray:
-    | CompactBitArray
-    | undefined;
+  bitarray: CompactBitArray | undefined;
   /** signatures is the signatures of the multi-signature */
   signatures: SignatureDescriptor_Data[];
 }
@@ -308,12 +302,10 @@ export const SignatureDescriptor = {
   },
   fromPartial<I extends Exact<DeepPartial<SignatureDescriptor>, I>>(object: I): SignatureDescriptor {
     const message = createBaseSignatureDescriptor();
-    message.publicKey = (object.publicKey !== undefined && object.publicKey !== null)
-      ? Any.fromPartial(object.publicKey)
-      : undefined;
-    message.data = (object.data !== undefined && object.data !== null)
-      ? SignatureDescriptor_Data.fromPartial(object.data)
-      : undefined;
+    message.publicKey =
+      object.publicKey !== undefined && object.publicKey !== null ? Any.fromPartial(object.publicKey) : undefined;
+    message.data =
+      object.data !== undefined && object.data !== null ? SignatureDescriptor_Data.fromPartial(object.data) : undefined;
     message.sequence = object.sequence ?? 0;
     return message;
   },
@@ -387,12 +379,14 @@ export const SignatureDescriptor_Data = {
   },
   fromPartial<I extends Exact<DeepPartial<SignatureDescriptor_Data>, I>>(object: I): SignatureDescriptor_Data {
     const message = createBaseSignatureDescriptor_Data();
-    message.single = (object.single !== undefined && object.single !== null)
-      ? SignatureDescriptor_Data_Single.fromPartial(object.single)
-      : undefined;
-    message.multi = (object.multi !== undefined && object.multi !== null)
-      ? SignatureDescriptor_Data_Multi.fromPartial(object.multi)
-      : undefined;
+    message.single =
+      object.single !== undefined && object.single !== null
+        ? SignatureDescriptor_Data_Single.fromPartial(object.single)
+        : undefined;
+    message.multi =
+      object.multi !== undefined && object.multi !== null
+        ? SignatureDescriptor_Data_Multi.fromPartial(object.multi)
+        : undefined;
     return message;
   },
 };
@@ -464,7 +458,7 @@ export const SignatureDescriptor_Data_Single = {
     return SignatureDescriptor_Data_Single.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<SignatureDescriptor_Data_Single>, I>>(
-    object: I,
+    object: I
   ): SignatureDescriptor_Data_Single {
     const message = createBaseSignatureDescriptor_Data_Single();
     message.mode = object.mode ?? 0;
@@ -542,12 +536,13 @@ export const SignatureDescriptor_Data_Multi = {
     return SignatureDescriptor_Data_Multi.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<SignatureDescriptor_Data_Multi>, I>>(
-    object: I,
+    object: I
   ): SignatureDescriptor_Data_Multi {
     const message = createBaseSignatureDescriptor_Data_Multi();
-    message.bitarray = (object.bitarray !== undefined && object.bitarray !== null)
-      ? CompactBitArray.fromPartial(object.bitarray)
-      : undefined;
+    message.bitarray =
+      object.bitarray !== undefined && object.bitarray !== null
+        ? CompactBitArray.fromPartial(object.bitarray)
+        : undefined;
     message.signatures = object.signatures?.map((e) => SignatureDescriptor_Data.fromPartial(e)) || [];
     return message;
   },
@@ -557,24 +552,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -587,30 +582,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Permissions } from "./types";
+import _m0 from 'protobufjs/minimal';
+import { Permissions } from './types';
 
-export const protobufPackage = "cosmos.circuit.v1";
+export const protobufPackage = 'cosmos.circuit.v1';
 
 /** MsgAuthorizeCircuitBreaker defines the Msg/AuthorizeCircuitBreaker request type. */
 export interface MsgAuthorizeCircuitBreaker {
@@ -63,15 +63,15 @@ export interface MsgResetCircuitBreakerResponse {
 }
 
 function createBaseMsgAuthorizeCircuitBreaker(): MsgAuthorizeCircuitBreaker {
-  return { granter: "", grantee: "", permissions: undefined };
+  return { granter: '', grantee: '', permissions: undefined };
 }
 
 export const MsgAuthorizeCircuitBreaker = {
   encode(message: MsgAuthorizeCircuitBreaker, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.granter !== "") {
+    if (message.granter !== '') {
       writer.uint32(10).string(message.granter);
     }
-    if (message.grantee !== "") {
+    if (message.grantee !== '') {
       writer.uint32(18).string(message.grantee);
     }
     if (message.permissions !== undefined) {
@@ -119,18 +119,18 @@ export const MsgAuthorizeCircuitBreaker = {
 
   fromJSON(object: any): MsgAuthorizeCircuitBreaker {
     return {
-      granter: isSet(object.granter) ? String(object.granter) : "",
-      grantee: isSet(object.grantee) ? String(object.grantee) : "",
+      granter: isSet(object.granter) ? String(object.granter) : '',
+      grantee: isSet(object.grantee) ? String(object.grantee) : '',
       permissions: isSet(object.permissions) ? Permissions.fromJSON(object.permissions) : undefined,
     };
   },
 
   toJSON(message: MsgAuthorizeCircuitBreaker): unknown {
     const obj: any = {};
-    if (message.granter !== "") {
+    if (message.granter !== '') {
       obj.granter = message.granter;
     }
-    if (message.grantee !== "") {
+    if (message.grantee !== '') {
       obj.grantee = message.grantee;
     }
     if (message.permissions !== undefined) {
@@ -144,11 +144,12 @@ export const MsgAuthorizeCircuitBreaker = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgAuthorizeCircuitBreaker>, I>>(object: I): MsgAuthorizeCircuitBreaker {
     const message = createBaseMsgAuthorizeCircuitBreaker();
-    message.granter = object.granter ?? "";
-    message.grantee = object.grantee ?? "";
-    message.permissions = (object.permissions !== undefined && object.permissions !== null)
-      ? Permissions.fromPartial(object.permissions)
-      : undefined;
+    message.granter = object.granter ?? '';
+    message.grantee = object.grantee ?? '';
+    message.permissions =
+      object.permissions !== undefined && object.permissions !== null
+        ? Permissions.fromPartial(object.permissions)
+        : undefined;
     return message;
   },
 };
@@ -201,12 +202,12 @@ export const MsgAuthorizeCircuitBreakerResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgAuthorizeCircuitBreakerResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgAuthorizeCircuitBreakerResponse {
     return MsgAuthorizeCircuitBreakerResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgAuthorizeCircuitBreakerResponse>, I>>(
-    object: I,
+    object: I
   ): MsgAuthorizeCircuitBreakerResponse {
     const message = createBaseMsgAuthorizeCircuitBreakerResponse();
     message.success = object.success ?? false;
@@ -215,12 +216,12 @@ export const MsgAuthorizeCircuitBreakerResponse = {
 };
 
 function createBaseMsgTripCircuitBreaker(): MsgTripCircuitBreaker {
-  return { authority: "", msgTypeUrls: [] };
+  return { authority: '', msgTypeUrls: [] };
 }
 
 export const MsgTripCircuitBreaker = {
   encode(message: MsgTripCircuitBreaker, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
     for (const v of message.msgTypeUrls) {
@@ -261,14 +262,14 @@ export const MsgTripCircuitBreaker = {
 
   fromJSON(object: any): MsgTripCircuitBreaker {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
       msgTypeUrls: Array.isArray(object?.msgTypeUrls) ? object.msgTypeUrls.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: MsgTripCircuitBreaker): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     if (message.msgTypeUrls?.length) {
@@ -282,7 +283,7 @@ export const MsgTripCircuitBreaker = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgTripCircuitBreaker>, I>>(object: I): MsgTripCircuitBreaker {
     const message = createBaseMsgTripCircuitBreaker();
-    message.authority = object.authority ?? "";
+    message.authority = object.authority ?? '';
     message.msgTypeUrls = object.msgTypeUrls?.map((e) => e) || [];
     return message;
   },
@@ -339,7 +340,7 @@ export const MsgTripCircuitBreakerResponse = {
     return MsgTripCircuitBreakerResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgTripCircuitBreakerResponse>, I>>(
-    object: I,
+    object: I
   ): MsgTripCircuitBreakerResponse {
     const message = createBaseMsgTripCircuitBreakerResponse();
     message.success = object.success ?? false;
@@ -348,12 +349,12 @@ export const MsgTripCircuitBreakerResponse = {
 };
 
 function createBaseMsgResetCircuitBreaker(): MsgResetCircuitBreaker {
-  return { authority: "", msgTypeUrls: [] };
+  return { authority: '', msgTypeUrls: [] };
 }
 
 export const MsgResetCircuitBreaker = {
   encode(message: MsgResetCircuitBreaker, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
     for (const v of message.msgTypeUrls) {
@@ -394,14 +395,14 @@ export const MsgResetCircuitBreaker = {
 
   fromJSON(object: any): MsgResetCircuitBreaker {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
       msgTypeUrls: Array.isArray(object?.msgTypeUrls) ? object.msgTypeUrls.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: MsgResetCircuitBreaker): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     if (message.msgTypeUrls?.length) {
@@ -415,7 +416,7 @@ export const MsgResetCircuitBreaker = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgResetCircuitBreaker>, I>>(object: I): MsgResetCircuitBreaker {
     const message = createBaseMsgResetCircuitBreaker();
-    message.authority = object.authority ?? "";
+    message.authority = object.authority ?? '';
     message.msgTypeUrls = object.msgTypeUrls?.map((e) => e) || [];
     return message;
   },
@@ -472,7 +473,7 @@ export const MsgResetCircuitBreakerResponse = {
     return MsgResetCircuitBreakerResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgResetCircuitBreakerResponse>, I>>(
-    object: I,
+    object: I
   ): MsgResetCircuitBreakerResponse {
     const message = createBaseMsgResetCircuitBreakerResponse();
     message.success = object.success ?? false;
@@ -496,7 +497,7 @@ export interface Msg {
   ResetCircuitBreaker(request: MsgResetCircuitBreaker): Promise<MsgResetCircuitBreakerResponse>;
 }
 
-export const MsgServiceName = "cosmos.circuit.v1.Msg";
+export const MsgServiceName = 'cosmos.circuit.v1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -509,19 +510,19 @@ export class MsgClientImpl implements Msg {
   }
   AuthorizeCircuitBreaker(request: MsgAuthorizeCircuitBreaker): Promise<MsgAuthorizeCircuitBreakerResponse> {
     const data = MsgAuthorizeCircuitBreaker.encode(request).finish();
-    const promise = this.rpc.request(this.service, "AuthorizeCircuitBreaker", data);
+    const promise = this.rpc.request(this.service, 'AuthorizeCircuitBreaker', data);
     return promise.then((data) => MsgAuthorizeCircuitBreakerResponse.decode(_m0.Reader.create(data)));
   }
 
   TripCircuitBreaker(request: MsgTripCircuitBreaker): Promise<MsgTripCircuitBreakerResponse> {
     const data = MsgTripCircuitBreaker.encode(request).finish();
-    const promise = this.rpc.request(this.service, "TripCircuitBreaker", data);
+    const promise = this.rpc.request(this.service, 'TripCircuitBreaker', data);
     return promise.then((data) => MsgTripCircuitBreakerResponse.decode(_m0.Reader.create(data)));
   }
 
   ResetCircuitBreaker(request: MsgResetCircuitBreaker): Promise<MsgResetCircuitBreakerResponse> {
     const data = MsgResetCircuitBreaker.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ResetCircuitBreaker", data);
+    const promise = this.rpc.request(this.service, 'ResetCircuitBreaker', data);
     return promise.then((data) => MsgResetCircuitBreakerResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -532,13 +533,19 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

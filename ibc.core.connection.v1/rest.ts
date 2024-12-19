@@ -10,20 +10,20 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface ConnectionEnd {
   client_id?: string;
   versions?: { identifier?: string; features?: string[] }[];
-  state?: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
+  state?: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
   counterparty?: { client_id?: string; connection_id?: string; prefix?: { key_prefix?: string } };
 
   /** @format uint64 */
@@ -46,14 +46,14 @@ export interface Height {
 
 export interface IdentifiedClientState {
   client_id?: string;
-  client_state?: { "@type"?: string };
+  client_state?: { '@type'?: string };
 }
 
 export interface IdentifiedConnection {
   id?: string;
   client_id?: string;
   versions?: { identifier?: string; features?: string[] }[];
-  state?: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
+  state?: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
   counterparty?: { client_id?: string; connection_id?: string; prefix?: { key_prefix?: string } };
 
   /** @format uint64 */
@@ -95,7 +95,7 @@ export interface QueryClientConnectionsResponse {
 }
 
 export interface QueryConnectionClientStateResponse {
-  identified_client_state?: { client_id?: string; client_state?: { "@type"?: string } };
+  identified_client_state?: { client_id?: string; client_state?: { '@type'?: string } };
 
   /** @format byte */
   proof?: string;
@@ -103,7 +103,7 @@ export interface QueryConnectionClientStateResponse {
 }
 
 export interface QueryConnectionConsensusStateResponse {
-  consensus_state?: { "@type"?: string };
+  consensus_state?: { '@type'?: string };
   client_id?: string;
 
   /** @format byte */
@@ -119,7 +119,7 @@ export interface QueryConnectionResponse {
   connection?: {
     client_id?: string;
     versions?: { identifier?: string; features?: string[] }[];
-    state?: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
+    state?: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
     counterparty?: { client_id?: string; connection_id?: string; prefix?: { key_prefix?: string } };
     delay_period?: string;
   };
@@ -134,7 +134,7 @@ export interface QueryConnectionsResponse {
     id?: string;
     client_id?: string;
     versions?: { identifier?: string; features?: string[] }[];
-    state?: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
+    state?: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
     counterparty?: { client_id?: string; connection_id?: string; prefix?: { key_prefix?: string } };
     delay_period?: string;
   }[];
@@ -143,10 +143,10 @@ export interface QueryConnectionsResponse {
 }
 
 export enum State {
-  STATE_UNINITIALIZED_UNSPECIFIED = "STATE_UNINITIALIZED_UNSPECIFIED",
-  STATE_INIT = "STATE_INIT",
-  STATE_TRYOPEN = "STATE_TRYOPEN",
-  STATE_OPEN = "STATE_OPEN",
+  STATE_UNINITIALIZED_UNSPECIFIED = 'STATE_UNINITIALIZED_UNSPECIFIED',
+  STATE_INIT = 'STATE_INIT',
+  STATE_TRYOPEN = 'STATE_TRYOPEN',
+  STATE_OPEN = 'STATE_OPEN',
 }
 
 export interface Version {
@@ -169,11 +169,11 @@ export type MsgConnectionOpenTryResponse = object;
 
 export type MsgUpdateParamsResponse = object;
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -188,31 +188,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -242,9 +242,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -260,15 +260,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -278,7 +278,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -307,10 +307,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/connection/v1/client_connections/${clientId}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -323,13 +323,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryConnections = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -337,17 +337,17 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           id?: string;
           client_id?: string;
           versions?: { identifier?: string; features?: string[] }[];
-          state?: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
+          state?: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
           counterparty?: { client_id?: string; connection_id?: string; prefix?: { key_prefix?: string } };
           delay_period?: string;
         }[];
         pagination?: { next_key?: string; total?: string };
         height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/connection/v1/connections`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -365,17 +365,17 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         connection?: {
           client_id?: string;
           versions?: { identifier?: string; features?: string[] }[];
-          state?: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
+          state?: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
           counterparty?: { client_id?: string; connection_id?: string; prefix?: { key_prefix?: string } };
           delay_period?: string;
         };
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/connection/v1/connections/${connectionId}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -389,14 +389,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryConnectionClientState = (connectionId: string, params: RequestParams = {}) =>
     this.request<
       {
-        identified_client_state?: { client_id?: string; client_state?: { "@type"?: string } };
+        identified_client_state?: { client_id?: string; client_state?: { '@type'?: string } };
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/connection/v1/connections/${connectionId}/client_state`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -411,19 +411,19 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     connectionId: string,
     revisionNumber: string,
     revisionHeight: string,
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
-        consensus_state?: { "@type"?: string };
+        consensus_state?: { '@type'?: string };
         client_id?: string;
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/connection/v1/connections/${connectionId}/consensus_state/revision/${revisionNumber}/height/${revisionHeight}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -437,10 +437,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryConnectionParams = (params: RequestParams = {}) =>
     this.request<
       { params?: { max_expected_time_per_block?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/connection/v1/params`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 }

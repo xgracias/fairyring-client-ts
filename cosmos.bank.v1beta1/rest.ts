@@ -10,14 +10,14 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface Coin {
@@ -194,11 +194,11 @@ export interface SendEnabled {
   enabled?: boolean;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -213,31 +213,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -267,9 +267,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -285,15 +285,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -303,7 +303,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -328,21 +328,21 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryAllBalances = (
     address: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
       resolve_denom?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { balances?: { denom?: string; amount?: string }[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/balances/${address}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -357,10 +357,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryBalance = (address: string, query?: { denom?: string }, params: RequestParams = {}) =>
     this.request<
       { balance?: { denom?: string; amount?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/balances/${address}/by_denom`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -375,23 +375,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDenomOwners = (
     denom: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         denom_owners?: { address?: string; balance?: { denom?: string; amount?: string } }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/denom_owners/${denom}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -406,23 +406,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDenomOwnersByQuery = (
     query?: {
       denom?: string;
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         denom_owners?: { address?: string; balance?: { denom?: string; amount?: string } }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/denom_owners_by_query`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -436,13 +436,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryDenomsMetadata = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -458,10 +458,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/denoms_metadata`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -487,10 +487,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           uri_hash?: string;
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/denoms_metadata/${denom}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -515,10 +515,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           uri_hash?: string;
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/denoms_metadata_by_query_string`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -533,10 +533,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryParams = (params: RequestParams = {}) =>
     this.request<
       { params?: { send_enabled?: { denom?: string; enabled?: boolean }[]; default_send_enabled?: boolean } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/params`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -550,20 +550,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   querySendEnabled = (
     query?: {
       denoms?: string[];
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { send_enabled?: { denom?: string; enabled?: boolean }[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/send_enabled`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -578,20 +578,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   querySpendableBalances = (
     address: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { balances?: { denom?: string; amount?: string }[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/spendable_balances/${address}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -606,10 +606,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   querySpendableBalanceByDenom = (address: string, query?: { denom?: string }, params: RequestParams = {}) =>
     this.request<
       { balance?: { denom?: string; amount?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/spendable_balances/${address}/by_denom`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -623,20 +623,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryTotalSupply = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { supply?: { denom?: string; amount?: string }[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/supply`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -651,10 +651,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   querySupplyOf = (query?: { denom?: string }, params: RequestParams = {}) =>
     this.request<
       { amount?: { denom?: string; amount?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/bank/v1beta1/supply/by_denom`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });

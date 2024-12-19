@@ -1,7 +1,7 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Any } from "../../../google/protobuf/any";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Any } from '../../../google/protobuf/any';
 import {
   MemberRequest,
   ProposalExecutorResult,
@@ -10,9 +10,9 @@ import {
   VoteOption,
   voteOptionFromJSON,
   voteOptionToJSON,
-} from "./types";
+} from './types';
 
-export const protobufPackage = "cosmos.group.v1";
+export const protobufPackage = 'cosmos.group.v1';
 
 /** Since: cosmos-sdk 0.46 */
 
@@ -36,13 +36,13 @@ export enum Exec {
 export function execFromJSON(object: any): Exec {
   switch (object) {
     case 0:
-    case "EXEC_UNSPECIFIED":
+    case 'EXEC_UNSPECIFIED':
       return Exec.EXEC_UNSPECIFIED;
     case 1:
-    case "EXEC_TRY":
+    case 'EXEC_TRY':
       return Exec.EXEC_TRY;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return Exec.UNRECOGNIZED;
   }
@@ -51,12 +51,12 @@ export function execFromJSON(object: any): Exec {
 export function execToJSON(object: Exec): string {
   switch (object) {
     case Exec.EXEC_UNSPECIFIED:
-      return "EXEC_UNSPECIFIED";
+      return 'EXEC_UNSPECIFIED';
     case Exec.EXEC_TRY:
-      return "EXEC_TRY";
+      return 'EXEC_TRY';
     case Exec.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -90,8 +90,7 @@ export interface MsgUpdateGroupMembers {
 }
 
 /** MsgUpdateGroupMembersResponse is the Msg/UpdateGroupMembers response type. */
-export interface MsgUpdateGroupMembersResponse {
-}
+export interface MsgUpdateGroupMembersResponse {}
 
 /** MsgUpdateGroupAdmin is the Msg/UpdateGroupAdmin request type. */
 export interface MsgUpdateGroupAdmin {
@@ -104,8 +103,7 @@ export interface MsgUpdateGroupAdmin {
 }
 
 /** MsgUpdateGroupAdminResponse is the Msg/UpdateGroupAdmin response type. */
-export interface MsgUpdateGroupAdminResponse {
-}
+export interface MsgUpdateGroupAdminResponse {}
 
 /** MsgUpdateGroupMetadata is the Msg/UpdateGroupMetadata request type. */
 export interface MsgUpdateGroupMetadata {
@@ -118,8 +116,7 @@ export interface MsgUpdateGroupMetadata {
 }
 
 /** MsgUpdateGroupMetadataResponse is the Msg/UpdateGroupMetadata response type. */
-export interface MsgUpdateGroupMetadataResponse {
-}
+export interface MsgUpdateGroupMetadataResponse {}
 
 /** MsgCreateGroupPolicy is the Msg/CreateGroupPolicy request type. */
 export interface MsgCreateGroupPolicy {
@@ -150,8 +147,7 @@ export interface MsgUpdateGroupPolicyAdmin {
 }
 
 /** MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type. */
-export interface MsgUpdateGroupPolicyAdminResponse {
-}
+export interface MsgUpdateGroupPolicyAdminResponse {}
 
 /** MsgCreateGroupWithPolicy is the Msg/CreateGroupWithPolicy request type. */
 export interface MsgCreateGroupWithPolicy {
@@ -191,8 +187,7 @@ export interface MsgUpdateGroupPolicyDecisionPolicy {
 }
 
 /** MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type. */
-export interface MsgUpdateGroupPolicyDecisionPolicyResponse {
-}
+export interface MsgUpdateGroupPolicyDecisionPolicyResponse {}
 
 /** MsgUpdateGroupPolicyMetadata is the Msg/UpdateGroupPolicyMetadata request type. */
 export interface MsgUpdateGroupPolicyMetadata {
@@ -205,8 +200,7 @@ export interface MsgUpdateGroupPolicyMetadata {
 }
 
 /** MsgUpdateGroupPolicyMetadataResponse is the Msg/UpdateGroupPolicyMetadata response type. */
-export interface MsgUpdateGroupPolicyMetadataResponse {
-}
+export interface MsgUpdateGroupPolicyMetadataResponse {}
 
 /** MsgSubmitProposal is the Msg/SubmitProposal request type. */
 export interface MsgSubmitProposal {
@@ -256,8 +250,7 @@ export interface MsgWithdrawProposal {
 }
 
 /** MsgWithdrawProposalResponse is the Msg/WithdrawProposal response type. */
-export interface MsgWithdrawProposalResponse {
-}
+export interface MsgWithdrawProposalResponse {}
 
 /** MsgVote is the Msg/Vote request type. */
 export interface MsgVote {
@@ -277,8 +270,7 @@ export interface MsgVote {
 }
 
 /** MsgVoteResponse is the Msg/Vote response type. */
-export interface MsgVoteResponse {
-}
+export interface MsgVoteResponse {}
 
 /** MsgExec is the Msg/Exec request type. */
 export interface MsgExec {
@@ -303,22 +295,21 @@ export interface MsgLeaveGroup {
 }
 
 /** MsgLeaveGroupResponse is the Msg/LeaveGroup response type. */
-export interface MsgLeaveGroupResponse {
-}
+export interface MsgLeaveGroupResponse {}
 
 function createBaseMsgCreateGroup(): MsgCreateGroup {
-  return { admin: "", members: [], metadata: "" };
+  return { admin: '', members: [], metadata: '' };
 }
 
 export const MsgCreateGroup = {
   encode(message: MsgCreateGroup, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
     for (const v of message.members) {
       MemberRequest.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(26).string(message.metadata);
     }
     return writer;
@@ -363,21 +354,21 @@ export const MsgCreateGroup = {
 
   fromJSON(object: any): MsgCreateGroup {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
       members: Array.isArray(object?.members) ? object.members.map((e: any) => MemberRequest.fromJSON(e)) : [],
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
     };
   },
 
   toJSON(message: MsgCreateGroup): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
     if (message.members?.length) {
       obj.members = message.members.map((e) => MemberRequest.toJSON(e));
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     return obj;
@@ -388,9 +379,9 @@ export const MsgCreateGroup = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateGroup>, I>>(object: I): MsgCreateGroup {
     const message = createBaseMsgCreateGroup();
-    message.admin = object.admin ?? "";
+    message.admin = object.admin ?? '';
     message.members = object.members?.map((e) => MemberRequest.fromPartial(e)) || [];
-    message.metadata = object.metadata ?? "";
+    message.metadata = object.metadata ?? '';
     return message;
   },
 };
@@ -453,12 +444,12 @@ export const MsgCreateGroupResponse = {
 };
 
 function createBaseMsgUpdateGroupMembers(): MsgUpdateGroupMembers {
-  return { admin: "", groupId: 0, memberUpdates: [] };
+  return { admin: '', groupId: 0, memberUpdates: [] };
 }
 
 export const MsgUpdateGroupMembers = {
   encode(message: MsgUpdateGroupMembers, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
     if (message.groupId !== 0) {
@@ -509,7 +500,7 @@ export const MsgUpdateGroupMembers = {
 
   fromJSON(object: any): MsgUpdateGroupMembers {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
       groupId: isSet(object.groupId) ? Number(object.groupId) : 0,
       memberUpdates: Array.isArray(object?.memberUpdates)
         ? object.memberUpdates.map((e: any) => MemberRequest.fromJSON(e))
@@ -519,7 +510,7 @@ export const MsgUpdateGroupMembers = {
 
   toJSON(message: MsgUpdateGroupMembers): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
     if (message.groupId !== 0) {
@@ -536,7 +527,7 @@ export const MsgUpdateGroupMembers = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupMembers>, I>>(object: I): MsgUpdateGroupMembers {
     const message = createBaseMsgUpdateGroupMembers();
-    message.admin = object.admin ?? "";
+    message.admin = object.admin ?? '';
     message.groupId = object.groupId ?? 0;
     message.memberUpdates = object.memberUpdates?.map((e) => MemberRequest.fromPartial(e)) || [];
     return message;
@@ -587,18 +578,18 @@ export const MsgUpdateGroupMembersResponse = {
 };
 
 function createBaseMsgUpdateGroupAdmin(): MsgUpdateGroupAdmin {
-  return { admin: "", groupId: 0, newAdmin: "" };
+  return { admin: '', groupId: 0, newAdmin: '' };
 }
 
 export const MsgUpdateGroupAdmin = {
   encode(message: MsgUpdateGroupAdmin, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
     if (message.groupId !== 0) {
       writer.uint32(16).uint64(message.groupId);
     }
-    if (message.newAdmin !== "") {
+    if (message.newAdmin !== '') {
       writer.uint32(26).string(message.newAdmin);
     }
     return writer;
@@ -643,21 +634,21 @@ export const MsgUpdateGroupAdmin = {
 
   fromJSON(object: any): MsgUpdateGroupAdmin {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
       groupId: isSet(object.groupId) ? Number(object.groupId) : 0,
-      newAdmin: isSet(object.newAdmin) ? String(object.newAdmin) : "",
+      newAdmin: isSet(object.newAdmin) ? String(object.newAdmin) : '',
     };
   },
 
   toJSON(message: MsgUpdateGroupAdmin): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
     if (message.groupId !== 0) {
       obj.groupId = Math.round(message.groupId);
     }
-    if (message.newAdmin !== "") {
+    if (message.newAdmin !== '') {
       obj.newAdmin = message.newAdmin;
     }
     return obj;
@@ -668,9 +659,9 @@ export const MsgUpdateGroupAdmin = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupAdmin>, I>>(object: I): MsgUpdateGroupAdmin {
     const message = createBaseMsgUpdateGroupAdmin();
-    message.admin = object.admin ?? "";
+    message.admin = object.admin ?? '';
     message.groupId = object.groupId ?? 0;
-    message.newAdmin = object.newAdmin ?? "";
+    message.newAdmin = object.newAdmin ?? '';
     return message;
   },
 };
@@ -719,18 +710,18 @@ export const MsgUpdateGroupAdminResponse = {
 };
 
 function createBaseMsgUpdateGroupMetadata(): MsgUpdateGroupMetadata {
-  return { admin: "", groupId: 0, metadata: "" };
+  return { admin: '', groupId: 0, metadata: '' };
 }
 
 export const MsgUpdateGroupMetadata = {
   encode(message: MsgUpdateGroupMetadata, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
     if (message.groupId !== 0) {
       writer.uint32(16).uint64(message.groupId);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(26).string(message.metadata);
     }
     return writer;
@@ -775,21 +766,21 @@ export const MsgUpdateGroupMetadata = {
 
   fromJSON(object: any): MsgUpdateGroupMetadata {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
       groupId: isSet(object.groupId) ? Number(object.groupId) : 0,
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
     };
   },
 
   toJSON(message: MsgUpdateGroupMetadata): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
     if (message.groupId !== 0) {
       obj.groupId = Math.round(message.groupId);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     return obj;
@@ -800,9 +791,9 @@ export const MsgUpdateGroupMetadata = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupMetadata>, I>>(object: I): MsgUpdateGroupMetadata {
     const message = createBaseMsgUpdateGroupMetadata();
-    message.admin = object.admin ?? "";
+    message.admin = object.admin ?? '';
     message.groupId = object.groupId ?? 0;
-    message.metadata = object.metadata ?? "";
+    message.metadata = object.metadata ?? '';
     return message;
   },
 };
@@ -851,18 +842,18 @@ export const MsgUpdateGroupMetadataResponse = {
 };
 
 function createBaseMsgCreateGroupPolicy(): MsgCreateGroupPolicy {
-  return { admin: "", groupId: 0, metadata: "", decisionPolicy: undefined };
+  return { admin: '', groupId: 0, metadata: '', decisionPolicy: undefined };
 }
 
 export const MsgCreateGroupPolicy = {
   encode(message: MsgCreateGroupPolicy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
     if (message.groupId !== 0) {
       writer.uint32(16).uint64(message.groupId);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(26).string(message.metadata);
     }
     if (message.decisionPolicy !== undefined) {
@@ -917,22 +908,22 @@ export const MsgCreateGroupPolicy = {
 
   fromJSON(object: any): MsgCreateGroupPolicy {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
       groupId: isSet(object.groupId) ? Number(object.groupId) : 0,
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
       decisionPolicy: isSet(object.decisionPolicy) ? Any.fromJSON(object.decisionPolicy) : undefined,
     };
   },
 
   toJSON(message: MsgCreateGroupPolicy): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
     if (message.groupId !== 0) {
       obj.groupId = Math.round(message.groupId);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     if (message.decisionPolicy !== undefined) {
@@ -946,23 +937,24 @@ export const MsgCreateGroupPolicy = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateGroupPolicy>, I>>(object: I): MsgCreateGroupPolicy {
     const message = createBaseMsgCreateGroupPolicy();
-    message.admin = object.admin ?? "";
+    message.admin = object.admin ?? '';
     message.groupId = object.groupId ?? 0;
-    message.metadata = object.metadata ?? "";
-    message.decisionPolicy = (object.decisionPolicy !== undefined && object.decisionPolicy !== null)
-      ? Any.fromPartial(object.decisionPolicy)
-      : undefined;
+    message.metadata = object.metadata ?? '';
+    message.decisionPolicy =
+      object.decisionPolicy !== undefined && object.decisionPolicy !== null
+        ? Any.fromPartial(object.decisionPolicy)
+        : undefined;
     return message;
   },
 };
 
 function createBaseMsgCreateGroupPolicyResponse(): MsgCreateGroupPolicyResponse {
-  return { address: "" };
+  return { address: '' };
 }
 
 export const MsgCreateGroupPolicyResponse = {
   encode(message: MsgCreateGroupPolicyResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     return writer;
@@ -992,12 +984,12 @@ export const MsgCreateGroupPolicyResponse = {
   },
 
   fromJSON(object: any): MsgCreateGroupPolicyResponse {
-    return { address: isSet(object.address) ? String(object.address) : "" };
+    return { address: isSet(object.address) ? String(object.address) : '' };
   },
 
   toJSON(message: MsgCreateGroupPolicyResponse): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     return obj;
@@ -1008,24 +1000,24 @@ export const MsgCreateGroupPolicyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateGroupPolicyResponse>, I>>(object: I): MsgCreateGroupPolicyResponse {
     const message = createBaseMsgCreateGroupPolicyResponse();
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     return message;
   },
 };
 
 function createBaseMsgUpdateGroupPolicyAdmin(): MsgUpdateGroupPolicyAdmin {
-  return { admin: "", groupPolicyAddress: "", newAdmin: "" };
+  return { admin: '', groupPolicyAddress: '', newAdmin: '' };
 }
 
 export const MsgUpdateGroupPolicyAdmin = {
   encode(message: MsgUpdateGroupPolicyAdmin, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       writer.uint32(18).string(message.groupPolicyAddress);
     }
-    if (message.newAdmin !== "") {
+    if (message.newAdmin !== '') {
       writer.uint32(26).string(message.newAdmin);
     }
     return writer;
@@ -1070,21 +1062,21 @@ export const MsgUpdateGroupPolicyAdmin = {
 
   fromJSON(object: any): MsgUpdateGroupPolicyAdmin {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
-      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : "",
-      newAdmin: isSet(object.newAdmin) ? String(object.newAdmin) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
+      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : '',
+      newAdmin: isSet(object.newAdmin) ? String(object.newAdmin) : '',
     };
   },
 
   toJSON(message: MsgUpdateGroupPolicyAdmin): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       obj.groupPolicyAddress = message.groupPolicyAddress;
     }
-    if (message.newAdmin !== "") {
+    if (message.newAdmin !== '') {
       obj.newAdmin = message.newAdmin;
     }
     return obj;
@@ -1095,9 +1087,9 @@ export const MsgUpdateGroupPolicyAdmin = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyAdmin>, I>>(object: I): MsgUpdateGroupPolicyAdmin {
     const message = createBaseMsgUpdateGroupPolicyAdmin();
-    message.admin = object.admin ?? "";
-    message.groupPolicyAddress = object.groupPolicyAddress ?? "";
-    message.newAdmin = object.newAdmin ?? "";
+    message.admin = object.admin ?? '';
+    message.groupPolicyAddress = object.groupPolicyAddress ?? '';
+    message.newAdmin = object.newAdmin ?? '';
     return message;
   },
 };
@@ -1137,12 +1129,12 @@ export const MsgUpdateGroupPolicyAdminResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgUpdateGroupPolicyAdminResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgUpdateGroupPolicyAdminResponse {
     return MsgUpdateGroupPolicyAdminResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyAdminResponse>, I>>(
-    _: I,
+    _: I
   ): MsgUpdateGroupPolicyAdminResponse {
     const message = createBaseMsgUpdateGroupPolicyAdminResponse();
     return message;
@@ -1151,10 +1143,10 @@ export const MsgUpdateGroupPolicyAdminResponse = {
 
 function createBaseMsgCreateGroupWithPolicy(): MsgCreateGroupWithPolicy {
   return {
-    admin: "",
+    admin: '',
     members: [],
-    groupMetadata: "",
-    groupPolicyMetadata: "",
+    groupMetadata: '',
+    groupPolicyMetadata: '',
     groupPolicyAsAdmin: false,
     decisionPolicy: undefined,
   };
@@ -1162,16 +1154,16 @@ function createBaseMsgCreateGroupWithPolicy(): MsgCreateGroupWithPolicy {
 
 export const MsgCreateGroupWithPolicy = {
   encode(message: MsgCreateGroupWithPolicy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
     for (const v of message.members) {
       MemberRequest.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    if (message.groupMetadata !== "") {
+    if (message.groupMetadata !== '') {
       writer.uint32(26).string(message.groupMetadata);
     }
-    if (message.groupPolicyMetadata !== "") {
+    if (message.groupPolicyMetadata !== '') {
       writer.uint32(34).string(message.groupPolicyMetadata);
     }
     if (message.groupPolicyAsAdmin === true) {
@@ -1243,10 +1235,10 @@ export const MsgCreateGroupWithPolicy = {
 
   fromJSON(object: any): MsgCreateGroupWithPolicy {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
       members: Array.isArray(object?.members) ? object.members.map((e: any) => MemberRequest.fromJSON(e)) : [],
-      groupMetadata: isSet(object.groupMetadata) ? String(object.groupMetadata) : "",
-      groupPolicyMetadata: isSet(object.groupPolicyMetadata) ? String(object.groupPolicyMetadata) : "",
+      groupMetadata: isSet(object.groupMetadata) ? String(object.groupMetadata) : '',
+      groupPolicyMetadata: isSet(object.groupPolicyMetadata) ? String(object.groupPolicyMetadata) : '',
       groupPolicyAsAdmin: isSet(object.groupPolicyAsAdmin) ? Boolean(object.groupPolicyAsAdmin) : false,
       decisionPolicy: isSet(object.decisionPolicy) ? Any.fromJSON(object.decisionPolicy) : undefined,
     };
@@ -1254,16 +1246,16 @@ export const MsgCreateGroupWithPolicy = {
 
   toJSON(message: MsgCreateGroupWithPolicy): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
     if (message.members?.length) {
       obj.members = message.members.map((e) => MemberRequest.toJSON(e));
     }
-    if (message.groupMetadata !== "") {
+    if (message.groupMetadata !== '') {
       obj.groupMetadata = message.groupMetadata;
     }
-    if (message.groupPolicyMetadata !== "") {
+    if (message.groupPolicyMetadata !== '') {
       obj.groupPolicyMetadata = message.groupPolicyMetadata;
     }
     if (message.groupPolicyAsAdmin === true) {
@@ -1280,20 +1272,21 @@ export const MsgCreateGroupWithPolicy = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateGroupWithPolicy>, I>>(object: I): MsgCreateGroupWithPolicy {
     const message = createBaseMsgCreateGroupWithPolicy();
-    message.admin = object.admin ?? "";
+    message.admin = object.admin ?? '';
     message.members = object.members?.map((e) => MemberRequest.fromPartial(e)) || [];
-    message.groupMetadata = object.groupMetadata ?? "";
-    message.groupPolicyMetadata = object.groupPolicyMetadata ?? "";
+    message.groupMetadata = object.groupMetadata ?? '';
+    message.groupPolicyMetadata = object.groupPolicyMetadata ?? '';
     message.groupPolicyAsAdmin = object.groupPolicyAsAdmin ?? false;
-    message.decisionPolicy = (object.decisionPolicy !== undefined && object.decisionPolicy !== null)
-      ? Any.fromPartial(object.decisionPolicy)
-      : undefined;
+    message.decisionPolicy =
+      object.decisionPolicy !== undefined && object.decisionPolicy !== null
+        ? Any.fromPartial(object.decisionPolicy)
+        : undefined;
     return message;
   },
 };
 
 function createBaseMsgCreateGroupWithPolicyResponse(): MsgCreateGroupWithPolicyResponse {
-  return { groupId: 0, groupPolicyAddress: "" };
+  return { groupId: 0, groupPolicyAddress: '' };
 }
 
 export const MsgCreateGroupWithPolicyResponse = {
@@ -1301,7 +1294,7 @@ export const MsgCreateGroupWithPolicyResponse = {
     if (message.groupId !== 0) {
       writer.uint32(8).uint64(message.groupId);
     }
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       writer.uint32(18).string(message.groupPolicyAddress);
     }
     return writer;
@@ -1340,7 +1333,7 @@ export const MsgCreateGroupWithPolicyResponse = {
   fromJSON(object: any): MsgCreateGroupWithPolicyResponse {
     return {
       groupId: isSet(object.groupId) ? Number(object.groupId) : 0,
-      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : "",
+      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : '',
     };
   },
 
@@ -1349,37 +1342,37 @@ export const MsgCreateGroupWithPolicyResponse = {
     if (message.groupId !== 0) {
       obj.groupId = Math.round(message.groupId);
     }
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       obj.groupPolicyAddress = message.groupPolicyAddress;
     }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<MsgCreateGroupWithPolicyResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgCreateGroupWithPolicyResponse {
     return MsgCreateGroupWithPolicyResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateGroupWithPolicyResponse>, I>>(
-    object: I,
+    object: I
   ): MsgCreateGroupWithPolicyResponse {
     const message = createBaseMsgCreateGroupWithPolicyResponse();
     message.groupId = object.groupId ?? 0;
-    message.groupPolicyAddress = object.groupPolicyAddress ?? "";
+    message.groupPolicyAddress = object.groupPolicyAddress ?? '';
     return message;
   },
 };
 
 function createBaseMsgUpdateGroupPolicyDecisionPolicy(): MsgUpdateGroupPolicyDecisionPolicy {
-  return { admin: "", groupPolicyAddress: "", decisionPolicy: undefined };
+  return { admin: '', groupPolicyAddress: '', decisionPolicy: undefined };
 }
 
 export const MsgUpdateGroupPolicyDecisionPolicy = {
   encode(message: MsgUpdateGroupPolicyDecisionPolicy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       writer.uint32(18).string(message.groupPolicyAddress);
     }
     if (message.decisionPolicy !== undefined) {
@@ -1427,18 +1420,18 @@ export const MsgUpdateGroupPolicyDecisionPolicy = {
 
   fromJSON(object: any): MsgUpdateGroupPolicyDecisionPolicy {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
-      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
+      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : '',
       decisionPolicy: isSet(object.decisionPolicy) ? Any.fromJSON(object.decisionPolicy) : undefined,
     };
   },
 
   toJSON(message: MsgUpdateGroupPolicyDecisionPolicy): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       obj.groupPolicyAddress = message.groupPolicyAddress;
     }
     if (message.decisionPolicy !== undefined) {
@@ -1448,19 +1441,20 @@ export const MsgUpdateGroupPolicyDecisionPolicy = {
   },
 
   create<I extends Exact<DeepPartial<MsgUpdateGroupPolicyDecisionPolicy>, I>>(
-    base?: I,
+    base?: I
   ): MsgUpdateGroupPolicyDecisionPolicy {
     return MsgUpdateGroupPolicyDecisionPolicy.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyDecisionPolicy>, I>>(
-    object: I,
+    object: I
   ): MsgUpdateGroupPolicyDecisionPolicy {
     const message = createBaseMsgUpdateGroupPolicyDecisionPolicy();
-    message.admin = object.admin ?? "";
-    message.groupPolicyAddress = object.groupPolicyAddress ?? "";
-    message.decisionPolicy = (object.decisionPolicy !== undefined && object.decisionPolicy !== null)
-      ? Any.fromPartial(object.decisionPolicy)
-      : undefined;
+    message.admin = object.admin ?? '';
+    message.groupPolicyAddress = object.groupPolicyAddress ?? '';
+    message.decisionPolicy =
+      object.decisionPolicy !== undefined && object.decisionPolicy !== null
+        ? Any.fromPartial(object.decisionPolicy)
+        : undefined;
     return message;
   },
 };
@@ -1500,12 +1494,12 @@ export const MsgUpdateGroupPolicyDecisionPolicyResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgUpdateGroupPolicyDecisionPolicyResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgUpdateGroupPolicyDecisionPolicyResponse {
     return MsgUpdateGroupPolicyDecisionPolicyResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyDecisionPolicyResponse>, I>>(
-    _: I,
+    _: I
   ): MsgUpdateGroupPolicyDecisionPolicyResponse {
     const message = createBaseMsgUpdateGroupPolicyDecisionPolicyResponse();
     return message;
@@ -1513,18 +1507,18 @@ export const MsgUpdateGroupPolicyDecisionPolicyResponse = {
 };
 
 function createBaseMsgUpdateGroupPolicyMetadata(): MsgUpdateGroupPolicyMetadata {
-  return { admin: "", groupPolicyAddress: "", metadata: "" };
+  return { admin: '', groupPolicyAddress: '', metadata: '' };
 }
 
 export const MsgUpdateGroupPolicyMetadata = {
   encode(message: MsgUpdateGroupPolicyMetadata, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       writer.uint32(10).string(message.admin);
     }
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       writer.uint32(18).string(message.groupPolicyAddress);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(26).string(message.metadata);
     }
     return writer;
@@ -1569,21 +1563,21 @@ export const MsgUpdateGroupPolicyMetadata = {
 
   fromJSON(object: any): MsgUpdateGroupPolicyMetadata {
     return {
-      admin: isSet(object.admin) ? String(object.admin) : "",
-      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : "",
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      admin: isSet(object.admin) ? String(object.admin) : '',
+      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : '',
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
     };
   },
 
   toJSON(message: MsgUpdateGroupPolicyMetadata): unknown {
     const obj: any = {};
-    if (message.admin !== "") {
+    if (message.admin !== '') {
       obj.admin = message.admin;
     }
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       obj.groupPolicyAddress = message.groupPolicyAddress;
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     return obj;
@@ -1594,9 +1588,9 @@ export const MsgUpdateGroupPolicyMetadata = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyMetadata>, I>>(object: I): MsgUpdateGroupPolicyMetadata {
     const message = createBaseMsgUpdateGroupPolicyMetadata();
-    message.admin = object.admin ?? "";
-    message.groupPolicyAddress = object.groupPolicyAddress ?? "";
-    message.metadata = object.metadata ?? "";
+    message.admin = object.admin ?? '';
+    message.groupPolicyAddress = object.groupPolicyAddress ?? '';
+    message.metadata = object.metadata ?? '';
     return message;
   },
 };
@@ -1636,12 +1630,12 @@ export const MsgUpdateGroupPolicyMetadataResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgUpdateGroupPolicyMetadataResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgUpdateGroupPolicyMetadataResponse {
     return MsgUpdateGroupPolicyMetadataResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateGroupPolicyMetadataResponse>, I>>(
-    _: I,
+    _: I
   ): MsgUpdateGroupPolicyMetadataResponse {
     const message = createBaseMsgUpdateGroupPolicyMetadataResponse();
     return message;
@@ -1649,18 +1643,18 @@ export const MsgUpdateGroupPolicyMetadataResponse = {
 };
 
 function createBaseMsgSubmitProposal(): MsgSubmitProposal {
-  return { groupPolicyAddress: "", proposers: [], metadata: "", messages: [], exec: 0, title: "", summary: "" };
+  return { groupPolicyAddress: '', proposers: [], metadata: '', messages: [], exec: 0, title: '', summary: '' };
 }
 
 export const MsgSubmitProposal = {
   encode(message: MsgSubmitProposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       writer.uint32(10).string(message.groupPolicyAddress);
     }
     for (const v of message.proposers) {
       writer.uint32(18).string(v!);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(26).string(message.metadata);
     }
     for (const v of message.messages) {
@@ -1669,10 +1663,10 @@ export const MsgSubmitProposal = {
     if (message.exec !== 0) {
       writer.uint32(40).int32(message.exec);
     }
-    if (message.title !== "") {
+    if (message.title !== '') {
       writer.uint32(50).string(message.title);
     }
-    if (message.summary !== "") {
+    if (message.summary !== '') {
       writer.uint32(58).string(message.summary);
     }
     return writer;
@@ -1745,25 +1739,25 @@ export const MsgSubmitProposal = {
 
   fromJSON(object: any): MsgSubmitProposal {
     return {
-      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : "",
+      groupPolicyAddress: isSet(object.groupPolicyAddress) ? String(object.groupPolicyAddress) : '',
       proposers: Array.isArray(object?.proposers) ? object.proposers.map((e: any) => String(e)) : [],
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
       messages: Array.isArray(object?.messages) ? object.messages.map((e: any) => Any.fromJSON(e)) : [],
       exec: isSet(object.exec) ? execFromJSON(object.exec) : 0,
-      title: isSet(object.title) ? String(object.title) : "",
-      summary: isSet(object.summary) ? String(object.summary) : "",
+      title: isSet(object.title) ? String(object.title) : '',
+      summary: isSet(object.summary) ? String(object.summary) : '',
     };
   },
 
   toJSON(message: MsgSubmitProposal): unknown {
     const obj: any = {};
-    if (message.groupPolicyAddress !== "") {
+    if (message.groupPolicyAddress !== '') {
       obj.groupPolicyAddress = message.groupPolicyAddress;
     }
     if (message.proposers?.length) {
       obj.proposers = message.proposers;
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     if (message.messages?.length) {
@@ -1772,10 +1766,10 @@ export const MsgSubmitProposal = {
     if (message.exec !== 0) {
       obj.exec = execToJSON(message.exec);
     }
-    if (message.title !== "") {
+    if (message.title !== '') {
       obj.title = message.title;
     }
-    if (message.summary !== "") {
+    if (message.summary !== '') {
       obj.summary = message.summary;
     }
     return obj;
@@ -1786,13 +1780,13 @@ export const MsgSubmitProposal = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgSubmitProposal>, I>>(object: I): MsgSubmitProposal {
     const message = createBaseMsgSubmitProposal();
-    message.groupPolicyAddress = object.groupPolicyAddress ?? "";
+    message.groupPolicyAddress = object.groupPolicyAddress ?? '';
     message.proposers = object.proposers?.map((e) => e) || [];
-    message.metadata = object.metadata ?? "";
+    message.metadata = object.metadata ?? '';
     message.messages = object.messages?.map((e) => Any.fromPartial(e)) || [];
     message.exec = object.exec ?? 0;
-    message.title = object.title ?? "";
-    message.summary = object.summary ?? "";
+    message.title = object.title ?? '';
+    message.summary = object.summary ?? '';
     return message;
   },
 };
@@ -1855,7 +1849,7 @@ export const MsgSubmitProposalResponse = {
 };
 
 function createBaseMsgWithdrawProposal(): MsgWithdrawProposal {
-  return { proposalId: 0, address: "" };
+  return { proposalId: 0, address: '' };
 }
 
 export const MsgWithdrawProposal = {
@@ -1863,7 +1857,7 @@ export const MsgWithdrawProposal = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(18).string(message.address);
     }
     return writer;
@@ -1902,7 +1896,7 @@ export const MsgWithdrawProposal = {
   fromJSON(object: any): MsgWithdrawProposal {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
     };
   },
 
@@ -1911,7 +1905,7 @@ export const MsgWithdrawProposal = {
     if (message.proposalId !== 0) {
       obj.proposalId = Math.round(message.proposalId);
     }
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     return obj;
@@ -1923,7 +1917,7 @@ export const MsgWithdrawProposal = {
   fromPartial<I extends Exact<DeepPartial<MsgWithdrawProposal>, I>>(object: I): MsgWithdrawProposal {
     const message = createBaseMsgWithdrawProposal();
     message.proposalId = object.proposalId ?? 0;
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     return message;
   },
 };
@@ -1972,7 +1966,7 @@ export const MsgWithdrawProposalResponse = {
 };
 
 function createBaseMsgVote(): MsgVote {
-  return { proposalId: 0, voter: "", option: 0, metadata: "", exec: 0 };
+  return { proposalId: 0, voter: '', option: 0, metadata: '', exec: 0 };
 }
 
 export const MsgVote = {
@@ -1980,13 +1974,13 @@ export const MsgVote = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.voter !== "") {
+    if (message.voter !== '') {
       writer.uint32(18).string(message.voter);
     }
     if (message.option !== 0) {
       writer.uint32(24).int32(message.option);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(34).string(message.metadata);
     }
     if (message.exec !== 0) {
@@ -2049,9 +2043,9 @@ export const MsgVote = {
   fromJSON(object: any): MsgVote {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      voter: isSet(object.voter) ? String(object.voter) : "",
+      voter: isSet(object.voter) ? String(object.voter) : '',
       option: isSet(object.option) ? voteOptionFromJSON(object.option) : 0,
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
       exec: isSet(object.exec) ? execFromJSON(object.exec) : 0,
     };
   },
@@ -2061,13 +2055,13 @@ export const MsgVote = {
     if (message.proposalId !== 0) {
       obj.proposalId = Math.round(message.proposalId);
     }
-    if (message.voter !== "") {
+    if (message.voter !== '') {
       obj.voter = message.voter;
     }
     if (message.option !== 0) {
       obj.option = voteOptionToJSON(message.option);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     if (message.exec !== 0) {
@@ -2082,9 +2076,9 @@ export const MsgVote = {
   fromPartial<I extends Exact<DeepPartial<MsgVote>, I>>(object: I): MsgVote {
     const message = createBaseMsgVote();
     message.proposalId = object.proposalId ?? 0;
-    message.voter = object.voter ?? "";
+    message.voter = object.voter ?? '';
     message.option = object.option ?? 0;
-    message.metadata = object.metadata ?? "";
+    message.metadata = object.metadata ?? '';
     message.exec = object.exec ?? 0;
     return message;
   },
@@ -2134,7 +2128,7 @@ export const MsgVoteResponse = {
 };
 
 function createBaseMsgExec(): MsgExec {
-  return { proposalId: 0, executor: "" };
+  return { proposalId: 0, executor: '' };
 }
 
 export const MsgExec = {
@@ -2142,7 +2136,7 @@ export const MsgExec = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.executor !== "") {
+    if (message.executor !== '') {
       writer.uint32(18).string(message.executor);
     }
     return writer;
@@ -2181,7 +2175,7 @@ export const MsgExec = {
   fromJSON(object: any): MsgExec {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      executor: isSet(object.executor) ? String(object.executor) : "",
+      executor: isSet(object.executor) ? String(object.executor) : '',
     };
   },
 
@@ -2190,7 +2184,7 @@ export const MsgExec = {
     if (message.proposalId !== 0) {
       obj.proposalId = Math.round(message.proposalId);
     }
-    if (message.executor !== "") {
+    if (message.executor !== '') {
       obj.executor = message.executor;
     }
     return obj;
@@ -2202,7 +2196,7 @@ export const MsgExec = {
   fromPartial<I extends Exact<DeepPartial<MsgExec>, I>>(object: I): MsgExec {
     const message = createBaseMsgExec();
     message.proposalId = object.proposalId ?? 0;
-    message.executor = object.executor ?? "";
+    message.executor = object.executor ?? '';
     return message;
   },
 };
@@ -2265,12 +2259,12 @@ export const MsgExecResponse = {
 };
 
 function createBaseMsgLeaveGroup(): MsgLeaveGroup {
-  return { address: "", groupId: 0 };
+  return { address: '', groupId: 0 };
 }
 
 export const MsgLeaveGroup = {
   encode(message: MsgLeaveGroup, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.groupId !== 0) {
@@ -2311,14 +2305,14 @@ export const MsgLeaveGroup = {
 
   fromJSON(object: any): MsgLeaveGroup {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       groupId: isSet(object.groupId) ? Number(object.groupId) : 0,
     };
   },
 
   toJSON(message: MsgLeaveGroup): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.groupId !== 0) {
@@ -2332,7 +2326,7 @@ export const MsgLeaveGroup = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgLeaveGroup>, I>>(object: I): MsgLeaveGroup {
     const message = createBaseMsgLeaveGroup();
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     message.groupId = object.groupId ?? 0;
     return message;
   },
@@ -2399,7 +2393,7 @@ export interface Msg {
   UpdateGroupPolicyAdmin(request: MsgUpdateGroupPolicyAdmin): Promise<MsgUpdateGroupPolicyAdminResponse>;
   /** UpdateGroupPolicyDecisionPolicy allows a group policy's decision policy to be updated. */
   UpdateGroupPolicyDecisionPolicy(
-    request: MsgUpdateGroupPolicyDecisionPolicy,
+    request: MsgUpdateGroupPolicyDecisionPolicy
   ): Promise<MsgUpdateGroupPolicyDecisionPolicyResponse>;
   /** UpdateGroupPolicyMetadata updates a group policy metadata. */
   UpdateGroupPolicyMetadata(request: MsgUpdateGroupPolicyMetadata): Promise<MsgUpdateGroupPolicyMetadataResponse>;
@@ -2415,7 +2409,7 @@ export interface Msg {
   LeaveGroup(request: MsgLeaveGroup): Promise<MsgLeaveGroupResponse>;
 }
 
-export const MsgServiceName = "cosmos.group.v1.Msg";
+export const MsgServiceName = 'cosmos.group.v1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -2439,87 +2433,87 @@ export class MsgClientImpl implements Msg {
   }
   CreateGroup(request: MsgCreateGroup): Promise<MsgCreateGroupResponse> {
     const data = MsgCreateGroup.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CreateGroup", data);
+    const promise = this.rpc.request(this.service, 'CreateGroup', data);
     return promise.then((data) => MsgCreateGroupResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateGroupMembers(request: MsgUpdateGroupMembers): Promise<MsgUpdateGroupMembersResponse> {
     const data = MsgUpdateGroupMembers.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateGroupMembers", data);
+    const promise = this.rpc.request(this.service, 'UpdateGroupMembers', data);
     return promise.then((data) => MsgUpdateGroupMembersResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateGroupAdmin(request: MsgUpdateGroupAdmin): Promise<MsgUpdateGroupAdminResponse> {
     const data = MsgUpdateGroupAdmin.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateGroupAdmin", data);
+    const promise = this.rpc.request(this.service, 'UpdateGroupAdmin', data);
     return promise.then((data) => MsgUpdateGroupAdminResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateGroupMetadata(request: MsgUpdateGroupMetadata): Promise<MsgUpdateGroupMetadataResponse> {
     const data = MsgUpdateGroupMetadata.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateGroupMetadata", data);
+    const promise = this.rpc.request(this.service, 'UpdateGroupMetadata', data);
     return promise.then((data) => MsgUpdateGroupMetadataResponse.decode(_m0.Reader.create(data)));
   }
 
   CreateGroupPolicy(request: MsgCreateGroupPolicy): Promise<MsgCreateGroupPolicyResponse> {
     const data = MsgCreateGroupPolicy.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CreateGroupPolicy", data);
+    const promise = this.rpc.request(this.service, 'CreateGroupPolicy', data);
     return promise.then((data) => MsgCreateGroupPolicyResponse.decode(_m0.Reader.create(data)));
   }
 
   CreateGroupWithPolicy(request: MsgCreateGroupWithPolicy): Promise<MsgCreateGroupWithPolicyResponse> {
     const data = MsgCreateGroupWithPolicy.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CreateGroupWithPolicy", data);
+    const promise = this.rpc.request(this.service, 'CreateGroupWithPolicy', data);
     return promise.then((data) => MsgCreateGroupWithPolicyResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateGroupPolicyAdmin(request: MsgUpdateGroupPolicyAdmin): Promise<MsgUpdateGroupPolicyAdminResponse> {
     const data = MsgUpdateGroupPolicyAdmin.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateGroupPolicyAdmin", data);
+    const promise = this.rpc.request(this.service, 'UpdateGroupPolicyAdmin', data);
     return promise.then((data) => MsgUpdateGroupPolicyAdminResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateGroupPolicyDecisionPolicy(
-    request: MsgUpdateGroupPolicyDecisionPolicy,
+    request: MsgUpdateGroupPolicyDecisionPolicy
   ): Promise<MsgUpdateGroupPolicyDecisionPolicyResponse> {
     const data = MsgUpdateGroupPolicyDecisionPolicy.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateGroupPolicyDecisionPolicy", data);
+    const promise = this.rpc.request(this.service, 'UpdateGroupPolicyDecisionPolicy', data);
     return promise.then((data) => MsgUpdateGroupPolicyDecisionPolicyResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateGroupPolicyMetadata(request: MsgUpdateGroupPolicyMetadata): Promise<MsgUpdateGroupPolicyMetadataResponse> {
     const data = MsgUpdateGroupPolicyMetadata.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateGroupPolicyMetadata", data);
+    const promise = this.rpc.request(this.service, 'UpdateGroupPolicyMetadata', data);
     return promise.then((data) => MsgUpdateGroupPolicyMetadataResponse.decode(_m0.Reader.create(data)));
   }
 
   SubmitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse> {
     const data = MsgSubmitProposal.encode(request).finish();
-    const promise = this.rpc.request(this.service, "SubmitProposal", data);
+    const promise = this.rpc.request(this.service, 'SubmitProposal', data);
     return promise.then((data) => MsgSubmitProposalResponse.decode(_m0.Reader.create(data)));
   }
 
   WithdrawProposal(request: MsgWithdrawProposal): Promise<MsgWithdrawProposalResponse> {
     const data = MsgWithdrawProposal.encode(request).finish();
-    const promise = this.rpc.request(this.service, "WithdrawProposal", data);
+    const promise = this.rpc.request(this.service, 'WithdrawProposal', data);
     return promise.then((data) => MsgWithdrawProposalResponse.decode(_m0.Reader.create(data)));
   }
 
   Vote(request: MsgVote): Promise<MsgVoteResponse> {
     const data = MsgVote.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Vote", data);
+    const promise = this.rpc.request(this.service, 'Vote', data);
     return promise.then((data) => MsgVoteResponse.decode(_m0.Reader.create(data)));
   }
 
   Exec(request: MsgExec): Promise<MsgExecResponse> {
     const data = MsgExec.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Exec", data);
+    const promise = this.rpc.request(this.service, 'Exec', data);
     return promise.then((data) => MsgExecResponse.decode(_m0.Reader.create(data)));
   }
 
   LeaveGroup(request: MsgLeaveGroup): Promise<MsgLeaveGroupResponse> {
     const data = MsgLeaveGroup.encode(request).finish();
-    const promise = this.rpc.request(this.service, "LeaveGroup", data);
+    const promise = this.rpc.request(this.service, 'LeaveGroup', data);
     return promise.then((data) => MsgLeaveGroupResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -2532,35 +2526,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

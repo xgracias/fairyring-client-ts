@@ -1,20 +1,19 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
-import { AggregatedKeyShare } from "./aggregated_key_share";
-import { AuthorizedAddress } from "./authorized_address";
-import { Commitments } from "./commitments";
-import { GeneralKeyShare } from "./general_key_share";
-import { KeyShare } from "./key_share";
-import { Params } from "./params";
-import { ActivePubKey, QueuedPubKey } from "./pub_key";
-import { ValidatorSet } from "./validator_set";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { PageRequest, PageResponse } from '../../cosmos/base/query/v1beta1/pagination';
+import { AggregatedKeyShare } from './aggregated_key_share';
+import { AuthorizedAddress } from './authorized_address';
+import { Commitments } from './commitments';
+import { GeneralKeyShare } from './general_key_share';
+import { KeyShare } from './key_share';
+import { Params } from './params';
+import { ActivePubKey, QueuedPubKey } from './pub_key';
+import { ValidatorSet } from './validator_set';
 
-export const protobufPackage = "fairyring.keyshare";
+export const protobufPackage = 'fairyring.keyshare';
 
-export interface QueryVerifiableRandomnessQuery {
-}
+export interface QueryVerifiableRandomnessQuery {}
 
 export interface QueryVerifiableRandomnessResponse {
   randomness: string;
@@ -22,8 +21,7 @@ export interface QueryVerifiableRandomnessResponse {
 }
 
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
-export interface QueryParamsRequest {
-}
+export interface QueryParamsRequest {}
 
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
 export interface QueryParamsResponse {
@@ -31,8 +29,7 @@ export interface QueryParamsResponse {
   params: Params | undefined;
 }
 
-export interface QueryCommitmentsRequest {
-}
+export interface QueryCommitmentsRequest {}
 
 export interface QueryCommitmentsResponse {
   activeCommitments: Commitments | undefined;
@@ -92,8 +89,7 @@ export interface QueryAllAggregatedKeyShareResponse {
   pagination: PageResponse | undefined;
 }
 
-export interface QueryPubKeyRequest {
-}
+export interface QueryPubKeyRequest {}
 
 export interface QueryPubKeyResponse {
   activePubKey: ActivePubKey | undefined;
@@ -180,12 +176,12 @@ export const QueryVerifiableRandomnessQuery = {
 };
 
 function createBaseQueryVerifiableRandomnessResponse(): QueryVerifiableRandomnessResponse {
-  return { randomness: "", round: 0 };
+  return { randomness: '', round: 0 };
 }
 
 export const QueryVerifiableRandomnessResponse = {
   encode(message: QueryVerifiableRandomnessResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.randomness !== "") {
+    if (message.randomness !== '') {
       writer.uint32(10).string(message.randomness);
     }
     if (message.round !== 0) {
@@ -226,14 +222,14 @@ export const QueryVerifiableRandomnessResponse = {
 
   fromJSON(object: any): QueryVerifiableRandomnessResponse {
     return {
-      randomness: isSet(object.randomness) ? String(object.randomness) : "",
+      randomness: isSet(object.randomness) ? String(object.randomness) : '',
       round: isSet(object.round) ? Number(object.round) : 0,
     };
   },
 
   toJSON(message: QueryVerifiableRandomnessResponse): unknown {
     const obj: any = {};
-    if (message.randomness !== "") {
+    if (message.randomness !== '') {
       obj.randomness = message.randomness;
     }
     if (message.round !== 0) {
@@ -243,15 +239,15 @@ export const QueryVerifiableRandomnessResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryVerifiableRandomnessResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryVerifiableRandomnessResponse {
     return QueryVerifiableRandomnessResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryVerifiableRandomnessResponse>, I>>(
-    object: I,
+    object: I
   ): QueryVerifiableRandomnessResponse {
     const message = createBaseQueryVerifiableRandomnessResponse();
-    message.randomness = object.randomness ?? "";
+    message.randomness = object.randomness ?? '';
     message.round = object.round ?? 0;
     return message;
   },
@@ -352,9 +348,8 @@ export const QueryParamsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -470,23 +465,25 @@ export const QueryCommitmentsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryCommitmentsResponse>, I>>(object: I): QueryCommitmentsResponse {
     const message = createBaseQueryCommitmentsResponse();
-    message.activeCommitments = (object.activeCommitments !== undefined && object.activeCommitments !== null)
-      ? Commitments.fromPartial(object.activeCommitments)
-      : undefined;
-    message.queuedCommitments = (object.queuedCommitments !== undefined && object.queuedCommitments !== null)
-      ? Commitments.fromPartial(object.queuedCommitments)
-      : undefined;
+    message.activeCommitments =
+      object.activeCommitments !== undefined && object.activeCommitments !== null
+        ? Commitments.fromPartial(object.activeCommitments)
+        : undefined;
+    message.queuedCommitments =
+      object.queuedCommitments !== undefined && object.queuedCommitments !== null
+        ? Commitments.fromPartial(object.queuedCommitments)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryGetValidatorSetRequest(): QueryGetValidatorSetRequest {
-  return { index: "" };
+  return { index: '' };
 }
 
 export const QueryGetValidatorSetRequest = {
   encode(message: QueryGetValidatorSetRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.index !== "") {
+    if (message.index !== '') {
       writer.uint32(10).string(message.index);
     }
     return writer;
@@ -516,12 +513,12 @@ export const QueryGetValidatorSetRequest = {
   },
 
   fromJSON(object: any): QueryGetValidatorSetRequest {
-    return { index: isSet(object.index) ? String(object.index) : "" };
+    return { index: isSet(object.index) ? String(object.index) : '' };
   },
 
   toJSON(message: QueryGetValidatorSetRequest): unknown {
     const obj: any = {};
-    if (message.index !== "") {
+    if (message.index !== '') {
       obj.index = message.index;
     }
     return obj;
@@ -532,7 +529,7 @@ export const QueryGetValidatorSetRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetValidatorSetRequest>, I>>(object: I): QueryGetValidatorSetRequest {
     const message = createBaseQueryGetValidatorSetRequest();
-    message.index = object.index ?? "";
+    message.index = object.index ?? '';
     return message;
   },
 };
@@ -589,9 +586,10 @@ export const QueryGetValidatorSetResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetValidatorSetResponse>, I>>(object: I): QueryGetValidatorSetResponse {
     const message = createBaseQueryGetValidatorSetResponse();
-    message.validatorSet = (object.validatorSet !== undefined && object.validatorSet !== null)
-      ? ValidatorSet.fromPartial(object.validatorSet)
-      : undefined;
+    message.validatorSet =
+      object.validatorSet !== undefined && object.validatorSet !== null
+        ? ValidatorSet.fromPartial(object.validatorSet)
+        : undefined;
     return message;
   },
 };
@@ -648,9 +646,10 @@ export const QueryAllValidatorSetRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllValidatorSetRequest>, I>>(object: I): QueryAllValidatorSetRequest {
     const message = createBaseQueryAllValidatorSetRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -726,20 +725,21 @@ export const QueryAllValidatorSetResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryAllValidatorSetResponse>, I>>(object: I): QueryAllValidatorSetResponse {
     const message = createBaseQueryAllValidatorSetResponse();
     message.validatorSet = object.validatorSet?.map((e) => ValidatorSet.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryGetKeyShareRequest(): QueryGetKeyShareRequest {
-  return { validator: "", blockHeight: 0 };
+  return { validator: '', blockHeight: 0 };
 }
 
 export const QueryGetKeyShareRequest = {
   encode(message: QueryGetKeyShareRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.validator !== "") {
+    if (message.validator !== '') {
       writer.uint32(10).string(message.validator);
     }
     if (message.blockHeight !== 0) {
@@ -780,14 +780,14 @@ export const QueryGetKeyShareRequest = {
 
   fromJSON(object: any): QueryGetKeyShareRequest {
     return {
-      validator: isSet(object.validator) ? String(object.validator) : "",
+      validator: isSet(object.validator) ? String(object.validator) : '',
       blockHeight: isSet(object.blockHeight) ? Number(object.blockHeight) : 0,
     };
   },
 
   toJSON(message: QueryGetKeyShareRequest): unknown {
     const obj: any = {};
-    if (message.validator !== "") {
+    if (message.validator !== '') {
       obj.validator = message.validator;
     }
     if (message.blockHeight !== 0) {
@@ -801,7 +801,7 @@ export const QueryGetKeyShareRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetKeyShareRequest>, I>>(object: I): QueryGetKeyShareRequest {
     const message = createBaseQueryGetKeyShareRequest();
-    message.validator = object.validator ?? "";
+    message.validator = object.validator ?? '';
     message.blockHeight = object.blockHeight ?? 0;
     return message;
   },
@@ -859,9 +859,8 @@ export const QueryGetKeyShareResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetKeyShareResponse>, I>>(object: I): QueryGetKeyShareResponse {
     const message = createBaseQueryGetKeyShareResponse();
-    message.keyShare = (object.keyShare !== undefined && object.keyShare !== null)
-      ? KeyShare.fromPartial(object.keyShare)
-      : undefined;
+    message.keyShare =
+      object.keyShare !== undefined && object.keyShare !== null ? KeyShare.fromPartial(object.keyShare) : undefined;
     return message;
   },
 };
@@ -918,9 +917,10 @@ export const QueryAllKeyShareRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllKeyShareRequest>, I>>(object: I): QueryAllKeyShareRequest {
     const message = createBaseQueryAllKeyShareRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -994,9 +994,10 @@ export const QueryAllKeyShareResponse = {
   fromPartial<I extends Exact<DeepPartial<QueryAllKeyShareResponse>, I>>(object: I): QueryAllKeyShareResponse {
     const message = createBaseQueryAllKeyShareResponse();
     message.keyShare = object.keyShare?.map((e) => KeyShare.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1049,12 +1050,12 @@ export const QueryGetAggregatedKeyShareRequest = {
   },
 
   create<I extends Exact<DeepPartial<QueryGetAggregatedKeyShareRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryGetAggregatedKeyShareRequest {
     return QueryGetAggregatedKeyShareRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetAggregatedKeyShareRequest>, I>>(
-    object: I,
+    object: I
   ): QueryGetAggregatedKeyShareRequest {
     const message = createBaseQueryGetAggregatedKeyShareRequest();
     message.height = object.height ?? 0;
@@ -1114,17 +1115,18 @@ export const QueryGetAggregatedKeyShareResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryGetAggregatedKeyShareResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryGetAggregatedKeyShareResponse {
     return QueryGetAggregatedKeyShareResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetAggregatedKeyShareResponse>, I>>(
-    object: I,
+    object: I
   ): QueryGetAggregatedKeyShareResponse {
     const message = createBaseQueryGetAggregatedKeyShareResponse();
-    message.aggregatedKeyShare = (object.aggregatedKeyShare !== undefined && object.aggregatedKeyShare !== null)
-      ? AggregatedKeyShare.fromPartial(object.aggregatedKeyShare)
-      : undefined;
+    message.aggregatedKeyShare =
+      object.aggregatedKeyShare !== undefined && object.aggregatedKeyShare !== null
+        ? AggregatedKeyShare.fromPartial(object.aggregatedKeyShare)
+        : undefined;
     return message;
   },
 };
@@ -1177,17 +1179,18 @@ export const QueryAllAggregatedKeyShareRequest = {
   },
 
   create<I extends Exact<DeepPartial<QueryAllAggregatedKeyShareRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryAllAggregatedKeyShareRequest {
     return QueryAllAggregatedKeyShareRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllAggregatedKeyShareRequest>, I>>(
-    object: I,
+    object: I
   ): QueryAllAggregatedKeyShareRequest {
     const message = createBaseQueryAllAggregatedKeyShareRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1258,18 +1261,19 @@ export const QueryAllAggregatedKeyShareResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryAllAggregatedKeyShareResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryAllAggregatedKeyShareResponse {
     return QueryAllAggregatedKeyShareResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllAggregatedKeyShareResponse>, I>>(
-    object: I,
+    object: I
   ): QueryAllAggregatedKeyShareResponse {
     const message = createBaseQueryAllAggregatedKeyShareResponse();
     message.aggregatedKeyShare = object.aggregatedKeyShare?.map((e) => AggregatedKeyShare.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1385,23 +1389,25 @@ export const QueryPubKeyResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryPubKeyResponse>, I>>(object: I): QueryPubKeyResponse {
     const message = createBaseQueryPubKeyResponse();
-    message.activePubKey = (object.activePubKey !== undefined && object.activePubKey !== null)
-      ? ActivePubKey.fromPartial(object.activePubKey)
-      : undefined;
-    message.queuedPubKey = (object.queuedPubKey !== undefined && object.queuedPubKey !== null)
-      ? QueuedPubKey.fromPartial(object.queuedPubKey)
-      : undefined;
+    message.activePubKey =
+      object.activePubKey !== undefined && object.activePubKey !== null
+        ? ActivePubKey.fromPartial(object.activePubKey)
+        : undefined;
+    message.queuedPubKey =
+      object.queuedPubKey !== undefined && object.queuedPubKey !== null
+        ? QueuedPubKey.fromPartial(object.queuedPubKey)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryGetAuthorizedAddressRequest(): QueryGetAuthorizedAddressRequest {
-  return { target: "" };
+  return { target: '' };
 }
 
 export const QueryGetAuthorizedAddressRequest = {
   encode(message: QueryGetAuthorizedAddressRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.target !== "") {
+    if (message.target !== '') {
       writer.uint32(10).string(message.target);
     }
     return writer;
@@ -1431,27 +1437,27 @@ export const QueryGetAuthorizedAddressRequest = {
   },
 
   fromJSON(object: any): QueryGetAuthorizedAddressRequest {
-    return { target: isSet(object.target) ? String(object.target) : "" };
+    return { target: isSet(object.target) ? String(object.target) : '' };
   },
 
   toJSON(message: QueryGetAuthorizedAddressRequest): unknown {
     const obj: any = {};
-    if (message.target !== "") {
+    if (message.target !== '') {
       obj.target = message.target;
     }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<QueryGetAuthorizedAddressRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryGetAuthorizedAddressRequest {
     return QueryGetAuthorizedAddressRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetAuthorizedAddressRequest>, I>>(
-    object: I,
+    object: I
   ): QueryGetAuthorizedAddressRequest {
     const message = createBaseQueryGetAuthorizedAddressRequest();
-    message.target = object.target ?? "";
+    message.target = object.target ?? '';
     return message;
   },
 };
@@ -1508,17 +1514,18 @@ export const QueryGetAuthorizedAddressResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryGetAuthorizedAddressResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryGetAuthorizedAddressResponse {
     return QueryGetAuthorizedAddressResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetAuthorizedAddressResponse>, I>>(
-    object: I,
+    object: I
   ): QueryGetAuthorizedAddressResponse {
     const message = createBaseQueryGetAuthorizedAddressResponse();
-    message.authorizedAddress = (object.authorizedAddress !== undefined && object.authorizedAddress !== null)
-      ? AuthorizedAddress.fromPartial(object.authorizedAddress)
-      : undefined;
+    message.authorizedAddress =
+      object.authorizedAddress !== undefined && object.authorizedAddress !== null
+        ? AuthorizedAddress.fromPartial(object.authorizedAddress)
+        : undefined;
     return message;
   },
 };
@@ -1571,17 +1578,18 @@ export const QueryAllAuthorizedAddressRequest = {
   },
 
   create<I extends Exact<DeepPartial<QueryAllAuthorizedAddressRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryAllAuthorizedAddressRequest {
     return QueryAllAuthorizedAddressRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllAuthorizedAddressRequest>, I>>(
-    object: I,
+    object: I
   ): QueryAllAuthorizedAddressRequest {
     const message = createBaseQueryAllAuthorizedAddressRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1652,35 +1660,36 @@ export const QueryAllAuthorizedAddressResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryAllAuthorizedAddressResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryAllAuthorizedAddressResponse {
     return QueryAllAuthorizedAddressResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllAuthorizedAddressResponse>, I>>(
-    object: I,
+    object: I
   ): QueryAllAuthorizedAddressResponse {
     const message = createBaseQueryAllAuthorizedAddressResponse();
     message.authorizedAddress = object.authorizedAddress?.map((e) => AuthorizedAddress.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryGetGeneralKeyShareRequest(): QueryGetGeneralKeyShareRequest {
-  return { validator: "", idType: "", idValue: "" };
+  return { validator: '', idType: '', idValue: '' };
 }
 
 export const QueryGetGeneralKeyShareRequest = {
   encode(message: QueryGetGeneralKeyShareRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.validator !== "") {
+    if (message.validator !== '') {
       writer.uint32(10).string(message.validator);
     }
-    if (message.idType !== "") {
+    if (message.idType !== '') {
       writer.uint32(18).string(message.idType);
     }
-    if (message.idValue !== "") {
+    if (message.idValue !== '') {
       writer.uint32(26).string(message.idValue);
     }
     return writer;
@@ -1725,21 +1734,21 @@ export const QueryGetGeneralKeyShareRequest = {
 
   fromJSON(object: any): QueryGetGeneralKeyShareRequest {
     return {
-      validator: isSet(object.validator) ? String(object.validator) : "",
-      idType: isSet(object.idType) ? String(object.idType) : "",
-      idValue: isSet(object.idValue) ? String(object.idValue) : "",
+      validator: isSet(object.validator) ? String(object.validator) : '',
+      idType: isSet(object.idType) ? String(object.idType) : '',
+      idValue: isSet(object.idValue) ? String(object.idValue) : '',
     };
   },
 
   toJSON(message: QueryGetGeneralKeyShareRequest): unknown {
     const obj: any = {};
-    if (message.validator !== "") {
+    if (message.validator !== '') {
       obj.validator = message.validator;
     }
-    if (message.idType !== "") {
+    if (message.idType !== '') {
       obj.idType = message.idType;
     }
-    if (message.idValue !== "") {
+    if (message.idValue !== '') {
       obj.idValue = message.idValue;
     }
     return obj;
@@ -1749,12 +1758,12 @@ export const QueryGetGeneralKeyShareRequest = {
     return QueryGetGeneralKeyShareRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetGeneralKeyShareRequest>, I>>(
-    object: I,
+    object: I
   ): QueryGetGeneralKeyShareRequest {
     const message = createBaseQueryGetGeneralKeyShareRequest();
-    message.validator = object.validator ?? "";
-    message.idType = object.idType ?? "";
-    message.idValue = object.idValue ?? "";
+    message.validator = object.validator ?? '';
+    message.idType = object.idType ?? '';
+    message.idValue = object.idValue ?? '';
     return message;
   },
 };
@@ -1812,12 +1821,13 @@ export const QueryGetGeneralKeyShareResponse = {
     return QueryGetGeneralKeyShareResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryGetGeneralKeyShareResponse>, I>>(
-    object: I,
+    object: I
   ): QueryGetGeneralKeyShareResponse {
     const message = createBaseQueryGetGeneralKeyShareResponse();
-    message.generalKeyShare = (object.generalKeyShare !== undefined && object.generalKeyShare !== null)
-      ? GeneralKeyShare.fromPartial(object.generalKeyShare)
-      : undefined;
+    message.generalKeyShare =
+      object.generalKeyShare !== undefined && object.generalKeyShare !== null
+        ? GeneralKeyShare.fromPartial(object.generalKeyShare)
+        : undefined;
     return message;
   },
 };
@@ -1873,12 +1883,13 @@ export const QueryAllGeneralKeyShareRequest = {
     return QueryAllGeneralKeyShareRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllGeneralKeyShareRequest>, I>>(
-    object: I,
+    object: I
   ): QueryAllGeneralKeyShareRequest {
     const message = createBaseQueryAllGeneralKeyShareRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1952,13 +1963,14 @@ export const QueryAllGeneralKeyShareResponse = {
     return QueryAllGeneralKeyShareResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryAllGeneralKeyShareResponse>, I>>(
-    object: I,
+    object: I
   ): QueryAllGeneralKeyShareResponse {
     const message = createBaseQueryAllGeneralKeyShareResponse();
     message.generalKeyShare = object.generalKeyShare?.map((e) => GeneralKeyShare.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -1990,7 +2002,7 @@ export interface Query {
   VerifiableRandomness(request: QueryVerifiableRandomnessQuery): Promise<QueryVerifiableRandomnessResponse>;
 }
 
-export const QueryServiceName = "fairyring.keyshare.Query";
+export const QueryServiceName = 'fairyring.keyshare.Query';
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -2014,85 +2026,85 @@ export class QueryClientImpl implements Query {
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Params", data);
+    const promise = this.rpc.request(this.service, 'Params', data);
     return promise.then((data) => QueryParamsResponse.decode(_m0.Reader.create(data)));
   }
 
   Commitments(request: QueryCommitmentsRequest): Promise<QueryCommitmentsResponse> {
     const data = QueryCommitmentsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Commitments", data);
+    const promise = this.rpc.request(this.service, 'Commitments', data);
     return promise.then((data) => QueryCommitmentsResponse.decode(_m0.Reader.create(data)));
   }
 
   ValidatorSet(request: QueryGetValidatorSetRequest): Promise<QueryGetValidatorSetResponse> {
     const data = QueryGetValidatorSetRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ValidatorSet", data);
+    const promise = this.rpc.request(this.service, 'ValidatorSet', data);
     return promise.then((data) => QueryGetValidatorSetResponse.decode(_m0.Reader.create(data)));
   }
 
   ValidatorSetAll(request: QueryAllValidatorSetRequest): Promise<QueryAllValidatorSetResponse> {
     const data = QueryAllValidatorSetRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ValidatorSetAll", data);
+    const promise = this.rpc.request(this.service, 'ValidatorSetAll', data);
     return promise.then((data) => QueryAllValidatorSetResponse.decode(_m0.Reader.create(data)));
   }
 
   KeyShare(request: QueryGetKeyShareRequest): Promise<QueryGetKeyShareResponse> {
     const data = QueryGetKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "KeyShare", data);
+    const promise = this.rpc.request(this.service, 'KeyShare', data);
     return promise.then((data) => QueryGetKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   KeyShareAll(request: QueryAllKeyShareRequest): Promise<QueryAllKeyShareResponse> {
     const data = QueryAllKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "KeyShareAll", data);
+    const promise = this.rpc.request(this.service, 'KeyShareAll', data);
     return promise.then((data) => QueryAllKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   AggregatedKeyShare(request: QueryGetAggregatedKeyShareRequest): Promise<QueryGetAggregatedKeyShareResponse> {
     const data = QueryGetAggregatedKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "AggregatedKeyShare", data);
+    const promise = this.rpc.request(this.service, 'AggregatedKeyShare', data);
     return promise.then((data) => QueryGetAggregatedKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   AggregatedKeyShareAll(request: QueryAllAggregatedKeyShareRequest): Promise<QueryAllAggregatedKeyShareResponse> {
     const data = QueryAllAggregatedKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "AggregatedKeyShareAll", data);
+    const promise = this.rpc.request(this.service, 'AggregatedKeyShareAll', data);
     return promise.then((data) => QueryAllAggregatedKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   PubKey(request: QueryPubKeyRequest): Promise<QueryPubKeyResponse> {
     const data = QueryPubKeyRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "PubKey", data);
+    const promise = this.rpc.request(this.service, 'PubKey', data);
     return promise.then((data) => QueryPubKeyResponse.decode(_m0.Reader.create(data)));
   }
 
   AuthorizedAddress(request: QueryGetAuthorizedAddressRequest): Promise<QueryGetAuthorizedAddressResponse> {
     const data = QueryGetAuthorizedAddressRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "AuthorizedAddress", data);
+    const promise = this.rpc.request(this.service, 'AuthorizedAddress', data);
     return promise.then((data) => QueryGetAuthorizedAddressResponse.decode(_m0.Reader.create(data)));
   }
 
   AuthorizedAddressAll(request: QueryAllAuthorizedAddressRequest): Promise<QueryAllAuthorizedAddressResponse> {
     const data = QueryAllAuthorizedAddressRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "AuthorizedAddressAll", data);
+    const promise = this.rpc.request(this.service, 'AuthorizedAddressAll', data);
     return promise.then((data) => QueryAllAuthorizedAddressResponse.decode(_m0.Reader.create(data)));
   }
 
   GeneralKeyShare(request: QueryGetGeneralKeyShareRequest): Promise<QueryGetGeneralKeyShareResponse> {
     const data = QueryGetGeneralKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "GeneralKeyShare", data);
+    const promise = this.rpc.request(this.service, 'GeneralKeyShare', data);
     return promise.then((data) => QueryGetGeneralKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   GeneralKeyShareAll(request: QueryAllGeneralKeyShareRequest): Promise<QueryAllGeneralKeyShareResponse> {
     const data = QueryAllGeneralKeyShareRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "GeneralKeyShareAll", data);
+    const promise = this.rpc.request(this.service, 'GeneralKeyShareAll', data);
     return promise.then((data) => QueryAllGeneralKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 
   VerifiableRandomness(request: QueryVerifiableRandomnessQuery): Promise<QueryVerifiableRandomnessResponse> {
     const data = QueryVerifiableRandomnessQuery.encode(request).finish();
-    const promise = this.rpc.request(this.service, "VerifiableRandomness", data);
+    const promise = this.rpc.request(this.service, 'VerifiableRandomness', data);
     return promise.then((data) => QueryVerifiableRandomnessResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -2105,35 +2117,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

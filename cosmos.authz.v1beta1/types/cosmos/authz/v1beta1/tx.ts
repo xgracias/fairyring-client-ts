@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Any } from "../../../google/protobuf/any";
-import { Grant } from "./authz";
+import _m0 from 'protobufjs/minimal';
+import { Any } from '../../../google/protobuf/any';
+import { Grant } from './authz';
 
-export const protobufPackage = "cosmos.authz.v1beta1";
+export const protobufPackage = 'cosmos.authz.v1beta1';
 
 /** Since: cosmos-sdk 0.43 */
 
@@ -18,8 +18,7 @@ export interface MsgGrant {
 }
 
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
-export interface MsgGrantResponse {
-}
+export interface MsgGrantResponse {}
 
 /**
  * MsgExec attempts to execute the provided messages using
@@ -52,19 +51,18 @@ export interface MsgRevoke {
 }
 
 /** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
-export interface MsgRevokeResponse {
-}
+export interface MsgRevokeResponse {}
 
 function createBaseMsgGrant(): MsgGrant {
-  return { granter: "", grantee: "", grant: undefined };
+  return { granter: '', grantee: '', grant: undefined };
 }
 
 export const MsgGrant = {
   encode(message: MsgGrant, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.granter !== "") {
+    if (message.granter !== '') {
       writer.uint32(10).string(message.granter);
     }
-    if (message.grantee !== "") {
+    if (message.grantee !== '') {
       writer.uint32(18).string(message.grantee);
     }
     if (message.grant !== undefined) {
@@ -112,18 +110,18 @@ export const MsgGrant = {
 
   fromJSON(object: any): MsgGrant {
     return {
-      granter: isSet(object.granter) ? String(object.granter) : "",
-      grantee: isSet(object.grantee) ? String(object.grantee) : "",
+      granter: isSet(object.granter) ? String(object.granter) : '',
+      grantee: isSet(object.grantee) ? String(object.grantee) : '',
       grant: isSet(object.grant) ? Grant.fromJSON(object.grant) : undefined,
     };
   },
 
   toJSON(message: MsgGrant): unknown {
     const obj: any = {};
-    if (message.granter !== "") {
+    if (message.granter !== '') {
       obj.granter = message.granter;
     }
-    if (message.grantee !== "") {
+    if (message.grantee !== '') {
       obj.grantee = message.grantee;
     }
     if (message.grant !== undefined) {
@@ -137,9 +135,9 @@ export const MsgGrant = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgGrant>, I>>(object: I): MsgGrant {
     const message = createBaseMsgGrant();
-    message.granter = object.granter ?? "";
-    message.grantee = object.grantee ?? "";
-    message.grant = (object.grant !== undefined && object.grant !== null) ? Grant.fromPartial(object.grant) : undefined;
+    message.granter = object.granter ?? '';
+    message.grantee = object.grantee ?? '';
+    message.grant = object.grant !== undefined && object.grant !== null ? Grant.fromPartial(object.grant) : undefined;
     return message;
   },
 };
@@ -188,12 +186,12 @@ export const MsgGrantResponse = {
 };
 
 function createBaseMsgExec(): MsgExec {
-  return { grantee: "", msgs: [] };
+  return { grantee: '', msgs: [] };
 }
 
 export const MsgExec = {
   encode(message: MsgExec, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.grantee !== "") {
+    if (message.grantee !== '') {
       writer.uint32(10).string(message.grantee);
     }
     for (const v of message.msgs) {
@@ -234,14 +232,14 @@ export const MsgExec = {
 
   fromJSON(object: any): MsgExec {
     return {
-      grantee: isSet(object.grantee) ? String(object.grantee) : "",
+      grantee: isSet(object.grantee) ? String(object.grantee) : '',
       msgs: Array.isArray(object?.msgs) ? object.msgs.map((e: any) => Any.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: MsgExec): unknown {
     const obj: any = {};
-    if (message.grantee !== "") {
+    if (message.grantee !== '') {
       obj.grantee = message.grantee;
     }
     if (message.msgs?.length) {
@@ -255,7 +253,7 @@ export const MsgExec = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgExec>, I>>(object: I): MsgExec {
     const message = createBaseMsgExec();
-    message.grantee = object.grantee ?? "";
+    message.grantee = object.grantee ?? '';
     message.msgs = object.msgs?.map((e) => Any.fromPartial(e)) || [];
     return message;
   },
@@ -319,18 +317,18 @@ export const MsgExecResponse = {
 };
 
 function createBaseMsgRevoke(): MsgRevoke {
-  return { granter: "", grantee: "", msgTypeUrl: "" };
+  return { granter: '', grantee: '', msgTypeUrl: '' };
 }
 
 export const MsgRevoke = {
   encode(message: MsgRevoke, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.granter !== "") {
+    if (message.granter !== '') {
       writer.uint32(10).string(message.granter);
     }
-    if (message.grantee !== "") {
+    if (message.grantee !== '') {
       writer.uint32(18).string(message.grantee);
     }
-    if (message.msgTypeUrl !== "") {
+    if (message.msgTypeUrl !== '') {
       writer.uint32(26).string(message.msgTypeUrl);
     }
     return writer;
@@ -375,21 +373,21 @@ export const MsgRevoke = {
 
   fromJSON(object: any): MsgRevoke {
     return {
-      granter: isSet(object.granter) ? String(object.granter) : "",
-      grantee: isSet(object.grantee) ? String(object.grantee) : "",
-      msgTypeUrl: isSet(object.msgTypeUrl) ? String(object.msgTypeUrl) : "",
+      granter: isSet(object.granter) ? String(object.granter) : '',
+      grantee: isSet(object.grantee) ? String(object.grantee) : '',
+      msgTypeUrl: isSet(object.msgTypeUrl) ? String(object.msgTypeUrl) : '',
     };
   },
 
   toJSON(message: MsgRevoke): unknown {
     const obj: any = {};
-    if (message.granter !== "") {
+    if (message.granter !== '') {
       obj.granter = message.granter;
     }
-    if (message.grantee !== "") {
+    if (message.grantee !== '') {
       obj.grantee = message.grantee;
     }
-    if (message.msgTypeUrl !== "") {
+    if (message.msgTypeUrl !== '') {
       obj.msgTypeUrl = message.msgTypeUrl;
     }
     return obj;
@@ -400,9 +398,9 @@ export const MsgRevoke = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgRevoke>, I>>(object: I): MsgRevoke {
     const message = createBaseMsgRevoke();
-    message.granter = object.granter ?? "";
-    message.grantee = object.grantee ?? "";
-    message.msgTypeUrl = object.msgTypeUrl ?? "";
+    message.granter = object.granter ?? '';
+    message.grantee = object.grantee ?? '';
+    message.msgTypeUrl = object.msgTypeUrl ?? '';
     return message;
   },
 };
@@ -472,7 +470,7 @@ export interface Msg {
   Revoke(request: MsgRevoke): Promise<MsgRevokeResponse>;
 }
 
-export const MsgServiceName = "cosmos.authz.v1beta1.Msg";
+export const MsgServiceName = 'cosmos.authz.v1beta1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -485,19 +483,19 @@ export class MsgClientImpl implements Msg {
   }
   Grant(request: MsgGrant): Promise<MsgGrantResponse> {
     const data = MsgGrant.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Grant", data);
+    const promise = this.rpc.request(this.service, 'Grant', data);
     return promise.then((data) => MsgGrantResponse.decode(_m0.Reader.create(data)));
   }
 
   Exec(request: MsgExec): Promise<MsgExecResponse> {
     const data = MsgExec.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Exec", data);
+    const promise = this.rpc.request(this.service, 'Exec', data);
     return promise.then((data) => MsgExecResponse.decode(_m0.Reader.create(data)));
   }
 
   Revoke(request: MsgRevoke): Promise<MsgRevokeResponse> {
     const data = MsgRevoke.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Revoke", data);
+    const promise = this.rpc.request(this.service, 'Revoke', data);
     return promise.then((data) => MsgRevokeResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -510,24 +508,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -540,25 +538,31 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

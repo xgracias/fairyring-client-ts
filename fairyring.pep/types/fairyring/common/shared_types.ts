@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Duration } from "../../google/protobuf/duration";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Duration } from '../../google/protobuf/duration';
 
-export const protobufPackage = "fairyring.common";
+export const protobufPackage = 'fairyring.common';
 
 /** RequestAggrKeyshare defines a struct for the data payload */
 export interface RequestAggrKeyshare {
@@ -25,8 +25,7 @@ export interface GetAggrKeyshare {
   identity: string;
 }
 
-export interface GetAggrKeyshareResponse {
-}
+export interface GetAggrKeyshareResponse {}
 
 export interface ActivePublicKey {
   publicKey: string;
@@ -41,12 +40,12 @@ export interface QueuedPublicKey {
 }
 
 function createBaseRequestAggrKeyshare(): RequestAggrKeyshare {
-  return { creator: "", proposalId: undefined, requestId: undefined, estimatedDelay: undefined };
+  return { creator: '', proposalId: undefined, requestId: undefined, estimatedDelay: undefined };
 }
 
 export const RequestAggrKeyshare = {
   encode(message: RequestAggrKeyshare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
     if (message.proposalId !== undefined) {
@@ -107,7 +106,7 @@ export const RequestAggrKeyshare = {
 
   fromJSON(object: any): RequestAggrKeyshare {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
       proposalId: isSet(object.proposalId) ? String(object.proposalId) : undefined,
       requestId: isSet(object.requestId) ? String(object.requestId) : undefined,
       estimatedDelay: isSet(object.estimatedDelay) ? Duration.fromJSON(object.estimatedDelay) : undefined,
@@ -116,7 +115,7 @@ export const RequestAggrKeyshare = {
 
   toJSON(message: RequestAggrKeyshare): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     if (message.proposalId !== undefined) {
@@ -136,26 +135,27 @@ export const RequestAggrKeyshare = {
   },
   fromPartial<I extends Exact<DeepPartial<RequestAggrKeyshare>, I>>(object: I): RequestAggrKeyshare {
     const message = createBaseRequestAggrKeyshare();
-    message.creator = object.creator ?? "";
+    message.creator = object.creator ?? '';
     message.proposalId = object.proposalId ?? undefined;
     message.requestId = object.requestId ?? undefined;
-    message.estimatedDelay = (object.estimatedDelay !== undefined && object.estimatedDelay !== null)
-      ? Duration.fromPartial(object.estimatedDelay)
-      : undefined;
+    message.estimatedDelay =
+      object.estimatedDelay !== undefined && object.estimatedDelay !== null
+        ? Duration.fromPartial(object.estimatedDelay)
+        : undefined;
     return message;
   },
 };
 
 function createBaseRequestAggrKeyshareResponse(): RequestAggrKeyshareResponse {
-  return { identity: "", pubkey: "" };
+  return { identity: '', pubkey: '' };
 }
 
 export const RequestAggrKeyshareResponse = {
   encode(message: RequestAggrKeyshareResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.identity !== "") {
+    if (message.identity !== '') {
       writer.uint32(10).string(message.identity);
     }
-    if (message.pubkey !== "") {
+    if (message.pubkey !== '') {
       writer.uint32(18).string(message.pubkey);
     }
     return writer;
@@ -193,17 +193,17 @@ export const RequestAggrKeyshareResponse = {
 
   fromJSON(object: any): RequestAggrKeyshareResponse {
     return {
-      identity: isSet(object.identity) ? String(object.identity) : "",
-      pubkey: isSet(object.pubkey) ? String(object.pubkey) : "",
+      identity: isSet(object.identity) ? String(object.identity) : '',
+      pubkey: isSet(object.pubkey) ? String(object.pubkey) : '',
     };
   },
 
   toJSON(message: RequestAggrKeyshareResponse): unknown {
     const obj: any = {};
-    if (message.identity !== "") {
+    if (message.identity !== '') {
       obj.identity = message.identity;
     }
-    if (message.pubkey !== "") {
+    if (message.pubkey !== '') {
       obj.pubkey = message.pubkey;
     }
     return obj;
@@ -214,14 +214,14 @@ export const RequestAggrKeyshareResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<RequestAggrKeyshareResponse>, I>>(object: I): RequestAggrKeyshareResponse {
     const message = createBaseRequestAggrKeyshareResponse();
-    message.identity = object.identity ?? "";
-    message.pubkey = object.pubkey ?? "";
+    message.identity = object.identity ?? '';
+    message.pubkey = object.pubkey ?? '';
     return message;
   },
 };
 
 function createBaseGetAggrKeyshare(): GetAggrKeyshare {
-  return { proposalId: undefined, requestId: undefined, identity: "" };
+  return { proposalId: undefined, requestId: undefined, identity: '' };
 }
 
 export const GetAggrKeyshare = {
@@ -232,7 +232,7 @@ export const GetAggrKeyshare = {
     if (message.requestId !== undefined) {
       writer.uint32(18).string(message.requestId);
     }
-    if (message.identity !== "") {
+    if (message.identity !== '') {
       writer.uint32(26).string(message.identity);
     }
     return writer;
@@ -279,7 +279,7 @@ export const GetAggrKeyshare = {
     return {
       proposalId: isSet(object.proposalId) ? String(object.proposalId) : undefined,
       requestId: isSet(object.requestId) ? String(object.requestId) : undefined,
-      identity: isSet(object.identity) ? String(object.identity) : "",
+      identity: isSet(object.identity) ? String(object.identity) : '',
     };
   },
 
@@ -291,7 +291,7 @@ export const GetAggrKeyshare = {
     if (message.requestId !== undefined) {
       obj.requestId = message.requestId;
     }
-    if (message.identity !== "") {
+    if (message.identity !== '') {
       obj.identity = message.identity;
     }
     return obj;
@@ -304,7 +304,7 @@ export const GetAggrKeyshare = {
     const message = createBaseGetAggrKeyshare();
     message.proposalId = object.proposalId ?? undefined;
     message.requestId = object.requestId ?? undefined;
-    message.identity = object.identity ?? "";
+    message.identity = object.identity ?? '';
     return message;
   },
 };
@@ -353,15 +353,15 @@ export const GetAggrKeyshareResponse = {
 };
 
 function createBaseActivePublicKey(): ActivePublicKey {
-  return { publicKey: "", creator: "", expiry: 0 };
+  return { publicKey: '', creator: '', expiry: 0 };
 }
 
 export const ActivePublicKey = {
   encode(message: ActivePublicKey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.publicKey !== "") {
+    if (message.publicKey !== '') {
       writer.uint32(10).string(message.publicKey);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(18).string(message.creator);
     }
     if (message.expiry !== 0) {
@@ -409,18 +409,18 @@ export const ActivePublicKey = {
 
   fromJSON(object: any): ActivePublicKey {
     return {
-      publicKey: isSet(object.publicKey) ? String(object.publicKey) : "",
-      creator: isSet(object.creator) ? String(object.creator) : "",
+      publicKey: isSet(object.publicKey) ? String(object.publicKey) : '',
+      creator: isSet(object.creator) ? String(object.creator) : '',
       expiry: isSet(object.expiry) ? Number(object.expiry) : 0,
     };
   },
 
   toJSON(message: ActivePublicKey): unknown {
     const obj: any = {};
-    if (message.publicKey !== "") {
+    if (message.publicKey !== '') {
       obj.publicKey = message.publicKey;
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     if (message.expiry !== 0) {
@@ -434,23 +434,23 @@ export const ActivePublicKey = {
   },
   fromPartial<I extends Exact<DeepPartial<ActivePublicKey>, I>>(object: I): ActivePublicKey {
     const message = createBaseActivePublicKey();
-    message.publicKey = object.publicKey ?? "";
-    message.creator = object.creator ?? "";
+    message.publicKey = object.publicKey ?? '';
+    message.creator = object.creator ?? '';
     message.expiry = object.expiry ?? 0;
     return message;
   },
 };
 
 function createBaseQueuedPublicKey(): QueuedPublicKey {
-  return { publicKey: "", creator: "", expiry: 0 };
+  return { publicKey: '', creator: '', expiry: 0 };
 }
 
 export const QueuedPublicKey = {
   encode(message: QueuedPublicKey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.publicKey !== "") {
+    if (message.publicKey !== '') {
       writer.uint32(10).string(message.publicKey);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(18).string(message.creator);
     }
     if (message.expiry !== 0) {
@@ -498,18 +498,18 @@ export const QueuedPublicKey = {
 
   fromJSON(object: any): QueuedPublicKey {
     return {
-      publicKey: isSet(object.publicKey) ? String(object.publicKey) : "",
-      creator: isSet(object.creator) ? String(object.creator) : "",
+      publicKey: isSet(object.publicKey) ? String(object.publicKey) : '',
+      creator: isSet(object.creator) ? String(object.creator) : '',
       expiry: isSet(object.expiry) ? Number(object.expiry) : 0,
     };
   },
 
   toJSON(message: QueuedPublicKey): unknown {
     const obj: any = {};
-    if (message.publicKey !== "") {
+    if (message.publicKey !== '') {
       obj.publicKey = message.publicKey;
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     if (message.expiry !== 0) {
@@ -523,8 +523,8 @@ export const QueuedPublicKey = {
   },
   fromPartial<I extends Exact<DeepPartial<QueuedPublicKey>, I>>(object: I): QueuedPublicKey {
     const message = createBaseQueuedPublicKey();
-    message.publicKey = object.publicKey ?? "";
-    message.creator = object.creator ?? "";
+    message.publicKey = object.publicKey ?? '';
+    message.creator = object.creator ?? '';
     message.expiry = object.expiry ?? 0;
     return message;
   },
@@ -534,35 +534,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

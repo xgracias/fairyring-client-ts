@@ -31,7 +31,7 @@ export interface ABCIQueryResponse {
 }
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface BlockID {
@@ -41,10 +41,10 @@ export interface BlockID {
 }
 
 export enum BlockIDFlag {
-  BLOCK_ID_FLAG_UNKNOWN = "BLOCK_ID_FLAG_UNKNOWN",
-  BLOCK_ID_FLAG_ABSENT = "BLOCK_ID_FLAG_ABSENT",
-  BLOCK_ID_FLAG_COMMIT = "BLOCK_ID_FLAG_COMMIT",
-  BLOCK_ID_FLAG_NIL = "BLOCK_ID_FLAG_NIL",
+  BLOCK_ID_FLAG_UNKNOWN = 'BLOCK_ID_FLAG_UNKNOWN',
+  BLOCK_ID_FLAG_ABSENT = 'BLOCK_ID_FLAG_ABSENT',
+  BLOCK_ID_FLAG_COMMIT = 'BLOCK_ID_FLAG_COMMIT',
+  BLOCK_ID_FLAG_NIL = 'BLOCK_ID_FLAG_NIL',
 }
 
 export interface Commit {
@@ -55,7 +55,7 @@ export interface Commit {
   round?: number;
   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
   signatures?: {
-    block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+    block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
     validator_address?: string;
     timestamp?: string;
     signature?: string;
@@ -63,7 +63,7 @@ export interface Commit {
 }
 
 export interface CommitSig {
-  block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+  block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
 
   /** @format byte */
   validator_address?: string;
@@ -108,10 +108,10 @@ export interface DefaultNodeInfoOther {
 export interface DuplicateVoteEvidence {
   vote_a?: {
     type?:
-      | "SIGNED_MSG_TYPE_UNKNOWN"
-      | "SIGNED_MSG_TYPE_PREVOTE"
-      | "SIGNED_MSG_TYPE_PRECOMMIT"
-      | "SIGNED_MSG_TYPE_PROPOSAL";
+      | 'SIGNED_MSG_TYPE_UNKNOWN'
+      | 'SIGNED_MSG_TYPE_PREVOTE'
+      | 'SIGNED_MSG_TYPE_PRECOMMIT'
+      | 'SIGNED_MSG_TYPE_PROPOSAL';
     height?: string;
     round?: number;
     block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -124,10 +124,10 @@ export interface DuplicateVoteEvidence {
   };
   vote_b?: {
     type?:
-      | "SIGNED_MSG_TYPE_UNKNOWN"
-      | "SIGNED_MSG_TYPE_PREVOTE"
-      | "SIGNED_MSG_TYPE_PRECOMMIT"
-      | "SIGNED_MSG_TYPE_PROPOSAL";
+      | 'SIGNED_MSG_TYPE_UNKNOWN'
+      | 'SIGNED_MSG_TYPE_PREVOTE'
+      | 'SIGNED_MSG_TYPE_PRECOMMIT'
+      | 'SIGNED_MSG_TYPE_PROPOSAL';
     height?: string;
     round?: number;
     block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -153,10 +153,10 @@ export interface Evidence {
   duplicate_vote_evidence?: {
     vote_a?: {
       type?:
-        | "SIGNED_MSG_TYPE_UNKNOWN"
-        | "SIGNED_MSG_TYPE_PREVOTE"
-        | "SIGNED_MSG_TYPE_PRECOMMIT"
-        | "SIGNED_MSG_TYPE_PROPOSAL";
+        | 'SIGNED_MSG_TYPE_UNKNOWN'
+        | 'SIGNED_MSG_TYPE_PREVOTE'
+        | 'SIGNED_MSG_TYPE_PRECOMMIT'
+        | 'SIGNED_MSG_TYPE_PROPOSAL';
       height?: string;
       round?: number;
       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -169,10 +169,10 @@ export interface Evidence {
     };
     vote_b?: {
       type?:
-        | "SIGNED_MSG_TYPE_UNKNOWN"
-        | "SIGNED_MSG_TYPE_PREVOTE"
-        | "SIGNED_MSG_TYPE_PRECOMMIT"
-        | "SIGNED_MSG_TYPE_PROPOSAL";
+        | 'SIGNED_MSG_TYPE_UNKNOWN'
+        | 'SIGNED_MSG_TYPE_PREVOTE'
+        | 'SIGNED_MSG_TYPE_PRECOMMIT'
+        | 'SIGNED_MSG_TYPE_PROPOSAL';
       height?: string;
       round?: number;
       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -212,10 +212,10 @@ export interface Evidence {
           block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
           signatures?: {
             block_id_flag?:
-              | "BLOCK_ID_FLAG_UNKNOWN"
-              | "BLOCK_ID_FLAG_ABSENT"
-              | "BLOCK_ID_FLAG_COMMIT"
-              | "BLOCK_ID_FLAG_NIL";
+              | 'BLOCK_ID_FLAG_UNKNOWN'
+              | 'BLOCK_ID_FLAG_ABSENT'
+              | 'BLOCK_ID_FLAG_COMMIT'
+              | 'BLOCK_ID_FLAG_NIL';
             validator_address?: string;
             timestamp?: string;
             signature?: string;
@@ -255,10 +255,10 @@ export interface EvidenceList {
     duplicate_vote_evidence?: {
       vote_a?: {
         type?:
-          | "SIGNED_MSG_TYPE_UNKNOWN"
-          | "SIGNED_MSG_TYPE_PREVOTE"
-          | "SIGNED_MSG_TYPE_PRECOMMIT"
-          | "SIGNED_MSG_TYPE_PROPOSAL";
+          | 'SIGNED_MSG_TYPE_UNKNOWN'
+          | 'SIGNED_MSG_TYPE_PREVOTE'
+          | 'SIGNED_MSG_TYPE_PRECOMMIT'
+          | 'SIGNED_MSG_TYPE_PROPOSAL';
         height?: string;
         round?: number;
         block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -271,10 +271,10 @@ export interface EvidenceList {
       };
       vote_b?: {
         type?:
-          | "SIGNED_MSG_TYPE_UNKNOWN"
-          | "SIGNED_MSG_TYPE_PREVOTE"
-          | "SIGNED_MSG_TYPE_PRECOMMIT"
-          | "SIGNED_MSG_TYPE_PROPOSAL";
+          | 'SIGNED_MSG_TYPE_UNKNOWN'
+          | 'SIGNED_MSG_TYPE_PREVOTE'
+          | 'SIGNED_MSG_TYPE_PRECOMMIT'
+          | 'SIGNED_MSG_TYPE_PROPOSAL';
         height?: string;
         round?: number;
         block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -314,10 +314,10 @@ export interface EvidenceList {
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
             signatures?: {
               block_id_flag?:
-                | "BLOCK_ID_FLAG_UNKNOWN"
-                | "BLOCK_ID_FLAG_ABSENT"
-                | "BLOCK_ID_FLAG_COMMIT"
-                | "BLOCK_ID_FLAG_NIL";
+                | 'BLOCK_ID_FLAG_UNKNOWN'
+                | 'BLOCK_ID_FLAG_ABSENT'
+                | 'BLOCK_ID_FLAG_COMMIT'
+                | 'BLOCK_ID_FLAG_NIL';
               validator_address?: string;
               timestamp?: string;
               signature?: string;
@@ -378,10 +378,10 @@ export interface GetBlockByHeightResponse {
         duplicate_vote_evidence?: {
           vote_a?: {
             type?:
-              | "SIGNED_MSG_TYPE_UNKNOWN"
-              | "SIGNED_MSG_TYPE_PREVOTE"
-              | "SIGNED_MSG_TYPE_PRECOMMIT"
-              | "SIGNED_MSG_TYPE_PROPOSAL";
+              | 'SIGNED_MSG_TYPE_UNKNOWN'
+              | 'SIGNED_MSG_TYPE_PREVOTE'
+              | 'SIGNED_MSG_TYPE_PRECOMMIT'
+              | 'SIGNED_MSG_TYPE_PROPOSAL';
             height?: string;
             round?: number;
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -394,10 +394,10 @@ export interface GetBlockByHeightResponse {
           };
           vote_b?: {
             type?:
-              | "SIGNED_MSG_TYPE_UNKNOWN"
-              | "SIGNED_MSG_TYPE_PREVOTE"
-              | "SIGNED_MSG_TYPE_PRECOMMIT"
-              | "SIGNED_MSG_TYPE_PROPOSAL";
+              | 'SIGNED_MSG_TYPE_UNKNOWN'
+              | 'SIGNED_MSG_TYPE_PREVOTE'
+              | 'SIGNED_MSG_TYPE_PRECOMMIT'
+              | 'SIGNED_MSG_TYPE_PROPOSAL';
             height?: string;
             round?: number;
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -437,10 +437,10 @@ export interface GetBlockByHeightResponse {
                 block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
                 signatures?: {
                   block_id_flag?:
-                    | "BLOCK_ID_FLAG_UNKNOWN"
-                    | "BLOCK_ID_FLAG_ABSENT"
-                    | "BLOCK_ID_FLAG_COMMIT"
-                    | "BLOCK_ID_FLAG_NIL";
+                    | 'BLOCK_ID_FLAG_UNKNOWN'
+                    | 'BLOCK_ID_FLAG_ABSENT'
+                    | 'BLOCK_ID_FLAG_COMMIT'
+                    | 'BLOCK_ID_FLAG_NIL';
                   validator_address?: string;
                   timestamp?: string;
                   signature?: string;
@@ -480,7 +480,7 @@ export interface GetBlockByHeightResponse {
       round?: number;
       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
       signatures?: {
-        block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+        block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
         validator_address?: string;
         timestamp?: string;
         signature?: string;
@@ -510,10 +510,10 @@ export interface GetBlockByHeightResponse {
         duplicate_vote_evidence?: {
           vote_a?: {
             type?:
-              | "SIGNED_MSG_TYPE_UNKNOWN"
-              | "SIGNED_MSG_TYPE_PREVOTE"
-              | "SIGNED_MSG_TYPE_PRECOMMIT"
-              | "SIGNED_MSG_TYPE_PROPOSAL";
+              | 'SIGNED_MSG_TYPE_UNKNOWN'
+              | 'SIGNED_MSG_TYPE_PREVOTE'
+              | 'SIGNED_MSG_TYPE_PRECOMMIT'
+              | 'SIGNED_MSG_TYPE_PROPOSAL';
             height?: string;
             round?: number;
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -526,10 +526,10 @@ export interface GetBlockByHeightResponse {
           };
           vote_b?: {
             type?:
-              | "SIGNED_MSG_TYPE_UNKNOWN"
-              | "SIGNED_MSG_TYPE_PREVOTE"
-              | "SIGNED_MSG_TYPE_PRECOMMIT"
-              | "SIGNED_MSG_TYPE_PROPOSAL";
+              | 'SIGNED_MSG_TYPE_UNKNOWN'
+              | 'SIGNED_MSG_TYPE_PREVOTE'
+              | 'SIGNED_MSG_TYPE_PRECOMMIT'
+              | 'SIGNED_MSG_TYPE_PROPOSAL';
             height?: string;
             round?: number;
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -569,10 +569,10 @@ export interface GetBlockByHeightResponse {
                 block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
                 signatures?: {
                   block_id_flag?:
-                    | "BLOCK_ID_FLAG_UNKNOWN"
-                    | "BLOCK_ID_FLAG_ABSENT"
-                    | "BLOCK_ID_FLAG_COMMIT"
-                    | "BLOCK_ID_FLAG_NIL";
+                    | 'BLOCK_ID_FLAG_UNKNOWN'
+                    | 'BLOCK_ID_FLAG_ABSENT'
+                    | 'BLOCK_ID_FLAG_COMMIT'
+                    | 'BLOCK_ID_FLAG_NIL';
                   validator_address?: string;
                   timestamp?: string;
                   signature?: string;
@@ -612,7 +612,7 @@ export interface GetBlockByHeightResponse {
       round?: number;
       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
       signatures?: {
-        block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+        block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
         validator_address?: string;
         timestamp?: string;
         signature?: string;
@@ -646,10 +646,10 @@ export interface GetLatestBlockResponse {
         duplicate_vote_evidence?: {
           vote_a?: {
             type?:
-              | "SIGNED_MSG_TYPE_UNKNOWN"
-              | "SIGNED_MSG_TYPE_PREVOTE"
-              | "SIGNED_MSG_TYPE_PRECOMMIT"
-              | "SIGNED_MSG_TYPE_PROPOSAL";
+              | 'SIGNED_MSG_TYPE_UNKNOWN'
+              | 'SIGNED_MSG_TYPE_PREVOTE'
+              | 'SIGNED_MSG_TYPE_PRECOMMIT'
+              | 'SIGNED_MSG_TYPE_PROPOSAL';
             height?: string;
             round?: number;
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -662,10 +662,10 @@ export interface GetLatestBlockResponse {
           };
           vote_b?: {
             type?:
-              | "SIGNED_MSG_TYPE_UNKNOWN"
-              | "SIGNED_MSG_TYPE_PREVOTE"
-              | "SIGNED_MSG_TYPE_PRECOMMIT"
-              | "SIGNED_MSG_TYPE_PROPOSAL";
+              | 'SIGNED_MSG_TYPE_UNKNOWN'
+              | 'SIGNED_MSG_TYPE_PREVOTE'
+              | 'SIGNED_MSG_TYPE_PRECOMMIT'
+              | 'SIGNED_MSG_TYPE_PROPOSAL';
             height?: string;
             round?: number;
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -705,10 +705,10 @@ export interface GetLatestBlockResponse {
                 block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
                 signatures?: {
                   block_id_flag?:
-                    | "BLOCK_ID_FLAG_UNKNOWN"
-                    | "BLOCK_ID_FLAG_ABSENT"
-                    | "BLOCK_ID_FLAG_COMMIT"
-                    | "BLOCK_ID_FLAG_NIL";
+                    | 'BLOCK_ID_FLAG_UNKNOWN'
+                    | 'BLOCK_ID_FLAG_ABSENT'
+                    | 'BLOCK_ID_FLAG_COMMIT'
+                    | 'BLOCK_ID_FLAG_NIL';
                   validator_address?: string;
                   timestamp?: string;
                   signature?: string;
@@ -748,7 +748,7 @@ export interface GetLatestBlockResponse {
       round?: number;
       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
       signatures?: {
-        block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+        block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
         validator_address?: string;
         timestamp?: string;
         signature?: string;
@@ -778,10 +778,10 @@ export interface GetLatestBlockResponse {
         duplicate_vote_evidence?: {
           vote_a?: {
             type?:
-              | "SIGNED_MSG_TYPE_UNKNOWN"
-              | "SIGNED_MSG_TYPE_PREVOTE"
-              | "SIGNED_MSG_TYPE_PRECOMMIT"
-              | "SIGNED_MSG_TYPE_PROPOSAL";
+              | 'SIGNED_MSG_TYPE_UNKNOWN'
+              | 'SIGNED_MSG_TYPE_PREVOTE'
+              | 'SIGNED_MSG_TYPE_PRECOMMIT'
+              | 'SIGNED_MSG_TYPE_PROPOSAL';
             height?: string;
             round?: number;
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -794,10 +794,10 @@ export interface GetLatestBlockResponse {
           };
           vote_b?: {
             type?:
-              | "SIGNED_MSG_TYPE_UNKNOWN"
-              | "SIGNED_MSG_TYPE_PREVOTE"
-              | "SIGNED_MSG_TYPE_PRECOMMIT"
-              | "SIGNED_MSG_TYPE_PROPOSAL";
+              | 'SIGNED_MSG_TYPE_UNKNOWN'
+              | 'SIGNED_MSG_TYPE_PREVOTE'
+              | 'SIGNED_MSG_TYPE_PRECOMMIT'
+              | 'SIGNED_MSG_TYPE_PROPOSAL';
             height?: string;
             round?: number;
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -837,10 +837,10 @@ export interface GetLatestBlockResponse {
                 block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
                 signatures?: {
                   block_id_flag?:
-                    | "BLOCK_ID_FLAG_UNKNOWN"
-                    | "BLOCK_ID_FLAG_ABSENT"
-                    | "BLOCK_ID_FLAG_COMMIT"
-                    | "BLOCK_ID_FLAG_NIL";
+                    | 'BLOCK_ID_FLAG_UNKNOWN'
+                    | 'BLOCK_ID_FLAG_ABSENT'
+                    | 'BLOCK_ID_FLAG_COMMIT'
+                    | 'BLOCK_ID_FLAG_NIL';
                   validator_address?: string;
                   timestamp?: string;
                   signature?: string;
@@ -880,7 +880,7 @@ export interface GetLatestBlockResponse {
       round?: number;
       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
       signatures?: {
-        block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+        block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
         validator_address?: string;
         timestamp?: string;
         signature?: string;
@@ -894,7 +894,7 @@ export interface GetLatestValidatorSetResponse {
   block_height?: string;
   validators?: {
     address?: string;
-    pub_key?: { "@type"?: string };
+    pub_key?: { '@type'?: string };
     voting_power?: string;
     proposer_priority?: string;
   }[];
@@ -933,7 +933,7 @@ export interface GetValidatorSetByHeightResponse {
   block_height?: string;
   validators?: {
     address?: string;
-    pub_key?: { "@type"?: string };
+    pub_key?: { '@type'?: string };
     voting_power?: string;
     proposer_priority?: string;
   }[];
@@ -963,7 +963,7 @@ export interface LightBlock {
       round?: number;
       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
       signatures?: {
-        block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+        block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
         validator_address?: string;
         timestamp?: string;
         signature?: string;
@@ -1012,10 +1012,10 @@ export interface LightClientAttackEvidence {
         block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
         signatures?: {
           block_id_flag?:
-            | "BLOCK_ID_FLAG_UNKNOWN"
-            | "BLOCK_ID_FLAG_ABSENT"
-            | "BLOCK_ID_FLAG_COMMIT"
-            | "BLOCK_ID_FLAG_NIL";
+            | 'BLOCK_ID_FLAG_UNKNOWN'
+            | 'BLOCK_ID_FLAG_ABSENT'
+            | 'BLOCK_ID_FLAG_COMMIT'
+            | 'BLOCK_ID_FLAG_NIL';
           validator_address?: string;
           timestamp?: string;
           signature?: string;
@@ -1131,7 +1131,7 @@ export interface SignedHeader {
     round?: number;
     block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
     signatures?: {
-      block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+      block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
       validator_address?: string;
       timestamp?: string;
       signature?: string;
@@ -1140,17 +1140,17 @@ export interface SignedHeader {
 }
 
 export enum SignedMsgType {
-  SIGNED_MSG_TYPE_UNKNOWN = "SIGNED_MSG_TYPE_UNKNOWN",
-  SIGNED_MSG_TYPE_PREVOTE = "SIGNED_MSG_TYPE_PREVOTE",
-  SIGNED_MSG_TYPE_PRECOMMIT = "SIGNED_MSG_TYPE_PRECOMMIT",
-  SIGNED_MSG_TYPE_PROPOSAL = "SIGNED_MSG_TYPE_PROPOSAL",
+  SIGNED_MSG_TYPE_UNKNOWN = 'SIGNED_MSG_TYPE_UNKNOWN',
+  SIGNED_MSG_TYPE_PREVOTE = 'SIGNED_MSG_TYPE_PREVOTE',
+  SIGNED_MSG_TYPE_PRECOMMIT = 'SIGNED_MSG_TYPE_PRECOMMIT',
+  SIGNED_MSG_TYPE_PROPOSAL = 'SIGNED_MSG_TYPE_PROPOSAL',
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface ValidatorSet {
@@ -1184,10 +1184,10 @@ export interface VersionInfo {
 
 export interface Vote {
   type?:
-    | "SIGNED_MSG_TYPE_UNKNOWN"
-    | "SIGNED_MSG_TYPE_PREVOTE"
-    | "SIGNED_MSG_TYPE_PRECOMMIT"
-    | "SIGNED_MSG_TYPE_PROPOSAL";
+    | 'SIGNED_MSG_TYPE_UNKNOWN'
+    | 'SIGNED_MSG_TYPE_PREVOTE'
+    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+    | 'SIGNED_MSG_TYPE_PROPOSAL';
 
   /** @format int64 */
   height?: string;
@@ -1238,10 +1238,10 @@ export interface TypesBlock {
       duplicate_vote_evidence?: {
         vote_a?: {
           type?:
-            | "SIGNED_MSG_TYPE_UNKNOWN"
-            | "SIGNED_MSG_TYPE_PREVOTE"
-            | "SIGNED_MSG_TYPE_PRECOMMIT"
-            | "SIGNED_MSG_TYPE_PROPOSAL";
+            | 'SIGNED_MSG_TYPE_UNKNOWN'
+            | 'SIGNED_MSG_TYPE_PREVOTE'
+            | 'SIGNED_MSG_TYPE_PRECOMMIT'
+            | 'SIGNED_MSG_TYPE_PROPOSAL';
           height?: string;
           round?: number;
           block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -1254,10 +1254,10 @@ export interface TypesBlock {
         };
         vote_b?: {
           type?:
-            | "SIGNED_MSG_TYPE_UNKNOWN"
-            | "SIGNED_MSG_TYPE_PREVOTE"
-            | "SIGNED_MSG_TYPE_PRECOMMIT"
-            | "SIGNED_MSG_TYPE_PROPOSAL";
+            | 'SIGNED_MSG_TYPE_UNKNOWN'
+            | 'SIGNED_MSG_TYPE_PREVOTE'
+            | 'SIGNED_MSG_TYPE_PRECOMMIT'
+            | 'SIGNED_MSG_TYPE_PROPOSAL';
           height?: string;
           round?: number;
           block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -1297,10 +1297,10 @@ export interface TypesBlock {
               block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
               signatures?: {
                 block_id_flag?:
-                  | "BLOCK_ID_FLAG_UNKNOWN"
-                  | "BLOCK_ID_FLAG_ABSENT"
-                  | "BLOCK_ID_FLAG_COMMIT"
-                  | "BLOCK_ID_FLAG_NIL";
+                  | 'BLOCK_ID_FLAG_UNKNOWN'
+                  | 'BLOCK_ID_FLAG_ABSENT'
+                  | 'BLOCK_ID_FLAG_COMMIT'
+                  | 'BLOCK_ID_FLAG_NIL';
                 validator_address?: string;
                 timestamp?: string;
                 signature?: string;
@@ -1340,7 +1340,7 @@ export interface TypesBlock {
     round?: number;
     block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
     signatures?: {
-      block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+      block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
       validator_address?: string;
       timestamp?: string;
       signature?: string;
@@ -1422,10 +1422,10 @@ export interface V1Beta1Block {
       duplicate_vote_evidence?: {
         vote_a?: {
           type?:
-            | "SIGNED_MSG_TYPE_UNKNOWN"
-            | "SIGNED_MSG_TYPE_PREVOTE"
-            | "SIGNED_MSG_TYPE_PRECOMMIT"
-            | "SIGNED_MSG_TYPE_PROPOSAL";
+            | 'SIGNED_MSG_TYPE_UNKNOWN'
+            | 'SIGNED_MSG_TYPE_PREVOTE'
+            | 'SIGNED_MSG_TYPE_PRECOMMIT'
+            | 'SIGNED_MSG_TYPE_PROPOSAL';
           height?: string;
           round?: number;
           block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -1438,10 +1438,10 @@ export interface V1Beta1Block {
         };
         vote_b?: {
           type?:
-            | "SIGNED_MSG_TYPE_UNKNOWN"
-            | "SIGNED_MSG_TYPE_PREVOTE"
-            | "SIGNED_MSG_TYPE_PRECOMMIT"
-            | "SIGNED_MSG_TYPE_PROPOSAL";
+            | 'SIGNED_MSG_TYPE_UNKNOWN'
+            | 'SIGNED_MSG_TYPE_PREVOTE'
+            | 'SIGNED_MSG_TYPE_PRECOMMIT'
+            | 'SIGNED_MSG_TYPE_PROPOSAL';
           height?: string;
           round?: number;
           block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -1481,10 +1481,10 @@ export interface V1Beta1Block {
               block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
               signatures?: {
                 block_id_flag?:
-                  | "BLOCK_ID_FLAG_UNKNOWN"
-                  | "BLOCK_ID_FLAG_ABSENT"
-                  | "BLOCK_ID_FLAG_COMMIT"
-                  | "BLOCK_ID_FLAG_NIL";
+                  | 'BLOCK_ID_FLAG_UNKNOWN'
+                  | 'BLOCK_ID_FLAG_ABSENT'
+                  | 'BLOCK_ID_FLAG_COMMIT'
+                  | 'BLOCK_ID_FLAG_NIL';
                 validator_address?: string;
                 timestamp?: string;
                 signature?: string;
@@ -1524,7 +1524,7 @@ export interface V1Beta1Block {
     round?: number;
     block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
     signatures?: {
-      block_id_flag?: "BLOCK_ID_FLAG_UNKNOWN" | "BLOCK_ID_FLAG_ABSENT" | "BLOCK_ID_FLAG_COMMIT" | "BLOCK_ID_FLAG_NIL";
+      block_id_flag?: 'BLOCK_ID_FLAG_UNKNOWN' | 'BLOCK_ID_FLAG_ABSENT' | 'BLOCK_ID_FLAG_COMMIT' | 'BLOCK_ID_FLAG_NIL';
       validator_address?: string;
       timestamp?: string;
       signature?: string;
@@ -1585,7 +1585,7 @@ export interface V1Beta1ProofOps {
 
 export interface V1Beta1Validator {
   address?: string;
-  pub_key?: { "@type"?: string };
+  pub_key?: { '@type'?: string };
 
   /** @format int64 */
   voting_power?: string;
@@ -1594,11 +1594,11 @@ export interface V1Beta1Validator {
   proposer_priority?: string;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -1613,31 +1613,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -1667,9 +1667,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -1685,15 +1685,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -1703,7 +1703,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -1727,7 +1727,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   serviceABCIQuery = (
     query?: { data?: string; path?: string; height?: string; prove?: boolean },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -1741,10 +1741,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         height?: string;
         codespace?: string;
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/base/tendermint/v1beta1/abci_query`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -1783,10 +1783,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
               duplicate_vote_evidence?: {
                 vote_a?: {
                   type?:
-                    | "SIGNED_MSG_TYPE_UNKNOWN"
-                    | "SIGNED_MSG_TYPE_PREVOTE"
-                    | "SIGNED_MSG_TYPE_PRECOMMIT"
-                    | "SIGNED_MSG_TYPE_PROPOSAL";
+                    | 'SIGNED_MSG_TYPE_UNKNOWN'
+                    | 'SIGNED_MSG_TYPE_PREVOTE'
+                    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+                    | 'SIGNED_MSG_TYPE_PROPOSAL';
                   height?: string;
                   round?: number;
                   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -1799,10 +1799,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
                 };
                 vote_b?: {
                   type?:
-                    | "SIGNED_MSG_TYPE_UNKNOWN"
-                    | "SIGNED_MSG_TYPE_PREVOTE"
-                    | "SIGNED_MSG_TYPE_PRECOMMIT"
-                    | "SIGNED_MSG_TYPE_PROPOSAL";
+                    | 'SIGNED_MSG_TYPE_UNKNOWN'
+                    | 'SIGNED_MSG_TYPE_PREVOTE'
+                    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+                    | 'SIGNED_MSG_TYPE_PROPOSAL';
                   height?: string;
                   round?: number;
                   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -1842,10 +1842,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
                       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
                       signatures?: {
                         block_id_flag?:
-                          | "BLOCK_ID_FLAG_UNKNOWN"
-                          | "BLOCK_ID_FLAG_ABSENT"
-                          | "BLOCK_ID_FLAG_COMMIT"
-                          | "BLOCK_ID_FLAG_NIL";
+                          | 'BLOCK_ID_FLAG_UNKNOWN'
+                          | 'BLOCK_ID_FLAG_ABSENT'
+                          | 'BLOCK_ID_FLAG_COMMIT'
+                          | 'BLOCK_ID_FLAG_NIL';
                         validator_address?: string;
                         timestamp?: string;
                         signature?: string;
@@ -1886,10 +1886,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
             signatures?: {
               block_id_flag?:
-                | "BLOCK_ID_FLAG_UNKNOWN"
-                | "BLOCK_ID_FLAG_ABSENT"
-                | "BLOCK_ID_FLAG_COMMIT"
-                | "BLOCK_ID_FLAG_NIL";
+                | 'BLOCK_ID_FLAG_UNKNOWN'
+                | 'BLOCK_ID_FLAG_ABSENT'
+                | 'BLOCK_ID_FLAG_COMMIT'
+                | 'BLOCK_ID_FLAG_NIL';
               validator_address?: string;
               timestamp?: string;
               signature?: string;
@@ -1919,10 +1919,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
               duplicate_vote_evidence?: {
                 vote_a?: {
                   type?:
-                    | "SIGNED_MSG_TYPE_UNKNOWN"
-                    | "SIGNED_MSG_TYPE_PREVOTE"
-                    | "SIGNED_MSG_TYPE_PRECOMMIT"
-                    | "SIGNED_MSG_TYPE_PROPOSAL";
+                    | 'SIGNED_MSG_TYPE_UNKNOWN'
+                    | 'SIGNED_MSG_TYPE_PREVOTE'
+                    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+                    | 'SIGNED_MSG_TYPE_PROPOSAL';
                   height?: string;
                   round?: number;
                   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -1935,10 +1935,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
                 };
                 vote_b?: {
                   type?:
-                    | "SIGNED_MSG_TYPE_UNKNOWN"
-                    | "SIGNED_MSG_TYPE_PREVOTE"
-                    | "SIGNED_MSG_TYPE_PRECOMMIT"
-                    | "SIGNED_MSG_TYPE_PROPOSAL";
+                    | 'SIGNED_MSG_TYPE_UNKNOWN'
+                    | 'SIGNED_MSG_TYPE_PREVOTE'
+                    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+                    | 'SIGNED_MSG_TYPE_PROPOSAL';
                   height?: string;
                   round?: number;
                   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -1978,10 +1978,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
                       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
                       signatures?: {
                         block_id_flag?:
-                          | "BLOCK_ID_FLAG_UNKNOWN"
-                          | "BLOCK_ID_FLAG_ABSENT"
-                          | "BLOCK_ID_FLAG_COMMIT"
-                          | "BLOCK_ID_FLAG_NIL";
+                          | 'BLOCK_ID_FLAG_UNKNOWN'
+                          | 'BLOCK_ID_FLAG_ABSENT'
+                          | 'BLOCK_ID_FLAG_COMMIT'
+                          | 'BLOCK_ID_FLAG_NIL';
                         validator_address?: string;
                         timestamp?: string;
                         signature?: string;
@@ -2022,10 +2022,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
             signatures?: {
               block_id_flag?:
-                | "BLOCK_ID_FLAG_UNKNOWN"
-                | "BLOCK_ID_FLAG_ABSENT"
-                | "BLOCK_ID_FLAG_COMMIT"
-                | "BLOCK_ID_FLAG_NIL";
+                | 'BLOCK_ID_FLAG_UNKNOWN'
+                | 'BLOCK_ID_FLAG_ABSENT'
+                | 'BLOCK_ID_FLAG_COMMIT'
+                | 'BLOCK_ID_FLAG_NIL';
               validator_address?: string;
               timestamp?: string;
               signature?: string;
@@ -2033,10 +2033,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           };
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/base/tendermint/v1beta1/blocks/latest`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -2074,10 +2074,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
               duplicate_vote_evidence?: {
                 vote_a?: {
                   type?:
-                    | "SIGNED_MSG_TYPE_UNKNOWN"
-                    | "SIGNED_MSG_TYPE_PREVOTE"
-                    | "SIGNED_MSG_TYPE_PRECOMMIT"
-                    | "SIGNED_MSG_TYPE_PROPOSAL";
+                    | 'SIGNED_MSG_TYPE_UNKNOWN'
+                    | 'SIGNED_MSG_TYPE_PREVOTE'
+                    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+                    | 'SIGNED_MSG_TYPE_PROPOSAL';
                   height?: string;
                   round?: number;
                   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -2090,10 +2090,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
                 };
                 vote_b?: {
                   type?:
-                    | "SIGNED_MSG_TYPE_UNKNOWN"
-                    | "SIGNED_MSG_TYPE_PREVOTE"
-                    | "SIGNED_MSG_TYPE_PRECOMMIT"
-                    | "SIGNED_MSG_TYPE_PROPOSAL";
+                    | 'SIGNED_MSG_TYPE_UNKNOWN'
+                    | 'SIGNED_MSG_TYPE_PREVOTE'
+                    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+                    | 'SIGNED_MSG_TYPE_PROPOSAL';
                   height?: string;
                   round?: number;
                   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -2133,10 +2133,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
                       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
                       signatures?: {
                         block_id_flag?:
-                          | "BLOCK_ID_FLAG_UNKNOWN"
-                          | "BLOCK_ID_FLAG_ABSENT"
-                          | "BLOCK_ID_FLAG_COMMIT"
-                          | "BLOCK_ID_FLAG_NIL";
+                          | 'BLOCK_ID_FLAG_UNKNOWN'
+                          | 'BLOCK_ID_FLAG_ABSENT'
+                          | 'BLOCK_ID_FLAG_COMMIT'
+                          | 'BLOCK_ID_FLAG_NIL';
                         validator_address?: string;
                         timestamp?: string;
                         signature?: string;
@@ -2177,10 +2177,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
             signatures?: {
               block_id_flag?:
-                | "BLOCK_ID_FLAG_UNKNOWN"
-                | "BLOCK_ID_FLAG_ABSENT"
-                | "BLOCK_ID_FLAG_COMMIT"
-                | "BLOCK_ID_FLAG_NIL";
+                | 'BLOCK_ID_FLAG_UNKNOWN'
+                | 'BLOCK_ID_FLAG_ABSENT'
+                | 'BLOCK_ID_FLAG_COMMIT'
+                | 'BLOCK_ID_FLAG_NIL';
               validator_address?: string;
               timestamp?: string;
               signature?: string;
@@ -2210,10 +2210,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
               duplicate_vote_evidence?: {
                 vote_a?: {
                   type?:
-                    | "SIGNED_MSG_TYPE_UNKNOWN"
-                    | "SIGNED_MSG_TYPE_PREVOTE"
-                    | "SIGNED_MSG_TYPE_PRECOMMIT"
-                    | "SIGNED_MSG_TYPE_PROPOSAL";
+                    | 'SIGNED_MSG_TYPE_UNKNOWN'
+                    | 'SIGNED_MSG_TYPE_PREVOTE'
+                    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+                    | 'SIGNED_MSG_TYPE_PROPOSAL';
                   height?: string;
                   round?: number;
                   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -2226,10 +2226,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
                 };
                 vote_b?: {
                   type?:
-                    | "SIGNED_MSG_TYPE_UNKNOWN"
-                    | "SIGNED_MSG_TYPE_PREVOTE"
-                    | "SIGNED_MSG_TYPE_PRECOMMIT"
-                    | "SIGNED_MSG_TYPE_PROPOSAL";
+                    | 'SIGNED_MSG_TYPE_UNKNOWN'
+                    | 'SIGNED_MSG_TYPE_PREVOTE'
+                    | 'SIGNED_MSG_TYPE_PRECOMMIT'
+                    | 'SIGNED_MSG_TYPE_PROPOSAL';
                   height?: string;
                   round?: number;
                   block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
@@ -2269,10 +2269,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
                       block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
                       signatures?: {
                         block_id_flag?:
-                          | "BLOCK_ID_FLAG_UNKNOWN"
-                          | "BLOCK_ID_FLAG_ABSENT"
-                          | "BLOCK_ID_FLAG_COMMIT"
-                          | "BLOCK_ID_FLAG_NIL";
+                          | 'BLOCK_ID_FLAG_UNKNOWN'
+                          | 'BLOCK_ID_FLAG_ABSENT'
+                          | 'BLOCK_ID_FLAG_COMMIT'
+                          | 'BLOCK_ID_FLAG_NIL';
                         validator_address?: string;
                         timestamp?: string;
                         signature?: string;
@@ -2313,10 +2313,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
             block_id?: { hash?: string; part_set_header?: { total?: number; hash?: string } };
             signatures?: {
               block_id_flag?:
-                | "BLOCK_ID_FLAG_UNKNOWN"
-                | "BLOCK_ID_FLAG_ABSENT"
-                | "BLOCK_ID_FLAG_COMMIT"
-                | "BLOCK_ID_FLAG_NIL";
+                | 'BLOCK_ID_FLAG_UNKNOWN'
+                | 'BLOCK_ID_FLAG_ABSENT'
+                | 'BLOCK_ID_FLAG_COMMIT'
+                | 'BLOCK_ID_FLAG_NIL';
               validator_address?: string;
               timestamp?: string;
               signature?: string;
@@ -2324,10 +2324,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           };
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/base/tendermint/v1beta1/blocks/${height}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -2362,10 +2362,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           cosmos_sdk_version?: string;
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/base/tendermint/v1beta1/node_info`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -2377,9 +2377,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmos/base/tendermint/v1beta1/syncing
    */
   serviceGetSyncing = (params: RequestParams = {}) =>
-    this.request<{ syncing?: boolean }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ syncing?: boolean }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmos/base/tendermint/v1beta1/syncing`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -2392,29 +2392,29 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   serviceGetLatestValidatorSet = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         block_height?: string;
         validators?: {
           address?: string;
-          pub_key?: { "@type"?: string };
+          pub_key?: { '@type'?: string };
           voting_power?: string;
           proposer_priority?: string;
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/base/tendermint/v1beta1/validatorsets/latest`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -2429,29 +2429,29 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   serviceGetValidatorSetByHeight = (
     height: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         block_height?: string;
         validators?: {
           address?: string;
-          pub_key?: { "@type"?: string };
+          pub_key?: { '@type'?: string };
           voting_power?: string;
           proposer_priority?: string;
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/base/tendermint/v1beta1/validatorsets/${height}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });

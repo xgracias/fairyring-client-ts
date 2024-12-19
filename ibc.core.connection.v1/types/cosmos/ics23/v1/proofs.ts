@@ -1,7 +1,7 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
+import _m0 from 'protobufjs/minimal';
 
-export const protobufPackage = "cosmos.ics23.v1";
+export const protobufPackage = 'cosmos.ics23.v1';
 
 export enum HashOp {
   /** NO_HASH - NO_HASH is the default if no data passed. Note this is an illegal argument some places. */
@@ -19,28 +19,28 @@ export enum HashOp {
 export function hashOpFromJSON(object: any): HashOp {
   switch (object) {
     case 0:
-    case "NO_HASH":
+    case 'NO_HASH':
       return HashOp.NO_HASH;
     case 1:
-    case "SHA256":
+    case 'SHA256':
       return HashOp.SHA256;
     case 2:
-    case "SHA512":
+    case 'SHA512':
       return HashOp.SHA512;
     case 3:
-    case "KECCAK":
+    case 'KECCAK':
       return HashOp.KECCAK;
     case 4:
-    case "RIPEMD160":
+    case 'RIPEMD160':
       return HashOp.RIPEMD160;
     case 5:
-    case "BITCOIN":
+    case 'BITCOIN':
       return HashOp.BITCOIN;
     case 6:
-    case "SHA512_256":
+    case 'SHA512_256':
       return HashOp.SHA512_256;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return HashOp.UNRECOGNIZED;
   }
@@ -49,22 +49,22 @@ export function hashOpFromJSON(object: any): HashOp {
 export function hashOpToJSON(object: HashOp): string {
   switch (object) {
     case HashOp.NO_HASH:
-      return "NO_HASH";
+      return 'NO_HASH';
     case HashOp.SHA256:
-      return "SHA256";
+      return 'SHA256';
     case HashOp.SHA512:
-      return "SHA512";
+      return 'SHA512';
     case HashOp.KECCAK:
-      return "KECCAK";
+      return 'KECCAK';
     case HashOp.RIPEMD160:
-      return "RIPEMD160";
+      return 'RIPEMD160';
     case HashOp.BITCOIN:
-      return "BITCOIN";
+      return 'BITCOIN';
     case HashOp.SHA512_256:
-      return "SHA512_256";
+      return 'SHA512_256';
     case HashOp.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -99,34 +99,34 @@ export enum LengthOp {
 export function lengthOpFromJSON(object: any): LengthOp {
   switch (object) {
     case 0:
-    case "NO_PREFIX":
+    case 'NO_PREFIX':
       return LengthOp.NO_PREFIX;
     case 1:
-    case "VAR_PROTO":
+    case 'VAR_PROTO':
       return LengthOp.VAR_PROTO;
     case 2:
-    case "VAR_RLP":
+    case 'VAR_RLP':
       return LengthOp.VAR_RLP;
     case 3:
-    case "FIXED32_BIG":
+    case 'FIXED32_BIG':
       return LengthOp.FIXED32_BIG;
     case 4:
-    case "FIXED32_LITTLE":
+    case 'FIXED32_LITTLE':
       return LengthOp.FIXED32_LITTLE;
     case 5:
-    case "FIXED64_BIG":
+    case 'FIXED64_BIG':
       return LengthOp.FIXED64_BIG;
     case 6:
-    case "FIXED64_LITTLE":
+    case 'FIXED64_LITTLE':
       return LengthOp.FIXED64_LITTLE;
     case 7:
-    case "REQUIRE_32_BYTES":
+    case 'REQUIRE_32_BYTES':
       return LengthOp.REQUIRE_32_BYTES;
     case 8:
-    case "REQUIRE_64_BYTES":
+    case 'REQUIRE_64_BYTES':
       return LengthOp.REQUIRE_64_BYTES;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return LengthOp.UNRECOGNIZED;
   }
@@ -135,26 +135,26 @@ export function lengthOpFromJSON(object: any): LengthOp {
 export function lengthOpToJSON(object: LengthOp): string {
   switch (object) {
     case LengthOp.NO_PREFIX:
-      return "NO_PREFIX";
+      return 'NO_PREFIX';
     case LengthOp.VAR_PROTO:
-      return "VAR_PROTO";
+      return 'VAR_PROTO';
     case LengthOp.VAR_RLP:
-      return "VAR_RLP";
+      return 'VAR_RLP';
     case LengthOp.FIXED32_BIG:
-      return "FIXED32_BIG";
+      return 'FIXED32_BIG';
     case LengthOp.FIXED32_LITTLE:
-      return "FIXED32_LITTLE";
+      return 'FIXED32_LITTLE';
     case LengthOp.FIXED64_BIG:
-      return "FIXED64_BIG";
+      return 'FIXED64_BIG';
     case LengthOp.FIXED64_LITTLE:
-      return "FIXED64_LITTLE";
+      return 'FIXED64_LITTLE';
     case LengthOp.REQUIRE_32_BYTES:
-      return "REQUIRE_32_BYTES";
+      return 'REQUIRE_32_BYTES';
     case LengthOp.REQUIRE_64_BYTES:
-      return "REQUIRE_64_BYTES";
+      return 'REQUIRE_64_BYTES';
     case LengthOp.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -275,9 +275,7 @@ export interface ProofSpec {
    * except Prefix, which is just the first bytes of prefix (spec can be longer)
    */
   leafSpec: LeafOp | undefined;
-  innerSpec:
-    | InnerSpec
-    | undefined;
+  innerSpec: InnerSpec | undefined;
   /** max_depth (if > 0) is the maximum number of InnerOps allowed (mainly for fixed-depth tries) */
   maxDepth: number;
   /** min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries) */
@@ -335,9 +333,7 @@ export interface CompressedBatchEntry {
 export interface CompressedExistenceProof {
   key: Uint8Array;
   value: Uint8Array;
-  leaf:
-    | LeafOp
-    | undefined;
+  leaf: LeafOp | undefined;
   /** these are indexes into the lookup_inners table in CompressedBatchProof */
   path: number[];
 }
@@ -447,7 +443,7 @@ export const ExistenceProof = {
     const message = createBaseExistenceProof();
     message.key = object.key ?? new Uint8Array(0);
     message.value = object.value ?? new Uint8Array(0);
-    message.leaf = (object.leaf !== undefined && object.leaf !== null) ? LeafOp.fromPartial(object.leaf) : undefined;
+    message.leaf = object.leaf !== undefined && object.leaf !== null ? LeafOp.fromPartial(object.leaf) : undefined;
     message.path = object.path?.map((e) => InnerOp.fromPartial(e)) || [];
     return message;
   },
@@ -536,12 +532,10 @@ export const NonExistenceProof = {
   fromPartial<I extends Exact<DeepPartial<NonExistenceProof>, I>>(object: I): NonExistenceProof {
     const message = createBaseNonExistenceProof();
     message.key = object.key ?? new Uint8Array(0);
-    message.left = (object.left !== undefined && object.left !== null)
-      ? ExistenceProof.fromPartial(object.left)
-      : undefined;
-    message.right = (object.right !== undefined && object.right !== null)
-      ? ExistenceProof.fromPartial(object.right)
-      : undefined;
+    message.left =
+      object.left !== undefined && object.left !== null ? ExistenceProof.fromPartial(object.left) : undefined;
+    message.right =
+      object.right !== undefined && object.right !== null ? ExistenceProof.fromPartial(object.right) : undefined;
     return message;
   },
 };
@@ -642,18 +636,18 @@ export const CommitmentProof = {
   },
   fromPartial<I extends Exact<DeepPartial<CommitmentProof>, I>>(object: I): CommitmentProof {
     const message = createBaseCommitmentProof();
-    message.exist = (object.exist !== undefined && object.exist !== null)
-      ? ExistenceProof.fromPartial(object.exist)
-      : undefined;
-    message.nonexist = (object.nonexist !== undefined && object.nonexist !== null)
-      ? NonExistenceProof.fromPartial(object.nonexist)
-      : undefined;
-    message.batch = (object.batch !== undefined && object.batch !== null)
-      ? BatchProof.fromPartial(object.batch)
-      : undefined;
-    message.compressed = (object.compressed !== undefined && object.compressed !== null)
-      ? CompressedBatchProof.fromPartial(object.compressed)
-      : undefined;
+    message.exist =
+      object.exist !== undefined && object.exist !== null ? ExistenceProof.fromPartial(object.exist) : undefined;
+    message.nonexist =
+      object.nonexist !== undefined && object.nonexist !== null
+        ? NonExistenceProof.fromPartial(object.nonexist)
+        : undefined;
+    message.batch =
+      object.batch !== undefined && object.batch !== null ? BatchProof.fromPartial(object.batch) : undefined;
+    message.compressed =
+      object.compressed !== undefined && object.compressed !== null
+        ? CompressedBatchProof.fromPartial(object.compressed)
+        : undefined;
     return message;
   },
 };
@@ -962,12 +956,10 @@ export const ProofSpec = {
   },
   fromPartial<I extends Exact<DeepPartial<ProofSpec>, I>>(object: I): ProofSpec {
     const message = createBaseProofSpec();
-    message.leafSpec = (object.leafSpec !== undefined && object.leafSpec !== null)
-      ? LeafOp.fromPartial(object.leafSpec)
-      : undefined;
-    message.innerSpec = (object.innerSpec !== undefined && object.innerSpec !== null)
-      ? InnerSpec.fromPartial(object.innerSpec)
-      : undefined;
+    message.leafSpec =
+      object.leafSpec !== undefined && object.leafSpec !== null ? LeafOp.fromPartial(object.leafSpec) : undefined;
+    message.innerSpec =
+      object.innerSpec !== undefined && object.innerSpec !== null ? InnerSpec.fromPartial(object.innerSpec) : undefined;
     message.maxDepth = object.maxDepth ?? 0;
     message.minDepth = object.minDepth ?? 0;
     return message;
@@ -1252,12 +1244,12 @@ export const BatchEntry = {
   },
   fromPartial<I extends Exact<DeepPartial<BatchEntry>, I>>(object: I): BatchEntry {
     const message = createBaseBatchEntry();
-    message.exist = (object.exist !== undefined && object.exist !== null)
-      ? ExistenceProof.fromPartial(object.exist)
-      : undefined;
-    message.nonexist = (object.nonexist !== undefined && object.nonexist !== null)
-      ? NonExistenceProof.fromPartial(object.nonexist)
-      : undefined;
+    message.exist =
+      object.exist !== undefined && object.exist !== null ? ExistenceProof.fromPartial(object.exist) : undefined;
+    message.nonexist =
+      object.nonexist !== undefined && object.nonexist !== null
+        ? NonExistenceProof.fromPartial(object.nonexist)
+        : undefined;
     return message;
   },
 };
@@ -1404,12 +1396,14 @@ export const CompressedBatchEntry = {
   },
   fromPartial<I extends Exact<DeepPartial<CompressedBatchEntry>, I>>(object: I): CompressedBatchEntry {
     const message = createBaseCompressedBatchEntry();
-    message.exist = (object.exist !== undefined && object.exist !== null)
-      ? CompressedExistenceProof.fromPartial(object.exist)
-      : undefined;
-    message.nonexist = (object.nonexist !== undefined && object.nonexist !== null)
-      ? CompressedNonExistenceProof.fromPartial(object.nonexist)
-      : undefined;
+    message.exist =
+      object.exist !== undefined && object.exist !== null
+        ? CompressedExistenceProof.fromPartial(object.exist)
+        : undefined;
+    message.nonexist =
+      object.nonexist !== undefined && object.nonexist !== null
+        ? CompressedNonExistenceProof.fromPartial(object.nonexist)
+        : undefined;
     return message;
   },
 };
@@ -1524,7 +1518,7 @@ export const CompressedExistenceProof = {
     const message = createBaseCompressedExistenceProof();
     message.key = object.key ?? new Uint8Array(0);
     message.value = object.value ?? new Uint8Array(0);
-    message.leaf = (object.leaf !== undefined && object.leaf !== null) ? LeafOp.fromPartial(object.leaf) : undefined;
+    message.leaf = object.leaf !== undefined && object.leaf !== null ? LeafOp.fromPartial(object.leaf) : undefined;
     message.path = object.path?.map((e) => e) || [];
     return message;
   },
@@ -1613,12 +1607,12 @@ export const CompressedNonExistenceProof = {
   fromPartial<I extends Exact<DeepPartial<CompressedNonExistenceProof>, I>>(object: I): CompressedNonExistenceProof {
     const message = createBaseCompressedNonExistenceProof();
     message.key = object.key ?? new Uint8Array(0);
-    message.left = (object.left !== undefined && object.left !== null)
-      ? CompressedExistenceProof.fromPartial(object.left)
-      : undefined;
-    message.right = (object.right !== undefined && object.right !== null)
-      ? CompressedExistenceProof.fromPartial(object.right)
-      : undefined;
+    message.left =
+      object.left !== undefined && object.left !== null ? CompressedExistenceProof.fromPartial(object.left) : undefined;
+    message.right =
+      object.right !== undefined && object.right !== null
+        ? CompressedExistenceProof.fromPartial(object.right)
+        : undefined;
     return message;
   },
 };
@@ -1627,24 +1621,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -1657,25 +1651,31 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

@@ -10,19 +10,19 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface ConsensusStateWithHeight {
   height?: { revision_number?: string; revision_height?: string };
-  consensus_state?: { "@type"?: string };
+  consensus_state?: { '@type'?: string };
 }
 
 export interface Height {
@@ -35,7 +35,7 @@ export interface Height {
 
 export interface IdentifiedClientState {
   client_id?: string;
-  client_state?: { "@type"?: string };
+  client_state?: { '@type'?: string };
 }
 
 export interface PageRequest {
@@ -68,7 +68,7 @@ export interface QueryClientParamsResponse {
 }
 
 export interface QueryClientStateResponse {
-  client_state?: { "@type"?: string };
+  client_state?: { '@type'?: string };
 
   /** @format byte */
   proof?: string;
@@ -76,7 +76,7 @@ export interface QueryClientStateResponse {
 }
 
 export interface QueryClientStatesResponse {
-  client_states?: { client_id?: string; client_state?: { "@type"?: string } }[];
+  client_states?: { client_id?: string; client_state?: { '@type'?: string } }[];
   pagination?: { next_key?: string; total?: string };
 }
 
@@ -90,7 +90,7 @@ export interface QueryConsensusStateHeightsResponse {
 }
 
 export interface QueryConsensusStateResponse {
-  consensus_state?: { "@type"?: string };
+  consensus_state?: { '@type'?: string };
 
   /** @format byte */
   proof?: string;
@@ -100,17 +100,17 @@ export interface QueryConsensusStateResponse {
 export interface QueryConsensusStatesResponse {
   consensus_states?: {
     height?: { revision_number?: string; revision_height?: string };
-    consensus_state?: { "@type"?: string };
+    consensus_state?: { '@type'?: string };
   }[];
   pagination?: { next_key?: string; total?: string };
 }
 
 export interface QueryUpgradedClientStateResponse {
-  upgraded_client_state?: { "@type"?: string };
+  upgraded_client_state?: { '@type'?: string };
 }
 
 export interface QueryUpgradedConsensusStateResponse {
-  upgraded_consensus_state?: { "@type"?: string };
+  upgraded_consensus_state?: { '@type'?: string };
 }
 
 export type MsgCreateClientResponse = object;
@@ -136,14 +136,14 @@ export interface Plan {
   /** @format int64 */
   height?: string;
   info?: string;
-  upgraded_client_state?: { "@type"?: string };
+  upgraded_client_state?: { '@type'?: string };
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -158,31 +158,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -212,9 +212,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -230,15 +230,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -248,7 +248,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -272,23 +272,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryClientStates = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
-        client_states?: { client_id?: string; client_state?: { "@type"?: string } }[];
+        client_states?: { client_id?: string; client_state?: { '@type'?: string } }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/client/v1/client_states`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -303,14 +303,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryClientState = (clientId: string, params: RequestParams = {}) =>
     this.request<
       {
-        client_state?: { "@type"?: string };
+        client_state?: { '@type'?: string };
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/client/v1/client_states/${clientId}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -322,9 +322,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/ibc/core/client/v1/client_status/{client_id}
    */
   queryClientStatus = (clientId: string, params: RequestParams = {}) =>
-    this.request<{ status?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ status?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/ibc/core/client/v1/client_status/${clientId}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -338,26 +338,26 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryConsensusStates = (
     clientId: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         consensus_states?: {
           height?: { revision_number?: string; revision_height?: string };
-          consensus_state?: { "@type"?: string };
+          consensus_state?: { '@type'?: string };
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/client/v1/consensus_states/${clientId}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -372,23 +372,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryConsensusStateHeights = (
     clientId: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         consensus_state_heights?: { revision_number?: string; revision_height?: string }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/client/v1/consensus_states/${clientId}/heights`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -405,18 +405,18 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     revisionNumber: string,
     revisionHeight: string,
     query?: { latest_height?: boolean },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
-        consensus_state?: { "@type"?: string };
+        consensus_state?: { '@type'?: string };
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/client/v1/consensus_states/${clientId}/revision/${revisionNumber}/height/${revisionHeight}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -431,10 +431,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryClientParams = (params: RequestParams = {}) =>
     this.request<
       { params?: { allowed_clients?: string[] } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/client/v1/params`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -447,11 +447,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryUpgradedClientState = (params: RequestParams = {}) =>
     this.request<
-      { upgraded_client_state?: { "@type"?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { upgraded_client_state?: { '@type'?: string } },
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/client/v1/upgraded_client_states`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -464,11 +464,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryUpgradedConsensusState = (params: RequestParams = {}) =>
     this.request<
-      { upgraded_consensus_state?: { "@type"?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { upgraded_consensus_state?: { '@type'?: string } },
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/client/v1/upgraded_consensus_states`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 }

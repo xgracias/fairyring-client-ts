@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Coin } from "../../base/v1beta1/coin";
-import { Input, Output, Params, SendEnabled } from "./bank";
+import _m0 from 'protobufjs/minimal';
+import { Coin } from '../../base/v1beta1/coin';
+import { Input, Output, Params, SendEnabled } from './bank';
 
-export const protobufPackage = "cosmos.bank.v1beta1";
+export const protobufPackage = 'cosmos.bank.v1beta1';
 
 /** MsgSend represents a message to send coins from one account to another. */
 export interface MsgSend {
@@ -13,8 +13,7 @@ export interface MsgSend {
 }
 
 /** MsgSendResponse defines the Msg/Send response type. */
-export interface MsgSendResponse {
-}
+export interface MsgSendResponse {}
 
 /** MsgMultiSend represents an arbitrary multi-in, multi-out send message. */
 export interface MsgMultiSend {
@@ -27,8 +26,7 @@ export interface MsgMultiSend {
 }
 
 /** MsgMultiSendResponse defines the Msg/MultiSend response type. */
-export interface MsgMultiSendResponse {
-}
+export interface MsgMultiSendResponse {}
 
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
@@ -52,8 +50,7 @@ export interface MsgUpdateParams {
  *
  * Since: cosmos-sdk 0.47
  */
-export interface MsgUpdateParamsResponse {
-}
+export interface MsgUpdateParamsResponse {}
 
 /**
  * MsgSetSendEnabled is the Msg/SetSendEnabled request type.
@@ -83,19 +80,18 @@ export interface MsgSetSendEnabled {
  *
  * Since: cosmos-sdk 0.47
  */
-export interface MsgSetSendEnabledResponse {
-}
+export interface MsgSetSendEnabledResponse {}
 
 function createBaseMsgSend(): MsgSend {
-  return { fromAddress: "", toAddress: "", amount: [] };
+  return { fromAddress: '', toAddress: '', amount: [] };
 }
 
 export const MsgSend = {
   encode(message: MsgSend, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.fromAddress !== "") {
+    if (message.fromAddress !== '') {
       writer.uint32(10).string(message.fromAddress);
     }
-    if (message.toAddress !== "") {
+    if (message.toAddress !== '') {
       writer.uint32(18).string(message.toAddress);
     }
     for (const v of message.amount) {
@@ -143,18 +139,18 @@ export const MsgSend = {
 
   fromJSON(object: any): MsgSend {
     return {
-      fromAddress: isSet(object.fromAddress) ? String(object.fromAddress) : "",
-      toAddress: isSet(object.toAddress) ? String(object.toAddress) : "",
+      fromAddress: isSet(object.fromAddress) ? String(object.fromAddress) : '',
+      toAddress: isSet(object.toAddress) ? String(object.toAddress) : '',
       amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: MsgSend): unknown {
     const obj: any = {};
-    if (message.fromAddress !== "") {
+    if (message.fromAddress !== '') {
       obj.fromAddress = message.fromAddress;
     }
-    if (message.toAddress !== "") {
+    if (message.toAddress !== '') {
       obj.toAddress = message.toAddress;
     }
     if (message.amount?.length) {
@@ -168,8 +164,8 @@ export const MsgSend = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgSend>, I>>(object: I): MsgSend {
     const message = createBaseMsgSend();
-    message.fromAddress = object.fromAddress ?? "";
-    message.toAddress = object.toAddress ?? "";
+    message.fromAddress = object.fromAddress ?? '';
+    message.toAddress = object.toAddress ?? '';
     message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
@@ -336,12 +332,12 @@ export const MsgMultiSendResponse = {
 };
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { authority: "", params: undefined };
+  return { authority: '', params: undefined };
 }
 
 export const MsgUpdateParams = {
   encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
     if (message.params !== undefined) {
@@ -382,14 +378,14 @@ export const MsgUpdateParams = {
 
   fromJSON(object: any): MsgUpdateParams {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
     };
   },
 
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     if (message.params !== undefined) {
@@ -403,10 +399,9 @@ export const MsgUpdateParams = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
-    message.authority = object.authority ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.authority = object.authority ?? '';
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -455,12 +450,12 @@ export const MsgUpdateParamsResponse = {
 };
 
 function createBaseMsgSetSendEnabled(): MsgSetSendEnabled {
-  return { authority: "", sendEnabled: [], useDefaultFor: [] };
+  return { authority: '', sendEnabled: [], useDefaultFor: [] };
 }
 
 export const MsgSetSendEnabled = {
   encode(message: MsgSetSendEnabled, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
     for (const v of message.sendEnabled) {
@@ -511,7 +506,7 @@ export const MsgSetSendEnabled = {
 
   fromJSON(object: any): MsgSetSendEnabled {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
       sendEnabled: Array.isArray(object?.sendEnabled)
         ? object.sendEnabled.map((e: any) => SendEnabled.fromJSON(e))
         : [],
@@ -521,7 +516,7 @@ export const MsgSetSendEnabled = {
 
   toJSON(message: MsgSetSendEnabled): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     if (message.sendEnabled?.length) {
@@ -538,7 +533,7 @@ export const MsgSetSendEnabled = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgSetSendEnabled>, I>>(object: I): MsgSetSendEnabled {
     const message = createBaseMsgSetSendEnabled();
-    message.authority = object.authority ?? "";
+    message.authority = object.authority ?? '';
     message.sendEnabled = object.sendEnabled?.map((e) => SendEnabled.fromPartial(e)) || [];
     message.useDefaultFor = object.useDefaultFor?.map((e) => e) || [];
     return message;
@@ -612,7 +607,7 @@ export interface Msg {
   SetSendEnabled(request: MsgSetSendEnabled): Promise<MsgSetSendEnabledResponse>;
 }
 
-export const MsgServiceName = "cosmos.bank.v1beta1.Msg";
+export const MsgServiceName = 'cosmos.bank.v1beta1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -626,25 +621,25 @@ export class MsgClientImpl implements Msg {
   }
   Send(request: MsgSend): Promise<MsgSendResponse> {
     const data = MsgSend.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Send", data);
+    const promise = this.rpc.request(this.service, 'Send', data);
     return promise.then((data) => MsgSendResponse.decode(_m0.Reader.create(data)));
   }
 
   MultiSend(request: MsgMultiSend): Promise<MsgMultiSendResponse> {
     const data = MsgMultiSend.encode(request).finish();
-    const promise = this.rpc.request(this.service, "MultiSend", data);
+    const promise = this.rpc.request(this.service, 'MultiSend', data);
     return promise.then((data) => MsgMultiSendResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateParams", data);
+    const promise = this.rpc.request(this.service, 'UpdateParams', data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 
   SetSendEnabled(request: MsgSetSendEnabled): Promise<MsgSetSendEnabledResponse> {
     const data = MsgSetSendEnabled.encode(request).finish();
-    const promise = this.rpc.request(this.service, "SetSendEnabled", data);
+    const promise = this.rpc.request(this.service, 'SetSendEnabled', data);
     return promise.then((data) => MsgSetSendEnabledResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -655,13 +650,19 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

@@ -10,14 +10,14 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface Counterparty {
@@ -41,14 +41,14 @@ export interface Height {
 
 export interface IdentifiedChannel {
   state?:
-    | "STATE_UNINITIALIZED_UNSPECIFIED"
-    | "STATE_INIT"
-    | "STATE_TRYOPEN"
-    | "STATE_OPEN"
-    | "STATE_CLOSED"
-    | "STATE_FLUSHING"
-    | "STATE_FLUSHCOMPLETE";
-  ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+    | 'STATE_UNINITIALIZED_UNSPECIFIED'
+    | 'STATE_INIT'
+    | 'STATE_TRYOPEN'
+    | 'STATE_OPEN'
+    | 'STATE_CLOSED'
+    | 'STATE_FLUSHING'
+    | 'STATE_FLUSHCOMPLETE';
+  ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
   counterparty?: { port_id?: string; channel_id?: string };
   connection_hops?: string[];
   version?: string;
@@ -61,13 +61,13 @@ export interface IdentifiedChannel {
 
 export interface IdentifiedClientState {
   client_id?: string;
-  client_state?: { "@type"?: string };
+  client_state?: { '@type'?: string };
 }
 
 export enum Order {
-  ORDER_NONE_UNSPECIFIED = "ORDER_NONE_UNSPECIFIED",
-  ORDER_UNORDERED = "ORDER_UNORDERED",
-  ORDER_ORDERED = "ORDER_ORDERED",
+  ORDER_NONE_UNSPECIFIED = 'ORDER_NONE_UNSPECIFIED',
+  ORDER_UNORDERED = 'ORDER_UNORDERED',
+  ORDER_ORDERED = 'ORDER_ORDERED',
 }
 
 export interface PacketState {
@@ -103,7 +103,7 @@ export interface PageResponse {
 }
 
 export interface QueryChannelClientStateResponse {
-  identified_client_state?: { client_id?: string; client_state?: { "@type"?: string } };
+  identified_client_state?: { client_id?: string; client_state?: { '@type'?: string } };
 
   /** @format byte */
   proof?: string;
@@ -111,7 +111,7 @@ export interface QueryChannelClientStateResponse {
 }
 
 export interface QueryChannelConsensusStateResponse {
-  consensus_state?: { "@type"?: string };
+  consensus_state?: { '@type'?: string };
   client_id?: string;
 
   /** @format byte */
@@ -128,14 +128,14 @@ export interface QueryChannelParamsResponse {
 export interface QueryChannelResponse {
   channel?: {
     state?:
-      | "STATE_UNINITIALIZED_UNSPECIFIED"
-      | "STATE_INIT"
-      | "STATE_TRYOPEN"
-      | "STATE_OPEN"
-      | "STATE_CLOSED"
-      | "STATE_FLUSHING"
-      | "STATE_FLUSHCOMPLETE";
-    ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+      | 'STATE_UNINITIALIZED_UNSPECIFIED'
+      | 'STATE_INIT'
+      | 'STATE_TRYOPEN'
+      | 'STATE_OPEN'
+      | 'STATE_CLOSED'
+      | 'STATE_FLUSHING'
+      | 'STATE_FLUSHCOMPLETE';
+    ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
     counterparty?: { port_id?: string; channel_id?: string };
     connection_hops?: string[];
     version?: string;
@@ -150,14 +150,14 @@ export interface QueryChannelResponse {
 export interface QueryChannelsResponse {
   channels?: {
     state?:
-      | "STATE_UNINITIALIZED_UNSPECIFIED"
-      | "STATE_INIT"
-      | "STATE_TRYOPEN"
-      | "STATE_OPEN"
-      | "STATE_CLOSED"
-      | "STATE_FLUSHING"
-      | "STATE_FLUSHCOMPLETE";
-    ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+      | 'STATE_UNINITIALIZED_UNSPECIFIED'
+      | 'STATE_INIT'
+      | 'STATE_TRYOPEN'
+      | 'STATE_OPEN'
+      | 'STATE_CLOSED'
+      | 'STATE_FLUSHING'
+      | 'STATE_FLUSHCOMPLETE';
+    ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
     counterparty?: { port_id?: string; channel_id?: string };
     connection_hops?: string[];
     version?: string;
@@ -172,14 +172,14 @@ export interface QueryChannelsResponse {
 export interface QueryConnectionChannelsResponse {
   channels?: {
     state?:
-      | "STATE_UNINITIALIZED_UNSPECIFIED"
-      | "STATE_INIT"
-      | "STATE_TRYOPEN"
-      | "STATE_OPEN"
-      | "STATE_CLOSED"
-      | "STATE_FLUSHING"
-      | "STATE_FLUSHCOMPLETE";
-    ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+      | 'STATE_UNINITIALIZED_UNSPECIFIED'
+      | 'STATE_INIT'
+      | 'STATE_TRYOPEN'
+      | 'STATE_OPEN'
+      | 'STATE_CLOSED'
+      | 'STATE_FLUSHING'
+      | 'STATE_FLUSHCOMPLETE';
+    ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
     counterparty?: { port_id?: string; channel_id?: string };
     connection_hops?: string[];
     version?: string;
@@ -268,7 +268,7 @@ export interface QueryUpgradeErrorResponse {
 export interface QueryUpgradeResponse {
   upgrade?: {
     fields?: {
-      ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+      ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
       connection_hops?: string[];
       version?: string;
     };
@@ -282,13 +282,13 @@ export interface QueryUpgradeResponse {
 }
 
 export enum State {
-  STATE_UNINITIALIZED_UNSPECIFIED = "STATE_UNINITIALIZED_UNSPECIFIED",
-  STATE_INIT = "STATE_INIT",
-  STATE_TRYOPEN = "STATE_TRYOPEN",
-  STATE_OPEN = "STATE_OPEN",
-  STATE_CLOSED = "STATE_CLOSED",
-  STATE_FLUSHING = "STATE_FLUSHING",
-  STATE_FLUSHCOMPLETE = "STATE_FLUSHCOMPLETE",
+  STATE_UNINITIALIZED_UNSPECIFIED = 'STATE_UNINITIALIZED_UNSPECIFIED',
+  STATE_INIT = 'STATE_INIT',
+  STATE_TRYOPEN = 'STATE_TRYOPEN',
+  STATE_OPEN = 'STATE_OPEN',
+  STATE_CLOSED = 'STATE_CLOSED',
+  STATE_FLUSHING = 'STATE_FLUSHING',
+  STATE_FLUSHCOMPLETE = 'STATE_FLUSHCOMPLETE',
 }
 
 export interface Timeout {
@@ -299,7 +299,7 @@ export interface Timeout {
 }
 
 export interface UpgradeFields {
-  ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+  ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
   connection_hops?: string[];
   version?: string;
 }
@@ -310,14 +310,14 @@ export interface ChannelV1Params {
 
 export interface V1Channel {
   state?:
-    | "STATE_UNINITIALIZED_UNSPECIFIED"
-    | "STATE_INIT"
-    | "STATE_TRYOPEN"
-    | "STATE_OPEN"
-    | "STATE_CLOSED"
-    | "STATE_FLUSHING"
-    | "STATE_FLUSHCOMPLETE";
-  ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+    | 'STATE_UNINITIALIZED_UNSPECIFIED'
+    | 'STATE_INIT'
+    | 'STATE_TRYOPEN'
+    | 'STATE_OPEN'
+    | 'STATE_CLOSED'
+    | 'STATE_FLUSHING'
+    | 'STATE_FLUSHCOMPLETE';
+  ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
   counterparty?: { port_id?: string; channel_id?: string };
   connection_hops?: string[];
   version?: string;
@@ -328,7 +328,7 @@ export interface V1Channel {
 
 export interface V1Upgrade {
   fields?: {
-    ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+    ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
     connection_hops?: string[];
     version?: string;
   };
@@ -340,14 +340,14 @@ export interface V1Upgrade {
 
 export interface Channel {
   state?:
-    | "STATE_UNINITIALIZED_UNSPECIFIED"
-    | "STATE_INIT"
-    | "STATE_TRYOPEN"
-    | "STATE_OPEN"
-    | "STATE_CLOSED"
-    | "STATE_FLUSHING"
-    | "STATE_FLUSHCOMPLETE";
-  ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+    | 'STATE_UNINITIALIZED_UNSPECIFIED'
+    | 'STATE_INIT'
+    | 'STATE_TRYOPEN'
+    | 'STATE_OPEN'
+    | 'STATE_CLOSED'
+    | 'STATE_FLUSHING'
+    | 'STATE_FLUSHCOMPLETE';
+  ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
   counterparty?: { port_id?: string; channel_id?: string };
   connection_hops?: string[];
   version?: string;
@@ -358,10 +358,10 @@ export interface Channel {
 
 export interface MsgAcknowledgementResponse {
   result?:
-    | "RESPONSE_RESULT_TYPE_UNSPECIFIED"
-    | "RESPONSE_RESULT_TYPE_NOOP"
-    | "RESPONSE_RESULT_TYPE_SUCCESS"
-    | "RESPONSE_RESULT_TYPE_FAILURE";
+    | 'RESPONSE_RESULT_TYPE_UNSPECIFIED'
+    | 'RESPONSE_RESULT_TYPE_NOOP'
+    | 'RESPONSE_RESULT_TYPE_SUCCESS'
+    | 'RESPONSE_RESULT_TYPE_FAILURE';
 }
 
 export type MsgChannelCloseConfirmResponse = object;
@@ -384,26 +384,26 @@ export interface MsgChannelOpenTryResponse {
 
 export interface MsgChannelUpgradeAckResponse {
   result?:
-    | "RESPONSE_RESULT_TYPE_UNSPECIFIED"
-    | "RESPONSE_RESULT_TYPE_NOOP"
-    | "RESPONSE_RESULT_TYPE_SUCCESS"
-    | "RESPONSE_RESULT_TYPE_FAILURE";
+    | 'RESPONSE_RESULT_TYPE_UNSPECIFIED'
+    | 'RESPONSE_RESULT_TYPE_NOOP'
+    | 'RESPONSE_RESULT_TYPE_SUCCESS'
+    | 'RESPONSE_RESULT_TYPE_FAILURE';
 }
 
 export type MsgChannelUpgradeCancelResponse = object;
 
 export interface MsgChannelUpgradeConfirmResponse {
   result?:
-    | "RESPONSE_RESULT_TYPE_UNSPECIFIED"
-    | "RESPONSE_RESULT_TYPE_NOOP"
-    | "RESPONSE_RESULT_TYPE_SUCCESS"
-    | "RESPONSE_RESULT_TYPE_FAILURE";
+    | 'RESPONSE_RESULT_TYPE_UNSPECIFIED'
+    | 'RESPONSE_RESULT_TYPE_NOOP'
+    | 'RESPONSE_RESULT_TYPE_SUCCESS'
+    | 'RESPONSE_RESULT_TYPE_FAILURE';
 }
 
 export interface MsgChannelUpgradeInitResponse {
   upgrade?: {
     fields?: {
-      ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+      ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
       connection_hops?: string[];
       version?: string;
     };
@@ -422,7 +422,7 @@ export type MsgChannelUpgradeTimeoutResponse = object;
 export interface MsgChannelUpgradeTryResponse {
   upgrade?: {
     fields?: {
-      ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+      ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
       connection_hops?: string[];
       version?: string;
     };
@@ -433,10 +433,10 @@ export interface MsgChannelUpgradeTryResponse {
   /** @format uint64 */
   upgrade_sequence?: string;
   result?:
-    | "RESPONSE_RESULT_TYPE_UNSPECIFIED"
-    | "RESPONSE_RESULT_TYPE_NOOP"
-    | "RESPONSE_RESULT_TYPE_SUCCESS"
-    | "RESPONSE_RESULT_TYPE_FAILURE";
+    | 'RESPONSE_RESULT_TYPE_UNSPECIFIED'
+    | 'RESPONSE_RESULT_TYPE_NOOP'
+    | 'RESPONSE_RESULT_TYPE_SUCCESS'
+    | 'RESPONSE_RESULT_TYPE_FAILURE';
 }
 
 export interface MsgPruneAcknowledgementsResponse {
@@ -449,26 +449,26 @@ export interface MsgPruneAcknowledgementsResponse {
 
 export interface MsgRecvPacketResponse {
   result?:
-    | "RESPONSE_RESULT_TYPE_UNSPECIFIED"
-    | "RESPONSE_RESULT_TYPE_NOOP"
-    | "RESPONSE_RESULT_TYPE_SUCCESS"
-    | "RESPONSE_RESULT_TYPE_FAILURE";
+    | 'RESPONSE_RESULT_TYPE_UNSPECIFIED'
+    | 'RESPONSE_RESULT_TYPE_NOOP'
+    | 'RESPONSE_RESULT_TYPE_SUCCESS'
+    | 'RESPONSE_RESULT_TYPE_FAILURE';
 }
 
 export interface MsgTimeoutOnCloseResponse {
   result?:
-    | "RESPONSE_RESULT_TYPE_UNSPECIFIED"
-    | "RESPONSE_RESULT_TYPE_NOOP"
-    | "RESPONSE_RESULT_TYPE_SUCCESS"
-    | "RESPONSE_RESULT_TYPE_FAILURE";
+    | 'RESPONSE_RESULT_TYPE_UNSPECIFIED'
+    | 'RESPONSE_RESULT_TYPE_NOOP'
+    | 'RESPONSE_RESULT_TYPE_SUCCESS'
+    | 'RESPONSE_RESULT_TYPE_FAILURE';
 }
 
 export interface MsgTimeoutResponse {
   result?:
-    | "RESPONSE_RESULT_TYPE_UNSPECIFIED"
-    | "RESPONSE_RESULT_TYPE_NOOP"
-    | "RESPONSE_RESULT_TYPE_SUCCESS"
-    | "RESPONSE_RESULT_TYPE_FAILURE";
+    | 'RESPONSE_RESULT_TYPE_UNSPECIFIED'
+    | 'RESPONSE_RESULT_TYPE_NOOP'
+    | 'RESPONSE_RESULT_TYPE_SUCCESS'
+    | 'RESPONSE_RESULT_TYPE_FAILURE';
 }
 
 export type MsgUpdateParamsResponse = object;
@@ -490,15 +490,15 @@ export interface Packet {
 }
 
 export enum ResponseResultType {
-  RESPONSE_RESULT_TYPE_UNSPECIFIED = "RESPONSE_RESULT_TYPE_UNSPECIFIED",
-  RESPONSE_RESULT_TYPE_NOOP = "RESPONSE_RESULT_TYPE_NOOP",
-  RESPONSE_RESULT_TYPE_SUCCESS = "RESPONSE_RESULT_TYPE_SUCCESS",
-  RESPONSE_RESULT_TYPE_FAILURE = "RESPONSE_RESULT_TYPE_FAILURE",
+  RESPONSE_RESULT_TYPE_UNSPECIFIED = 'RESPONSE_RESULT_TYPE_UNSPECIFIED',
+  RESPONSE_RESULT_TYPE_NOOP = 'RESPONSE_RESULT_TYPE_NOOP',
+  RESPONSE_RESULT_TYPE_SUCCESS = 'RESPONSE_RESULT_TYPE_SUCCESS',
+  RESPONSE_RESULT_TYPE_FAILURE = 'RESPONSE_RESULT_TYPE_FAILURE',
 }
 
 export interface Upgrade {
   fields?: {
-    ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+    ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
     connection_hops?: string[];
     version?: string;
   };
@@ -515,11 +515,11 @@ export interface V1Timeout {
   timestamp?: string;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -534,31 +534,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -588,9 +588,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -606,15 +606,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -624,7 +624,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -648,26 +648,26 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryChannels = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         channels?: {
           state?:
-            | "STATE_UNINITIALIZED_UNSPECIFIED"
-            | "STATE_INIT"
-            | "STATE_TRYOPEN"
-            | "STATE_OPEN"
-            | "STATE_CLOSED"
-            | "STATE_FLUSHING"
-            | "STATE_FLUSHCOMPLETE";
-          ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+            | 'STATE_UNINITIALIZED_UNSPECIFIED'
+            | 'STATE_INIT'
+            | 'STATE_TRYOPEN'
+            | 'STATE_OPEN'
+            | 'STATE_CLOSED'
+            | 'STATE_FLUSHING'
+            | 'STATE_FLUSHCOMPLETE';
+          ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
           counterparty?: { port_id?: string; channel_id?: string };
           connection_hops?: string[];
           version?: string;
@@ -678,10 +678,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         pagination?: { next_key?: string; total?: string };
         height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -698,14 +698,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       {
         channel?: {
           state?:
-            | "STATE_UNINITIALIZED_UNSPECIFIED"
-            | "STATE_INIT"
-            | "STATE_TRYOPEN"
-            | "STATE_OPEN"
-            | "STATE_CLOSED"
-            | "STATE_FLUSHING"
-            | "STATE_FLUSHCOMPLETE";
-          ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+            | 'STATE_UNINITIALIZED_UNSPECIFIED'
+            | 'STATE_INIT'
+            | 'STATE_TRYOPEN'
+            | 'STATE_OPEN'
+            | 'STATE_CLOSED'
+            | 'STATE_FLUSHING'
+            | 'STATE_FLUSHCOMPLETE';
+          ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
           counterparty?: { port_id?: string; channel_id?: string };
           connection_hops?: string[];
           version?: string;
@@ -714,10 +714,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -731,14 +731,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryChannelClientState = (channelId: string, portId: string, params: RequestParams = {}) =>
     this.request<
       {
-        identified_client_state?: { client_id?: string; client_state?: { "@type"?: string } };
+        identified_client_state?: { client_id?: string; client_state?: { '@type'?: string } };
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/client_state`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -754,19 +754,19 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     portId: string,
     revisionNumber: string,
     revisionHeight: string,
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
-        consensus_state?: { "@type"?: string };
+        consensus_state?: { '@type'?: string };
         client_id?: string;
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/consensus_state/revision/${revisionNumber}/height/${revisionHeight}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -784,10 +784,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/next_sequence`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -805,10 +805,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/next_sequence_send`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -823,14 +823,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     channelId: string,
     portId: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
       packet_commitment_sequences?: string[];
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -838,10 +838,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         pagination?: { next_key?: string; total?: string };
         height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_acknowledgements`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -860,10 +860,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_acks/${sequence}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -878,13 +878,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     channelId: string,
     portId: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -892,10 +892,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         pagination?: { next_key?: string; total?: string };
         height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_commitments`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -910,10 +910,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryUnreceivedAcks = (channelId: string, portId: string, packetAckSequences: string[], params: RequestParams = {}) =>
     this.request<
       { sequences?: string[]; height?: { revision_number?: string; revision_height?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_commitments/${packetAckSequences}/unreceived_acks`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -928,14 +928,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     channelId: string,
     portId: string,
     packetCommitmentSequences: string[],
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { sequences?: string[]; height?: { revision_number?: string; revision_height?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_commitments/${packetCommitmentSequences}/unreceived_packets`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -949,10 +949,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryPacketCommitment = (channelId: string, portId: string, sequence: string, params: RequestParams = {}) =>
     this.request<
       { commitment?: string; proof?: string; proof_height?: { revision_number?: string; revision_height?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_commitments/${sequence}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -966,10 +966,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryPacketReceipt = (channelId: string, portId: string, sequence: string, params: RequestParams = {}) =>
     this.request<
       { received?: boolean; proof?: string; proof_height?: { revision_number?: string; revision_height?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/packet_receipts/${sequence}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -985,7 +985,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       {
         upgrade?: {
           fields?: {
-            ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+            ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
             connection_hops?: string[];
             version?: string;
           };
@@ -995,10 +995,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/upgrade`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1016,10 +1016,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         proof?: string;
         proof_height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/channels/${channelId}/ports/${portId}/upgrade_error`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1033,26 +1033,26 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryConnectionChannels = (
     connection: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         channels?: {
           state?:
-            | "STATE_UNINITIALIZED_UNSPECIFIED"
-            | "STATE_INIT"
-            | "STATE_TRYOPEN"
-            | "STATE_OPEN"
-            | "STATE_CLOSED"
-            | "STATE_FLUSHING"
-            | "STATE_FLUSHCOMPLETE";
-          ordering?: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
+            | 'STATE_UNINITIALIZED_UNSPECIFIED'
+            | 'STATE_INIT'
+            | 'STATE_TRYOPEN'
+            | 'STATE_OPEN'
+            | 'STATE_CLOSED'
+            | 'STATE_FLUSHING'
+            | 'STATE_FLUSHCOMPLETE';
+          ordering?: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
           counterparty?: { port_id?: string; channel_id?: string };
           connection_hops?: string[];
           version?: string;
@@ -1063,10 +1063,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         pagination?: { next_key?: string; total?: string };
         height?: { revision_number?: string; revision_height?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/connections/${connection}/channels`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -1085,10 +1085,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           upgrade_timeout?: { height?: { revision_number?: string; revision_height?: string }; timestamp?: string };
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/ibc/core/channel/v1/params`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 }

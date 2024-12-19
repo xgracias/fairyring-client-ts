@@ -1,20 +1,18 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
-import { Coin } from "../../../../cosmos/base/v1beta1/coin";
-import { PacketId } from "../../../core/channel/v1/channel";
-import { IdentifiedPacketFees } from "./fee";
-import { FeeEnabledChannel } from "./genesis";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { PageRequest, PageResponse } from '../../../../cosmos/base/query/v1beta1/pagination';
+import { Coin } from '../../../../cosmos/base/v1beta1/coin';
+import { PacketId } from '../../../core/channel/v1/channel';
+import { IdentifiedPacketFees } from './fee';
+import { FeeEnabledChannel } from './genesis';
 
-export const protobufPackage = "ibc.applications.fee.v1";
+export const protobufPackage = 'ibc.applications.fee.v1';
 
 /** QueryIncentivizedPacketsRequest defines the request type for the IncentivizedPackets rpc */
 export interface QueryIncentivizedPacketsRequest {
   /** pagination defines an optional pagination for the request. */
-  pagination:
-    | PageRequest
-    | undefined;
+  pagination: PageRequest | undefined;
   /** block height at which to query */
   queryHeight: number;
 }
@@ -30,9 +28,7 @@ export interface QueryIncentivizedPacketsResponse {
 /** QueryIncentivizedPacketRequest defines the request type for the IncentivizedPacket rpc */
 export interface QueryIncentivizedPacketRequest {
   /** unique packet identifier comprised of channel ID, port ID and sequence */
-  packetId:
-    | PacketId
-    | undefined;
+  packetId: PacketId | undefined;
   /** block height at which to query */
   queryHeight: number;
 }
@@ -131,9 +127,7 @@ export interface QueryCounterpartyPayeeResponse {
 /** QueryFeeEnabledChannelsRequest defines the request type for the FeeEnabledChannels rpc */
 export interface QueryFeeEnabledChannelsRequest {
   /** pagination defines an optional pagination for the request. */
-  pagination:
-    | PageRequest
-    | undefined;
+  pagination: PageRequest | undefined;
   /** block height at which to query */
   queryHeight: number;
 }
@@ -227,12 +221,13 @@ export const QueryIncentivizedPacketsRequest = {
     return QueryIncentivizedPacketsRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryIncentivizedPacketsRequest>, I>>(
-    object: I,
+    object: I
   ): QueryIncentivizedPacketsRequest {
     const message = createBaseQueryIncentivizedPacketsRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     message.queryHeight = object.queryHeight ?? 0;
     return message;
   },
@@ -304,18 +299,19 @@ export const QueryIncentivizedPacketsResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryIncentivizedPacketsResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryIncentivizedPacketsResponse {
     return QueryIncentivizedPacketsResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryIncentivizedPacketsResponse>, I>>(
-    object: I,
+    object: I
   ): QueryIncentivizedPacketsResponse {
     const message = createBaseQueryIncentivizedPacketsResponse();
     message.incentivizedPackets = object.incentivizedPackets?.map((e) => IdentifiedPacketFees.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -387,12 +383,11 @@ export const QueryIncentivizedPacketRequest = {
     return QueryIncentivizedPacketRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryIncentivizedPacketRequest>, I>>(
-    object: I,
+    object: I
   ): QueryIncentivizedPacketRequest {
     const message = createBaseQueryIncentivizedPacketRequest();
-    message.packetId = (object.packetId !== undefined && object.packetId !== null)
-      ? PacketId.fromPartial(object.packetId)
-      : undefined;
+    message.packetId =
+      object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
     message.queryHeight = object.queryHeight ?? 0;
     return message;
   },
@@ -453,18 +448,19 @@ export const QueryIncentivizedPacketResponse = {
     return QueryIncentivizedPacketResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryIncentivizedPacketResponse>, I>>(
-    object: I,
+    object: I
   ): QueryIncentivizedPacketResponse {
     const message = createBaseQueryIncentivizedPacketResponse();
-    message.incentivizedPacket = (object.incentivizedPacket !== undefined && object.incentivizedPacket !== null)
-      ? IdentifiedPacketFees.fromPartial(object.incentivizedPacket)
-      : undefined;
+    message.incentivizedPacket =
+      object.incentivizedPacket !== undefined && object.incentivizedPacket !== null
+        ? IdentifiedPacketFees.fromPartial(object.incentivizedPacket)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryIncentivizedPacketsForChannelRequest(): QueryIncentivizedPacketsForChannelRequest {
-  return { pagination: undefined, portId: "", channelId: "", queryHeight: 0 };
+  return { pagination: undefined, portId: '', channelId: '', queryHeight: 0 };
 }
 
 export const QueryIncentivizedPacketsForChannelRequest = {
@@ -472,10 +468,10 @@ export const QueryIncentivizedPacketsForChannelRequest = {
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
     }
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       writer.uint32(18).string(message.portId);
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(26).string(message.channelId);
     }
     if (message.queryHeight !== 0) {
@@ -531,8 +527,8 @@ export const QueryIncentivizedPacketsForChannelRequest = {
   fromJSON(object: any): QueryIncentivizedPacketsForChannelRequest {
     return {
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
+      portId: isSet(object.portId) ? String(object.portId) : '',
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
       queryHeight: isSet(object.queryHeight) ? Number(object.queryHeight) : 0,
     };
   },
@@ -542,10 +538,10 @@ export const QueryIncentivizedPacketsForChannelRequest = {
     if (message.pagination !== undefined) {
       obj.pagination = PageRequest.toJSON(message.pagination);
     }
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       obj.portId = message.portId;
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
     if (message.queryHeight !== 0) {
@@ -555,19 +551,20 @@ export const QueryIncentivizedPacketsForChannelRequest = {
   },
 
   create<I extends Exact<DeepPartial<QueryIncentivizedPacketsForChannelRequest>, I>>(
-    base?: I,
+    base?: I
   ): QueryIncentivizedPacketsForChannelRequest {
     return QueryIncentivizedPacketsForChannelRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryIncentivizedPacketsForChannelRequest>, I>>(
-    object: I,
+    object: I
   ): QueryIncentivizedPacketsForChannelRequest {
     const message = createBaseQueryIncentivizedPacketsForChannelRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
+    message.portId = object.portId ?? '';
+    message.channelId = object.channelId ?? '';
     message.queryHeight = object.queryHeight ?? 0;
     return message;
   },
@@ -639,18 +636,19 @@ export const QueryIncentivizedPacketsForChannelResponse = {
   },
 
   create<I extends Exact<DeepPartial<QueryIncentivizedPacketsForChannelResponse>, I>>(
-    base?: I,
+    base?: I
   ): QueryIncentivizedPacketsForChannelResponse {
     return QueryIncentivizedPacketsForChannelResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryIncentivizedPacketsForChannelResponse>, I>>(
-    object: I,
+    object: I
   ): QueryIncentivizedPacketsForChannelResponse {
     const message = createBaseQueryIncentivizedPacketsForChannelResponse();
     message.incentivizedPackets = object.incentivizedPackets?.map((e) => IdentifiedPacketFees.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -707,9 +705,8 @@ export const QueryTotalRecvFeesRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryTotalRecvFeesRequest>, I>>(object: I): QueryTotalRecvFeesRequest {
     const message = createBaseQueryTotalRecvFeesRequest();
-    message.packetId = (object.packetId !== undefined && object.packetId !== null)
-      ? PacketId.fromPartial(object.packetId)
-      : undefined;
+    message.packetId =
+      object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
     return message;
   },
 };
@@ -823,9 +820,8 @@ export const QueryTotalAckFeesRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryTotalAckFeesRequest>, I>>(object: I): QueryTotalAckFeesRequest {
     const message = createBaseQueryTotalAckFeesRequest();
-    message.packetId = (object.packetId !== undefined && object.packetId !== null)
-      ? PacketId.fromPartial(object.packetId)
-      : undefined;
+    message.packetId =
+      object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
     return message;
   },
 };
@@ -939,9 +935,8 @@ export const QueryTotalTimeoutFeesRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryTotalTimeoutFeesRequest>, I>>(object: I): QueryTotalTimeoutFeesRequest {
     const message = createBaseQueryTotalTimeoutFeesRequest();
-    message.packetId = (object.packetId !== undefined && object.packetId !== null)
-      ? PacketId.fromPartial(object.packetId)
-      : undefined;
+    message.packetId =
+      object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
     return message;
   },
 };
@@ -999,7 +994,7 @@ export const QueryTotalTimeoutFeesResponse = {
     return QueryTotalTimeoutFeesResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryTotalTimeoutFeesResponse>, I>>(
-    object: I,
+    object: I
   ): QueryTotalTimeoutFeesResponse {
     const message = createBaseQueryTotalTimeoutFeesResponse();
     message.timeoutFees = object.timeoutFees?.map((e) => Coin.fromPartial(e)) || [];
@@ -1008,15 +1003,15 @@ export const QueryTotalTimeoutFeesResponse = {
 };
 
 function createBaseQueryPayeeRequest(): QueryPayeeRequest {
-  return { channelId: "", relayer: "" };
+  return { channelId: '', relayer: '' };
 }
 
 export const QueryPayeeRequest = {
   encode(message: QueryPayeeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(10).string(message.channelId);
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       writer.uint32(18).string(message.relayer);
     }
     return writer;
@@ -1054,17 +1049,17 @@ export const QueryPayeeRequest = {
 
   fromJSON(object: any): QueryPayeeRequest {
     return {
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
-      relayer: isSet(object.relayer) ? String(object.relayer) : "",
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
+      relayer: isSet(object.relayer) ? String(object.relayer) : '',
     };
   },
 
   toJSON(message: QueryPayeeRequest): unknown {
     const obj: any = {};
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       obj.relayer = message.relayer;
     }
     return obj;
@@ -1075,19 +1070,19 @@ export const QueryPayeeRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryPayeeRequest>, I>>(object: I): QueryPayeeRequest {
     const message = createBaseQueryPayeeRequest();
-    message.channelId = object.channelId ?? "";
-    message.relayer = object.relayer ?? "";
+    message.channelId = object.channelId ?? '';
+    message.relayer = object.relayer ?? '';
     return message;
   },
 };
 
 function createBaseQueryPayeeResponse(): QueryPayeeResponse {
-  return { payeeAddress: "" };
+  return { payeeAddress: '' };
 }
 
 export const QueryPayeeResponse = {
   encode(message: QueryPayeeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.payeeAddress !== "") {
+    if (message.payeeAddress !== '') {
       writer.uint32(10).string(message.payeeAddress);
     }
     return writer;
@@ -1117,12 +1112,12 @@ export const QueryPayeeResponse = {
   },
 
   fromJSON(object: any): QueryPayeeResponse {
-    return { payeeAddress: isSet(object.payeeAddress) ? String(object.payeeAddress) : "" };
+    return { payeeAddress: isSet(object.payeeAddress) ? String(object.payeeAddress) : '' };
   },
 
   toJSON(message: QueryPayeeResponse): unknown {
     const obj: any = {};
-    if (message.payeeAddress !== "") {
+    if (message.payeeAddress !== '') {
       obj.payeeAddress = message.payeeAddress;
     }
     return obj;
@@ -1133,21 +1128,21 @@ export const QueryPayeeResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryPayeeResponse>, I>>(object: I): QueryPayeeResponse {
     const message = createBaseQueryPayeeResponse();
-    message.payeeAddress = object.payeeAddress ?? "";
+    message.payeeAddress = object.payeeAddress ?? '';
     return message;
   },
 };
 
 function createBaseQueryCounterpartyPayeeRequest(): QueryCounterpartyPayeeRequest {
-  return { channelId: "", relayer: "" };
+  return { channelId: '', relayer: '' };
 }
 
 export const QueryCounterpartyPayeeRequest = {
   encode(message: QueryCounterpartyPayeeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(10).string(message.channelId);
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       writer.uint32(18).string(message.relayer);
     }
     return writer;
@@ -1185,17 +1180,17 @@ export const QueryCounterpartyPayeeRequest = {
 
   fromJSON(object: any): QueryCounterpartyPayeeRequest {
     return {
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
-      relayer: isSet(object.relayer) ? String(object.relayer) : "",
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
+      relayer: isSet(object.relayer) ? String(object.relayer) : '',
     };
   },
 
   toJSON(message: QueryCounterpartyPayeeRequest): unknown {
     const obj: any = {};
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       obj.relayer = message.relayer;
     }
     return obj;
@@ -1205,22 +1200,22 @@ export const QueryCounterpartyPayeeRequest = {
     return QueryCounterpartyPayeeRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryCounterpartyPayeeRequest>, I>>(
-    object: I,
+    object: I
   ): QueryCounterpartyPayeeRequest {
     const message = createBaseQueryCounterpartyPayeeRequest();
-    message.channelId = object.channelId ?? "";
-    message.relayer = object.relayer ?? "";
+    message.channelId = object.channelId ?? '';
+    message.relayer = object.relayer ?? '';
     return message;
   },
 };
 
 function createBaseQueryCounterpartyPayeeResponse(): QueryCounterpartyPayeeResponse {
-  return { counterpartyPayee: "" };
+  return { counterpartyPayee: '' };
 }
 
 export const QueryCounterpartyPayeeResponse = {
   encode(message: QueryCounterpartyPayeeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.counterpartyPayee !== "") {
+    if (message.counterpartyPayee !== '') {
       writer.uint32(10).string(message.counterpartyPayee);
     }
     return writer;
@@ -1250,12 +1245,12 @@ export const QueryCounterpartyPayeeResponse = {
   },
 
   fromJSON(object: any): QueryCounterpartyPayeeResponse {
-    return { counterpartyPayee: isSet(object.counterpartyPayee) ? String(object.counterpartyPayee) : "" };
+    return { counterpartyPayee: isSet(object.counterpartyPayee) ? String(object.counterpartyPayee) : '' };
   },
 
   toJSON(message: QueryCounterpartyPayeeResponse): unknown {
     const obj: any = {};
-    if (message.counterpartyPayee !== "") {
+    if (message.counterpartyPayee !== '') {
       obj.counterpartyPayee = message.counterpartyPayee;
     }
     return obj;
@@ -1265,10 +1260,10 @@ export const QueryCounterpartyPayeeResponse = {
     return QueryCounterpartyPayeeResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryCounterpartyPayeeResponse>, I>>(
-    object: I,
+    object: I
   ): QueryCounterpartyPayeeResponse {
     const message = createBaseQueryCounterpartyPayeeResponse();
-    message.counterpartyPayee = object.counterpartyPayee ?? "";
+    message.counterpartyPayee = object.counterpartyPayee ?? '';
     return message;
   },
 };
@@ -1340,12 +1335,13 @@ export const QueryFeeEnabledChannelsRequest = {
     return QueryFeeEnabledChannelsRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryFeeEnabledChannelsRequest>, I>>(
-    object: I,
+    object: I
   ): QueryFeeEnabledChannelsRequest {
     const message = createBaseQueryFeeEnabledChannelsRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     message.queryHeight = object.queryHeight ?? 0;
     return message;
   },
@@ -1420,27 +1416,28 @@ export const QueryFeeEnabledChannelsResponse = {
     return QueryFeeEnabledChannelsResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryFeeEnabledChannelsResponse>, I>>(
-    object: I,
+    object: I
   ): QueryFeeEnabledChannelsResponse {
     const message = createBaseQueryFeeEnabledChannelsResponse();
     message.feeEnabledChannels = object.feeEnabledChannels?.map((e) => FeeEnabledChannel.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseQueryFeeEnabledChannelRequest(): QueryFeeEnabledChannelRequest {
-  return { portId: "", channelId: "" };
+  return { portId: '', channelId: '' };
 }
 
 export const QueryFeeEnabledChannelRequest = {
   encode(message: QueryFeeEnabledChannelRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(18).string(message.channelId);
     }
     return writer;
@@ -1478,17 +1475,17 @@ export const QueryFeeEnabledChannelRequest = {
 
   fromJSON(object: any): QueryFeeEnabledChannelRequest {
     return {
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
+      portId: isSet(object.portId) ? String(object.portId) : '',
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
     };
   },
 
   toJSON(message: QueryFeeEnabledChannelRequest): unknown {
     const obj: any = {};
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       obj.portId = message.portId;
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
     return obj;
@@ -1498,11 +1495,11 @@ export const QueryFeeEnabledChannelRequest = {
     return QueryFeeEnabledChannelRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryFeeEnabledChannelRequest>, I>>(
-    object: I,
+    object: I
   ): QueryFeeEnabledChannelRequest {
     const message = createBaseQueryFeeEnabledChannelRequest();
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
+    message.portId = object.portId ?? '';
+    message.channelId = object.channelId ?? '';
     return message;
   },
 };
@@ -1558,7 +1555,7 @@ export const QueryFeeEnabledChannelResponse = {
     return QueryFeeEnabledChannelResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<QueryFeeEnabledChannelResponse>, I>>(
-    object: I,
+    object: I
   ): QueryFeeEnabledChannelResponse {
     const message = createBaseQueryFeeEnabledChannelResponse();
     message.feeEnabled = object.feeEnabled ?? false;
@@ -1574,7 +1571,7 @@ export interface Query {
   IncentivizedPacket(request: QueryIncentivizedPacketRequest): Promise<QueryIncentivizedPacketResponse>;
   /** Gets all incentivized packets for a specific channel */
   IncentivizedPacketsForChannel(
-    request: QueryIncentivizedPacketsForChannelRequest,
+    request: QueryIncentivizedPacketsForChannelRequest
   ): Promise<QueryIncentivizedPacketsForChannelResponse>;
   /** TotalRecvFees returns the total receive fees for a packet given its identifier */
   TotalRecvFees(request: QueryTotalRecvFeesRequest): Promise<QueryTotalRecvFeesResponse>;
@@ -1592,7 +1589,7 @@ export interface Query {
   FeeEnabledChannel(request: QueryFeeEnabledChannelRequest): Promise<QueryFeeEnabledChannelResponse>;
 }
 
-export const QueryServiceName = "ibc.applications.fee.v1.Query";
+export const QueryServiceName = 'ibc.applications.fee.v1.Query';
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -1612,63 +1609,63 @@ export class QueryClientImpl implements Query {
   }
   IncentivizedPackets(request: QueryIncentivizedPacketsRequest): Promise<QueryIncentivizedPacketsResponse> {
     const data = QueryIncentivizedPacketsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "IncentivizedPackets", data);
+    const promise = this.rpc.request(this.service, 'IncentivizedPackets', data);
     return promise.then((data) => QueryIncentivizedPacketsResponse.decode(_m0.Reader.create(data)));
   }
 
   IncentivizedPacket(request: QueryIncentivizedPacketRequest): Promise<QueryIncentivizedPacketResponse> {
     const data = QueryIncentivizedPacketRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "IncentivizedPacket", data);
+    const promise = this.rpc.request(this.service, 'IncentivizedPacket', data);
     return promise.then((data) => QueryIncentivizedPacketResponse.decode(_m0.Reader.create(data)));
   }
 
   IncentivizedPacketsForChannel(
-    request: QueryIncentivizedPacketsForChannelRequest,
+    request: QueryIncentivizedPacketsForChannelRequest
   ): Promise<QueryIncentivizedPacketsForChannelResponse> {
     const data = QueryIncentivizedPacketsForChannelRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "IncentivizedPacketsForChannel", data);
+    const promise = this.rpc.request(this.service, 'IncentivizedPacketsForChannel', data);
     return promise.then((data) => QueryIncentivizedPacketsForChannelResponse.decode(_m0.Reader.create(data)));
   }
 
   TotalRecvFees(request: QueryTotalRecvFeesRequest): Promise<QueryTotalRecvFeesResponse> {
     const data = QueryTotalRecvFeesRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "TotalRecvFees", data);
+    const promise = this.rpc.request(this.service, 'TotalRecvFees', data);
     return promise.then((data) => QueryTotalRecvFeesResponse.decode(_m0.Reader.create(data)));
   }
 
   TotalAckFees(request: QueryTotalAckFeesRequest): Promise<QueryTotalAckFeesResponse> {
     const data = QueryTotalAckFeesRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "TotalAckFees", data);
+    const promise = this.rpc.request(this.service, 'TotalAckFees', data);
     return promise.then((data) => QueryTotalAckFeesResponse.decode(_m0.Reader.create(data)));
   }
 
   TotalTimeoutFees(request: QueryTotalTimeoutFeesRequest): Promise<QueryTotalTimeoutFeesResponse> {
     const data = QueryTotalTimeoutFeesRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "TotalTimeoutFees", data);
+    const promise = this.rpc.request(this.service, 'TotalTimeoutFees', data);
     return promise.then((data) => QueryTotalTimeoutFeesResponse.decode(_m0.Reader.create(data)));
   }
 
   Payee(request: QueryPayeeRequest): Promise<QueryPayeeResponse> {
     const data = QueryPayeeRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Payee", data);
+    const promise = this.rpc.request(this.service, 'Payee', data);
     return promise.then((data) => QueryPayeeResponse.decode(_m0.Reader.create(data)));
   }
 
   CounterpartyPayee(request: QueryCounterpartyPayeeRequest): Promise<QueryCounterpartyPayeeResponse> {
     const data = QueryCounterpartyPayeeRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CounterpartyPayee", data);
+    const promise = this.rpc.request(this.service, 'CounterpartyPayee', data);
     return promise.then((data) => QueryCounterpartyPayeeResponse.decode(_m0.Reader.create(data)));
   }
 
   FeeEnabledChannels(request: QueryFeeEnabledChannelsRequest): Promise<QueryFeeEnabledChannelsResponse> {
     const data = QueryFeeEnabledChannelsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "FeeEnabledChannels", data);
+    const promise = this.rpc.request(this.service, 'FeeEnabledChannels', data);
     return promise.then((data) => QueryFeeEnabledChannelsResponse.decode(_m0.Reader.create(data)));
   }
 
   FeeEnabledChannel(request: QueryFeeEnabledChannelRequest): Promise<QueryFeeEnabledChannelResponse> {
     const data = QueryFeeEnabledChannelRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "FeeEnabledChannel", data);
+    const promise = this.rpc.request(this.service, 'FeeEnabledChannel', data);
     return promise.then((data) => QueryFeeEnabledChannelResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -1681,35 +1678,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

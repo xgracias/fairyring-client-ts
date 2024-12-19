@@ -1,7 +1,7 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
+import _m0 from 'protobufjs/minimal';
 
-export const protobufPackage = "fairyring.keyshare";
+export const protobufPackage = 'fairyring.keyshare';
 
 export interface AuthorizedAddress {
   target: string;
@@ -10,18 +10,18 @@ export interface AuthorizedAddress {
 }
 
 function createBaseAuthorizedAddress(): AuthorizedAddress {
-  return { target: "", isAuthorized: false, authorizedBy: "" };
+  return { target: '', isAuthorized: false, authorizedBy: '' };
 }
 
 export const AuthorizedAddress = {
   encode(message: AuthorizedAddress, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.target !== "") {
+    if (message.target !== '') {
       writer.uint32(10).string(message.target);
     }
     if (message.isAuthorized === true) {
       writer.uint32(16).bool(message.isAuthorized);
     }
-    if (message.authorizedBy !== "") {
+    if (message.authorizedBy !== '') {
       writer.uint32(26).string(message.authorizedBy);
     }
     return writer;
@@ -66,21 +66,21 @@ export const AuthorizedAddress = {
 
   fromJSON(object: any): AuthorizedAddress {
     return {
-      target: isSet(object.target) ? String(object.target) : "",
+      target: isSet(object.target) ? String(object.target) : '',
       isAuthorized: isSet(object.isAuthorized) ? Boolean(object.isAuthorized) : false,
-      authorizedBy: isSet(object.authorizedBy) ? String(object.authorizedBy) : "",
+      authorizedBy: isSet(object.authorizedBy) ? String(object.authorizedBy) : '',
     };
   },
 
   toJSON(message: AuthorizedAddress): unknown {
     const obj: any = {};
-    if (message.target !== "") {
+    if (message.target !== '') {
       obj.target = message.target;
     }
     if (message.isAuthorized === true) {
       obj.isAuthorized = message.isAuthorized;
     }
-    if (message.authorizedBy !== "") {
+    if (message.authorizedBy !== '') {
       obj.authorizedBy = message.authorizedBy;
     }
     return obj;
@@ -91,22 +91,28 @@ export const AuthorizedAddress = {
   },
   fromPartial<I extends Exact<DeepPartial<AuthorizedAddress>, I>>(object: I): AuthorizedAddress {
     const message = createBaseAuthorizedAddress();
-    message.target = object.target ?? "";
+    message.target = object.target ?? '';
     message.isAuthorized = object.isAuthorized ?? false;
-    message.authorizedBy = object.authorizedBy ?? "";
+    message.authorizedBy = object.authorizedBy ?? '';
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

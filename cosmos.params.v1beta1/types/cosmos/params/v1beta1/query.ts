@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { ParamChange } from "./params";
+import _m0 from 'protobufjs/minimal';
+import { ParamChange } from './params';
 
-export const protobufPackage = "cosmos.params.v1beta1";
+export const protobufPackage = 'cosmos.params.v1beta1';
 
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
@@ -24,8 +24,7 @@ export interface QueryParamsResponse {
  *
  * Since: cosmos-sdk 0.46
  */
-export interface QuerySubspacesRequest {
-}
+export interface QuerySubspacesRequest {}
 
 /**
  * QuerySubspacesResponse defines the response types for querying for all
@@ -49,15 +48,15 @@ export interface Subspace {
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
-  return { subspace: "", key: "" };
+  return { subspace: '', key: '' };
 }
 
 export const QueryParamsRequest = {
   encode(message: QueryParamsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.subspace !== "") {
+    if (message.subspace !== '') {
       writer.uint32(10).string(message.subspace);
     }
-    if (message.key !== "") {
+    if (message.key !== '') {
       writer.uint32(18).string(message.key);
     }
     return writer;
@@ -95,17 +94,17 @@ export const QueryParamsRequest = {
 
   fromJSON(object: any): QueryParamsRequest {
     return {
-      subspace: isSet(object.subspace) ? String(object.subspace) : "",
-      key: isSet(object.key) ? String(object.key) : "",
+      subspace: isSet(object.subspace) ? String(object.subspace) : '',
+      key: isSet(object.key) ? String(object.key) : '',
     };
   },
 
   toJSON(message: QueryParamsRequest): unknown {
     const obj: any = {};
-    if (message.subspace !== "") {
+    if (message.subspace !== '') {
       obj.subspace = message.subspace;
     }
-    if (message.key !== "") {
+    if (message.key !== '') {
       obj.key = message.key;
     }
     return obj;
@@ -116,8 +115,8 @@ export const QueryParamsRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryParamsRequest>, I>>(object: I): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
-    message.subspace = object.subspace ?? "";
-    message.key = object.key ?? "";
+    message.subspace = object.subspace ?? '';
+    message.key = object.key ?? '';
     return message;
   },
 };
@@ -174,9 +173,8 @@ export const QueryParamsResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryParamsResponse>, I>>(object: I): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
-    message.param = (object.param !== undefined && object.param !== null)
-      ? ParamChange.fromPartial(object.param)
-      : undefined;
+    message.param =
+      object.param !== undefined && object.param !== null ? ParamChange.fromPartial(object.param) : undefined;
     return message;
   },
 };
@@ -284,12 +282,12 @@ export const QuerySubspacesResponse = {
 };
 
 function createBaseSubspace(): Subspace {
-  return { subspace: "", keys: [] };
+  return { subspace: '', keys: [] };
 }
 
 export const Subspace = {
   encode(message: Subspace, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.subspace !== "") {
+    if (message.subspace !== '') {
       writer.uint32(10).string(message.subspace);
     }
     for (const v of message.keys) {
@@ -330,14 +328,14 @@ export const Subspace = {
 
   fromJSON(object: any): Subspace {
     return {
-      subspace: isSet(object.subspace) ? String(object.subspace) : "",
+      subspace: isSet(object.subspace) ? String(object.subspace) : '',
       keys: Array.isArray(object?.keys) ? object.keys.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: Subspace): unknown {
     const obj: any = {};
-    if (message.subspace !== "") {
+    if (message.subspace !== '') {
       obj.subspace = message.subspace;
     }
     if (message.keys?.length) {
@@ -351,7 +349,7 @@ export const Subspace = {
   },
   fromPartial<I extends Exact<DeepPartial<Subspace>, I>>(object: I): Subspace {
     const message = createBaseSubspace();
-    message.subspace = object.subspace ?? "";
+    message.subspace = object.subspace ?? '';
     message.keys = object.keys?.map((e) => e) || [];
     return message;
   },
@@ -372,7 +370,7 @@ export interface Query {
   Subspaces(request: QuerySubspacesRequest): Promise<QuerySubspacesResponse>;
 }
 
-export const QueryServiceName = "cosmos.params.v1beta1.Query";
+export const QueryServiceName = 'cosmos.params.v1beta1.Query';
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -384,13 +382,13 @@ export class QueryClientImpl implements Query {
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Params", data);
+    const promise = this.rpc.request(this.service, 'Params', data);
     return promise.then((data) => QueryParamsResponse.decode(_m0.Reader.create(data)));
   }
 
   Subspaces(request: QuerySubspacesRequest): Promise<QuerySubspacesResponse> {
     const data = QuerySubspacesRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Subspaces", data);
+    const promise = this.rpc.request(this.service, 'Subspaces', data);
     return promise.then((data) => QuerySubspacesResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -401,13 +399,19 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

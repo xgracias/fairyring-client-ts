@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Coin } from "../../cosmos/base/v1beta1/coin";
+import _m0 from 'protobufjs/minimal';
+import { Coin } from '../../cosmos/base/v1beta1/coin';
 
-export const protobufPackage = "fairyring.pep";
+export const protobufPackage = 'fairyring.pep';
 
 /** Params defines the parameters for the module. */
 export interface Params {
@@ -21,7 +21,7 @@ export interface TrustedCounterParty {
 
 function createBaseParams(): Params {
   return {
-    keyshareChannelId: "",
+    keyshareChannelId: '',
     isSourceChain: false,
     trustedCounterParties: [],
     trustedAddresses: [],
@@ -31,7 +31,7 @@ function createBaseParams(): Params {
 
 export const Params = {
   encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.keyshareChannelId !== "") {
+    if (message.keyshareChannelId !== '') {
       writer.uint32(10).string(message.keyshareChannelId);
     }
     if (message.isSourceChain === true) {
@@ -102,7 +102,7 @@ export const Params = {
 
   fromJSON(object: any): Params {
     return {
-      keyshareChannelId: isSet(object.keyshareChannelId) ? String(object.keyshareChannelId) : "",
+      keyshareChannelId: isSet(object.keyshareChannelId) ? String(object.keyshareChannelId) : '',
       isSourceChain: isSet(object.isSourceChain) ? Boolean(object.isSourceChain) : false,
       trustedCounterParties: Array.isArray(object?.trustedCounterParties)
         ? object.trustedCounterParties.map((e: any) => TrustedCounterParty.fromJSON(e))
@@ -116,7 +116,7 @@ export const Params = {
 
   toJSON(message: Params): unknown {
     const obj: any = {};
-    if (message.keyshareChannelId !== "") {
+    if (message.keyshareChannelId !== '') {
       obj.keyshareChannelId = message.keyshareChannelId;
     }
     if (message.isSourceChain === true) {
@@ -139,30 +139,31 @@ export const Params = {
   },
   fromPartial<I extends Exact<DeepPartial<Params>, I>>(object: I): Params {
     const message = createBaseParams();
-    message.keyshareChannelId = object.keyshareChannelId ?? "";
+    message.keyshareChannelId = object.keyshareChannelId ?? '';
     message.isSourceChain = object.isSourceChain ?? false;
     message.trustedCounterParties = object.trustedCounterParties?.map((e) => TrustedCounterParty.fromPartial(e)) || [];
     message.trustedAddresses = object.trustedAddresses?.map((e) => e) || [];
-    message.minGasPrice = (object.minGasPrice !== undefined && object.minGasPrice !== null)
-      ? Coin.fromPartial(object.minGasPrice)
-      : undefined;
+    message.minGasPrice =
+      object.minGasPrice !== undefined && object.minGasPrice !== null
+        ? Coin.fromPartial(object.minGasPrice)
+        : undefined;
     return message;
   },
 };
 
 function createBaseTrustedCounterParty(): TrustedCounterParty {
-  return { clientId: "", connectionId: "", channelId: "" };
+  return { clientId: '', connectionId: '', channelId: '' };
 }
 
 export const TrustedCounterParty = {
   encode(message: TrustedCounterParty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       writer.uint32(18).string(message.connectionId);
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(26).string(message.channelId);
     }
     return writer;
@@ -207,21 +208,21 @@ export const TrustedCounterParty = {
 
   fromJSON(object: any): TrustedCounterParty {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
+      connectionId: isSet(object.connectionId) ? String(object.connectionId) : '',
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
     };
   },
 
   toJSON(message: TrustedCounterParty): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       obj.connectionId = message.connectionId;
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
     return obj;
@@ -232,22 +233,28 @@ export const TrustedCounterParty = {
   },
   fromPartial<I extends Exact<DeepPartial<TrustedCounterParty>, I>>(object: I): TrustedCounterParty {
     const message = createBaseTrustedCounterParty();
-    message.clientId = object.clientId ?? "";
-    message.connectionId = object.connectionId ?? "";
-    message.channelId = object.channelId ?? "";
+    message.clientId = object.clientId ?? '';
+    message.connectionId = object.connectionId ?? '';
+    message.channelId = object.channelId ?? '';
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

@@ -1,10 +1,10 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Duration } from "../../../google/protobuf/duration";
-import { Timestamp } from "../../../google/protobuf/timestamp";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Duration } from '../../../google/protobuf/duration';
+import { Timestamp } from '../../../google/protobuf/timestamp';
 
-export const protobufPackage = "cosmos.slashing.v1beta1";
+export const protobufPackage = 'cosmos.slashing.v1beta1';
 
 /**
  * ValidatorSigningInfo defines a validator's signing info for monitoring their
@@ -21,9 +21,7 @@ export interface ValidatorSigningInfo {
    */
   indexOffset: number;
   /** Timestamp until which the validator is jailed due to liveness downtime. */
-  jailedUntil:
-    | Date
-    | undefined;
+  jailedUntil: Date | undefined;
   /**
    * Whether or not a validator has been tombstoned (killed out of validator
    * set). It is set once the validator commits an equivocation or for any other
@@ -48,7 +46,7 @@ export interface Params {
 
 function createBaseValidatorSigningInfo(): ValidatorSigningInfo {
   return {
-    address: "",
+    address: '',
     startHeight: 0,
     indexOffset: 0,
     jailedUntil: undefined,
@@ -59,7 +57,7 @@ function createBaseValidatorSigningInfo(): ValidatorSigningInfo {
 
 export const ValidatorSigningInfo = {
   encode(message: ValidatorSigningInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.startHeight !== 0) {
@@ -140,7 +138,7 @@ export const ValidatorSigningInfo = {
 
   fromJSON(object: any): ValidatorSigningInfo {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       startHeight: isSet(object.startHeight) ? Number(object.startHeight) : 0,
       indexOffset: isSet(object.indexOffset) ? Number(object.indexOffset) : 0,
       jailedUntil: isSet(object.jailedUntil) ? fromJsonTimestamp(object.jailedUntil) : undefined,
@@ -151,7 +149,7 @@ export const ValidatorSigningInfo = {
 
   toJSON(message: ValidatorSigningInfo): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.startHeight !== 0) {
@@ -177,7 +175,7 @@ export const ValidatorSigningInfo = {
   },
   fromPartial<I extends Exact<DeepPartial<ValidatorSigningInfo>, I>>(object: I): ValidatorSigningInfo {
     const message = createBaseValidatorSigningInfo();
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     message.startHeight = object.startHeight ?? 0;
     message.indexOffset = object.indexOffset ?? 0;
     message.jailedUntil = object.jailedUntil ?? undefined;
@@ -313,9 +311,10 @@ export const Params = {
     const message = createBaseParams();
     message.signedBlocksWindow = object.signedBlocksWindow ?? 0;
     message.minSignedPerWindow = object.minSignedPerWindow ?? new Uint8Array(0);
-    message.downtimeJailDuration = (object.downtimeJailDuration !== undefined && object.downtimeJailDuration !== null)
-      ? Duration.fromPartial(object.downtimeJailDuration)
-      : undefined;
+    message.downtimeJailDuration =
+      object.downtimeJailDuration !== undefined && object.downtimeJailDuration !== null
+        ? Duration.fromPartial(object.downtimeJailDuration)
+        : undefined;
     message.slashFractionDoubleSign = object.slashFractionDoubleSign ?? new Uint8Array(0);
     message.slashFractionDowntime = object.slashFractionDowntime ?? new Uint8Array(0);
     return message;
@@ -326,24 +325,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -356,25 +355,31 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
@@ -392,7 +397,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === "string") {
+  } else if (typeof o === 'string') {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -401,7 +406,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

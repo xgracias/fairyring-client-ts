@@ -1,13 +1,12 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Timestamp } from "../../../../google/protobuf/timestamp";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Timestamp } from '../../../../google/protobuf/timestamp';
 
-export const protobufPackage = "cosmos.base.node.v1beta1";
+export const protobufPackage = 'cosmos.base.node.v1beta1';
 
 /** ConfigRequest defines the request structure for the Config gRPC query. */
-export interface ConfigRequest {
-}
+export interface ConfigRequest {}
 
 /** ConfigResponse defines the response structure for the Config gRPC query. */
 export interface ConfigResponse {
@@ -18,8 +17,7 @@ export interface ConfigResponse {
 }
 
 /** StateRequest defines the request structure for the status of a node. */
-export interface StatusRequest {
-}
+export interface StatusRequest {}
 
 /** StateResponse defines the response structure for the status of a node. */
 export interface StatusResponse {
@@ -28,9 +26,7 @@ export interface StatusResponse {
   /** current block height */
   height: number;
   /** block height timestamp */
-  timestamp:
-    | Date
-    | undefined;
+  timestamp: Date | undefined;
   /** app hash of the current block */
   appHash: Uint8Array;
   /** validator hash provided by the consensus header */
@@ -81,18 +77,18 @@ export const ConfigRequest = {
 };
 
 function createBaseConfigResponse(): ConfigResponse {
-  return { minimumGasPrice: "", pruningKeepRecent: "", pruningInterval: "", haltHeight: 0 };
+  return { minimumGasPrice: '', pruningKeepRecent: '', pruningInterval: '', haltHeight: 0 };
 }
 
 export const ConfigResponse = {
   encode(message: ConfigResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.minimumGasPrice !== "") {
+    if (message.minimumGasPrice !== '') {
       writer.uint32(10).string(message.minimumGasPrice);
     }
-    if (message.pruningKeepRecent !== "") {
+    if (message.pruningKeepRecent !== '') {
       writer.uint32(18).string(message.pruningKeepRecent);
     }
-    if (message.pruningInterval !== "") {
+    if (message.pruningInterval !== '') {
       writer.uint32(26).string(message.pruningInterval);
     }
     if (message.haltHeight !== 0) {
@@ -147,22 +143,22 @@ export const ConfigResponse = {
 
   fromJSON(object: any): ConfigResponse {
     return {
-      minimumGasPrice: isSet(object.minimumGasPrice) ? String(object.minimumGasPrice) : "",
-      pruningKeepRecent: isSet(object.pruningKeepRecent) ? String(object.pruningKeepRecent) : "",
-      pruningInterval: isSet(object.pruningInterval) ? String(object.pruningInterval) : "",
+      minimumGasPrice: isSet(object.minimumGasPrice) ? String(object.minimumGasPrice) : '',
+      pruningKeepRecent: isSet(object.pruningKeepRecent) ? String(object.pruningKeepRecent) : '',
+      pruningInterval: isSet(object.pruningInterval) ? String(object.pruningInterval) : '',
       haltHeight: isSet(object.haltHeight) ? Number(object.haltHeight) : 0,
     };
   },
 
   toJSON(message: ConfigResponse): unknown {
     const obj: any = {};
-    if (message.minimumGasPrice !== "") {
+    if (message.minimumGasPrice !== '') {
       obj.minimumGasPrice = message.minimumGasPrice;
     }
-    if (message.pruningKeepRecent !== "") {
+    if (message.pruningKeepRecent !== '') {
       obj.pruningKeepRecent = message.pruningKeepRecent;
     }
-    if (message.pruningInterval !== "") {
+    if (message.pruningInterval !== '') {
       obj.pruningInterval = message.pruningInterval;
     }
     if (message.haltHeight !== 0) {
@@ -176,9 +172,9 @@ export const ConfigResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<ConfigResponse>, I>>(object: I): ConfigResponse {
     const message = createBaseConfigResponse();
-    message.minimumGasPrice = object.minimumGasPrice ?? "";
-    message.pruningKeepRecent = object.pruningKeepRecent ?? "";
-    message.pruningInterval = object.pruningInterval ?? "";
+    message.minimumGasPrice = object.minimumGasPrice ?? '';
+    message.pruningKeepRecent = object.pruningKeepRecent ?? '';
+    message.pruningInterval = object.pruningInterval ?? '';
     message.haltHeight = object.haltHeight ?? 0;
     return message;
   },
@@ -360,7 +356,7 @@ export interface Service {
   Status(request: StatusRequest): Promise<StatusResponse>;
 }
 
-export const ServiceServiceName = "cosmos.base.node.v1beta1.Service";
+export const ServiceServiceName = 'cosmos.base.node.v1beta1.Service';
 export class ServiceClientImpl implements Service {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -372,13 +368,13 @@ export class ServiceClientImpl implements Service {
   }
   Config(request: ConfigRequest): Promise<ConfigResponse> {
     const data = ConfigRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Config", data);
+    const promise = this.rpc.request(this.service, 'Config', data);
     return promise.then((data) => ConfigResponse.decode(_m0.Reader.create(data)));
   }
 
   Status(request: StatusRequest): Promise<StatusResponse> {
     const data = StatusRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Status", data);
+    const promise = this.rpc.request(this.service, 'Status', data);
     return promise.then((data) => StatusResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -391,24 +387,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -421,25 +417,31 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
@@ -457,7 +459,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === "string") {
+  } else if (typeof o === 'string') {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -466,7 +468,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

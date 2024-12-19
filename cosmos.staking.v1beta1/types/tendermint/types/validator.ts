@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { PublicKey } from "../crypto/keys";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { PublicKey } from '../crypto/keys';
 
-export const protobufPackage = "tendermint.types";
+export const protobufPackage = 'tendermint.types';
 
 /** BlockIdFlag indicates which BlockID the signature is for */
 export enum BlockIDFlag {
@@ -21,19 +21,19 @@ export enum BlockIDFlag {
 export function blockIDFlagFromJSON(object: any): BlockIDFlag {
   switch (object) {
     case 0:
-    case "BLOCK_ID_FLAG_UNKNOWN":
+    case 'BLOCK_ID_FLAG_UNKNOWN':
       return BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN;
     case 1:
-    case "BLOCK_ID_FLAG_ABSENT":
+    case 'BLOCK_ID_FLAG_ABSENT':
       return BlockIDFlag.BLOCK_ID_FLAG_ABSENT;
     case 2:
-    case "BLOCK_ID_FLAG_COMMIT":
+    case 'BLOCK_ID_FLAG_COMMIT':
       return BlockIDFlag.BLOCK_ID_FLAG_COMMIT;
     case 3:
-    case "BLOCK_ID_FLAG_NIL":
+    case 'BLOCK_ID_FLAG_NIL':
       return BlockIDFlag.BLOCK_ID_FLAG_NIL;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return BlockIDFlag.UNRECOGNIZED;
   }
@@ -42,16 +42,16 @@ export function blockIDFlagFromJSON(object: any): BlockIDFlag {
 export function blockIDFlagToJSON(object: BlockIDFlag): string {
   switch (object) {
     case BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN:
-      return "BLOCK_ID_FLAG_UNKNOWN";
+      return 'BLOCK_ID_FLAG_UNKNOWN';
     case BlockIDFlag.BLOCK_ID_FLAG_ABSENT:
-      return "BLOCK_ID_FLAG_ABSENT";
+      return 'BLOCK_ID_FLAG_ABSENT';
     case BlockIDFlag.BLOCK_ID_FLAG_COMMIT:
-      return "BLOCK_ID_FLAG_COMMIT";
+      return 'BLOCK_ID_FLAG_COMMIT';
     case BlockIDFlag.BLOCK_ID_FLAG_NIL:
-      return "BLOCK_ID_FLAG_NIL";
+      return 'BLOCK_ID_FLAG_NIL';
     case BlockIDFlag.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -156,9 +156,8 @@ export const ValidatorSet = {
   fromPartial<I extends Exact<DeepPartial<ValidatorSet>, I>>(object: I): ValidatorSet {
     const message = createBaseValidatorSet();
     message.validators = object.validators?.map((e) => Validator.fromPartial(e)) || [];
-    message.proposer = (object.proposer !== undefined && object.proposer !== null)
-      ? Validator.fromPartial(object.proposer)
-      : undefined;
+    message.proposer =
+      object.proposer !== undefined && object.proposer !== null ? Validator.fromPartial(object.proposer) : undefined;
     message.totalVotingPower = object.totalVotingPower ?? 0;
     return message;
   },
@@ -261,9 +260,8 @@ export const Validator = {
   fromPartial<I extends Exact<DeepPartial<Validator>, I>>(object: I): Validator {
     const message = createBaseValidator();
     message.address = object.address ?? new Uint8Array(0);
-    message.pubKey = (object.pubKey !== undefined && object.pubKey !== null)
-      ? PublicKey.fromPartial(object.pubKey)
-      : undefined;
+    message.pubKey =
+      object.pubKey !== undefined && object.pubKey !== null ? PublicKey.fromPartial(object.pubKey) : undefined;
     message.votingPower = object.votingPower ?? 0;
     message.proposerPriority = object.proposerPriority ?? 0;
     return message;
@@ -338,9 +336,8 @@ export const SimpleValidator = {
   },
   fromPartial<I extends Exact<DeepPartial<SimpleValidator>, I>>(object: I): SimpleValidator {
     const message = createBaseSimpleValidator();
-    message.pubKey = (object.pubKey !== undefined && object.pubKey !== null)
-      ? PublicKey.fromPartial(object.pubKey)
-      : undefined;
+    message.pubKey =
+      object.pubKey !== undefined && object.pubKey !== null ? PublicKey.fromPartial(object.pubKey) : undefined;
     message.votingPower = object.votingPower ?? 0;
     return message;
   },
@@ -350,24 +347,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -380,30 +377,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

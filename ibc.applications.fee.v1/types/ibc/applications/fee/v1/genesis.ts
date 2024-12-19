@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { PacketId } from "../../../core/channel/v1/channel";
-import { IdentifiedPacketFees } from "./fee";
+import _m0 from 'protobufjs/minimal';
+import { PacketId } from '../../../core/channel/v1/channel';
+import { IdentifiedPacketFees } from './fee';
 
-export const protobufPackage = "ibc.applications.fee.v1";
+export const protobufPackage = 'ibc.applications.fee.v1';
 
 /** GenesisState defines the ICS29 fee middleware genesis state */
 export interface GenesisState {
@@ -197,15 +197,15 @@ export const GenesisState = {
 };
 
 function createBaseFeeEnabledChannel(): FeeEnabledChannel {
-  return { portId: "", channelId: "" };
+  return { portId: '', channelId: '' };
 }
 
 export const FeeEnabledChannel = {
   encode(message: FeeEnabledChannel, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(18).string(message.channelId);
     }
     return writer;
@@ -243,17 +243,17 @@ export const FeeEnabledChannel = {
 
   fromJSON(object: any): FeeEnabledChannel {
     return {
-      portId: isSet(object.portId) ? String(object.portId) : "",
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
+      portId: isSet(object.portId) ? String(object.portId) : '',
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
     };
   },
 
   toJSON(message: FeeEnabledChannel): unknown {
     const obj: any = {};
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       obj.portId = message.portId;
     }
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
     return obj;
@@ -264,25 +264,25 @@ export const FeeEnabledChannel = {
   },
   fromPartial<I extends Exact<DeepPartial<FeeEnabledChannel>, I>>(object: I): FeeEnabledChannel {
     const message = createBaseFeeEnabledChannel();
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
+    message.portId = object.portId ?? '';
+    message.channelId = object.channelId ?? '';
     return message;
   },
 };
 
 function createBaseRegisteredPayee(): RegisteredPayee {
-  return { channelId: "", relayer: "", payee: "" };
+  return { channelId: '', relayer: '', payee: '' };
 }
 
 export const RegisteredPayee = {
   encode(message: RegisteredPayee, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(10).string(message.channelId);
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       writer.uint32(18).string(message.relayer);
     }
-    if (message.payee !== "") {
+    if (message.payee !== '') {
       writer.uint32(26).string(message.payee);
     }
     return writer;
@@ -327,21 +327,21 @@ export const RegisteredPayee = {
 
   fromJSON(object: any): RegisteredPayee {
     return {
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
-      relayer: isSet(object.relayer) ? String(object.relayer) : "",
-      payee: isSet(object.payee) ? String(object.payee) : "",
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
+      relayer: isSet(object.relayer) ? String(object.relayer) : '',
+      payee: isSet(object.payee) ? String(object.payee) : '',
     };
   },
 
   toJSON(message: RegisteredPayee): unknown {
     const obj: any = {};
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       obj.relayer = message.relayer;
     }
-    if (message.payee !== "") {
+    if (message.payee !== '') {
       obj.payee = message.payee;
     }
     return obj;
@@ -352,26 +352,26 @@ export const RegisteredPayee = {
   },
   fromPartial<I extends Exact<DeepPartial<RegisteredPayee>, I>>(object: I): RegisteredPayee {
     const message = createBaseRegisteredPayee();
-    message.channelId = object.channelId ?? "";
-    message.relayer = object.relayer ?? "";
-    message.payee = object.payee ?? "";
+    message.channelId = object.channelId ?? '';
+    message.relayer = object.relayer ?? '';
+    message.payee = object.payee ?? '';
     return message;
   },
 };
 
 function createBaseRegisteredCounterpartyPayee(): RegisteredCounterpartyPayee {
-  return { channelId: "", relayer: "", counterpartyPayee: "" };
+  return { channelId: '', relayer: '', counterpartyPayee: '' };
 }
 
 export const RegisteredCounterpartyPayee = {
   encode(message: RegisteredCounterpartyPayee, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       writer.uint32(10).string(message.channelId);
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       writer.uint32(18).string(message.relayer);
     }
-    if (message.counterpartyPayee !== "") {
+    if (message.counterpartyPayee !== '') {
       writer.uint32(26).string(message.counterpartyPayee);
     }
     return writer;
@@ -416,21 +416,21 @@ export const RegisteredCounterpartyPayee = {
 
   fromJSON(object: any): RegisteredCounterpartyPayee {
     return {
-      channelId: isSet(object.channelId) ? String(object.channelId) : "",
-      relayer: isSet(object.relayer) ? String(object.relayer) : "",
-      counterpartyPayee: isSet(object.counterpartyPayee) ? String(object.counterpartyPayee) : "",
+      channelId: isSet(object.channelId) ? String(object.channelId) : '',
+      relayer: isSet(object.relayer) ? String(object.relayer) : '',
+      counterpartyPayee: isSet(object.counterpartyPayee) ? String(object.counterpartyPayee) : '',
     };
   },
 
   toJSON(message: RegisteredCounterpartyPayee): unknown {
     const obj: any = {};
-    if (message.channelId !== "") {
+    if (message.channelId !== '') {
       obj.channelId = message.channelId;
     }
-    if (message.relayer !== "") {
+    if (message.relayer !== '') {
       obj.relayer = message.relayer;
     }
-    if (message.counterpartyPayee !== "") {
+    if (message.counterpartyPayee !== '') {
       obj.counterpartyPayee = message.counterpartyPayee;
     }
     return obj;
@@ -441,20 +441,20 @@ export const RegisteredCounterpartyPayee = {
   },
   fromPartial<I extends Exact<DeepPartial<RegisteredCounterpartyPayee>, I>>(object: I): RegisteredCounterpartyPayee {
     const message = createBaseRegisteredCounterpartyPayee();
-    message.channelId = object.channelId ?? "";
-    message.relayer = object.relayer ?? "";
-    message.counterpartyPayee = object.counterpartyPayee ?? "";
+    message.channelId = object.channelId ?? '';
+    message.relayer = object.relayer ?? '';
+    message.counterpartyPayee = object.counterpartyPayee ?? '';
     return message;
   },
 };
 
 function createBaseForwardRelayerAddress(): ForwardRelayerAddress {
-  return { address: "", packetId: undefined };
+  return { address: '', packetId: undefined };
 }
 
 export const ForwardRelayerAddress = {
   encode(message: ForwardRelayerAddress, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.packetId !== undefined) {
@@ -495,14 +495,14 @@ export const ForwardRelayerAddress = {
 
   fromJSON(object: any): ForwardRelayerAddress {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       packetId: isSet(object.packetId) ? PacketId.fromJSON(object.packetId) : undefined,
     };
   },
 
   toJSON(message: ForwardRelayerAddress): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.packetId !== undefined) {
@@ -516,23 +516,28 @@ export const ForwardRelayerAddress = {
   },
   fromPartial<I extends Exact<DeepPartial<ForwardRelayerAddress>, I>>(object: I): ForwardRelayerAddress {
     const message = createBaseForwardRelayerAddress();
-    message.address = object.address ?? "";
-    message.packetId = (object.packetId !== undefined && object.packetId !== null)
-      ? PacketId.fromPartial(object.packetId)
-      : undefined;
+    message.address = object.address ?? '';
+    message.packetId =
+      object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

@@ -10,14 +10,14 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface BlockID {
@@ -27,10 +27,10 @@ export interface BlockID {
 }
 
 export enum BondStatus {
-  BOND_STATUS_UNSPECIFIED = "BOND_STATUS_UNSPECIFIED",
-  BOND_STATUS_UNBONDED = "BOND_STATUS_UNBONDED",
-  BOND_STATUS_UNBONDING = "BOND_STATUS_UNBONDING",
-  BOND_STATUS_BONDED = "BOND_STATUS_BONDED",
+  BOND_STATUS_UNSPECIFIED = 'BOND_STATUS_UNSPECIFIED',
+  BOND_STATUS_UNBONDED = 'BOND_STATUS_UNBONDED',
+  BOND_STATUS_UNBONDING = 'BOND_STATUS_UNBONDING',
+  BOND_STATUS_BONDED = 'BOND_STATUS_BONDED',
 }
 
 export interface Coin {
@@ -174,9 +174,9 @@ export interface QueryDelegatorUnbondingDelegationsResponse {
 export interface QueryDelegatorValidatorResponse {
   validator?: {
     operator_address?: string;
-    consensus_pubkey?: { "@type"?: string };
+    consensus_pubkey?: { '@type'?: string };
     jailed?: boolean;
-    status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+    status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
     tokens?: string;
     delegator_shares?: string;
     description?: {
@@ -201,9 +201,9 @@ export interface QueryDelegatorValidatorResponse {
 export interface QueryDelegatorValidatorsResponse {
   validators?: {
     operator_address?: string;
-    consensus_pubkey?: { "@type"?: string };
+    consensus_pubkey?: { '@type'?: string };
     jailed?: boolean;
-    status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+    status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
     tokens?: string;
     delegator_shares?: string;
     description?: {
@@ -246,9 +246,9 @@ export interface QueryHistoricalInfoResponse {
     };
     valset?: {
       operator_address?: string;
-      consensus_pubkey?: { "@type"?: string };
+      consensus_pubkey?: { '@type'?: string };
       jailed?: boolean;
-      status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+      status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
       tokens?: string;
       delegator_shares?: string;
       description?: {
@@ -342,9 +342,9 @@ export interface QueryValidatorDelegationsResponse {
 export interface QueryValidatorResponse {
   validator?: {
     operator_address?: string;
-    consensus_pubkey?: { "@type"?: string };
+    consensus_pubkey?: { '@type'?: string };
     jailed?: boolean;
-    status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+    status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
     tokens?: string;
     delegator_shares?: string;
     description?: {
@@ -385,9 +385,9 @@ export interface QueryValidatorUnbondingDelegationsResponse {
 export interface QueryValidatorsResponse {
   validators?: {
     operator_address?: string;
-    consensus_pubkey?: { "@type"?: string };
+    consensus_pubkey?: { '@type'?: string };
     jailed?: boolean;
-    status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+    status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
     tokens?: string;
     delegator_shares?: string;
     description?: {
@@ -520,9 +520,9 @@ export interface V1Beta1HistoricalInfo {
   };
   valset?: {
     operator_address?: string;
-    consensus_pubkey?: { "@type"?: string };
+    consensus_pubkey?: { '@type'?: string };
     jailed?: boolean;
-    status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+    status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
     tokens?: string;
     delegator_shares?: string;
     description?: {
@@ -579,9 +579,9 @@ export interface V1Beta1UnbondingDelegation {
 
 export interface V1Beta1Validator {
   operator_address?: string;
-  consensus_pubkey?: { "@type"?: string };
+  consensus_pubkey?: { '@type'?: string };
   jailed?: boolean;
-  status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+  status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
   tokens?: string;
   delegator_shares?: string;
   description?: { moniker?: string; identity?: string; website?: string; security_contact?: string; details?: string };
@@ -638,11 +638,11 @@ export interface Params {
   min_commission_rate?: string;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -657,31 +657,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -711,9 +711,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -729,15 +729,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -747,7 +747,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -772,13 +772,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDelegatorDelegations = (
     delegatorAddr: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -788,10 +788,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/delegations/${delegatorAddr}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -808,13 +808,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     query?: {
       src_validator_addr?: string;
       dst_validator_addr?: string;
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -846,10 +846,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/delegators/${delegatorAddr}/redelegations`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -864,13 +864,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDelegatorUnbondingDelegations = (
     delegatorAddr: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -888,10 +888,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/delegators/${delegatorAddr}/unbonding_delegations`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -906,21 +906,21 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDelegatorValidators = (
     delegatorAddr: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         validators?: {
           operator_address?: string;
-          consensus_pubkey?: { "@type"?: string };
+          consensus_pubkey?: { '@type'?: string };
           jailed?: boolean;
-          status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+          status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
           tokens?: string;
           delegator_shares?: string;
           description?: {
@@ -942,10 +942,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/delegators/${delegatorAddr}/validators`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -962,9 +962,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       {
         validator?: {
           operator_address?: string;
-          consensus_pubkey?: { "@type"?: string };
+          consensus_pubkey?: { '@type'?: string };
           jailed?: boolean;
-          status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+          status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
           tokens?: string;
           delegator_shares?: string;
           description?: {
@@ -985,10 +985,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           unbonding_ids?: string[];
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/delegators/${delegatorAddr}/validators/${validatorAddr}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1021,13 +1021,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           };
           valset?: {
             operator_address?: string;
-            consensus_pubkey?: { "@type"?: string };
+            consensus_pubkey?: { '@type'?: string };
             jailed?: boolean;
             status?:
-              | "BOND_STATUS_UNSPECIFIED"
-              | "BOND_STATUS_UNBONDED"
-              | "BOND_STATUS_UNBONDING"
-              | "BOND_STATUS_BONDED";
+              | 'BOND_STATUS_UNSPECIFIED'
+              | 'BOND_STATUS_UNBONDED'
+              | 'BOND_STATUS_UNBONDING'
+              | 'BOND_STATUS_BONDED';
             tokens?: string;
             delegator_shares?: string;
             description?: {
@@ -1049,10 +1049,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           }[];
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/historical_info/${height}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1075,10 +1075,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           min_commission_rate?: string;
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/params`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1092,10 +1092,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryPool = (params: RequestParams = {}) =>
     this.request<
       { pool?: { not_bonded_tokens?: string; bonded_tokens?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/pool`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1109,21 +1109,21 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryValidators = (
     query?: {
       status?: string;
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         validators?: {
           operator_address?: string;
-          consensus_pubkey?: { "@type"?: string };
+          consensus_pubkey?: { '@type'?: string };
           jailed?: boolean;
-          status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+          status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
           tokens?: string;
           delegator_shares?: string;
           description?: {
@@ -1145,10 +1145,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/validators`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -1165,9 +1165,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       {
         validator?: {
           operator_address?: string;
-          consensus_pubkey?: { "@type"?: string };
+          consensus_pubkey?: { '@type'?: string };
           jailed?: boolean;
-          status?: "BOND_STATUS_UNSPECIFIED" | "BOND_STATUS_UNBONDED" | "BOND_STATUS_UNBONDING" | "BOND_STATUS_BONDED";
+          status?: 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING' | 'BOND_STATUS_BONDED';
           tokens?: string;
           delegator_shares?: string;
           description?: {
@@ -1188,10 +1188,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           unbonding_ids?: string[];
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/validators/${validatorAddr}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1205,13 +1205,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryValidatorDelegations = (
     validatorAddr: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -1221,10 +1221,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/validators/${validatorAddr}/delegations`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -1244,10 +1244,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           balance?: { denom?: string; amount?: string };
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/validators/${validatorAddr}/delegations/${delegatorAddr}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1274,10 +1274,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           }[];
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/validators/${validatorAddr}/delegations/${delegatorAddr}/unbonding_delegation`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -1291,13 +1291,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryValidatorUnbondingDelegations = (
     validatorAddr: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -1315,10 +1315,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/staking/v1beta1/validators/${validatorAddr}/unbonding_delegations`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });

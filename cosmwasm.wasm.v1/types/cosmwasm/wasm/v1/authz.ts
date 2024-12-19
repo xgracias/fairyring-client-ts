@@ -1,11 +1,11 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Coin } from "../../../cosmos/base/v1beta1/coin";
-import { Any } from "../../../google/protobuf/any";
-import { AccessConfig } from "./types";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Coin } from '../../../cosmos/base/v1beta1/coin';
+import { Any } from '../../../google/protobuf/any';
+import { AccessConfig } from './types';
 
-export const protobufPackage = "cosmwasm.wasm.v1";
+export const protobufPackage = 'cosmwasm.wasm.v1';
 
 /**
  * StoreCodeAuthorization defines authorization for wasm code upload.
@@ -60,9 +60,7 @@ export interface ContractGrant {
    * Limit defines execution limits that are enforced and updated when the grant
    * is applied. When the limit lapsed the grant is removed.
    */
-  limit:
-    | Any
-    | undefined;
+  limit: Any | undefined;
   /**
    * Filter define more fine-grained control on the message payload passed
    * to the contract in the operation. When no filter applies on execution, the
@@ -106,8 +104,7 @@ export interface CombinedLimit {
  * message.
  * Since: wasmd 0.30
  */
-export interface AllowAllMessagesFilter {
-}
+export interface AllowAllMessagesFilter {}
 
 /**
  * AcceptedMessageKeysFilter accept only the specific contract message keys in
@@ -237,7 +234,7 @@ export const ContractExecutionAuthorization = {
     return ContractExecutionAuthorization.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<ContractExecutionAuthorization>, I>>(
-    object: I,
+    object: I
   ): ContractExecutionAuthorization {
     const message = createBaseContractExecutionAuthorization();
     message.grants = object.grants?.map((e) => ContractGrant.fromPartial(e)) || [];
@@ -296,7 +293,7 @@ export const ContractMigrationAuthorization = {
     return ContractMigrationAuthorization.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<ContractMigrationAuthorization>, I>>(
-    object: I,
+    object: I
   ): ContractMigrationAuthorization {
     const message = createBaseContractMigrationAuthorization();
     message.grants = object.grants?.map((e) => ContractGrant.fromPartial(e)) || [];
@@ -376,7 +373,7 @@ export const CodeGrant = {
     const message = createBaseCodeGrant();
     message.codeHash = object.codeHash ?? new Uint8Array(0);
     message.instantiatePermission =
-      (object.instantiatePermission !== undefined && object.instantiatePermission !== null)
+      object.instantiatePermission !== undefined && object.instantiatePermission !== null
         ? AccessConfig.fromPartial(object.instantiatePermission)
         : undefined;
     return message;
@@ -384,12 +381,12 @@ export const CodeGrant = {
 };
 
 function createBaseContractGrant(): ContractGrant {
-  return { contract: "", limit: undefined, filter: undefined };
+  return { contract: '', limit: undefined, filter: undefined };
 }
 
 export const ContractGrant = {
   encode(message: ContractGrant, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.contract !== "") {
+    if (message.contract !== '') {
       writer.uint32(10).string(message.contract);
     }
     if (message.limit !== undefined) {
@@ -440,7 +437,7 @@ export const ContractGrant = {
 
   fromJSON(object: any): ContractGrant {
     return {
-      contract: isSet(object.contract) ? String(object.contract) : "",
+      contract: isSet(object.contract) ? String(object.contract) : '',
       limit: isSet(object.limit) ? Any.fromJSON(object.limit) : undefined,
       filter: isSet(object.filter) ? Any.fromJSON(object.filter) : undefined,
     };
@@ -448,7 +445,7 @@ export const ContractGrant = {
 
   toJSON(message: ContractGrant): unknown {
     const obj: any = {};
-    if (message.contract !== "") {
+    if (message.contract !== '') {
       obj.contract = message.contract;
     }
     if (message.limit !== undefined) {
@@ -465,11 +462,9 @@ export const ContractGrant = {
   },
   fromPartial<I extends Exact<DeepPartial<ContractGrant>, I>>(object: I): ContractGrant {
     const message = createBaseContractGrant();
-    message.contract = object.contract ?? "";
-    message.limit = (object.limit !== undefined && object.limit !== null) ? Any.fromPartial(object.limit) : undefined;
-    message.filter = (object.filter !== undefined && object.filter !== null)
-      ? Any.fromPartial(object.filter)
-      : undefined;
+    message.contract = object.contract ?? '';
+    message.limit = object.limit !== undefined && object.limit !== null ? Any.fromPartial(object.limit) : undefined;
+    message.filter = object.filter !== undefined && object.filter !== null ? Any.fromPartial(object.filter) : undefined;
     return message;
   },
 };
@@ -823,24 +818,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -853,30 +848,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

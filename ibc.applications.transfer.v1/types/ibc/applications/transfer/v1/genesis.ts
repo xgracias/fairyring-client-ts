@@ -1,17 +1,15 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Coin } from "../../../../cosmos/base/v1beta1/coin";
-import { DenomTrace, Params } from "./transfer";
+import _m0 from 'protobufjs/minimal';
+import { Coin } from '../../../../cosmos/base/v1beta1/coin';
+import { DenomTrace, Params } from './transfer';
 
-export const protobufPackage = "ibc.applications.transfer.v1";
+export const protobufPackage = 'ibc.applications.transfer.v1';
 
 /** GenesisState defines the ibc-transfer genesis state */
 export interface GenesisState {
   portId: string;
   denomTraces: DenomTrace[];
-  params:
-    | Params
-    | undefined;
+  params: Params | undefined;
   /**
    * total_escrowed contains the total amount of tokens escrowed
    * by the transfer module
@@ -20,12 +18,12 @@ export interface GenesisState {
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { portId: "", denomTraces: [], params: undefined, totalEscrowed: [] };
+  return { portId: '', denomTraces: [], params: undefined, totalEscrowed: [] };
 }
 
 export const GenesisState = {
   encode(message: GenesisState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       writer.uint32(10).string(message.portId);
     }
     for (const v of message.denomTraces) {
@@ -86,7 +84,7 @@ export const GenesisState = {
 
   fromJSON(object: any): GenesisState {
     return {
-      portId: isSet(object.portId) ? String(object.portId) : "",
+      portId: isSet(object.portId) ? String(object.portId) : '',
       denomTraces: Array.isArray(object?.denomTraces) ? object.denomTraces.map((e: any) => DenomTrace.fromJSON(e)) : [],
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
       totalEscrowed: Array.isArray(object?.totalEscrowed) ? object.totalEscrowed.map((e: any) => Coin.fromJSON(e)) : [],
@@ -95,7 +93,7 @@ export const GenesisState = {
 
   toJSON(message: GenesisState): unknown {
     const obj: any = {};
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       obj.portId = message.portId;
     }
     if (message.denomTraces?.length) {
@@ -115,11 +113,10 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.portId = object.portId ?? "";
+    message.portId = object.portId ?? '';
     message.denomTraces = object.denomTraces?.map((e) => DenomTrace.fromPartial(e)) || [];
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.totalEscrowed = object.totalEscrowed?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
@@ -127,13 +124,19 @@ export const GenesisState = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

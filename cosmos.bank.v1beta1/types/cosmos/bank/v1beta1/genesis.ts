@@ -1,16 +1,14 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Coin } from "../../base/v1beta1/coin";
-import { Metadata, Params, SendEnabled } from "./bank";
+import _m0 from 'protobufjs/minimal';
+import { Coin } from '../../base/v1beta1/coin';
+import { Metadata, Params, SendEnabled } from './bank';
 
-export const protobufPackage = "cosmos.bank.v1beta1";
+export const protobufPackage = 'cosmos.bank.v1beta1';
 
 /** GenesisState defines the bank module's genesis state. */
 export interface GenesisState {
   /** params defines all the parameters of the module. */
-  params:
-    | Params
-    | undefined;
+  params: Params | undefined;
   /** balances is an array containing the balances of all the accounts. */
   balances: Balance[];
   /**
@@ -153,9 +151,8 @@ export const GenesisState = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisState>, I>>(object: I): GenesisState {
     const message = createBaseGenesisState();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.balances = object.balances?.map((e) => Balance.fromPartial(e)) || [];
     message.supply = object.supply?.map((e) => Coin.fromPartial(e)) || [];
     message.denomMetadata = object.denomMetadata?.map((e) => Metadata.fromPartial(e)) || [];
@@ -165,12 +162,12 @@ export const GenesisState = {
 };
 
 function createBaseBalance(): Balance {
-  return { address: "", coins: [] };
+  return { address: '', coins: [] };
 }
 
 export const Balance = {
   encode(message: Balance, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     for (const v of message.coins) {
@@ -211,14 +208,14 @@ export const Balance = {
 
   fromJSON(object: any): Balance {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       coins: Array.isArray(object?.coins) ? object.coins.map((e: any) => Coin.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: Balance): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.coins?.length) {
@@ -232,7 +229,7 @@ export const Balance = {
   },
   fromPartial<I extends Exact<DeepPartial<Balance>, I>>(object: I): Balance {
     const message = createBaseBalance();
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     message.coins = object.coins?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
@@ -240,13 +237,19 @@ export const Balance = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

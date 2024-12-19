@@ -10,14 +10,14 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface AbsoluteTxPosition {
@@ -30,18 +30,18 @@ export interface AbsoluteTxPosition {
 
 export interface AccessConfig {
   permission?:
-    | "ACCESS_TYPE_UNSPECIFIED"
-    | "ACCESS_TYPE_NOBODY"
-    | "ACCESS_TYPE_EVERYBODY"
-    | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+    | 'ACCESS_TYPE_UNSPECIFIED'
+    | 'ACCESS_TYPE_NOBODY'
+    | 'ACCESS_TYPE_EVERYBODY'
+    | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
   addresses?: string[];
 }
 
 export enum AccessType {
-  ACCESS_TYPE_UNSPECIFIED = "ACCESS_TYPE_UNSPECIFIED",
-  ACCESS_TYPE_NOBODY = "ACCESS_TYPE_NOBODY",
-  ACCESS_TYPE_EVERYBODY = "ACCESS_TYPE_EVERYBODY",
-  ACCESS_TYPE_ANY_OF_ADDRESSES = "ACCESS_TYPE_ANY_OF_ADDRESSES",
+  ACCESS_TYPE_UNSPECIFIED = 'ACCESS_TYPE_UNSPECIFIED',
+  ACCESS_TYPE_NOBODY = 'ACCESS_TYPE_NOBODY',
+  ACCESS_TYPE_EVERYBODY = 'ACCESS_TYPE_EVERYBODY',
+  ACCESS_TYPE_ANY_OF_ADDRESSES = 'ACCESS_TYPE_ANY_OF_ADDRESSES',
 }
 
 export interface CodeInfoResponse {
@@ -53,20 +53,20 @@ export interface CodeInfoResponse {
   data_hash?: string;
   instantiate_permission?: {
     permission?:
-      | "ACCESS_TYPE_UNSPECIFIED"
-      | "ACCESS_TYPE_NOBODY"
-      | "ACCESS_TYPE_EVERYBODY"
-      | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+      | 'ACCESS_TYPE_UNSPECIFIED'
+      | 'ACCESS_TYPE_NOBODY'
+      | 'ACCESS_TYPE_EVERYBODY'
+      | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
     addresses?: string[];
   };
 }
 
 export interface ContractCodeHistoryEntry {
   operation?:
-    | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED"
-    | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT"
-    | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE"
-    | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS";
+    | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED'
+    | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT'
+    | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE'
+    | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS';
 
   /** @format uint64 */
   code_id?: string;
@@ -77,10 +77,10 @@ export interface ContractCodeHistoryEntry {
 }
 
 export enum ContractCodeHistoryOperationType {
-  CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED = "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED",
-  CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT = "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT",
-  CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE = "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE",
-  CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS = "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS",
+  CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED = 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED',
+  CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT = 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT',
+  CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE = 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE',
+  CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS = 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS',
 }
 
 export interface Model {
@@ -128,10 +128,10 @@ export interface QueryCodeResponse {
     data_hash?: string;
     instantiate_permission?: {
       permission?:
-        | "ACCESS_TYPE_UNSPECIFIED"
-        | "ACCESS_TYPE_NOBODY"
-        | "ACCESS_TYPE_EVERYBODY"
-        | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+        | 'ACCESS_TYPE_UNSPECIFIED'
+        | 'ACCESS_TYPE_NOBODY'
+        | 'ACCESS_TYPE_EVERYBODY'
+        | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
       addresses?: string[];
     };
   };
@@ -147,10 +147,10 @@ export interface QueryCodesResponse {
     data_hash?: string;
     instantiate_permission?: {
       permission?:
-        | "ACCESS_TYPE_UNSPECIFIED"
-        | "ACCESS_TYPE_NOBODY"
-        | "ACCESS_TYPE_EVERYBODY"
-        | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+        | 'ACCESS_TYPE_UNSPECIFIED'
+        | 'ACCESS_TYPE_NOBODY'
+        | 'ACCESS_TYPE_EVERYBODY'
+        | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
       addresses?: string[];
     };
   }[];
@@ -160,10 +160,10 @@ export interface QueryCodesResponse {
 export interface QueryContractHistoryResponse {
   entries?: {
     operation?:
-      | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED"
-      | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT"
-      | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE"
-      | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS";
+      | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED'
+      | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT'
+      | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE'
+      | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS';
     code_id?: string;
     updated?: { block_height?: string; tx_index?: string };
     msg?: string;
@@ -180,7 +180,7 @@ export interface QueryContractInfoResponse {
     label?: string;
     created?: { block_height?: string; tx_index?: string };
     ibc_port_id?: string;
-    extension?: { "@type"?: string };
+    extension?: { '@type'?: string };
   };
 }
 
@@ -198,17 +198,17 @@ export interface QueryParamsResponse {
   params?: {
     code_upload_access?: {
       permission?:
-        | "ACCESS_TYPE_UNSPECIFIED"
-        | "ACCESS_TYPE_NOBODY"
-        | "ACCESS_TYPE_EVERYBODY"
-        | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+        | 'ACCESS_TYPE_UNSPECIFIED'
+        | 'ACCESS_TYPE_NOBODY'
+        | 'ACCESS_TYPE_EVERYBODY'
+        | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
       addresses?: string[];
     };
     instantiate_default_permission?:
-      | "ACCESS_TYPE_UNSPECIFIED"
-      | "ACCESS_TYPE_NOBODY"
-      | "ACCESS_TYPE_EVERYBODY"
-      | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+      | 'ACCESS_TYPE_UNSPECIFIED'
+      | 'ACCESS_TYPE_NOBODY'
+      | 'ACCESS_TYPE_EVERYBODY'
+      | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
   };
 }
 
@@ -235,23 +235,23 @@ export interface V1ContractInfo {
   label?: string;
   created?: { block_height?: string; tx_index?: string };
   ibc_port_id?: string;
-  extension?: { "@type"?: string };
+  extension?: { '@type'?: string };
 }
 
 export interface V1Params {
   code_upload_access?: {
     permission?:
-      | "ACCESS_TYPE_UNSPECIFIED"
-      | "ACCESS_TYPE_NOBODY"
-      | "ACCESS_TYPE_EVERYBODY"
-      | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+      | 'ACCESS_TYPE_UNSPECIFIED'
+      | 'ACCESS_TYPE_NOBODY'
+      | 'ACCESS_TYPE_EVERYBODY'
+      | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
     addresses?: string[];
   };
   instantiate_default_permission?:
-    | "ACCESS_TYPE_UNSPECIFIED"
-    | "ACCESS_TYPE_NOBODY"
-    | "ACCESS_TYPE_EVERYBODY"
-    | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+    | 'ACCESS_TYPE_UNSPECIFIED'
+    | 'ACCESS_TYPE_NOBODY'
+    | 'ACCESS_TYPE_EVERYBODY'
+    | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
 }
 
 export interface Coin {
@@ -335,24 +335,24 @@ export type MsgUpdateParamsResponse = object;
 export interface Params {
   code_upload_access?: {
     permission?:
-      | "ACCESS_TYPE_UNSPECIFIED"
-      | "ACCESS_TYPE_NOBODY"
-      | "ACCESS_TYPE_EVERYBODY"
-      | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+      | 'ACCESS_TYPE_UNSPECIFIED'
+      | 'ACCESS_TYPE_NOBODY'
+      | 'ACCESS_TYPE_EVERYBODY'
+      | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
     addresses?: string[];
   };
   instantiate_default_permission?:
-    | "ACCESS_TYPE_UNSPECIFIED"
-    | "ACCESS_TYPE_NOBODY"
-    | "ACCESS_TYPE_EVERYBODY"
-    | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+    | 'ACCESS_TYPE_UNSPECIFIED'
+    | 'ACCESS_TYPE_NOBODY'
+    | 'ACCESS_TYPE_EVERYBODY'
+    | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -367,31 +367,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -421,9 +421,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -439,15 +439,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -457,7 +457,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -481,13 +481,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryCodes = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
@@ -497,19 +497,19 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           data_hash?: string;
           instantiate_permission?: {
             permission?:
-              | "ACCESS_TYPE_UNSPECIFIED"
-              | "ACCESS_TYPE_NOBODY"
-              | "ACCESS_TYPE_EVERYBODY"
-              | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+              | 'ACCESS_TYPE_UNSPECIFIED'
+              | 'ACCESS_TYPE_NOBODY'
+              | 'ACCESS_TYPE_EVERYBODY'
+              | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
             addresses?: string[];
           };
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/code`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -530,19 +530,19 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           data_hash?: string;
           instantiate_permission?: {
             permission?:
-              | "ACCESS_TYPE_UNSPECIFIED"
-              | "ACCESS_TYPE_NOBODY"
-              | "ACCESS_TYPE_EVERYBODY"
-              | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+              | 'ACCESS_TYPE_UNSPECIFIED'
+              | 'ACCESS_TYPE_NOBODY'
+              | 'ACCESS_TYPE_EVERYBODY'
+              | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
             addresses?: string[];
           };
         };
         data?: string;
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/code/${codeId}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -556,20 +556,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryContractsByCode = (
     codeId: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { contracts?: string[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/code/${codeId}/contracts`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -587,23 +587,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         params?: {
           code_upload_access?: {
             permission?:
-              | "ACCESS_TYPE_UNSPECIFIED"
-              | "ACCESS_TYPE_NOBODY"
-              | "ACCESS_TYPE_EVERYBODY"
-              | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+              | 'ACCESS_TYPE_UNSPECIFIED'
+              | 'ACCESS_TYPE_NOBODY'
+              | 'ACCESS_TYPE_EVERYBODY'
+              | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
             addresses?: string[];
           };
           instantiate_default_permission?:
-            | "ACCESS_TYPE_UNSPECIFIED"
-            | "ACCESS_TYPE_NOBODY"
-            | "ACCESS_TYPE_EVERYBODY"
-            | "ACCESS_TYPE_ANY_OF_ADDRESSES";
+            | 'ACCESS_TYPE_UNSPECIFIED'
+            | 'ACCESS_TYPE_NOBODY'
+            | 'ACCESS_TYPE_EVERYBODY'
+            | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/codes/params`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -616,20 +616,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryPinnedCodes = (
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { code_ids?: string[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/codes/pinned`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -643,11 +643,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryBuildAddress = (
     query?: { code_hash?: string; creator_address?: string; salt?: string; init_args?: string },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
-    this.request<{ address?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ address?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmwasm/wasm/v1/contract/build_address`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -670,13 +670,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           label?: string;
           created?: { block_height?: string; tx_index?: string };
           ibc_port_id?: string;
-          extension?: { "@type"?: string };
+          extension?: { '@type'?: string };
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/contract/${address}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -690,32 +690,32 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryContractHistory = (
     address: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         entries?: {
           operation?:
-            | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED"
-            | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT"
-            | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE"
-            | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS";
+            | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED'
+            | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT'
+            | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE'
+            | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS';
           code_id?: string;
           updated?: { block_height?: string; tx_index?: string };
           msg?: string;
         }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/contract/${address}/history`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -728,9 +728,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmwasm/wasm/v1/contract/{address}/raw/{query_data}
    */
   queryRawContractState = (address: string, queryData: string, params: RequestParams = {}) =>
-    this.request<{ data?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ data?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmwasm/wasm/v1/contract/${address}/raw/${queryData}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -742,9 +742,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmwasm/wasm/v1/contract/{address}/smart/{query_data}
    */
   querySmartContractState = (address: string, queryData: string, params: RequestParams = {}) =>
-    this.request<{ data?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ data?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmwasm/wasm/v1/contract/${address}/smart/${queryData}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -758,20 +758,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryAllContractState = (
     address: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { models?: { key?: string; value?: string }[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/contract/${address}/state`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });
@@ -786,20 +786,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryContractsByCreator = (
     creatorAddress: string,
     query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       { contract_addresses?: string[]; pagination?: { next_key?: string; total?: string } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmwasm/wasm/v1/contracts/creator/${creatorAddress}`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });

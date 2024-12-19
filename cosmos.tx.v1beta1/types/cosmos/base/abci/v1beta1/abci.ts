@@ -1,11 +1,11 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Any } from "../../../../google/protobuf/any";
-import { Event } from "../../../../tendermint/abci/types";
-import { Block } from "../../../../tendermint/types/block";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Any } from '../../../../google/protobuf/any';
+import { Event } from '../../../../tendermint/abci/types';
+import { Block } from '../../../../tendermint/types/block';
 
-export const protobufPackage = "cosmos.base.abci.v1beta1";
+export const protobufPackage = 'cosmos.base.abci.v1beta1';
 
 /**
  * TxResponse defines a structure containing relevant tx data and metadata. The
@@ -36,9 +36,7 @@ export interface TxResponse {
   /** Amount of gas consumed by transaction. */
   gasUsed: number;
   /** The request transaction bytes. */
-  tx:
-    | Any
-    | undefined;
+  tx: Any | undefined;
   /**
    * Time of the previous block. For heights > 1, it's the weighted median of
    * the timestamps of the valid votes in the block.LastCommit. For height == 1,
@@ -193,17 +191,17 @@ export interface SearchBlocksResult {
 function createBaseTxResponse(): TxResponse {
   return {
     height: 0,
-    txhash: "",
-    codespace: "",
+    txhash: '',
+    codespace: '',
     code: 0,
-    data: "",
-    rawLog: "",
+    data: '',
+    rawLog: '',
     logs: [],
-    info: "",
+    info: '',
     gasWanted: 0,
     gasUsed: 0,
     tx: undefined,
-    timestamp: "",
+    timestamp: '',
     events: [],
   };
 }
@@ -213,25 +211,25 @@ export const TxResponse = {
     if (message.height !== 0) {
       writer.uint32(8).int64(message.height);
     }
-    if (message.txhash !== "") {
+    if (message.txhash !== '') {
       writer.uint32(18).string(message.txhash);
     }
-    if (message.codespace !== "") {
+    if (message.codespace !== '') {
       writer.uint32(26).string(message.codespace);
     }
     if (message.code !== 0) {
       writer.uint32(32).uint32(message.code);
     }
-    if (message.data !== "") {
+    if (message.data !== '') {
       writer.uint32(42).string(message.data);
     }
-    if (message.rawLog !== "") {
+    if (message.rawLog !== '') {
       writer.uint32(50).string(message.rawLog);
     }
     for (const v of message.logs) {
       ABCIMessageLog.encode(v!, writer.uint32(58).fork()).ldelim();
     }
-    if (message.info !== "") {
+    if (message.info !== '') {
       writer.uint32(66).string(message.info);
     }
     if (message.gasWanted !== 0) {
@@ -243,7 +241,7 @@ export const TxResponse = {
     if (message.tx !== undefined) {
       Any.encode(message.tx, writer.uint32(90).fork()).ldelim();
     }
-    if (message.timestamp !== "") {
+    if (message.timestamp !== '') {
       writer.uint32(98).string(message.timestamp);
     }
     for (const v of message.events) {
@@ -362,17 +360,17 @@ export const TxResponse = {
   fromJSON(object: any): TxResponse {
     return {
       height: isSet(object.height) ? Number(object.height) : 0,
-      txhash: isSet(object.txhash) ? String(object.txhash) : "",
-      codespace: isSet(object.codespace) ? String(object.codespace) : "",
+      txhash: isSet(object.txhash) ? String(object.txhash) : '',
+      codespace: isSet(object.codespace) ? String(object.codespace) : '',
       code: isSet(object.code) ? Number(object.code) : 0,
-      data: isSet(object.data) ? String(object.data) : "",
-      rawLog: isSet(object.rawLog) ? String(object.rawLog) : "",
+      data: isSet(object.data) ? String(object.data) : '',
+      rawLog: isSet(object.rawLog) ? String(object.rawLog) : '',
       logs: Array.isArray(object?.logs) ? object.logs.map((e: any) => ABCIMessageLog.fromJSON(e)) : [],
-      info: isSet(object.info) ? String(object.info) : "",
+      info: isSet(object.info) ? String(object.info) : '',
       gasWanted: isSet(object.gasWanted) ? Number(object.gasWanted) : 0,
       gasUsed: isSet(object.gasUsed) ? Number(object.gasUsed) : 0,
       tx: isSet(object.tx) ? Any.fromJSON(object.tx) : undefined,
-      timestamp: isSet(object.timestamp) ? String(object.timestamp) : "",
+      timestamp: isSet(object.timestamp) ? String(object.timestamp) : '',
       events: Array.isArray(object?.events) ? object.events.map((e: any) => Event.fromJSON(e)) : [],
     };
   },
@@ -382,25 +380,25 @@ export const TxResponse = {
     if (message.height !== 0) {
       obj.height = Math.round(message.height);
     }
-    if (message.txhash !== "") {
+    if (message.txhash !== '') {
       obj.txhash = message.txhash;
     }
-    if (message.codespace !== "") {
+    if (message.codespace !== '') {
       obj.codespace = message.codespace;
     }
     if (message.code !== 0) {
       obj.code = Math.round(message.code);
     }
-    if (message.data !== "") {
+    if (message.data !== '') {
       obj.data = message.data;
     }
-    if (message.rawLog !== "") {
+    if (message.rawLog !== '') {
       obj.rawLog = message.rawLog;
     }
     if (message.logs?.length) {
       obj.logs = message.logs.map((e) => ABCIMessageLog.toJSON(e));
     }
-    if (message.info !== "") {
+    if (message.info !== '') {
       obj.info = message.info;
     }
     if (message.gasWanted !== 0) {
@@ -412,7 +410,7 @@ export const TxResponse = {
     if (message.tx !== undefined) {
       obj.tx = Any.toJSON(message.tx);
     }
-    if (message.timestamp !== "") {
+    if (message.timestamp !== '') {
       obj.timestamp = message.timestamp;
     }
     if (message.events?.length) {
@@ -427,24 +425,24 @@ export const TxResponse = {
   fromPartial<I extends Exact<DeepPartial<TxResponse>, I>>(object: I): TxResponse {
     const message = createBaseTxResponse();
     message.height = object.height ?? 0;
-    message.txhash = object.txhash ?? "";
-    message.codespace = object.codespace ?? "";
+    message.txhash = object.txhash ?? '';
+    message.codespace = object.codespace ?? '';
     message.code = object.code ?? 0;
-    message.data = object.data ?? "";
-    message.rawLog = object.rawLog ?? "";
+    message.data = object.data ?? '';
+    message.rawLog = object.rawLog ?? '';
     message.logs = object.logs?.map((e) => ABCIMessageLog.fromPartial(e)) || [];
-    message.info = object.info ?? "";
+    message.info = object.info ?? '';
     message.gasWanted = object.gasWanted ?? 0;
     message.gasUsed = object.gasUsed ?? 0;
-    message.tx = (object.tx !== undefined && object.tx !== null) ? Any.fromPartial(object.tx) : undefined;
-    message.timestamp = object.timestamp ?? "";
+    message.tx = object.tx !== undefined && object.tx !== null ? Any.fromPartial(object.tx) : undefined;
+    message.timestamp = object.timestamp ?? '';
     message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseABCIMessageLog(): ABCIMessageLog {
-  return { msgIndex: 0, log: "", events: [] };
+  return { msgIndex: 0, log: '', events: [] };
 }
 
 export const ABCIMessageLog = {
@@ -452,7 +450,7 @@ export const ABCIMessageLog = {
     if (message.msgIndex !== 0) {
       writer.uint32(8).uint32(message.msgIndex);
     }
-    if (message.log !== "") {
+    if (message.log !== '') {
       writer.uint32(18).string(message.log);
     }
     for (const v of message.events) {
@@ -501,7 +499,7 @@ export const ABCIMessageLog = {
   fromJSON(object: any): ABCIMessageLog {
     return {
       msgIndex: isSet(object.msgIndex) ? Number(object.msgIndex) : 0,
-      log: isSet(object.log) ? String(object.log) : "",
+      log: isSet(object.log) ? String(object.log) : '',
       events: Array.isArray(object?.events) ? object.events.map((e: any) => StringEvent.fromJSON(e)) : [],
     };
   },
@@ -511,7 +509,7 @@ export const ABCIMessageLog = {
     if (message.msgIndex !== 0) {
       obj.msgIndex = Math.round(message.msgIndex);
     }
-    if (message.log !== "") {
+    if (message.log !== '') {
       obj.log = message.log;
     }
     if (message.events?.length) {
@@ -526,19 +524,19 @@ export const ABCIMessageLog = {
   fromPartial<I extends Exact<DeepPartial<ABCIMessageLog>, I>>(object: I): ABCIMessageLog {
     const message = createBaseABCIMessageLog();
     message.msgIndex = object.msgIndex ?? 0;
-    message.log = object.log ?? "";
+    message.log = object.log ?? '';
     message.events = object.events?.map((e) => StringEvent.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseStringEvent(): StringEvent {
-  return { type: "", attributes: [] };
+  return { type: '', attributes: [] };
 }
 
 export const StringEvent = {
   encode(message: StringEvent, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.type !== "") {
+    if (message.type !== '') {
       writer.uint32(10).string(message.type);
     }
     for (const v of message.attributes) {
@@ -579,14 +577,14 @@ export const StringEvent = {
 
   fromJSON(object: any): StringEvent {
     return {
-      type: isSet(object.type) ? String(object.type) : "",
+      type: isSet(object.type) ? String(object.type) : '',
       attributes: Array.isArray(object?.attributes) ? object.attributes.map((e: any) => Attribute.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: StringEvent): unknown {
     const obj: any = {};
-    if (message.type !== "") {
+    if (message.type !== '') {
       obj.type = message.type;
     }
     if (message.attributes?.length) {
@@ -600,22 +598,22 @@ export const StringEvent = {
   },
   fromPartial<I extends Exact<DeepPartial<StringEvent>, I>>(object: I): StringEvent {
     const message = createBaseStringEvent();
-    message.type = object.type ?? "";
+    message.type = object.type ?? '';
     message.attributes = object.attributes?.map((e) => Attribute.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseAttribute(): Attribute {
-  return { key: "", value: "" };
+  return { key: '', value: '' };
 }
 
 export const Attribute = {
   encode(message: Attribute, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.key !== "") {
+    if (message.key !== '') {
       writer.uint32(10).string(message.key);
     }
-    if (message.value !== "") {
+    if (message.value !== '') {
       writer.uint32(18).string(message.value);
     }
     return writer;
@@ -652,15 +650,15 @@ export const Attribute = {
   },
 
   fromJSON(object: any): Attribute {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
+    return { key: isSet(object.key) ? String(object.key) : '', value: isSet(object.value) ? String(object.value) : '' };
   },
 
   toJSON(message: Attribute): unknown {
     const obj: any = {};
-    if (message.key !== "") {
+    if (message.key !== '') {
       obj.key = message.key;
     }
-    if (message.value !== "") {
+    if (message.value !== '') {
       obj.value = message.value;
     }
     return obj;
@@ -671,8 +669,8 @@ export const Attribute = {
   },
   fromPartial<I extends Exact<DeepPartial<Attribute>, I>>(object: I): Attribute {
     const message = createBaseAttribute();
-    message.key = object.key ?? "";
-    message.value = object.value ?? "";
+    message.key = object.key ?? '';
+    message.value = object.value ?? '';
     return message;
   },
 };
@@ -752,7 +750,7 @@ export const GasInfo = {
 };
 
 function createBaseResult(): Result {
-  return { data: new Uint8Array(0), log: "", events: [], msgResponses: [] };
+  return { data: new Uint8Array(0), log: '', events: [], msgResponses: [] };
 }
 
 export const Result = {
@@ -760,7 +758,7 @@ export const Result = {
     if (message.data.length !== 0) {
       writer.uint32(10).bytes(message.data);
     }
-    if (message.log !== "") {
+    if (message.log !== '') {
       writer.uint32(18).string(message.log);
     }
     for (const v of message.events) {
@@ -819,7 +817,7 @@ export const Result = {
   fromJSON(object: any): Result {
     return {
       data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(0),
-      log: isSet(object.log) ? String(object.log) : "",
+      log: isSet(object.log) ? String(object.log) : '',
       events: Array.isArray(object?.events) ? object.events.map((e: any) => Event.fromJSON(e)) : [],
       msgResponses: Array.isArray(object?.msgResponses) ? object.msgResponses.map((e: any) => Any.fromJSON(e)) : [],
     };
@@ -830,7 +828,7 @@ export const Result = {
     if (message.data.length !== 0) {
       obj.data = base64FromBytes(message.data);
     }
-    if (message.log !== "") {
+    if (message.log !== '') {
       obj.log = message.log;
     }
     if (message.events?.length) {
@@ -848,7 +846,7 @@ export const Result = {
   fromPartial<I extends Exact<DeepPartial<Result>, I>>(object: I): Result {
     const message = createBaseResult();
     message.data = object.data ?? new Uint8Array(0);
-    message.log = object.log ?? "";
+    message.log = object.log ?? '';
     message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
     message.msgResponses = object.msgResponses?.map((e) => Any.fromPartial(e)) || [];
     return message;
@@ -923,23 +921,21 @@ export const SimulationResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<SimulationResponse>, I>>(object: I): SimulationResponse {
     const message = createBaseSimulationResponse();
-    message.gasInfo = (object.gasInfo !== undefined && object.gasInfo !== null)
-      ? GasInfo.fromPartial(object.gasInfo)
-      : undefined;
-    message.result = (object.result !== undefined && object.result !== null)
-      ? Result.fromPartial(object.result)
-      : undefined;
+    message.gasInfo =
+      object.gasInfo !== undefined && object.gasInfo !== null ? GasInfo.fromPartial(object.gasInfo) : undefined;
+    message.result =
+      object.result !== undefined && object.result !== null ? Result.fromPartial(object.result) : undefined;
     return message;
   },
 };
 
 function createBaseMsgData(): MsgData {
-  return { msgType: "", data: new Uint8Array(0) };
+  return { msgType: '', data: new Uint8Array(0) };
 }
 
 export const MsgData = {
   encode(message: MsgData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.msgType !== "") {
+    if (message.msgType !== '') {
       writer.uint32(10).string(message.msgType);
     }
     if (message.data.length !== 0) {
@@ -980,14 +976,14 @@ export const MsgData = {
 
   fromJSON(object: any): MsgData {
     return {
-      msgType: isSet(object.msgType) ? String(object.msgType) : "",
+      msgType: isSet(object.msgType) ? String(object.msgType) : '',
       data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(0),
     };
   },
 
   toJSON(message: MsgData): unknown {
     const obj: any = {};
-    if (message.msgType !== "") {
+    if (message.msgType !== '') {
       obj.msgType = message.msgType;
     }
     if (message.data.length !== 0) {
@@ -1001,7 +997,7 @@ export const MsgData = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgData>, I>>(object: I): MsgData {
     const message = createBaseMsgData();
-    message.msgType = object.msgType ?? "";
+    message.msgType = object.msgType ?? '';
     message.data = object.data ?? new Uint8Array(0);
     return message;
   },
@@ -1353,24 +1349,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -1383,30 +1379,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

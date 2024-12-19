@@ -1,15 +1,13 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
+import _m0 from 'protobufjs/minimal';
 
-export const protobufPackage = "fairyring.keyshare";
+export const protobufPackage = 'fairyring.keyshare';
 
 export interface KeyShareRequest {
   identity: string;
   pubkey: string;
   /** Used only when the request is made via IBC */
-  ibcInfo:
-    | IBCInfo
-    | undefined;
+  ibcInfo: IBCInfo | undefined;
   /** Used only when the request is made via IBC */
   counterparty: CounterPartyIBCInfo | undefined;
   aggrKeyshare: string;
@@ -36,23 +34,23 @@ export interface CounterPartyIBCInfo {
 
 function createBaseKeyShareRequest(): KeyShareRequest {
   return {
-    identity: "",
-    pubkey: "",
+    identity: '',
+    pubkey: '',
     ibcInfo: undefined,
     counterparty: undefined,
-    aggrKeyshare: "",
-    proposalId: "",
-    requestId: "",
+    aggrKeyshare: '',
+    proposalId: '',
+    requestId: '',
     sent: false,
   };
 }
 
 export const KeyShareRequest = {
   encode(message: KeyShareRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.identity !== "") {
+    if (message.identity !== '') {
       writer.uint32(10).string(message.identity);
     }
-    if (message.pubkey !== "") {
+    if (message.pubkey !== '') {
       writer.uint32(18).string(message.pubkey);
     }
     if (message.ibcInfo !== undefined) {
@@ -61,13 +59,13 @@ export const KeyShareRequest = {
     if (message.counterparty !== undefined) {
       CounterPartyIBCInfo.encode(message.counterparty, writer.uint32(34).fork()).ldelim();
     }
-    if (message.aggrKeyshare !== "") {
+    if (message.aggrKeyshare !== '') {
       writer.uint32(42).string(message.aggrKeyshare);
     }
-    if (message.proposalId !== "") {
+    if (message.proposalId !== '') {
       writer.uint32(50).string(message.proposalId);
     }
-    if (message.requestId !== "") {
+    if (message.requestId !== '') {
       writer.uint32(58).string(message.requestId);
     }
     if (message.sent === true) {
@@ -150,23 +148,23 @@ export const KeyShareRequest = {
 
   fromJSON(object: any): KeyShareRequest {
     return {
-      identity: isSet(object.identity) ? String(object.identity) : "",
-      pubkey: isSet(object.pubkey) ? String(object.pubkey) : "",
+      identity: isSet(object.identity) ? String(object.identity) : '',
+      pubkey: isSet(object.pubkey) ? String(object.pubkey) : '',
       ibcInfo: isSet(object.ibcInfo) ? IBCInfo.fromJSON(object.ibcInfo) : undefined,
       counterparty: isSet(object.counterparty) ? CounterPartyIBCInfo.fromJSON(object.counterparty) : undefined,
-      aggrKeyshare: isSet(object.aggrKeyshare) ? String(object.aggrKeyshare) : "",
-      proposalId: isSet(object.proposalId) ? String(object.proposalId) : "",
-      requestId: isSet(object.requestId) ? String(object.requestId) : "",
+      aggrKeyshare: isSet(object.aggrKeyshare) ? String(object.aggrKeyshare) : '',
+      proposalId: isSet(object.proposalId) ? String(object.proposalId) : '',
+      requestId: isSet(object.requestId) ? String(object.requestId) : '',
       sent: isSet(object.sent) ? Boolean(object.sent) : false,
     };
   },
 
   toJSON(message: KeyShareRequest): unknown {
     const obj: any = {};
-    if (message.identity !== "") {
+    if (message.identity !== '') {
       obj.identity = message.identity;
     }
-    if (message.pubkey !== "") {
+    if (message.pubkey !== '') {
       obj.pubkey = message.pubkey;
     }
     if (message.ibcInfo !== undefined) {
@@ -175,13 +173,13 @@ export const KeyShareRequest = {
     if (message.counterparty !== undefined) {
       obj.counterparty = CounterPartyIBCInfo.toJSON(message.counterparty);
     }
-    if (message.aggrKeyshare !== "") {
+    if (message.aggrKeyshare !== '') {
       obj.aggrKeyshare = message.aggrKeyshare;
     }
-    if (message.proposalId !== "") {
+    if (message.proposalId !== '') {
       obj.proposalId = message.proposalId;
     }
-    if (message.requestId !== "") {
+    if (message.requestId !== '') {
       obj.requestId = message.requestId;
     }
     if (message.sent === true) {
@@ -195,38 +193,38 @@ export const KeyShareRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<KeyShareRequest>, I>>(object: I): KeyShareRequest {
     const message = createBaseKeyShareRequest();
-    message.identity = object.identity ?? "";
-    message.pubkey = object.pubkey ?? "";
-    message.ibcInfo = (object.ibcInfo !== undefined && object.ibcInfo !== null)
-      ? IBCInfo.fromPartial(object.ibcInfo)
-      : undefined;
-    message.counterparty = (object.counterparty !== undefined && object.counterparty !== null)
-      ? CounterPartyIBCInfo.fromPartial(object.counterparty)
-      : undefined;
-    message.aggrKeyshare = object.aggrKeyshare ?? "";
-    message.proposalId = object.proposalId ?? "";
-    message.requestId = object.requestId ?? "";
+    message.identity = object.identity ?? '';
+    message.pubkey = object.pubkey ?? '';
+    message.ibcInfo =
+      object.ibcInfo !== undefined && object.ibcInfo !== null ? IBCInfo.fromPartial(object.ibcInfo) : undefined;
+    message.counterparty =
+      object.counterparty !== undefined && object.counterparty !== null
+        ? CounterPartyIBCInfo.fromPartial(object.counterparty)
+        : undefined;
+    message.aggrKeyshare = object.aggrKeyshare ?? '';
+    message.proposalId = object.proposalId ?? '';
+    message.requestId = object.requestId ?? '';
     message.sent = object.sent ?? false;
     return message;
   },
 };
 
 function createBaseIBCInfo(): IBCInfo {
-  return { ClientID: "", ConnectionID: "", ChannelID: "", PortID: "" };
+  return { ClientID: '', ConnectionID: '', ChannelID: '', PortID: '' };
 }
 
 export const IBCInfo = {
   encode(message: IBCInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ClientID !== "") {
+    if (message.ClientID !== '') {
       writer.uint32(10).string(message.ClientID);
     }
-    if (message.ConnectionID !== "") {
+    if (message.ConnectionID !== '') {
       writer.uint32(18).string(message.ConnectionID);
     }
-    if (message.ChannelID !== "") {
+    if (message.ChannelID !== '') {
       writer.uint32(26).string(message.ChannelID);
     }
-    if (message.PortID !== "") {
+    if (message.PortID !== '') {
       writer.uint32(34).string(message.PortID);
     }
     return writer;
@@ -278,25 +276,25 @@ export const IBCInfo = {
 
   fromJSON(object: any): IBCInfo {
     return {
-      ClientID: isSet(object.ClientID) ? String(object.ClientID) : "",
-      ConnectionID: isSet(object.ConnectionID) ? String(object.ConnectionID) : "",
-      ChannelID: isSet(object.ChannelID) ? String(object.ChannelID) : "",
-      PortID: isSet(object.PortID) ? String(object.PortID) : "",
+      ClientID: isSet(object.ClientID) ? String(object.ClientID) : '',
+      ConnectionID: isSet(object.ConnectionID) ? String(object.ConnectionID) : '',
+      ChannelID: isSet(object.ChannelID) ? String(object.ChannelID) : '',
+      PortID: isSet(object.PortID) ? String(object.PortID) : '',
     };
   },
 
   toJSON(message: IBCInfo): unknown {
     const obj: any = {};
-    if (message.ClientID !== "") {
+    if (message.ClientID !== '') {
       obj.ClientID = message.ClientID;
     }
-    if (message.ConnectionID !== "") {
+    if (message.ConnectionID !== '') {
       obj.ConnectionID = message.ConnectionID;
     }
-    if (message.ChannelID !== "") {
+    if (message.ChannelID !== '') {
       obj.ChannelID = message.ChannelID;
     }
-    if (message.PortID !== "") {
+    if (message.PortID !== '') {
       obj.PortID = message.PortID;
     }
     return obj;
@@ -307,30 +305,30 @@ export const IBCInfo = {
   },
   fromPartial<I extends Exact<DeepPartial<IBCInfo>, I>>(object: I): IBCInfo {
     const message = createBaseIBCInfo();
-    message.ClientID = object.ClientID ?? "";
-    message.ConnectionID = object.ConnectionID ?? "";
-    message.ChannelID = object.ChannelID ?? "";
-    message.PortID = object.PortID ?? "";
+    message.ClientID = object.ClientID ?? '';
+    message.ConnectionID = object.ConnectionID ?? '';
+    message.ChannelID = object.ChannelID ?? '';
+    message.PortID = object.PortID ?? '';
     return message;
   },
 };
 
 function createBaseCounterPartyIBCInfo(): CounterPartyIBCInfo {
-  return { ClientID: "", ConnectionID: "", ChannelID: "", PortID: "" };
+  return { ClientID: '', ConnectionID: '', ChannelID: '', PortID: '' };
 }
 
 export const CounterPartyIBCInfo = {
   encode(message: CounterPartyIBCInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ClientID !== "") {
+    if (message.ClientID !== '') {
       writer.uint32(10).string(message.ClientID);
     }
-    if (message.ConnectionID !== "") {
+    if (message.ConnectionID !== '') {
       writer.uint32(18).string(message.ConnectionID);
     }
-    if (message.ChannelID !== "") {
+    if (message.ChannelID !== '') {
       writer.uint32(26).string(message.ChannelID);
     }
-    if (message.PortID !== "") {
+    if (message.PortID !== '') {
       writer.uint32(34).string(message.PortID);
     }
     return writer;
@@ -382,25 +380,25 @@ export const CounterPartyIBCInfo = {
 
   fromJSON(object: any): CounterPartyIBCInfo {
     return {
-      ClientID: isSet(object.ClientID) ? String(object.ClientID) : "",
-      ConnectionID: isSet(object.ConnectionID) ? String(object.ConnectionID) : "",
-      ChannelID: isSet(object.ChannelID) ? String(object.ChannelID) : "",
-      PortID: isSet(object.PortID) ? String(object.PortID) : "",
+      ClientID: isSet(object.ClientID) ? String(object.ClientID) : '',
+      ConnectionID: isSet(object.ConnectionID) ? String(object.ConnectionID) : '',
+      ChannelID: isSet(object.ChannelID) ? String(object.ChannelID) : '',
+      PortID: isSet(object.PortID) ? String(object.PortID) : '',
     };
   },
 
   toJSON(message: CounterPartyIBCInfo): unknown {
     const obj: any = {};
-    if (message.ClientID !== "") {
+    if (message.ClientID !== '') {
       obj.ClientID = message.ClientID;
     }
-    if (message.ConnectionID !== "") {
+    if (message.ConnectionID !== '') {
       obj.ConnectionID = message.ConnectionID;
     }
-    if (message.ChannelID !== "") {
+    if (message.ChannelID !== '') {
       obj.ChannelID = message.ChannelID;
     }
-    if (message.PortID !== "") {
+    if (message.PortID !== '') {
       obj.PortID = message.PortID;
     }
     return obj;
@@ -411,23 +409,29 @@ export const CounterPartyIBCInfo = {
   },
   fromPartial<I extends Exact<DeepPartial<CounterPartyIBCInfo>, I>>(object: I): CounterPartyIBCInfo {
     const message = createBaseCounterPartyIBCInfo();
-    message.ClientID = object.ClientID ?? "";
-    message.ConnectionID = object.ConnectionID ?? "";
-    message.ChannelID = object.ChannelID ?? "";
-    message.PortID = object.PortID ?? "";
+    message.ClientID = object.ClientID ?? '';
+    message.ConnectionID = object.ConnectionID ?? '';
+    message.ChannelID = object.ChannelID ?? '';
+    message.PortID = object.PortID ?? '';
     return message;
   },
 };
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

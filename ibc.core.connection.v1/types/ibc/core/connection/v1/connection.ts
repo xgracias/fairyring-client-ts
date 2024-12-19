@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { MerklePrefix } from "../../commitment/v1/commitment";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { MerklePrefix } from '../../commitment/v1/commitment';
 
-export const protobufPackage = "ibc.core.connection.v1";
+export const protobufPackage = 'ibc.core.connection.v1';
 
 /**
  * State defines if a connection is in one of the following states:
@@ -27,19 +27,19 @@ export enum State {
 export function stateFromJSON(object: any): State {
   switch (object) {
     case 0:
-    case "STATE_UNINITIALIZED_UNSPECIFIED":
+    case 'STATE_UNINITIALIZED_UNSPECIFIED':
       return State.STATE_UNINITIALIZED_UNSPECIFIED;
     case 1:
-    case "STATE_INIT":
+    case 'STATE_INIT':
       return State.STATE_INIT;
     case 2:
-    case "STATE_TRYOPEN":
+    case 'STATE_TRYOPEN':
       return State.STATE_TRYOPEN;
     case 3:
-    case "STATE_OPEN":
+    case 'STATE_OPEN':
       return State.STATE_OPEN;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return State.UNRECOGNIZED;
   }
@@ -48,16 +48,16 @@ export function stateFromJSON(object: any): State {
 export function stateToJSON(object: State): string {
   switch (object) {
     case State.STATE_UNINITIALIZED_UNSPECIFIED:
-      return "STATE_UNINITIALIZED_UNSPECIFIED";
+      return 'STATE_UNINITIALIZED_UNSPECIFIED';
     case State.STATE_INIT:
-      return "STATE_INIT";
+      return 'STATE_INIT';
     case State.STATE_TRYOPEN:
-      return "STATE_TRYOPEN";
+      return 'STATE_TRYOPEN';
     case State.STATE_OPEN:
-      return "STATE_OPEN";
+      return 'STATE_OPEN';
     case State.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -78,9 +78,7 @@ export interface ConnectionEnd {
   /** current state of the connection end. */
   state: State;
   /** counterparty chain associated with this connection. */
-  counterparty:
-    | Counterparty
-    | undefined;
+  counterparty: Counterparty | undefined;
   /**
    * delay period that must pass before a consensus state can be used for
    * packet-verification NOTE: delay period logic is only implemented by some
@@ -106,9 +104,7 @@ export interface IdentifiedConnection {
   /** current state of the connection end. */
   state: State;
   /** counterparty chain associated with this connection. */
-  counterparty:
-    | Counterparty
-    | undefined;
+  counterparty: Counterparty | undefined;
   /** delay period associated with this connection. */
   delayPeriod: number;
 }
@@ -165,12 +161,12 @@ export interface Params {
 }
 
 function createBaseConnectionEnd(): ConnectionEnd {
-  return { clientId: "", versions: [], state: 0, counterparty: undefined, delayPeriod: 0 };
+  return { clientId: '', versions: [], state: 0, counterparty: undefined, delayPeriod: 0 };
 }
 
 export const ConnectionEnd = {
   encode(message: ConnectionEnd, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     for (const v of message.versions) {
@@ -241,7 +237,7 @@ export const ConnectionEnd = {
 
   fromJSON(object: any): ConnectionEnd {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
       versions: Array.isArray(object?.versions) ? object.versions.map((e: any) => Version.fromJSON(e)) : [],
       state: isSet(object.state) ? stateFromJSON(object.state) : 0,
       counterparty: isSet(object.counterparty) ? Counterparty.fromJSON(object.counterparty) : undefined,
@@ -251,7 +247,7 @@ export const ConnectionEnd = {
 
   toJSON(message: ConnectionEnd): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     if (message.versions?.length) {
@@ -274,27 +270,28 @@ export const ConnectionEnd = {
   },
   fromPartial<I extends Exact<DeepPartial<ConnectionEnd>, I>>(object: I): ConnectionEnd {
     const message = createBaseConnectionEnd();
-    message.clientId = object.clientId ?? "";
+    message.clientId = object.clientId ?? '';
     message.versions = object.versions?.map((e) => Version.fromPartial(e)) || [];
     message.state = object.state ?? 0;
-    message.counterparty = (object.counterparty !== undefined && object.counterparty !== null)
-      ? Counterparty.fromPartial(object.counterparty)
-      : undefined;
+    message.counterparty =
+      object.counterparty !== undefined && object.counterparty !== null
+        ? Counterparty.fromPartial(object.counterparty)
+        : undefined;
     message.delayPeriod = object.delayPeriod ?? 0;
     return message;
   },
 };
 
 function createBaseIdentifiedConnection(): IdentifiedConnection {
-  return { id: "", clientId: "", versions: [], state: 0, counterparty: undefined, delayPeriod: 0 };
+  return { id: '', clientId: '', versions: [], state: 0, counterparty: undefined, delayPeriod: 0 };
 }
 
 export const IdentifiedConnection = {
   encode(message: IdentifiedConnection, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
+    if (message.id !== '') {
       writer.uint32(10).string(message.id);
     }
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(18).string(message.clientId);
     }
     for (const v of message.versions) {
@@ -372,8 +369,8 @@ export const IdentifiedConnection = {
 
   fromJSON(object: any): IdentifiedConnection {
     return {
-      id: isSet(object.id) ? String(object.id) : "",
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
+      id: isSet(object.id) ? String(object.id) : '',
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
       versions: Array.isArray(object?.versions) ? object.versions.map((e: any) => Version.fromJSON(e)) : [],
       state: isSet(object.state) ? stateFromJSON(object.state) : 0,
       counterparty: isSet(object.counterparty) ? Counterparty.fromJSON(object.counterparty) : undefined,
@@ -383,10 +380,10 @@ export const IdentifiedConnection = {
 
   toJSON(message: IdentifiedConnection): unknown {
     const obj: any = {};
-    if (message.id !== "") {
+    if (message.id !== '') {
       obj.id = message.id;
     }
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     if (message.versions?.length) {
@@ -409,28 +406,29 @@ export const IdentifiedConnection = {
   },
   fromPartial<I extends Exact<DeepPartial<IdentifiedConnection>, I>>(object: I): IdentifiedConnection {
     const message = createBaseIdentifiedConnection();
-    message.id = object.id ?? "";
-    message.clientId = object.clientId ?? "";
+    message.id = object.id ?? '';
+    message.clientId = object.clientId ?? '';
     message.versions = object.versions?.map((e) => Version.fromPartial(e)) || [];
     message.state = object.state ?? 0;
-    message.counterparty = (object.counterparty !== undefined && object.counterparty !== null)
-      ? Counterparty.fromPartial(object.counterparty)
-      : undefined;
+    message.counterparty =
+      object.counterparty !== undefined && object.counterparty !== null
+        ? Counterparty.fromPartial(object.counterparty)
+        : undefined;
     message.delayPeriod = object.delayPeriod ?? 0;
     return message;
   },
 };
 
 function createBaseCounterparty(): Counterparty {
-  return { clientId: "", connectionId: "", prefix: undefined };
+  return { clientId: '', connectionId: '', prefix: undefined };
 }
 
 export const Counterparty = {
   encode(message: Counterparty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       writer.uint32(18).string(message.connectionId);
     }
     if (message.prefix !== undefined) {
@@ -478,18 +476,18 @@ export const Counterparty = {
 
   fromJSON(object: any): Counterparty {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
+      connectionId: isSet(object.connectionId) ? String(object.connectionId) : '',
       prefix: isSet(object.prefix) ? MerklePrefix.fromJSON(object.prefix) : undefined,
     };
   },
 
   toJSON(message: Counterparty): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       obj.connectionId = message.connectionId;
     }
     if (message.prefix !== undefined) {
@@ -503,11 +501,10 @@ export const Counterparty = {
   },
   fromPartial<I extends Exact<DeepPartial<Counterparty>, I>>(object: I): Counterparty {
     const message = createBaseCounterparty();
-    message.clientId = object.clientId ?? "";
-    message.connectionId = object.connectionId ?? "";
-    message.prefix = (object.prefix !== undefined && object.prefix !== null)
-      ? MerklePrefix.fromPartial(object.prefix)
-      : undefined;
+    message.clientId = object.clientId ?? '';
+    message.connectionId = object.connectionId ?? '';
+    message.prefix =
+      object.prefix !== undefined && object.prefix !== null ? MerklePrefix.fromPartial(object.prefix) : undefined;
     return message;
   },
 };
@@ -570,12 +567,12 @@ export const ClientPaths = {
 };
 
 function createBaseConnectionPaths(): ConnectionPaths {
-  return { clientId: "", paths: [] };
+  return { clientId: '', paths: [] };
 }
 
 export const ConnectionPaths = {
   encode(message: ConnectionPaths, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     for (const v of message.paths) {
@@ -616,14 +613,14 @@ export const ConnectionPaths = {
 
   fromJSON(object: any): ConnectionPaths {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
       paths: Array.isArray(object?.paths) ? object.paths.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: ConnectionPaths): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     if (message.paths?.length) {
@@ -637,19 +634,19 @@ export const ConnectionPaths = {
   },
   fromPartial<I extends Exact<DeepPartial<ConnectionPaths>, I>>(object: I): ConnectionPaths {
     const message = createBaseConnectionPaths();
-    message.clientId = object.clientId ?? "";
+    message.clientId = object.clientId ?? '';
     message.paths = object.paths?.map((e) => e) || [];
     return message;
   },
 };
 
 function createBaseVersion(): Version {
-  return { identifier: "", features: [] };
+  return { identifier: '', features: [] };
 }
 
 export const Version = {
   encode(message: Version, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.identifier !== "") {
+    if (message.identifier !== '') {
       writer.uint32(10).string(message.identifier);
     }
     for (const v of message.features) {
@@ -690,14 +687,14 @@ export const Version = {
 
   fromJSON(object: any): Version {
     return {
-      identifier: isSet(object.identifier) ? String(object.identifier) : "",
+      identifier: isSet(object.identifier) ? String(object.identifier) : '',
       features: Array.isArray(object?.features) ? object.features.map((e: any) => String(e)) : [],
     };
   },
 
   toJSON(message: Version): unknown {
     const obj: any = {};
-    if (message.identifier !== "") {
+    if (message.identifier !== '') {
       obj.identifier = message.identifier;
     }
     if (message.features?.length) {
@@ -711,7 +708,7 @@ export const Version = {
   },
   fromPartial<I extends Exact<DeepPartial<Version>, I>>(object: I): Version {
     const message = createBaseVersion();
-    message.identifier = object.identifier ?? "";
+    message.identifier = object.identifier ?? '';
     message.features = object.features?.map((e) => e) || [];
     return message;
   },
@@ -780,35 +777,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

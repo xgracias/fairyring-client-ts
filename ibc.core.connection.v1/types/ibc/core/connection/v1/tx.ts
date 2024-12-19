@@ -1,11 +1,11 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Any } from "../../../../google/protobuf/any";
-import { Height } from "../../client/v1/client";
-import { Counterparty, Params, Version } from "./connection";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Any } from '../../../../google/protobuf/any';
+import { Height } from '../../client/v1/client';
+import { Counterparty, Params, Version } from './connection';
 
-export const protobufPackage = "ibc.core.connection.v1";
+export const protobufPackage = 'ibc.core.connection.v1';
 
 /**
  * MsgConnectionOpenInit defines the msg sent by an account on Chain A to
@@ -23,8 +23,7 @@ export interface MsgConnectionOpenInit {
  * MsgConnectionOpenInitResponse defines the Msg/ConnectionOpenInit response
  * type.
  */
-export interface MsgConnectionOpenInitResponse {
-}
+export interface MsgConnectionOpenInitResponse {}
 
 /**
  * MsgConnectionOpenTry defines a msg sent by a Relayer to try to open a
@@ -42,9 +41,7 @@ export interface MsgConnectionOpenTry {
   counterparty: Counterparty | undefined;
   delayPeriod: number;
   counterpartyVersions: Version[];
-  proofHeight:
-    | Height
-    | undefined;
+  proofHeight: Height | undefined;
   /**
    * proof of the initialization the connection on Chain A: `UNITIALIZED ->
    * INIT`
@@ -61,8 +58,7 @@ export interface MsgConnectionOpenTry {
 }
 
 /** MsgConnectionOpenTryResponse defines the Msg/ConnectionOpenTry response type. */
-export interface MsgConnectionOpenTryResponse {
-}
+export interface MsgConnectionOpenTryResponse {}
 
 /**
  * MsgConnectionOpenAck defines a msg sent by a Relayer to Chain A to
@@ -73,9 +69,7 @@ export interface MsgConnectionOpenAck {
   counterpartyConnectionId: string;
   version: Version | undefined;
   clientState: Any | undefined;
-  proofHeight:
-    | Height
-    | undefined;
+  proofHeight: Height | undefined;
   /**
    * proof of the initialization the connection on Chain B: `UNITIALIZED ->
    * TRYOPEN`
@@ -92,8 +86,7 @@ export interface MsgConnectionOpenAck {
 }
 
 /** MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type. */
-export interface MsgConnectionOpenAckResponse {
-}
+export interface MsgConnectionOpenAckResponse {}
 
 /**
  * MsgConnectionOpenConfirm defines a msg sent by a Relayer to Chain B to
@@ -111,8 +104,7 @@ export interface MsgConnectionOpenConfirm {
  * MsgConnectionOpenConfirmResponse defines the Msg/ConnectionOpenConfirm
  * response type.
  */
-export interface MsgConnectionOpenConfirmResponse {
-}
+export interface MsgConnectionOpenConfirmResponse {}
 
 /** MsgUpdateParams defines the sdk.Msg type to update the connection parameters. */
 export interface MsgUpdateParams {
@@ -127,16 +119,15 @@ export interface MsgUpdateParams {
 }
 
 /** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
-export interface MsgUpdateParamsResponse {
-}
+export interface MsgUpdateParamsResponse {}
 
 function createBaseMsgConnectionOpenInit(): MsgConnectionOpenInit {
-  return { clientId: "", counterparty: undefined, version: undefined, delayPeriod: 0, signer: "" };
+  return { clientId: '', counterparty: undefined, version: undefined, delayPeriod: 0, signer: '' };
 }
 
 export const MsgConnectionOpenInit = {
   encode(message: MsgConnectionOpenInit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
     if (message.counterparty !== undefined) {
@@ -148,7 +139,7 @@ export const MsgConnectionOpenInit = {
     if (message.delayPeriod !== 0) {
       writer.uint32(32).uint64(message.delayPeriod);
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       writer.uint32(42).string(message.signer);
     }
     return writer;
@@ -207,17 +198,17 @@ export const MsgConnectionOpenInit = {
 
   fromJSON(object: any): MsgConnectionOpenInit {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
       counterparty: isSet(object.counterparty) ? Counterparty.fromJSON(object.counterparty) : undefined,
       version: isSet(object.version) ? Version.fromJSON(object.version) : undefined,
       delayPeriod: isSet(object.delayPeriod) ? Number(object.delayPeriod) : 0,
-      signer: isSet(object.signer) ? String(object.signer) : "",
+      signer: isSet(object.signer) ? String(object.signer) : '',
     };
   },
 
   toJSON(message: MsgConnectionOpenInit): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
     if (message.counterparty !== undefined) {
@@ -229,7 +220,7 @@ export const MsgConnectionOpenInit = {
     if (message.delayPeriod !== 0) {
       obj.delayPeriod = Math.round(message.delayPeriod);
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       obj.signer = message.signer;
     }
     return obj;
@@ -240,15 +231,15 @@ export const MsgConnectionOpenInit = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgConnectionOpenInit>, I>>(object: I): MsgConnectionOpenInit {
     const message = createBaseMsgConnectionOpenInit();
-    message.clientId = object.clientId ?? "";
-    message.counterparty = (object.counterparty !== undefined && object.counterparty !== null)
-      ? Counterparty.fromPartial(object.counterparty)
-      : undefined;
-    message.version = (object.version !== undefined && object.version !== null)
-      ? Version.fromPartial(object.version)
-      : undefined;
+    message.clientId = object.clientId ?? '';
+    message.counterparty =
+      object.counterparty !== undefined && object.counterparty !== null
+        ? Counterparty.fromPartial(object.counterparty)
+        : undefined;
+    message.version =
+      object.version !== undefined && object.version !== null ? Version.fromPartial(object.version) : undefined;
     message.delayPeriod = object.delayPeriod ?? 0;
-    message.signer = object.signer ?? "";
+    message.signer = object.signer ?? '';
     return message;
   },
 };
@@ -298,8 +289,8 @@ export const MsgConnectionOpenInitResponse = {
 
 function createBaseMsgConnectionOpenTry(): MsgConnectionOpenTry {
   return {
-    clientId: "",
-    previousConnectionId: "",
+    clientId: '',
+    previousConnectionId: '',
     clientState: undefined,
     counterparty: undefined,
     delayPeriod: 0,
@@ -309,17 +300,17 @@ function createBaseMsgConnectionOpenTry(): MsgConnectionOpenTry {
     proofClient: new Uint8Array(0),
     proofConsensus: new Uint8Array(0),
     consensusHeight: undefined,
-    signer: "",
+    signer: '',
     hostConsensusStateProof: new Uint8Array(0),
   };
 }
 
 export const MsgConnectionOpenTry = {
   encode(message: MsgConnectionOpenTry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       writer.uint32(10).string(message.clientId);
     }
-    if (message.previousConnectionId !== "") {
+    if (message.previousConnectionId !== '') {
       writer.uint32(18).string(message.previousConnectionId);
     }
     if (message.clientState !== undefined) {
@@ -349,7 +340,7 @@ export const MsgConnectionOpenTry = {
     if (message.consensusHeight !== undefined) {
       Height.encode(message.consensusHeight, writer.uint32(90).fork()).ldelim();
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       writer.uint32(98).string(message.signer);
     }
     if (message.hostConsensusStateProof.length !== 0) {
@@ -467,8 +458,8 @@ export const MsgConnectionOpenTry = {
 
   fromJSON(object: any): MsgConnectionOpenTry {
     return {
-      clientId: isSet(object.clientId) ? String(object.clientId) : "",
-      previousConnectionId: isSet(object.previousConnectionId) ? String(object.previousConnectionId) : "",
+      clientId: isSet(object.clientId) ? String(object.clientId) : '',
+      previousConnectionId: isSet(object.previousConnectionId) ? String(object.previousConnectionId) : '',
       clientState: isSet(object.clientState) ? Any.fromJSON(object.clientState) : undefined,
       counterparty: isSet(object.counterparty) ? Counterparty.fromJSON(object.counterparty) : undefined,
       delayPeriod: isSet(object.delayPeriod) ? Number(object.delayPeriod) : 0,
@@ -480,7 +471,7 @@ export const MsgConnectionOpenTry = {
       proofClient: isSet(object.proofClient) ? bytesFromBase64(object.proofClient) : new Uint8Array(0),
       proofConsensus: isSet(object.proofConsensus) ? bytesFromBase64(object.proofConsensus) : new Uint8Array(0),
       consensusHeight: isSet(object.consensusHeight) ? Height.fromJSON(object.consensusHeight) : undefined,
-      signer: isSet(object.signer) ? String(object.signer) : "",
+      signer: isSet(object.signer) ? String(object.signer) : '',
       hostConsensusStateProof: isSet(object.hostConsensusStateProof)
         ? bytesFromBase64(object.hostConsensusStateProof)
         : new Uint8Array(0),
@@ -489,10 +480,10 @@ export const MsgConnectionOpenTry = {
 
   toJSON(message: MsgConnectionOpenTry): unknown {
     const obj: any = {};
-    if (message.clientId !== "") {
+    if (message.clientId !== '') {
       obj.clientId = message.clientId;
     }
-    if (message.previousConnectionId !== "") {
+    if (message.previousConnectionId !== '') {
       obj.previousConnectionId = message.previousConnectionId;
     }
     if (message.clientState !== undefined) {
@@ -522,7 +513,7 @@ export const MsgConnectionOpenTry = {
     if (message.consensusHeight !== undefined) {
       obj.consensusHeight = Height.toJSON(message.consensusHeight);
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       obj.signer = message.signer;
     }
     if (message.hostConsensusStateProof.length !== 0) {
@@ -536,26 +527,28 @@ export const MsgConnectionOpenTry = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgConnectionOpenTry>, I>>(object: I): MsgConnectionOpenTry {
     const message = createBaseMsgConnectionOpenTry();
-    message.clientId = object.clientId ?? "";
-    message.previousConnectionId = object.previousConnectionId ?? "";
-    message.clientState = (object.clientState !== undefined && object.clientState !== null)
-      ? Any.fromPartial(object.clientState)
-      : undefined;
-    message.counterparty = (object.counterparty !== undefined && object.counterparty !== null)
-      ? Counterparty.fromPartial(object.counterparty)
-      : undefined;
+    message.clientId = object.clientId ?? '';
+    message.previousConnectionId = object.previousConnectionId ?? '';
+    message.clientState =
+      object.clientState !== undefined && object.clientState !== null ? Any.fromPartial(object.clientState) : undefined;
+    message.counterparty =
+      object.counterparty !== undefined && object.counterparty !== null
+        ? Counterparty.fromPartial(object.counterparty)
+        : undefined;
     message.delayPeriod = object.delayPeriod ?? 0;
     message.counterpartyVersions = object.counterpartyVersions?.map((e) => Version.fromPartial(e)) || [];
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
     message.proofInit = object.proofInit ?? new Uint8Array(0);
     message.proofClient = object.proofClient ?? new Uint8Array(0);
     message.proofConsensus = object.proofConsensus ?? new Uint8Array(0);
-    message.consensusHeight = (object.consensusHeight !== undefined && object.consensusHeight !== null)
-      ? Height.fromPartial(object.consensusHeight)
-      : undefined;
-    message.signer = object.signer ?? "";
+    message.consensusHeight =
+      object.consensusHeight !== undefined && object.consensusHeight !== null
+        ? Height.fromPartial(object.consensusHeight)
+        : undefined;
+    message.signer = object.signer ?? '';
     message.hostConsensusStateProof = object.hostConsensusStateProof ?? new Uint8Array(0);
     return message;
   },
@@ -606,8 +599,8 @@ export const MsgConnectionOpenTryResponse = {
 
 function createBaseMsgConnectionOpenAck(): MsgConnectionOpenAck {
   return {
-    connectionId: "",
-    counterpartyConnectionId: "",
+    connectionId: '',
+    counterpartyConnectionId: '',
     version: undefined,
     clientState: undefined,
     proofHeight: undefined,
@@ -615,17 +608,17 @@ function createBaseMsgConnectionOpenAck(): MsgConnectionOpenAck {
     proofClient: new Uint8Array(0),
     proofConsensus: new Uint8Array(0),
     consensusHeight: undefined,
-    signer: "",
+    signer: '',
     hostConsensusStateProof: new Uint8Array(0),
   };
 }
 
 export const MsgConnectionOpenAck = {
   encode(message: MsgConnectionOpenAck, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       writer.uint32(10).string(message.connectionId);
     }
-    if (message.counterpartyConnectionId !== "") {
+    if (message.counterpartyConnectionId !== '') {
       writer.uint32(18).string(message.counterpartyConnectionId);
     }
     if (message.version !== undefined) {
@@ -649,7 +642,7 @@ export const MsgConnectionOpenAck = {
     if (message.consensusHeight !== undefined) {
       Height.encode(message.consensusHeight, writer.uint32(74).fork()).ldelim();
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       writer.uint32(82).string(message.signer);
     }
     if (message.hostConsensusStateProof.length !== 0) {
@@ -753,8 +746,8 @@ export const MsgConnectionOpenAck = {
 
   fromJSON(object: any): MsgConnectionOpenAck {
     return {
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
-      counterpartyConnectionId: isSet(object.counterpartyConnectionId) ? String(object.counterpartyConnectionId) : "",
+      connectionId: isSet(object.connectionId) ? String(object.connectionId) : '',
+      counterpartyConnectionId: isSet(object.counterpartyConnectionId) ? String(object.counterpartyConnectionId) : '',
       version: isSet(object.version) ? Version.fromJSON(object.version) : undefined,
       clientState: isSet(object.clientState) ? Any.fromJSON(object.clientState) : undefined,
       proofHeight: isSet(object.proofHeight) ? Height.fromJSON(object.proofHeight) : undefined,
@@ -762,7 +755,7 @@ export const MsgConnectionOpenAck = {
       proofClient: isSet(object.proofClient) ? bytesFromBase64(object.proofClient) : new Uint8Array(0),
       proofConsensus: isSet(object.proofConsensus) ? bytesFromBase64(object.proofConsensus) : new Uint8Array(0),
       consensusHeight: isSet(object.consensusHeight) ? Height.fromJSON(object.consensusHeight) : undefined,
-      signer: isSet(object.signer) ? String(object.signer) : "",
+      signer: isSet(object.signer) ? String(object.signer) : '',
       hostConsensusStateProof: isSet(object.hostConsensusStateProof)
         ? bytesFromBase64(object.hostConsensusStateProof)
         : new Uint8Array(0),
@@ -771,10 +764,10 @@ export const MsgConnectionOpenAck = {
 
   toJSON(message: MsgConnectionOpenAck): unknown {
     const obj: any = {};
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       obj.connectionId = message.connectionId;
     }
-    if (message.counterpartyConnectionId !== "") {
+    if (message.counterpartyConnectionId !== '') {
       obj.counterpartyConnectionId = message.counterpartyConnectionId;
     }
     if (message.version !== undefined) {
@@ -798,7 +791,7 @@ export const MsgConnectionOpenAck = {
     if (message.consensusHeight !== undefined) {
       obj.consensusHeight = Height.toJSON(message.consensusHeight);
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       obj.signer = message.signer;
     }
     if (message.hostConsensusStateProof.length !== 0) {
@@ -812,24 +805,24 @@ export const MsgConnectionOpenAck = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgConnectionOpenAck>, I>>(object: I): MsgConnectionOpenAck {
     const message = createBaseMsgConnectionOpenAck();
-    message.connectionId = object.connectionId ?? "";
-    message.counterpartyConnectionId = object.counterpartyConnectionId ?? "";
-    message.version = (object.version !== undefined && object.version !== null)
-      ? Version.fromPartial(object.version)
-      : undefined;
-    message.clientState = (object.clientState !== undefined && object.clientState !== null)
-      ? Any.fromPartial(object.clientState)
-      : undefined;
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
+    message.connectionId = object.connectionId ?? '';
+    message.counterpartyConnectionId = object.counterpartyConnectionId ?? '';
+    message.version =
+      object.version !== undefined && object.version !== null ? Version.fromPartial(object.version) : undefined;
+    message.clientState =
+      object.clientState !== undefined && object.clientState !== null ? Any.fromPartial(object.clientState) : undefined;
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
     message.proofTry = object.proofTry ?? new Uint8Array(0);
     message.proofClient = object.proofClient ?? new Uint8Array(0);
     message.proofConsensus = object.proofConsensus ?? new Uint8Array(0);
-    message.consensusHeight = (object.consensusHeight !== undefined && object.consensusHeight !== null)
-      ? Height.fromPartial(object.consensusHeight)
-      : undefined;
-    message.signer = object.signer ?? "";
+    message.consensusHeight =
+      object.consensusHeight !== undefined && object.consensusHeight !== null
+        ? Height.fromPartial(object.consensusHeight)
+        : undefined;
+    message.signer = object.signer ?? '';
     message.hostConsensusStateProof = object.hostConsensusStateProof ?? new Uint8Array(0);
     return message;
   },
@@ -879,12 +872,12 @@ export const MsgConnectionOpenAckResponse = {
 };
 
 function createBaseMsgConnectionOpenConfirm(): MsgConnectionOpenConfirm {
-  return { connectionId: "", proofAck: new Uint8Array(0), proofHeight: undefined, signer: "" };
+  return { connectionId: '', proofAck: new Uint8Array(0), proofHeight: undefined, signer: '' };
 }
 
 export const MsgConnectionOpenConfirm = {
   encode(message: MsgConnectionOpenConfirm, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       writer.uint32(10).string(message.connectionId);
     }
     if (message.proofAck.length !== 0) {
@@ -893,7 +886,7 @@ export const MsgConnectionOpenConfirm = {
     if (message.proofHeight !== undefined) {
       Height.encode(message.proofHeight, writer.uint32(26).fork()).ldelim();
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       writer.uint32(34).string(message.signer);
     }
     return writer;
@@ -945,16 +938,16 @@ export const MsgConnectionOpenConfirm = {
 
   fromJSON(object: any): MsgConnectionOpenConfirm {
     return {
-      connectionId: isSet(object.connectionId) ? String(object.connectionId) : "",
+      connectionId: isSet(object.connectionId) ? String(object.connectionId) : '',
       proofAck: isSet(object.proofAck) ? bytesFromBase64(object.proofAck) : new Uint8Array(0),
       proofHeight: isSet(object.proofHeight) ? Height.fromJSON(object.proofHeight) : undefined,
-      signer: isSet(object.signer) ? String(object.signer) : "",
+      signer: isSet(object.signer) ? String(object.signer) : '',
     };
   },
 
   toJSON(message: MsgConnectionOpenConfirm): unknown {
     const obj: any = {};
-    if (message.connectionId !== "") {
+    if (message.connectionId !== '') {
       obj.connectionId = message.connectionId;
     }
     if (message.proofAck.length !== 0) {
@@ -963,7 +956,7 @@ export const MsgConnectionOpenConfirm = {
     if (message.proofHeight !== undefined) {
       obj.proofHeight = Height.toJSON(message.proofHeight);
     }
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       obj.signer = message.signer;
     }
     return obj;
@@ -974,12 +967,13 @@ export const MsgConnectionOpenConfirm = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgConnectionOpenConfirm>, I>>(object: I): MsgConnectionOpenConfirm {
     const message = createBaseMsgConnectionOpenConfirm();
-    message.connectionId = object.connectionId ?? "";
+    message.connectionId = object.connectionId ?? '';
     message.proofAck = object.proofAck ?? new Uint8Array(0);
-    message.proofHeight = (object.proofHeight !== undefined && object.proofHeight !== null)
-      ? Height.fromPartial(object.proofHeight)
-      : undefined;
-    message.signer = object.signer ?? "";
+    message.proofHeight =
+      object.proofHeight !== undefined && object.proofHeight !== null
+        ? Height.fromPartial(object.proofHeight)
+        : undefined;
+    message.signer = object.signer ?? '';
     return message;
   },
 };
@@ -1019,12 +1013,12 @@ export const MsgConnectionOpenConfirmResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgConnectionOpenConfirmResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgConnectionOpenConfirmResponse {
     return MsgConnectionOpenConfirmResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgConnectionOpenConfirmResponse>, I>>(
-    _: I,
+    _: I
   ): MsgConnectionOpenConfirmResponse {
     const message = createBaseMsgConnectionOpenConfirmResponse();
     return message;
@@ -1032,12 +1026,12 @@ export const MsgConnectionOpenConfirmResponse = {
 };
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { signer: "", params: undefined };
+  return { signer: '', params: undefined };
 }
 
 export const MsgUpdateParams = {
   encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       writer.uint32(10).string(message.signer);
     }
     if (message.params !== undefined) {
@@ -1078,14 +1072,14 @@ export const MsgUpdateParams = {
 
   fromJSON(object: any): MsgUpdateParams {
     return {
-      signer: isSet(object.signer) ? String(object.signer) : "",
+      signer: isSet(object.signer) ? String(object.signer) : '',
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
     };
   },
 
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
-    if (message.signer !== "") {
+    if (message.signer !== '') {
       obj.signer = message.signer;
     }
     if (message.params !== undefined) {
@@ -1099,10 +1093,9 @@ export const MsgUpdateParams = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
-    message.signer = object.signer ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.signer = object.signer ?? '';
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -1170,7 +1163,7 @@ export interface Msg {
   UpdateConnectionParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 
-export const MsgServiceName = "ibc.core.connection.v1.Msg";
+export const MsgServiceName = 'ibc.core.connection.v1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -1185,31 +1178,31 @@ export class MsgClientImpl implements Msg {
   }
   ConnectionOpenInit(request: MsgConnectionOpenInit): Promise<MsgConnectionOpenInitResponse> {
     const data = MsgConnectionOpenInit.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConnectionOpenInit", data);
+    const promise = this.rpc.request(this.service, 'ConnectionOpenInit', data);
     return promise.then((data) => MsgConnectionOpenInitResponse.decode(_m0.Reader.create(data)));
   }
 
   ConnectionOpenTry(request: MsgConnectionOpenTry): Promise<MsgConnectionOpenTryResponse> {
     const data = MsgConnectionOpenTry.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConnectionOpenTry", data);
+    const promise = this.rpc.request(this.service, 'ConnectionOpenTry', data);
     return promise.then((data) => MsgConnectionOpenTryResponse.decode(_m0.Reader.create(data)));
   }
 
   ConnectionOpenAck(request: MsgConnectionOpenAck): Promise<MsgConnectionOpenAckResponse> {
     const data = MsgConnectionOpenAck.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConnectionOpenAck", data);
+    const promise = this.rpc.request(this.service, 'ConnectionOpenAck', data);
     return promise.then((data) => MsgConnectionOpenAckResponse.decode(_m0.Reader.create(data)));
   }
 
   ConnectionOpenConfirm(request: MsgConnectionOpenConfirm): Promise<MsgConnectionOpenConfirmResponse> {
     const data = MsgConnectionOpenConfirm.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ConnectionOpenConfirm", data);
+    const promise = this.rpc.request(this.service, 'ConnectionOpenConfirm', data);
     return promise.then((data) => MsgConnectionOpenConfirmResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateConnectionParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateConnectionParams", data);
+    const promise = this.rpc.request(this.service, 'UpdateConnectionParams', data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -1222,24 +1215,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -1252,30 +1245,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

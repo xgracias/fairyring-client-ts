@@ -1,8 +1,8 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
 
-export const protobufPackage = "cosmwasm.wasm.v1";
+export const protobufPackage = 'cosmwasm.wasm.v1';
 
 /** MsgIBCSend */
 export interface MsgIBCSend {
@@ -37,12 +37,12 @@ export interface MsgIBCCloseChannel {
 }
 
 function createBaseMsgIBCSend(): MsgIBCSend {
-  return { channel: "", timeoutHeight: 0, timeoutTimestamp: 0, data: new Uint8Array(0) };
+  return { channel: '', timeoutHeight: 0, timeoutTimestamp: 0, data: new Uint8Array(0) };
 }
 
 export const MsgIBCSend = {
   encode(message: MsgIBCSend, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.channel !== "") {
+    if (message.channel !== '') {
       writer.uint32(18).string(message.channel);
     }
     if (message.timeoutHeight !== 0) {
@@ -103,7 +103,7 @@ export const MsgIBCSend = {
 
   fromJSON(object: any): MsgIBCSend {
     return {
-      channel: isSet(object.channel) ? String(object.channel) : "",
+      channel: isSet(object.channel) ? String(object.channel) : '',
       timeoutHeight: isSet(object.timeoutHeight) ? Number(object.timeoutHeight) : 0,
       timeoutTimestamp: isSet(object.timeoutTimestamp) ? Number(object.timeoutTimestamp) : 0,
       data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(0),
@@ -112,7 +112,7 @@ export const MsgIBCSend = {
 
   toJSON(message: MsgIBCSend): unknown {
     const obj: any = {};
-    if (message.channel !== "") {
+    if (message.channel !== '') {
       obj.channel = message.channel;
     }
     if (message.timeoutHeight !== 0) {
@@ -132,7 +132,7 @@ export const MsgIBCSend = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgIBCSend>, I>>(object: I): MsgIBCSend {
     const message = createBaseMsgIBCSend();
-    message.channel = object.channel ?? "";
+    message.channel = object.channel ?? '';
     message.timeoutHeight = object.timeoutHeight ?? 0;
     message.timeoutTimestamp = object.timeoutTimestamp ?? 0;
     message.data = object.data ?? new Uint8Array(0);
@@ -198,12 +198,12 @@ export const MsgIBCSendResponse = {
 };
 
 function createBaseMsgIBCCloseChannel(): MsgIBCCloseChannel {
-  return { channel: "" };
+  return { channel: '' };
 }
 
 export const MsgIBCCloseChannel = {
   encode(message: MsgIBCCloseChannel, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.channel !== "") {
+    if (message.channel !== '') {
       writer.uint32(18).string(message.channel);
     }
     return writer;
@@ -233,12 +233,12 @@ export const MsgIBCCloseChannel = {
   },
 
   fromJSON(object: any): MsgIBCCloseChannel {
-    return { channel: isSet(object.channel) ? String(object.channel) : "" };
+    return { channel: isSet(object.channel) ? String(object.channel) : '' };
   },
 
   toJSON(message: MsgIBCCloseChannel): unknown {
     const obj: any = {};
-    if (message.channel !== "") {
+    if (message.channel !== '') {
       obj.channel = message.channel;
     }
     return obj;
@@ -249,7 +249,7 @@ export const MsgIBCCloseChannel = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgIBCCloseChannel>, I>>(object: I): MsgIBCCloseChannel {
     const message = createBaseMsgIBCCloseChannel();
-    message.channel = object.channel ?? "";
+    message.channel = object.channel ?? '';
     return message;
   },
 };
@@ -258,24 +258,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -288,30 +288,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

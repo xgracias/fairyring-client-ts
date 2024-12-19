@@ -10,14 +10,14 @@
  */
 
 export interface Any {
-  "@type"?: string;
+  '@type'?: string;
 }
 
 export interface Status {
   /** @format int32 */
   code?: number;
   message?: string;
-  details?: { "@type"?: string }[];
+  details?: { '@type'?: string }[];
 }
 
 export interface DecCoin {
@@ -151,11 +151,11 @@ export interface Params {
   withdraw_addr_enabled?: boolean;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -170,31 +170,31 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
+  Json = 'application/json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || '' });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -224,9 +224,9 @@ export class HttpClient<SecurityDataType = unknown> {
         key,
         property instanceof Blob
           ? property
-          : typeof property === "object" && property !== null
-          ? JSON.stringify(property)
-          : `${property}`,
+          : typeof property === 'object' && property !== null
+            ? JSON.stringify(property)
+            : `${property}`
       );
       return formData;
     }, new FormData());
@@ -242,15 +242,15 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
-      requestParams.headers.common = { Accept: "*/*" };
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+      requestParams.headers.common = { Accept: '*/*' };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
 
@@ -260,7 +260,7 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData ? { 'Content-Type': type } : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -285,10 +285,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryCommunityPool = (params: RequestParams = {}) =>
     this.request<
       { pool?: { denom?: string; amount?: string }[] },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/distribution/v1beta1/community_pool`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -305,10 +305,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         rewards?: { validator_address?: string; reward?: { denom?: string; amount?: string }[] }[];
         total?: { denom?: string; amount?: string }[];
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/rewards`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -322,10 +322,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDelegationRewards = (delegatorAddress: string, validatorAddress: string, params: RequestParams = {}) =>
     this.request<
       { rewards?: { denom?: string; amount?: string }[] },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/rewards/${validatorAddress}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -337,9 +337,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/validators
    */
   queryDelegatorValidators = (delegatorAddress: string, params: RequestParams = {}) =>
-    this.request<{ validators?: string[] }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ validators?: string[] }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/validators`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -351,9 +351,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address
    */
   queryDelegatorWithdrawAddress = (delegatorAddress: string, params: RequestParams = {}) =>
-    this.request<{ withdraw_address?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+    this.request<{ withdraw_address?: string }, { code?: number; message?: string; details?: { '@type'?: string }[] }>({
       path: `/cosmos/distribution/v1beta1/delegators/${delegatorAddress}/withdraw_address`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -374,10 +374,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           withdraw_addr_enabled?: boolean;
         };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/distribution/v1beta1/params`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -395,10 +395,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         self_bond_rewards?: { denom?: string; amount?: string }[];
         commission?: { denom?: string; amount?: string }[];
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -412,10 +412,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryValidatorCommission = (validatorAddress: string, params: RequestParams = {}) =>
     this.request<
       { commission?: { commission?: { denom?: string; amount?: string }[] } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/commission`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -429,10 +429,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryValidatorOutstandingRewards = (validatorAddress: string, params: RequestParams = {}) =>
     this.request<
       { rewards?: { rewards?: { denom?: string; amount?: string }[] } },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/outstanding_rewards`,
-      method: "GET",
+      method: 'GET',
       ...params,
     });
 
@@ -448,23 +448,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     query?: {
       starting_height?: string;
       ending_height?: string;
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.count_total"?: boolean;
-      "pagination.reverse"?: boolean;
+      'pagination.key'?: string;
+      'pagination.offset'?: string;
+      'pagination.limit'?: string;
+      'pagination.count_total'?: boolean;
+      'pagination.reverse'?: boolean;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<
       {
         slashes?: { validator_period?: string; fraction?: string }[];
         pagination?: { next_key?: string; total?: string };
       },
-      { code?: number; message?: string; details?: { "@type"?: string }[] }
+      { code?: number; message?: string; details?: { '@type'?: string }[] }
     >({
       path: `/cosmos/distribution/v1beta1/validators/${validatorAddress}/slashes`,
-      method: "GET",
+      method: 'GET',
       query: query,
       ...params,
     });

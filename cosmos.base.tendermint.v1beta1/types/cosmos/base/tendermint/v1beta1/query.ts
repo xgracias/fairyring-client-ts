@@ -1,14 +1,14 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Any } from "../../../../google/protobuf/any";
-import { DefaultNodeInfo } from "../../../../tendermint/p2p/types";
-import { Block } from "../../../../tendermint/types/block";
-import { BlockID } from "../../../../tendermint/types/types";
-import { PageRequest, PageResponse } from "../../query/v1beta1/pagination";
-import { Block as Block1 } from "./types";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Any } from '../../../../google/protobuf/any';
+import { DefaultNodeInfo } from '../../../../tendermint/p2p/types';
+import { Block } from '../../../../tendermint/types/block';
+import { BlockID } from '../../../../tendermint/types/types';
+import { PageRequest, PageResponse } from '../../query/v1beta1/pagination';
+import { Block as Block1 } from './types';
 
-export const protobufPackage = "cosmos.base.tendermint.v1beta1";
+export const protobufPackage = 'cosmos.base.tendermint.v1beta1';
 
 /** GetValidatorSetByHeightRequest is the request type for the Query/GetValidatorSetByHeight RPC method. */
 export interface GetValidatorSetByHeightRequest {
@@ -54,37 +54,27 @@ export interface GetBlockByHeightRequest {
 
 /** GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method. */
 export interface GetBlockByHeightResponse {
-  blockId:
-    | BlockID
-    | undefined;
+  blockId: BlockID | undefined;
   /** Deprecated: please use `sdk_block` instead */
-  block:
-    | Block
-    | undefined;
+  block: Block | undefined;
   /** Since: cosmos-sdk 0.47 */
   sdkBlock: Block1 | undefined;
 }
 
 /** GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC method. */
-export interface GetLatestBlockRequest {
-}
+export interface GetLatestBlockRequest {}
 
 /** GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method. */
 export interface GetLatestBlockResponse {
-  blockId:
-    | BlockID
-    | undefined;
+  blockId: BlockID | undefined;
   /** Deprecated: please use `sdk_block` instead */
-  block:
-    | Block
-    | undefined;
+  block: Block | undefined;
   /** Since: cosmos-sdk 0.47 */
   sdkBlock: Block1 | undefined;
 }
 
 /** GetSyncingRequest is the request type for the Query/GetSyncing RPC method. */
-export interface GetSyncingRequest {
-}
+export interface GetSyncingRequest {}
 
 /** GetSyncingResponse is the response type for the Query/GetSyncing RPC method. */
 export interface GetSyncingResponse {
@@ -92,8 +82,7 @@ export interface GetSyncingResponse {
 }
 
 /** GetNodeInfoRequest is the request type for the Query/GetNodeInfo RPC method. */
-export interface GetNodeInfoRequest {
-}
+export interface GetNodeInfoRequest {}
 
 /** GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponse {
@@ -241,13 +230,14 @@ export const GetValidatorSetByHeightRequest = {
     return GetValidatorSetByHeightRequest.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<GetValidatorSetByHeightRequest>, I>>(
-    object: I,
+    object: I
   ): GetValidatorSetByHeightRequest {
     const message = createBaseGetValidatorSetByHeightRequest();
     message.height = object.height ?? 0;
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -333,14 +323,15 @@ export const GetValidatorSetByHeightResponse = {
     return GetValidatorSetByHeightResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<GetValidatorSetByHeightResponse>, I>>(
-    object: I,
+    object: I
   ): GetValidatorSetByHeightResponse {
     const message = createBaseGetValidatorSetByHeightResponse();
     message.blockHeight = object.blockHeight ?? 0;
     message.validators = object.validators?.map((e) => Validator.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -397,9 +388,10 @@ export const GetLatestValidatorSetRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<GetLatestValidatorSetRequest>, I>>(object: I): GetLatestValidatorSetRequest {
     const message = createBaseGetLatestValidatorSetRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -485,25 +477,26 @@ export const GetLatestValidatorSetResponse = {
     return GetLatestValidatorSetResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<GetLatestValidatorSetResponse>, I>>(
-    object: I,
+    object: I
   ): GetLatestValidatorSetResponse {
     const message = createBaseGetLatestValidatorSetResponse();
     message.blockHeight = object.blockHeight ?? 0;
     message.validators = object.validators?.map((e) => Validator.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
 
 function createBaseValidator(): Validator {
-  return { address: "", pubKey: undefined, votingPower: 0, proposerPriority: 0 };
+  return { address: '', pubKey: undefined, votingPower: 0, proposerPriority: 0 };
 }
 
 export const Validator = {
   encode(message: Validator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.pubKey !== undefined) {
@@ -564,7 +557,7 @@ export const Validator = {
 
   fromJSON(object: any): Validator {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       pubKey: isSet(object.pubKey) ? Any.fromJSON(object.pubKey) : undefined,
       votingPower: isSet(object.votingPower) ? Number(object.votingPower) : 0,
       proposerPriority: isSet(object.proposerPriority) ? Number(object.proposerPriority) : 0,
@@ -573,7 +566,7 @@ export const Validator = {
 
   toJSON(message: Validator): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.pubKey !== undefined) {
@@ -593,10 +586,8 @@ export const Validator = {
   },
   fromPartial<I extends Exact<DeepPartial<Validator>, I>>(object: I): Validator {
     const message = createBaseValidator();
-    message.address = object.address ?? "";
-    message.pubKey = (object.pubKey !== undefined && object.pubKey !== null)
-      ? Any.fromPartial(object.pubKey)
-      : undefined;
+    message.address = object.address ?? '';
+    message.pubKey = object.pubKey !== undefined && object.pubKey !== null ? Any.fromPartial(object.pubKey) : undefined;
     message.votingPower = object.votingPower ?? 0;
     message.proposerPriority = object.proposerPriority ?? 0;
     return message;
@@ -742,13 +733,11 @@ export const GetBlockByHeightResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetBlockByHeightResponse>, I>>(object: I): GetBlockByHeightResponse {
     const message = createBaseGetBlockByHeightResponse();
-    message.blockId = (object.blockId !== undefined && object.blockId !== null)
-      ? BlockID.fromPartial(object.blockId)
-      : undefined;
-    message.block = (object.block !== undefined && object.block !== null) ? Block.fromPartial(object.block) : undefined;
-    message.sdkBlock = (object.sdkBlock !== undefined && object.sdkBlock !== null)
-      ? Block1.fromPartial(object.sdkBlock)
-      : undefined;
+    message.blockId =
+      object.blockId !== undefined && object.blockId !== null ? BlockID.fromPartial(object.blockId) : undefined;
+    message.block = object.block !== undefined && object.block !== null ? Block.fromPartial(object.block) : undefined;
+    message.sdkBlock =
+      object.sdkBlock !== undefined && object.sdkBlock !== null ? Block1.fromPartial(object.sdkBlock) : undefined;
     return message;
   },
 };
@@ -878,13 +867,11 @@ export const GetLatestBlockResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetLatestBlockResponse>, I>>(object: I): GetLatestBlockResponse {
     const message = createBaseGetLatestBlockResponse();
-    message.blockId = (object.blockId !== undefined && object.blockId !== null)
-      ? BlockID.fromPartial(object.blockId)
-      : undefined;
-    message.block = (object.block !== undefined && object.block !== null) ? Block.fromPartial(object.block) : undefined;
-    message.sdkBlock = (object.sdkBlock !== undefined && object.sdkBlock !== null)
-      ? Block1.fromPartial(object.sdkBlock)
-      : undefined;
+    message.blockId =
+      object.blockId !== undefined && object.blockId !== null ? BlockID.fromPartial(object.blockId) : undefined;
+    message.block = object.block !== undefined && object.block !== null ? Block.fromPartial(object.block) : undefined;
+    message.sdkBlock =
+      object.sdkBlock !== undefined && object.sdkBlock !== null ? Block1.fromPartial(object.sdkBlock) : undefined;
     return message;
   },
 };
@@ -1102,53 +1089,55 @@ export const GetNodeInfoResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<GetNodeInfoResponse>, I>>(object: I): GetNodeInfoResponse {
     const message = createBaseGetNodeInfoResponse();
-    message.defaultNodeInfo = (object.defaultNodeInfo !== undefined && object.defaultNodeInfo !== null)
-      ? DefaultNodeInfo.fromPartial(object.defaultNodeInfo)
-      : undefined;
-    message.applicationVersion = (object.applicationVersion !== undefined && object.applicationVersion !== null)
-      ? VersionInfo.fromPartial(object.applicationVersion)
-      : undefined;
+    message.defaultNodeInfo =
+      object.defaultNodeInfo !== undefined && object.defaultNodeInfo !== null
+        ? DefaultNodeInfo.fromPartial(object.defaultNodeInfo)
+        : undefined;
+    message.applicationVersion =
+      object.applicationVersion !== undefined && object.applicationVersion !== null
+        ? VersionInfo.fromPartial(object.applicationVersion)
+        : undefined;
     return message;
   },
 };
 
 function createBaseVersionInfo(): VersionInfo {
   return {
-    name: "",
-    appName: "",
-    version: "",
-    gitCommit: "",
-    buildTags: "",
-    goVersion: "",
+    name: '',
+    appName: '',
+    version: '',
+    gitCommit: '',
+    buildTags: '',
+    goVersion: '',
     buildDeps: [],
-    cosmosSdkVersion: "",
+    cosmosSdkVersion: '',
   };
 }
 
 export const VersionInfo = {
   encode(message: VersionInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.name !== "") {
+    if (message.name !== '') {
       writer.uint32(10).string(message.name);
     }
-    if (message.appName !== "") {
+    if (message.appName !== '') {
       writer.uint32(18).string(message.appName);
     }
-    if (message.version !== "") {
+    if (message.version !== '') {
       writer.uint32(26).string(message.version);
     }
-    if (message.gitCommit !== "") {
+    if (message.gitCommit !== '') {
       writer.uint32(34).string(message.gitCommit);
     }
-    if (message.buildTags !== "") {
+    if (message.buildTags !== '') {
       writer.uint32(42).string(message.buildTags);
     }
-    if (message.goVersion !== "") {
+    if (message.goVersion !== '') {
       writer.uint32(50).string(message.goVersion);
     }
     for (const v of message.buildDeps) {
       Module.encode(v!, writer.uint32(58).fork()).ldelim();
     }
-    if (message.cosmosSdkVersion !== "") {
+    if (message.cosmosSdkVersion !== '') {
       writer.uint32(66).string(message.cosmosSdkVersion);
     }
     return writer;
@@ -1228,41 +1217,41 @@ export const VersionInfo = {
 
   fromJSON(object: any): VersionInfo {
     return {
-      name: isSet(object.name) ? String(object.name) : "",
-      appName: isSet(object.appName) ? String(object.appName) : "",
-      version: isSet(object.version) ? String(object.version) : "",
-      gitCommit: isSet(object.gitCommit) ? String(object.gitCommit) : "",
-      buildTags: isSet(object.buildTags) ? String(object.buildTags) : "",
-      goVersion: isSet(object.goVersion) ? String(object.goVersion) : "",
+      name: isSet(object.name) ? String(object.name) : '',
+      appName: isSet(object.appName) ? String(object.appName) : '',
+      version: isSet(object.version) ? String(object.version) : '',
+      gitCommit: isSet(object.gitCommit) ? String(object.gitCommit) : '',
+      buildTags: isSet(object.buildTags) ? String(object.buildTags) : '',
+      goVersion: isSet(object.goVersion) ? String(object.goVersion) : '',
       buildDeps: Array.isArray(object?.buildDeps) ? object.buildDeps.map((e: any) => Module.fromJSON(e)) : [],
-      cosmosSdkVersion: isSet(object.cosmosSdkVersion) ? String(object.cosmosSdkVersion) : "",
+      cosmosSdkVersion: isSet(object.cosmosSdkVersion) ? String(object.cosmosSdkVersion) : '',
     };
   },
 
   toJSON(message: VersionInfo): unknown {
     const obj: any = {};
-    if (message.name !== "") {
+    if (message.name !== '') {
       obj.name = message.name;
     }
-    if (message.appName !== "") {
+    if (message.appName !== '') {
       obj.appName = message.appName;
     }
-    if (message.version !== "") {
+    if (message.version !== '') {
       obj.version = message.version;
     }
-    if (message.gitCommit !== "") {
+    if (message.gitCommit !== '') {
       obj.gitCommit = message.gitCommit;
     }
-    if (message.buildTags !== "") {
+    if (message.buildTags !== '') {
       obj.buildTags = message.buildTags;
     }
-    if (message.goVersion !== "") {
+    if (message.goVersion !== '') {
       obj.goVersion = message.goVersion;
     }
     if (message.buildDeps?.length) {
       obj.buildDeps = message.buildDeps.map((e) => Module.toJSON(e));
     }
-    if (message.cosmosSdkVersion !== "") {
+    if (message.cosmosSdkVersion !== '') {
       obj.cosmosSdkVersion = message.cosmosSdkVersion;
     }
     return obj;
@@ -1273,31 +1262,31 @@ export const VersionInfo = {
   },
   fromPartial<I extends Exact<DeepPartial<VersionInfo>, I>>(object: I): VersionInfo {
     const message = createBaseVersionInfo();
-    message.name = object.name ?? "";
-    message.appName = object.appName ?? "";
-    message.version = object.version ?? "";
-    message.gitCommit = object.gitCommit ?? "";
-    message.buildTags = object.buildTags ?? "";
-    message.goVersion = object.goVersion ?? "";
+    message.name = object.name ?? '';
+    message.appName = object.appName ?? '';
+    message.version = object.version ?? '';
+    message.gitCommit = object.gitCommit ?? '';
+    message.buildTags = object.buildTags ?? '';
+    message.goVersion = object.goVersion ?? '';
     message.buildDeps = object.buildDeps?.map((e) => Module.fromPartial(e)) || [];
-    message.cosmosSdkVersion = object.cosmosSdkVersion ?? "";
+    message.cosmosSdkVersion = object.cosmosSdkVersion ?? '';
     return message;
   },
 };
 
 function createBaseModule(): Module {
-  return { path: "", version: "", sum: "" };
+  return { path: '', version: '', sum: '' };
 }
 
 export const Module = {
   encode(message: Module, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.path !== "") {
+    if (message.path !== '') {
       writer.uint32(10).string(message.path);
     }
-    if (message.version !== "") {
+    if (message.version !== '') {
       writer.uint32(18).string(message.version);
     }
-    if (message.sum !== "") {
+    if (message.sum !== '') {
       writer.uint32(26).string(message.sum);
     }
     return writer;
@@ -1342,21 +1331,21 @@ export const Module = {
 
   fromJSON(object: any): Module {
     return {
-      path: isSet(object.path) ? String(object.path) : "",
-      version: isSet(object.version) ? String(object.version) : "",
-      sum: isSet(object.sum) ? String(object.sum) : "",
+      path: isSet(object.path) ? String(object.path) : '',
+      version: isSet(object.version) ? String(object.version) : '',
+      sum: isSet(object.sum) ? String(object.sum) : '',
     };
   },
 
   toJSON(message: Module): unknown {
     const obj: any = {};
-    if (message.path !== "") {
+    if (message.path !== '') {
       obj.path = message.path;
     }
-    if (message.version !== "") {
+    if (message.version !== '') {
       obj.version = message.version;
     }
-    if (message.sum !== "") {
+    if (message.sum !== '') {
       obj.sum = message.sum;
     }
     return obj;
@@ -1367,15 +1356,15 @@ export const Module = {
   },
   fromPartial<I extends Exact<DeepPartial<Module>, I>>(object: I): Module {
     const message = createBaseModule();
-    message.path = object.path ?? "";
-    message.version = object.version ?? "";
-    message.sum = object.sum ?? "";
+    message.path = object.path ?? '';
+    message.version = object.version ?? '';
+    message.sum = object.sum ?? '';
     return message;
   },
 };
 
 function createBaseABCIQueryRequest(): ABCIQueryRequest {
-  return { data: new Uint8Array(0), path: "", height: 0, prove: false };
+  return { data: new Uint8Array(0), path: '', height: 0, prove: false };
 }
 
 export const ABCIQueryRequest = {
@@ -1383,7 +1372,7 @@ export const ABCIQueryRequest = {
     if (message.data.length !== 0) {
       writer.uint32(10).bytes(message.data);
     }
-    if (message.path !== "") {
+    if (message.path !== '') {
       writer.uint32(18).string(message.path);
     }
     if (message.height !== 0) {
@@ -1442,7 +1431,7 @@ export const ABCIQueryRequest = {
   fromJSON(object: any): ABCIQueryRequest {
     return {
       data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(0),
-      path: isSet(object.path) ? String(object.path) : "",
+      path: isSet(object.path) ? String(object.path) : '',
       height: isSet(object.height) ? Number(object.height) : 0,
       prove: isSet(object.prove) ? Boolean(object.prove) : false,
     };
@@ -1453,7 +1442,7 @@ export const ABCIQueryRequest = {
     if (message.data.length !== 0) {
       obj.data = base64FromBytes(message.data);
     }
-    if (message.path !== "") {
+    if (message.path !== '') {
       obj.path = message.path;
     }
     if (message.height !== 0) {
@@ -1471,7 +1460,7 @@ export const ABCIQueryRequest = {
   fromPartial<I extends Exact<DeepPartial<ABCIQueryRequest>, I>>(object: I): ABCIQueryRequest {
     const message = createBaseABCIQueryRequest();
     message.data = object.data ?? new Uint8Array(0);
-    message.path = object.path ?? "";
+    message.path = object.path ?? '';
     message.height = object.height ?? 0;
     message.prove = object.prove ?? false;
     return message;
@@ -1481,14 +1470,14 @@ export const ABCIQueryRequest = {
 function createBaseABCIQueryResponse(): ABCIQueryResponse {
   return {
     code: 0,
-    log: "",
-    info: "",
+    log: '',
+    info: '',
     index: 0,
     key: new Uint8Array(0),
     value: new Uint8Array(0),
     proofOps: undefined,
     height: 0,
-    codespace: "",
+    codespace: '',
   };
 }
 
@@ -1497,10 +1486,10 @@ export const ABCIQueryResponse = {
     if (message.code !== 0) {
       writer.uint32(8).uint32(message.code);
     }
-    if (message.log !== "") {
+    if (message.log !== '') {
       writer.uint32(26).string(message.log);
     }
-    if (message.info !== "") {
+    if (message.info !== '') {
       writer.uint32(34).string(message.info);
     }
     if (message.index !== 0) {
@@ -1518,7 +1507,7 @@ export const ABCIQueryResponse = {
     if (message.height !== 0) {
       writer.uint32(72).int64(message.height);
     }
-    if (message.codespace !== "") {
+    if (message.codespace !== '') {
       writer.uint32(82).string(message.codespace);
     }
     return writer;
@@ -1606,14 +1595,14 @@ export const ABCIQueryResponse = {
   fromJSON(object: any): ABCIQueryResponse {
     return {
       code: isSet(object.code) ? Number(object.code) : 0,
-      log: isSet(object.log) ? String(object.log) : "",
-      info: isSet(object.info) ? String(object.info) : "",
+      log: isSet(object.log) ? String(object.log) : '',
+      info: isSet(object.info) ? String(object.info) : '',
       index: isSet(object.index) ? Number(object.index) : 0,
       key: isSet(object.key) ? bytesFromBase64(object.key) : new Uint8Array(0),
       value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(0),
       proofOps: isSet(object.proofOps) ? ProofOps.fromJSON(object.proofOps) : undefined,
       height: isSet(object.height) ? Number(object.height) : 0,
-      codespace: isSet(object.codespace) ? String(object.codespace) : "",
+      codespace: isSet(object.codespace) ? String(object.codespace) : '',
     };
   },
 
@@ -1622,10 +1611,10 @@ export const ABCIQueryResponse = {
     if (message.code !== 0) {
       obj.code = Math.round(message.code);
     }
-    if (message.log !== "") {
+    if (message.log !== '') {
       obj.log = message.log;
     }
-    if (message.info !== "") {
+    if (message.info !== '') {
       obj.info = message.info;
     }
     if (message.index !== 0) {
@@ -1643,7 +1632,7 @@ export const ABCIQueryResponse = {
     if (message.height !== 0) {
       obj.height = Math.round(message.height);
     }
-    if (message.codespace !== "") {
+    if (message.codespace !== '') {
       obj.codespace = message.codespace;
     }
     return obj;
@@ -1655,27 +1644,26 @@ export const ABCIQueryResponse = {
   fromPartial<I extends Exact<DeepPartial<ABCIQueryResponse>, I>>(object: I): ABCIQueryResponse {
     const message = createBaseABCIQueryResponse();
     message.code = object.code ?? 0;
-    message.log = object.log ?? "";
-    message.info = object.info ?? "";
+    message.log = object.log ?? '';
+    message.info = object.info ?? '';
     message.index = object.index ?? 0;
     message.key = object.key ?? new Uint8Array(0);
     message.value = object.value ?? new Uint8Array(0);
-    message.proofOps = (object.proofOps !== undefined && object.proofOps !== null)
-      ? ProofOps.fromPartial(object.proofOps)
-      : undefined;
+    message.proofOps =
+      object.proofOps !== undefined && object.proofOps !== null ? ProofOps.fromPartial(object.proofOps) : undefined;
     message.height = object.height ?? 0;
-    message.codespace = object.codespace ?? "";
+    message.codespace = object.codespace ?? '';
     return message;
   },
 };
 
 function createBaseProofOp(): ProofOp {
-  return { type: "", key: new Uint8Array(0), data: new Uint8Array(0) };
+  return { type: '', key: new Uint8Array(0), data: new Uint8Array(0) };
 }
 
 export const ProofOp = {
   encode(message: ProofOp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.type !== "") {
+    if (message.type !== '') {
       writer.uint32(10).string(message.type);
     }
     if (message.key.length !== 0) {
@@ -1726,7 +1714,7 @@ export const ProofOp = {
 
   fromJSON(object: any): ProofOp {
     return {
-      type: isSet(object.type) ? String(object.type) : "",
+      type: isSet(object.type) ? String(object.type) : '',
       key: isSet(object.key) ? bytesFromBase64(object.key) : new Uint8Array(0),
       data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(0),
     };
@@ -1734,7 +1722,7 @@ export const ProofOp = {
 
   toJSON(message: ProofOp): unknown {
     const obj: any = {};
-    if (message.type !== "") {
+    if (message.type !== '') {
       obj.type = message.type;
     }
     if (message.key.length !== 0) {
@@ -1751,7 +1739,7 @@ export const ProofOp = {
   },
   fromPartial<I extends Exact<DeepPartial<ProofOp>, I>>(object: I): ProofOp {
     const message = createBaseProofOp();
-    message.type = object.type ?? "";
+    message.type = object.type ?? '';
     message.key = object.key ?? new Uint8Array(0);
     message.data = object.data ?? new Uint8Array(0);
     return message;
@@ -1839,7 +1827,7 @@ export interface Service {
   ABCIQuery(request: ABCIQueryRequest): Promise<ABCIQueryResponse>;
 }
 
-export const ServiceServiceName = "cosmos.base.tendermint.v1beta1.Service";
+export const ServiceServiceName = 'cosmos.base.tendermint.v1beta1.Service';
 export class ServiceClientImpl implements Service {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -1856,43 +1844,43 @@ export class ServiceClientImpl implements Service {
   }
   GetNodeInfo(request: GetNodeInfoRequest): Promise<GetNodeInfoResponse> {
     const data = GetNodeInfoRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "GetNodeInfo", data);
+    const promise = this.rpc.request(this.service, 'GetNodeInfo', data);
     return promise.then((data) => GetNodeInfoResponse.decode(_m0.Reader.create(data)));
   }
 
   GetSyncing(request: GetSyncingRequest): Promise<GetSyncingResponse> {
     const data = GetSyncingRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "GetSyncing", data);
+    const promise = this.rpc.request(this.service, 'GetSyncing', data);
     return promise.then((data) => GetSyncingResponse.decode(_m0.Reader.create(data)));
   }
 
   GetLatestBlock(request: GetLatestBlockRequest): Promise<GetLatestBlockResponse> {
     const data = GetLatestBlockRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "GetLatestBlock", data);
+    const promise = this.rpc.request(this.service, 'GetLatestBlock', data);
     return promise.then((data) => GetLatestBlockResponse.decode(_m0.Reader.create(data)));
   }
 
   GetBlockByHeight(request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse> {
     const data = GetBlockByHeightRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "GetBlockByHeight", data);
+    const promise = this.rpc.request(this.service, 'GetBlockByHeight', data);
     return promise.then((data) => GetBlockByHeightResponse.decode(_m0.Reader.create(data)));
   }
 
   GetLatestValidatorSet(request: GetLatestValidatorSetRequest): Promise<GetLatestValidatorSetResponse> {
     const data = GetLatestValidatorSetRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "GetLatestValidatorSet", data);
+    const promise = this.rpc.request(this.service, 'GetLatestValidatorSet', data);
     return promise.then((data) => GetLatestValidatorSetResponse.decode(_m0.Reader.create(data)));
   }
 
   GetValidatorSetByHeight(request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse> {
     const data = GetValidatorSetByHeightRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "GetValidatorSetByHeight", data);
+    const promise = this.rpc.request(this.service, 'GetValidatorSetByHeight', data);
     return promise.then((data) => GetValidatorSetByHeightResponse.decode(_m0.Reader.create(data)));
   }
 
   ABCIQuery(request: ABCIQueryRequest): Promise<ABCIQueryResponse> {
     const data = ABCIQueryRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ABCIQuery", data);
+    const promise = this.rpc.request(this.service, 'ABCIQuery', data);
     return promise.then((data) => ABCIQueryResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -1905,24 +1893,24 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (tsProtoGlobalThis.Buffer) {
-    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, 'base64'));
   } else {
     const bin = tsProtoGlobalThis.atob(b64);
     const arr = new Uint8Array(bin.length);
@@ -1935,30 +1923,36 @@ function bytesFromBase64(b64: string): Uint8Array {
 
 function base64FromBytes(arr: Uint8Array): string {
   if (tsProtoGlobalThis.Buffer) {
-    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+    return tsProtoGlobalThis.Buffer.from(arr).toString('base64');
   } else {
     const bin: string[] = [];
     arr.forEach((byte) => {
       bin.push(String.fromCharCode(byte));
     });
-    return tsProtoGlobalThis.btoa(bin.join(""));
+    return tsProtoGlobalThis.btoa(bin.join(''));
   }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Coin } from "../../base/v1beta1/coin";
+import _m0 from 'protobufjs/minimal';
+import { Coin } from '../../base/v1beta1/coin';
 
-export const protobufPackage = "cosmos.staking.v1beta1";
+export const protobufPackage = 'cosmos.staking.v1beta1';
 
 /**
  * AuthorizationType defines the type of staking module authorization type
@@ -26,22 +26,22 @@ export enum AuthorizationType {
 export function authorizationTypeFromJSON(object: any): AuthorizationType {
   switch (object) {
     case 0:
-    case "AUTHORIZATION_TYPE_UNSPECIFIED":
+    case 'AUTHORIZATION_TYPE_UNSPECIFIED':
       return AuthorizationType.AUTHORIZATION_TYPE_UNSPECIFIED;
     case 1:
-    case "AUTHORIZATION_TYPE_DELEGATE":
+    case 'AUTHORIZATION_TYPE_DELEGATE':
       return AuthorizationType.AUTHORIZATION_TYPE_DELEGATE;
     case 2:
-    case "AUTHORIZATION_TYPE_UNDELEGATE":
+    case 'AUTHORIZATION_TYPE_UNDELEGATE':
       return AuthorizationType.AUTHORIZATION_TYPE_UNDELEGATE;
     case 3:
-    case "AUTHORIZATION_TYPE_REDELEGATE":
+    case 'AUTHORIZATION_TYPE_REDELEGATE':
       return AuthorizationType.AUTHORIZATION_TYPE_REDELEGATE;
     case 4:
-    case "AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION":
+    case 'AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION':
       return AuthorizationType.AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return AuthorizationType.UNRECOGNIZED;
   }
@@ -50,18 +50,18 @@ export function authorizationTypeFromJSON(object: any): AuthorizationType {
 export function authorizationTypeToJSON(object: AuthorizationType): string {
   switch (object) {
     case AuthorizationType.AUTHORIZATION_TYPE_UNSPECIFIED:
-      return "AUTHORIZATION_TYPE_UNSPECIFIED";
+      return 'AUTHORIZATION_TYPE_UNSPECIFIED';
     case AuthorizationType.AUTHORIZATION_TYPE_DELEGATE:
-      return "AUTHORIZATION_TYPE_DELEGATE";
+      return 'AUTHORIZATION_TYPE_DELEGATE';
     case AuthorizationType.AUTHORIZATION_TYPE_UNDELEGATE:
-      return "AUTHORIZATION_TYPE_UNDELEGATE";
+      return 'AUTHORIZATION_TYPE_UNDELEGATE';
     case AuthorizationType.AUTHORIZATION_TYPE_REDELEGATE:
-      return "AUTHORIZATION_TYPE_REDELEGATE";
+      return 'AUTHORIZATION_TYPE_REDELEGATE';
     case AuthorizationType.AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION:
-      return "AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION";
+      return 'AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION';
     case AuthorizationType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -75,20 +75,14 @@ export interface StakeAuthorization {
    * max_tokens specifies the maximum amount of tokens can be delegate to a validator. If it is
    * empty, there is no spend limit and any amount of coins can be delegated.
    */
-  maxTokens:
-    | Coin
-    | undefined;
+  maxTokens: Coin | undefined;
   /**
    * allow_list specifies list of validator addresses to whom grantee can delegate tokens on behalf of granter's
    * account.
    */
-  allowList?:
-    | StakeAuthorization_Validators
-    | undefined;
+  allowList?: StakeAuthorization_Validators | undefined;
   /** deny_list specifies list of validator addresses to whom grantee can not delegate tokens. */
-  denyList?:
-    | StakeAuthorization_Validators
-    | undefined;
+  denyList?: StakeAuthorization_Validators | undefined;
   /** authorization_type defines one of AuthorizationType. */
   authorizationType: AuthorizationType;
 }
@@ -194,15 +188,16 @@ export const StakeAuthorization = {
   },
   fromPartial<I extends Exact<DeepPartial<StakeAuthorization>, I>>(object: I): StakeAuthorization {
     const message = createBaseStakeAuthorization();
-    message.maxTokens = (object.maxTokens !== undefined && object.maxTokens !== null)
-      ? Coin.fromPartial(object.maxTokens)
-      : undefined;
-    message.allowList = (object.allowList !== undefined && object.allowList !== null)
-      ? StakeAuthorization_Validators.fromPartial(object.allowList)
-      : undefined;
-    message.denyList = (object.denyList !== undefined && object.denyList !== null)
-      ? StakeAuthorization_Validators.fromPartial(object.denyList)
-      : undefined;
+    message.maxTokens =
+      object.maxTokens !== undefined && object.maxTokens !== null ? Coin.fromPartial(object.maxTokens) : undefined;
+    message.allowList =
+      object.allowList !== undefined && object.allowList !== null
+        ? StakeAuthorization_Validators.fromPartial(object.allowList)
+        : undefined;
+    message.denyList =
+      object.denyList !== undefined && object.denyList !== null
+        ? StakeAuthorization_Validators.fromPartial(object.denyList)
+        : undefined;
     message.authorizationType = object.authorizationType ?? 0;
     return message;
   },
@@ -259,7 +254,7 @@ export const StakeAuthorization_Validators = {
     return StakeAuthorization_Validators.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<StakeAuthorization_Validators>, I>>(
-    object: I,
+    object: I
   ): StakeAuthorization_Validators {
     const message = createBaseStakeAuthorization_Validators();
     message.address = object.address?.map((e) => e) || [];
@@ -269,13 +264,19 @@ export const StakeAuthorization_Validators = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

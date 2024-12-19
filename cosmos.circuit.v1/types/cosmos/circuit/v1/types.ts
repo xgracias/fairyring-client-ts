@@ -1,7 +1,7 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
+import _m0 from 'protobufjs/minimal';
 
-export const protobufPackage = "cosmos.circuit.v1";
+export const protobufPackage = 'cosmos.circuit.v1';
 
 /**
  * Permissions are the permissions that an account has to trip
@@ -48,19 +48,19 @@ export enum Permissions_Level {
 export function permissions_LevelFromJSON(object: any): Permissions_Level {
   switch (object) {
     case 0:
-    case "LEVEL_NONE_UNSPECIFIED":
+    case 'LEVEL_NONE_UNSPECIFIED':
       return Permissions_Level.LEVEL_NONE_UNSPECIFIED;
     case 1:
-    case "LEVEL_SOME_MSGS":
+    case 'LEVEL_SOME_MSGS':
       return Permissions_Level.LEVEL_SOME_MSGS;
     case 2:
-    case "LEVEL_ALL_MSGS":
+    case 'LEVEL_ALL_MSGS':
       return Permissions_Level.LEVEL_ALL_MSGS;
     case 3:
-    case "LEVEL_SUPER_ADMIN":
+    case 'LEVEL_SUPER_ADMIN':
       return Permissions_Level.LEVEL_SUPER_ADMIN;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return Permissions_Level.UNRECOGNIZED;
   }
@@ -69,16 +69,16 @@ export function permissions_LevelFromJSON(object: any): Permissions_Level {
 export function permissions_LevelToJSON(object: Permissions_Level): string {
   switch (object) {
     case Permissions_Level.LEVEL_NONE_UNSPECIFIED:
-      return "LEVEL_NONE_UNSPECIFIED";
+      return 'LEVEL_NONE_UNSPECIFIED';
     case Permissions_Level.LEVEL_SOME_MSGS:
-      return "LEVEL_SOME_MSGS";
+      return 'LEVEL_SOME_MSGS';
     case Permissions_Level.LEVEL_ALL_MSGS:
-      return "LEVEL_ALL_MSGS";
+      return 'LEVEL_ALL_MSGS';
     case Permissions_Level.LEVEL_SUPER_ADMIN:
-      return "LEVEL_SUPER_ADMIN";
+      return 'LEVEL_SUPER_ADMIN';
     case Permissions_Level.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return 'UNRECOGNIZED';
   }
 }
 
@@ -169,12 +169,12 @@ export const Permissions = {
 };
 
 function createBaseGenesisAccountPermissions(): GenesisAccountPermissions {
-  return { address: "", permissions: undefined };
+  return { address: '', permissions: undefined };
 }
 
 export const GenesisAccountPermissions = {
   encode(message: GenesisAccountPermissions, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     if (message.permissions !== undefined) {
@@ -215,14 +215,14 @@ export const GenesisAccountPermissions = {
 
   fromJSON(object: any): GenesisAccountPermissions {
     return {
-      address: isSet(object.address) ? String(object.address) : "",
+      address: isSet(object.address) ? String(object.address) : '',
       permissions: isSet(object.permissions) ? Permissions.fromJSON(object.permissions) : undefined,
     };
   },
 
   toJSON(message: GenesisAccountPermissions): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     if (message.permissions !== undefined) {
@@ -236,10 +236,11 @@ export const GenesisAccountPermissions = {
   },
   fromPartial<I extends Exact<DeepPartial<GenesisAccountPermissions>, I>>(object: I): GenesisAccountPermissions {
     const message = createBaseGenesisAccountPermissions();
-    message.address = object.address ?? "";
-    message.permissions = (object.permissions !== undefined && object.permissions !== null)
-      ? Permissions.fromPartial(object.permissions)
-      : undefined;
+    message.address = object.address ?? '';
+    message.permissions =
+      object.permissions !== undefined && object.permissions !== null
+        ? Permissions.fromPartial(object.permissions)
+        : undefined;
     return message;
   },
 };
@@ -324,13 +325,19 @@ export const GenesisState = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

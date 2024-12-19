@@ -1,9 +1,9 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination";
-import { GenesisAccountPermissions, Permissions } from "./types";
+import _m0 from 'protobufjs/minimal';
+import { PageRequest, PageResponse } from '../../base/query/v1beta1/pagination';
+import { GenesisAccountPermissions, Permissions } from './types';
 
-export const protobufPackage = "cosmos.circuit.v1";
+export const protobufPackage = 'cosmos.circuit.v1';
 
 /** QueryAccountRequest is the request type for the Query/Account RPC method. */
 export interface QueryAccountRequest {
@@ -29,8 +29,7 @@ export interface AccountsResponse {
 }
 
 /** QueryDisableListRequest is the request type for the Query/DisabledList RPC method. */
-export interface QueryDisabledListRequest {
-}
+export interface QueryDisabledListRequest {}
 
 /** DisabledListResponse is the response type for the Query/DisabledList RPC method. */
 export interface DisabledListResponse {
@@ -38,12 +37,12 @@ export interface DisabledListResponse {
 }
 
 function createBaseQueryAccountRequest(): QueryAccountRequest {
-  return { address: "" };
+  return { address: '' };
 }
 
 export const QueryAccountRequest = {
   encode(message: QueryAccountRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.address !== "") {
+    if (message.address !== '') {
       writer.uint32(10).string(message.address);
     }
     return writer;
@@ -73,12 +72,12 @@ export const QueryAccountRequest = {
   },
 
   fromJSON(object: any): QueryAccountRequest {
-    return { address: isSet(object.address) ? String(object.address) : "" };
+    return { address: isSet(object.address) ? String(object.address) : '' };
   },
 
   toJSON(message: QueryAccountRequest): unknown {
     const obj: any = {};
-    if (message.address !== "") {
+    if (message.address !== '') {
       obj.address = message.address;
     }
     return obj;
@@ -89,7 +88,7 @@ export const QueryAccountRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryAccountRequest>, I>>(object: I): QueryAccountRequest {
     const message = createBaseQueryAccountRequest();
-    message.address = object.address ?? "";
+    message.address = object.address ?? '';
     return message;
   },
 };
@@ -146,9 +145,10 @@ export const AccountResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<AccountResponse>, I>>(object: I): AccountResponse {
     const message = createBaseAccountResponse();
-    message.permission = (object.permission !== undefined && object.permission !== null)
-      ? Permissions.fromPartial(object.permission)
-      : undefined;
+    message.permission =
+      object.permission !== undefined && object.permission !== null
+        ? Permissions.fromPartial(object.permission)
+        : undefined;
     return message;
   },
 };
@@ -205,9 +205,10 @@ export const QueryAccountsRequest = {
   },
   fromPartial<I extends Exact<DeepPartial<QueryAccountsRequest>, I>>(object: I): QueryAccountsRequest {
     const message = createBaseQueryAccountsRequest();
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageRequest.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageRequest.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -283,9 +284,10 @@ export const AccountsResponse = {
   fromPartial<I extends Exact<DeepPartial<AccountsResponse>, I>>(object: I): AccountsResponse {
     const message = createBaseAccountsResponse();
     message.accounts = object.accounts?.map((e) => GenesisAccountPermissions.fromPartial(e)) || [];
-    message.pagination = (object.pagination !== undefined && object.pagination !== null)
-      ? PageResponse.fromPartial(object.pagination)
-      : undefined;
+    message.pagination =
+      object.pagination !== undefined && object.pagination !== null
+        ? PageResponse.fromPartial(object.pagination)
+        : undefined;
     return message;
   },
 };
@@ -400,7 +402,7 @@ export interface Query {
   DisabledList(request: QueryDisabledListRequest): Promise<DisabledListResponse>;
 }
 
-export const QueryServiceName = "cosmos.circuit.v1.Query";
+export const QueryServiceName = 'cosmos.circuit.v1.Query';
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -413,19 +415,19 @@ export class QueryClientImpl implements Query {
   }
   Account(request: QueryAccountRequest): Promise<AccountResponse> {
     const data = QueryAccountRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Account", data);
+    const promise = this.rpc.request(this.service, 'Account', data);
     return promise.then((data) => AccountResponse.decode(_m0.Reader.create(data)));
   }
 
   Accounts(request: QueryAccountsRequest): Promise<AccountsResponse> {
     const data = QueryAccountsRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Accounts", data);
+    const promise = this.rpc.request(this.service, 'Accounts', data);
     return promise.then((data) => AccountsResponse.decode(_m0.Reader.create(data)));
   }
 
   DisabledList(request: QueryDisabledListRequest): Promise<DisabledListResponse> {
     const data = QueryDisabledListRequest.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DisabledList", data);
+    const promise = this.rpc.request(this.service, 'DisabledList', data);
     return promise.then((data) => DisabledListResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -436,13 +438,19 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

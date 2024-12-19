@@ -1,8 +1,8 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { Params } from "./slashing";
+import _m0 from 'protobufjs/minimal';
+import { Params } from './slashing';
 
-export const protobufPackage = "cosmos.slashing.v1beta1";
+export const protobufPackage = 'cosmos.slashing.v1beta1';
 
 /** MsgUnjail defines the Msg/Unjail request type */
 export interface MsgUnjail {
@@ -10,8 +10,7 @@ export interface MsgUnjail {
 }
 
 /** MsgUnjailResponse defines the Msg/Unjail response type */
-export interface MsgUnjailResponse {
-}
+export interface MsgUnjailResponse {}
 
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
@@ -35,16 +34,15 @@ export interface MsgUpdateParams {
  *
  * Since: cosmos-sdk 0.47
  */
-export interface MsgUpdateParamsResponse {
-}
+export interface MsgUpdateParamsResponse {}
 
 function createBaseMsgUnjail(): MsgUnjail {
-  return { validatorAddr: "" };
+  return { validatorAddr: '' };
 }
 
 export const MsgUnjail = {
   encode(message: MsgUnjail, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.validatorAddr !== "") {
+    if (message.validatorAddr !== '') {
       writer.uint32(10).string(message.validatorAddr);
     }
     return writer;
@@ -74,12 +72,12 @@ export const MsgUnjail = {
   },
 
   fromJSON(object: any): MsgUnjail {
-    return { validatorAddr: isSet(object.validatorAddr) ? String(object.validatorAddr) : "" };
+    return { validatorAddr: isSet(object.validatorAddr) ? String(object.validatorAddr) : '' };
   },
 
   toJSON(message: MsgUnjail): unknown {
     const obj: any = {};
-    if (message.validatorAddr !== "") {
+    if (message.validatorAddr !== '') {
       obj.validatorAddr = message.validatorAddr;
     }
     return obj;
@@ -90,7 +88,7 @@ export const MsgUnjail = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUnjail>, I>>(object: I): MsgUnjail {
     const message = createBaseMsgUnjail();
-    message.validatorAddr = object.validatorAddr ?? "";
+    message.validatorAddr = object.validatorAddr ?? '';
     return message;
   },
 };
@@ -139,12 +137,12 @@ export const MsgUnjailResponse = {
 };
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { authority: "", params: undefined };
+  return { authority: '', params: undefined };
 }
 
 export const MsgUpdateParams = {
   encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
     if (message.params !== undefined) {
@@ -185,14 +183,14 @@ export const MsgUpdateParams = {
 
   fromJSON(object: any): MsgUpdateParams {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
     };
   },
 
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     if (message.params !== undefined) {
@@ -206,10 +204,9 @@ export const MsgUpdateParams = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
-    message.authority = object.authority ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.authority = object.authority ?? '';
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -274,7 +271,7 @@ export interface Msg {
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 
-export const MsgServiceName = "cosmos.slashing.v1beta1.Msg";
+export const MsgServiceName = 'cosmos.slashing.v1beta1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -286,13 +283,13 @@ export class MsgClientImpl implements Msg {
   }
   Unjail(request: MsgUnjail): Promise<MsgUnjailResponse> {
     const data = MsgUnjail.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Unjail", data);
+    const promise = this.rpc.request(this.service, 'Unjail', data);
     return promise.then((data) => MsgUnjailResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateParams", data);
+    const promise = this.rpc.request(this.service, 'UpdateParams', data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -303,13 +300,19 @@ interface Rpc {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {

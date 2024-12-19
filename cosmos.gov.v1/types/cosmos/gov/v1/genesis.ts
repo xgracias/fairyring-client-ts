@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Deposit, DepositParams, Params, Proposal, TallyParams, Vote, VotingParams } from "./gov";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Deposit, DepositParams, Params, Proposal, TallyParams, Vote, VotingParams } from './gov';
 
-export const protobufPackage = "cosmos.gov.v1";
+export const protobufPackage = 'cosmos.gov.v1';
 
 /** Since: cosmos-sdk 0.46 */
 
@@ -23,35 +23,27 @@ export interface GenesisState {
    *
    * @deprecated
    */
-  depositParams:
-    | DepositParams
-    | undefined;
+  depositParams: DepositParams | undefined;
   /**
    * Deprecated: Prefer to use `params` instead.
    * voting_params defines all the paramaters of related to voting.
    *
    * @deprecated
    */
-  votingParams:
-    | VotingParams
-    | undefined;
+  votingParams: VotingParams | undefined;
   /**
    * Deprecated: Prefer to use `params` instead.
    * tally_params defines all the paramaters of related to tally.
    *
    * @deprecated
    */
-  tallyParams:
-    | TallyParams
-    | undefined;
+  tallyParams: TallyParams | undefined;
   /**
    * params defines all the paramaters of x/gov module.
    *
    * Since: cosmos-sdk 0.47
    */
-  params:
-    | Params
-    | undefined;
+  params: Params | undefined;
   /**
    * The constitution allows builders to lay a foundation and define purpose.
    * This is an immutable string set in genesis.
@@ -74,8 +66,8 @@ function createBaseGenesisState(): GenesisState {
     votingParams: undefined,
     tallyParams: undefined,
     params: undefined,
-    constitution: "",
-    portId: "",
+    constitution: '',
+    portId: '',
   };
 }
 
@@ -105,10 +97,10 @@ export const GenesisState = {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(66).fork()).ldelim();
     }
-    if (message.constitution !== "") {
+    if (message.constitution !== '') {
       writer.uint32(74).string(message.constitution);
     }
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       writer.uint32(82).string(message.portId);
     }
     return writer;
@@ -210,8 +202,8 @@ export const GenesisState = {
       votingParams: isSet(object.votingParams) ? VotingParams.fromJSON(object.votingParams) : undefined,
       tallyParams: isSet(object.tallyParams) ? TallyParams.fromJSON(object.tallyParams) : undefined,
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      constitution: isSet(object.constitution) ? String(object.constitution) : "",
-      portId: isSet(object.portId) ? String(object.portId) : "",
+      constitution: isSet(object.constitution) ? String(object.constitution) : '',
+      portId: isSet(object.portId) ? String(object.portId) : '',
     };
   },
 
@@ -241,10 +233,10 @@ export const GenesisState = {
     if (message.params !== undefined) {
       obj.params = Params.toJSON(message.params);
     }
-    if (message.constitution !== "") {
+    if (message.constitution !== '') {
       obj.constitution = message.constitution;
     }
-    if (message.portId !== "") {
+    if (message.portId !== '') {
       obj.portId = message.portId;
     }
     return obj;
@@ -259,20 +251,22 @@ export const GenesisState = {
     message.deposits = object.deposits?.map((e) => Deposit.fromPartial(e)) || [];
     message.votes = object.votes?.map((e) => Vote.fromPartial(e)) || [];
     message.proposals = object.proposals?.map((e) => Proposal.fromPartial(e)) || [];
-    message.depositParams = (object.depositParams !== undefined && object.depositParams !== null)
-      ? DepositParams.fromPartial(object.depositParams)
-      : undefined;
-    message.votingParams = (object.votingParams !== undefined && object.votingParams !== null)
-      ? VotingParams.fromPartial(object.votingParams)
-      : undefined;
-    message.tallyParams = (object.tallyParams !== undefined && object.tallyParams !== null)
-      ? TallyParams.fromPartial(object.tallyParams)
-      : undefined;
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
-    message.constitution = object.constitution ?? "";
-    message.portId = object.portId ?? "";
+    message.depositParams =
+      object.depositParams !== undefined && object.depositParams !== null
+        ? DepositParams.fromPartial(object.depositParams)
+        : undefined;
+    message.votingParams =
+      object.votingParams !== undefined && object.votingParams !== null
+        ? VotingParams.fromPartial(object.votingParams)
+        : undefined;
+    message.tallyParams =
+      object.tallyParams !== undefined && object.tallyParams !== null
+        ? TallyParams.fromPartial(object.tallyParams)
+        : undefined;
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.constitution = object.constitution ?? '';
+    message.portId = object.portId ?? '';
     return message;
   },
 };
@@ -281,35 +275,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

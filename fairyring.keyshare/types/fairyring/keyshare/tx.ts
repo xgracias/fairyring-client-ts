@@ -1,10 +1,10 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Params } from "./params";
-import { EncryptedKeyShare } from "./pub_key";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Params } from './params';
+import { EncryptedKeyShare } from './pub_key';
 
-export const protobufPackage = "fairyring.keyshare";
+export const protobufPackage = 'fairyring.keyshare';
 
 /** MsgUpdateParams is the Msg/UpdateParams request type. */
 export interface MsgUpdateParams {
@@ -18,8 +18,7 @@ export interface MsgUpdateParams {
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
  */
-export interface MsgUpdateParamsResponse {
-}
+export interface MsgUpdateParamsResponse {}
 
 export interface MsgRegisterValidator {
   creator: string;
@@ -63,8 +62,7 @@ export interface MsgCreateLatestPubKey {
   encryptedKeyShares: EncryptedKeyShare[];
 }
 
-export interface MsgCreateLatestPubKeyResponse {
-}
+export interface MsgCreateLatestPubKeyResponse {}
 
 export interface MsgOverrideLatestPubKey {
   creator: string;
@@ -74,16 +72,14 @@ export interface MsgOverrideLatestPubKey {
   encryptedKeyShares: EncryptedKeyShare[];
 }
 
-export interface MsgOverrideLatestPubKeyResponse {
-}
+export interface MsgOverrideLatestPubKeyResponse {}
 
 export interface MsgCreateAuthorizedAddress {
   target: string;
   creator: string;
 }
 
-export interface MsgCreateAuthorizedAddressResponse {
-}
+export interface MsgCreateAuthorizedAddressResponse {}
 
 export interface MsgUpdateAuthorizedAddress {
   target: string;
@@ -91,16 +87,14 @@ export interface MsgUpdateAuthorizedAddress {
   creator: string;
 }
 
-export interface MsgUpdateAuthorizedAddressResponse {
-}
+export interface MsgUpdateAuthorizedAddressResponse {}
 
 export interface MsgDeleteAuthorizedAddress {
   target: string;
   creator: string;
 }
 
-export interface MsgDeleteAuthorizedAddressResponse {
-}
+export interface MsgDeleteAuthorizedAddressResponse {}
 
 export interface MsgCreateGeneralKeyShare {
   creator: string;
@@ -124,12 +118,12 @@ export interface MsgCreateGeneralKeyShareResponse {
 }
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { authority: "", params: undefined };
+  return { authority: '', params: undefined };
 }
 
 export const MsgUpdateParams = {
   encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
     if (message.params !== undefined) {
@@ -170,14 +164,14 @@ export const MsgUpdateParams = {
 
   fromJSON(object: any): MsgUpdateParams {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
     };
   },
 
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     if (message.params !== undefined) {
@@ -191,10 +185,9 @@ export const MsgUpdateParams = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
-    message.authority = object.authority ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.authority = object.authority ?? '';
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -243,12 +236,12 @@ export const MsgUpdateParamsResponse = {
 };
 
 function createBaseMsgRegisterValidator(): MsgRegisterValidator {
-  return { creator: "" };
+  return { creator: '' };
 }
 
 export const MsgRegisterValidator = {
   encode(message: MsgRegisterValidator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
     return writer;
@@ -278,12 +271,12 @@ export const MsgRegisterValidator = {
   },
 
   fromJSON(object: any): MsgRegisterValidator {
-    return { creator: isSet(object.creator) ? String(object.creator) : "" };
+    return { creator: isSet(object.creator) ? String(object.creator) : '' };
   },
 
   toJSON(message: MsgRegisterValidator): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     return obj;
@@ -294,18 +287,18 @@ export const MsgRegisterValidator = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgRegisterValidator>, I>>(object: I): MsgRegisterValidator {
     const message = createBaseMsgRegisterValidator();
-    message.creator = object.creator ?? "";
+    message.creator = object.creator ?? '';
     return message;
   },
 };
 
 function createBaseMsgRegisterValidatorResponse(): MsgRegisterValidatorResponse {
-  return { creator: "" };
+  return { creator: '' };
 }
 
 export const MsgRegisterValidatorResponse = {
   encode(message: MsgRegisterValidatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
     return writer;
@@ -335,12 +328,12 @@ export const MsgRegisterValidatorResponse = {
   },
 
   fromJSON(object: any): MsgRegisterValidatorResponse {
-    return { creator: isSet(object.creator) ? String(object.creator) : "" };
+    return { creator: isSet(object.creator) ? String(object.creator) : '' };
   },
 
   toJSON(message: MsgRegisterValidatorResponse): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     return obj;
@@ -351,18 +344,18 @@ export const MsgRegisterValidatorResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgRegisterValidatorResponse>, I>>(object: I): MsgRegisterValidatorResponse {
     const message = createBaseMsgRegisterValidatorResponse();
-    message.creator = object.creator ?? "";
+    message.creator = object.creator ?? '';
     return message;
   },
 };
 
 function createBaseMsgDeRegisterValidator(): MsgDeRegisterValidator {
-  return { creator: "" };
+  return { creator: '' };
 }
 
 export const MsgDeRegisterValidator = {
   encode(message: MsgDeRegisterValidator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
     return writer;
@@ -392,12 +385,12 @@ export const MsgDeRegisterValidator = {
   },
 
   fromJSON(object: any): MsgDeRegisterValidator {
-    return { creator: isSet(object.creator) ? String(object.creator) : "" };
+    return { creator: isSet(object.creator) ? String(object.creator) : '' };
   },
 
   toJSON(message: MsgDeRegisterValidator): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     return obj;
@@ -408,18 +401,18 @@ export const MsgDeRegisterValidator = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgDeRegisterValidator>, I>>(object: I): MsgDeRegisterValidator {
     const message = createBaseMsgDeRegisterValidator();
-    message.creator = object.creator ?? "";
+    message.creator = object.creator ?? '';
     return message;
   },
 };
 
 function createBaseMsgDeRegisterValidatorResponse(): MsgDeRegisterValidatorResponse {
-  return { creator: "" };
+  return { creator: '' };
 }
 
 export const MsgDeRegisterValidatorResponse = {
   encode(message: MsgDeRegisterValidatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
     return writer;
@@ -449,12 +442,12 @@ export const MsgDeRegisterValidatorResponse = {
   },
 
   fromJSON(object: any): MsgDeRegisterValidatorResponse {
-    return { creator: isSet(object.creator) ? String(object.creator) : "" };
+    return { creator: isSet(object.creator) ? String(object.creator) : '' };
   },
 
   toJSON(message: MsgDeRegisterValidatorResponse): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     return obj;
@@ -464,24 +457,24 @@ export const MsgDeRegisterValidatorResponse = {
     return MsgDeRegisterValidatorResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgDeRegisterValidatorResponse>, I>>(
-    object: I,
+    object: I
   ): MsgDeRegisterValidatorResponse {
     const message = createBaseMsgDeRegisterValidatorResponse();
-    message.creator = object.creator ?? "";
+    message.creator = object.creator ?? '';
     return message;
   },
 };
 
 function createBaseMsgSendKeyshare(): MsgSendKeyshare {
-  return { creator: "", message: "", keyShareIndex: 0, blockHeight: 0 };
+  return { creator: '', message: '', keyShareIndex: 0, blockHeight: 0 };
 }
 
 export const MsgSendKeyshare = {
   encode(message: MsgSendKeyshare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
-    if (message.message !== "") {
+    if (message.message !== '') {
       writer.uint32(18).string(message.message);
     }
     if (message.keyShareIndex !== 0) {
@@ -539,8 +532,8 @@ export const MsgSendKeyshare = {
 
   fromJSON(object: any): MsgSendKeyshare {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      message: isSet(object.message) ? String(object.message) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
+      message: isSet(object.message) ? String(object.message) : '',
       keyShareIndex: isSet(object.keyShareIndex) ? Number(object.keyShareIndex) : 0,
       blockHeight: isSet(object.blockHeight) ? Number(object.blockHeight) : 0,
     };
@@ -548,10 +541,10 @@ export const MsgSendKeyshare = {
 
   toJSON(message: MsgSendKeyshare): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
-    if (message.message !== "") {
+    if (message.message !== '') {
       obj.message = message.message;
     }
     if (message.keyShareIndex !== 0) {
@@ -568,8 +561,8 @@ export const MsgSendKeyshare = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgSendKeyshare>, I>>(object: I): MsgSendKeyshare {
     const message = createBaseMsgSendKeyshare();
-    message.creator = object.creator ?? "";
-    message.message = object.message ?? "";
+    message.creator = object.creator ?? '';
+    message.message = object.message ?? '';
     message.keyShareIndex = object.keyShareIndex ?? 0;
     message.blockHeight = object.blockHeight ?? 0;
     return message;
@@ -578,22 +571,22 @@ export const MsgSendKeyshare = {
 
 function createBaseMsgSendKeyshareResponse(): MsgSendKeyshareResponse {
   return {
-    creator: "",
-    keyshare: "",
+    creator: '',
+    keyshare: '',
     keyshareIndex: 0,
     blockHeight: 0,
     receivedBlockHeight: 0,
     success: false,
-    errorMessage: "",
+    errorMessage: '',
   };
 }
 
 export const MsgSendKeyshareResponse = {
   encode(message: MsgSendKeyshareResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
-    if (message.keyshare !== "") {
+    if (message.keyshare !== '') {
       writer.uint32(18).string(message.keyshare);
     }
     if (message.keyshareIndex !== 0) {
@@ -608,7 +601,7 @@ export const MsgSendKeyshareResponse = {
     if (message.success === true) {
       writer.uint32(48).bool(message.success);
     }
-    if (message.errorMessage !== "") {
+    if (message.errorMessage !== '') {
       writer.uint32(58).string(message.errorMessage);
     }
     return writer;
@@ -681,22 +674,22 @@ export const MsgSendKeyshareResponse = {
 
   fromJSON(object: any): MsgSendKeyshareResponse {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      keyshare: isSet(object.keyshare) ? String(object.keyshare) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
+      keyshare: isSet(object.keyshare) ? String(object.keyshare) : '',
       keyshareIndex: isSet(object.keyshareIndex) ? Number(object.keyshareIndex) : 0,
       blockHeight: isSet(object.blockHeight) ? Number(object.blockHeight) : 0,
       receivedBlockHeight: isSet(object.receivedBlockHeight) ? Number(object.receivedBlockHeight) : 0,
       success: isSet(object.success) ? Boolean(object.success) : false,
-      errorMessage: isSet(object.errorMessage) ? String(object.errorMessage) : "",
+      errorMessage: isSet(object.errorMessage) ? String(object.errorMessage) : '',
     };
   },
 
   toJSON(message: MsgSendKeyshareResponse): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
-    if (message.keyshare !== "") {
+    if (message.keyshare !== '') {
       obj.keyshare = message.keyshare;
     }
     if (message.keyshareIndex !== 0) {
@@ -711,7 +704,7 @@ export const MsgSendKeyshareResponse = {
     if (message.success === true) {
       obj.success = message.success;
     }
-    if (message.errorMessage !== "") {
+    if (message.errorMessage !== '') {
       obj.errorMessage = message.errorMessage;
     }
     return obj;
@@ -722,27 +715,27 @@ export const MsgSendKeyshareResponse = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgSendKeyshareResponse>, I>>(object: I): MsgSendKeyshareResponse {
     const message = createBaseMsgSendKeyshareResponse();
-    message.creator = object.creator ?? "";
-    message.keyshare = object.keyshare ?? "";
+    message.creator = object.creator ?? '';
+    message.keyshare = object.keyshare ?? '';
     message.keyshareIndex = object.keyshareIndex ?? 0;
     message.blockHeight = object.blockHeight ?? 0;
     message.receivedBlockHeight = object.receivedBlockHeight ?? 0;
     message.success = object.success ?? false;
-    message.errorMessage = object.errorMessage ?? "";
+    message.errorMessage = object.errorMessage ?? '';
     return message;
   },
 };
 
 function createBaseMsgCreateLatestPubKey(): MsgCreateLatestPubKey {
-  return { creator: "", publicKey: "", commitments: [], numberOfValidators: 0, encryptedKeyShares: [] };
+  return { creator: '', publicKey: '', commitments: [], numberOfValidators: 0, encryptedKeyShares: [] };
 }
 
 export const MsgCreateLatestPubKey = {
   encode(message: MsgCreateLatestPubKey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
-    if (message.publicKey !== "") {
+    if (message.publicKey !== '') {
       writer.uint32(18).string(message.publicKey);
     }
     for (const v of message.commitments) {
@@ -810,8 +803,8 @@ export const MsgCreateLatestPubKey = {
 
   fromJSON(object: any): MsgCreateLatestPubKey {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      publicKey: isSet(object.publicKey) ? String(object.publicKey) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
+      publicKey: isSet(object.publicKey) ? String(object.publicKey) : '',
       commitments: Array.isArray(object?.commitments) ? object.commitments.map((e: any) => String(e)) : [],
       numberOfValidators: isSet(object.numberOfValidators) ? Number(object.numberOfValidators) : 0,
       encryptedKeyShares: Array.isArray(object?.encryptedKeyShares)
@@ -822,10 +815,10 @@ export const MsgCreateLatestPubKey = {
 
   toJSON(message: MsgCreateLatestPubKey): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
-    if (message.publicKey !== "") {
+    if (message.publicKey !== '') {
       obj.publicKey = message.publicKey;
     }
     if (message.commitments?.length) {
@@ -845,8 +838,8 @@ export const MsgCreateLatestPubKey = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateLatestPubKey>, I>>(object: I): MsgCreateLatestPubKey {
     const message = createBaseMsgCreateLatestPubKey();
-    message.creator = object.creator ?? "";
-    message.publicKey = object.publicKey ?? "";
+    message.creator = object.creator ?? '';
+    message.publicKey = object.publicKey ?? '';
     message.commitments = object.commitments?.map((e) => e) || [];
     message.numberOfValidators = object.numberOfValidators ?? 0;
     message.encryptedKeyShares = object.encryptedKeyShares?.map((e) => EncryptedKeyShare.fromPartial(e)) || [];
@@ -898,15 +891,15 @@ export const MsgCreateLatestPubKeyResponse = {
 };
 
 function createBaseMsgOverrideLatestPubKey(): MsgOverrideLatestPubKey {
-  return { creator: "", publicKey: "", commitments: [], numberOfValidators: 0, encryptedKeyShares: [] };
+  return { creator: '', publicKey: '', commitments: [], numberOfValidators: 0, encryptedKeyShares: [] };
 }
 
 export const MsgOverrideLatestPubKey = {
   encode(message: MsgOverrideLatestPubKey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
-    if (message.publicKey !== "") {
+    if (message.publicKey !== '') {
       writer.uint32(18).string(message.publicKey);
     }
     for (const v of message.commitments) {
@@ -974,8 +967,8 @@ export const MsgOverrideLatestPubKey = {
 
   fromJSON(object: any): MsgOverrideLatestPubKey {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      publicKey: isSet(object.publicKey) ? String(object.publicKey) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
+      publicKey: isSet(object.publicKey) ? String(object.publicKey) : '',
       commitments: Array.isArray(object?.commitments) ? object.commitments.map((e: any) => String(e)) : [],
       numberOfValidators: isSet(object.numberOfValidators) ? Number(object.numberOfValidators) : 0,
       encryptedKeyShares: Array.isArray(object?.encryptedKeyShares)
@@ -986,10 +979,10 @@ export const MsgOverrideLatestPubKey = {
 
   toJSON(message: MsgOverrideLatestPubKey): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
-    if (message.publicKey !== "") {
+    if (message.publicKey !== '') {
       obj.publicKey = message.publicKey;
     }
     if (message.commitments?.length) {
@@ -1009,8 +1002,8 @@ export const MsgOverrideLatestPubKey = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgOverrideLatestPubKey>, I>>(object: I): MsgOverrideLatestPubKey {
     const message = createBaseMsgOverrideLatestPubKey();
-    message.creator = object.creator ?? "";
-    message.publicKey = object.publicKey ?? "";
+    message.creator = object.creator ?? '';
+    message.publicKey = object.publicKey ?? '';
     message.commitments = object.commitments?.map((e) => e) || [];
     message.numberOfValidators = object.numberOfValidators ?? 0;
     message.encryptedKeyShares = object.encryptedKeyShares?.map((e) => EncryptedKeyShare.fromPartial(e)) || [];
@@ -1062,15 +1055,15 @@ export const MsgOverrideLatestPubKeyResponse = {
 };
 
 function createBaseMsgCreateAuthorizedAddress(): MsgCreateAuthorizedAddress {
-  return { target: "", creator: "" };
+  return { target: '', creator: '' };
 }
 
 export const MsgCreateAuthorizedAddress = {
   encode(message: MsgCreateAuthorizedAddress, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.target !== "") {
+    if (message.target !== '') {
       writer.uint32(10).string(message.target);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(18).string(message.creator);
     }
     return writer;
@@ -1108,17 +1101,17 @@ export const MsgCreateAuthorizedAddress = {
 
   fromJSON(object: any): MsgCreateAuthorizedAddress {
     return {
-      target: isSet(object.target) ? String(object.target) : "",
-      creator: isSet(object.creator) ? String(object.creator) : "",
+      target: isSet(object.target) ? String(object.target) : '',
+      creator: isSet(object.creator) ? String(object.creator) : '',
     };
   },
 
   toJSON(message: MsgCreateAuthorizedAddress): unknown {
     const obj: any = {};
-    if (message.target !== "") {
+    if (message.target !== '') {
       obj.target = message.target;
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     return obj;
@@ -1129,8 +1122,8 @@ export const MsgCreateAuthorizedAddress = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateAuthorizedAddress>, I>>(object: I): MsgCreateAuthorizedAddress {
     const message = createBaseMsgCreateAuthorizedAddress();
-    message.target = object.target ?? "";
-    message.creator = object.creator ?? "";
+    message.target = object.target ?? '';
+    message.creator = object.creator ?? '';
     return message;
   },
 };
@@ -1170,12 +1163,12 @@ export const MsgCreateAuthorizedAddressResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgCreateAuthorizedAddressResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgCreateAuthorizedAddressResponse {
     return MsgCreateAuthorizedAddressResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateAuthorizedAddressResponse>, I>>(
-    _: I,
+    _: I
   ): MsgCreateAuthorizedAddressResponse {
     const message = createBaseMsgCreateAuthorizedAddressResponse();
     return message;
@@ -1183,18 +1176,18 @@ export const MsgCreateAuthorizedAddressResponse = {
 };
 
 function createBaseMsgUpdateAuthorizedAddress(): MsgUpdateAuthorizedAddress {
-  return { target: "", isAuthorized: false, creator: "" };
+  return { target: '', isAuthorized: false, creator: '' };
 }
 
 export const MsgUpdateAuthorizedAddress = {
   encode(message: MsgUpdateAuthorizedAddress, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.target !== "") {
+    if (message.target !== '') {
       writer.uint32(10).string(message.target);
     }
     if (message.isAuthorized === true) {
       writer.uint32(16).bool(message.isAuthorized);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(26).string(message.creator);
     }
     return writer;
@@ -1239,21 +1232,21 @@ export const MsgUpdateAuthorizedAddress = {
 
   fromJSON(object: any): MsgUpdateAuthorizedAddress {
     return {
-      target: isSet(object.target) ? String(object.target) : "",
+      target: isSet(object.target) ? String(object.target) : '',
       isAuthorized: isSet(object.isAuthorized) ? Boolean(object.isAuthorized) : false,
-      creator: isSet(object.creator) ? String(object.creator) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
     };
   },
 
   toJSON(message: MsgUpdateAuthorizedAddress): unknown {
     const obj: any = {};
-    if (message.target !== "") {
+    if (message.target !== '') {
       obj.target = message.target;
     }
     if (message.isAuthorized === true) {
       obj.isAuthorized = message.isAuthorized;
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     return obj;
@@ -1264,9 +1257,9 @@ export const MsgUpdateAuthorizedAddress = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateAuthorizedAddress>, I>>(object: I): MsgUpdateAuthorizedAddress {
     const message = createBaseMsgUpdateAuthorizedAddress();
-    message.target = object.target ?? "";
+    message.target = object.target ?? '';
     message.isAuthorized = object.isAuthorized ?? false;
-    message.creator = object.creator ?? "";
+    message.creator = object.creator ?? '';
     return message;
   },
 };
@@ -1306,12 +1299,12 @@ export const MsgUpdateAuthorizedAddressResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgUpdateAuthorizedAddressResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgUpdateAuthorizedAddressResponse {
     return MsgUpdateAuthorizedAddressResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateAuthorizedAddressResponse>, I>>(
-    _: I,
+    _: I
   ): MsgUpdateAuthorizedAddressResponse {
     const message = createBaseMsgUpdateAuthorizedAddressResponse();
     return message;
@@ -1319,15 +1312,15 @@ export const MsgUpdateAuthorizedAddressResponse = {
 };
 
 function createBaseMsgDeleteAuthorizedAddress(): MsgDeleteAuthorizedAddress {
-  return { target: "", creator: "" };
+  return { target: '', creator: '' };
 }
 
 export const MsgDeleteAuthorizedAddress = {
   encode(message: MsgDeleteAuthorizedAddress, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.target !== "") {
+    if (message.target !== '') {
       writer.uint32(10).string(message.target);
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(18).string(message.creator);
     }
     return writer;
@@ -1365,17 +1358,17 @@ export const MsgDeleteAuthorizedAddress = {
 
   fromJSON(object: any): MsgDeleteAuthorizedAddress {
     return {
-      target: isSet(object.target) ? String(object.target) : "",
-      creator: isSet(object.creator) ? String(object.creator) : "",
+      target: isSet(object.target) ? String(object.target) : '',
+      creator: isSet(object.creator) ? String(object.creator) : '',
     };
   },
 
   toJSON(message: MsgDeleteAuthorizedAddress): unknown {
     const obj: any = {};
-    if (message.target !== "") {
+    if (message.target !== '') {
       obj.target = message.target;
     }
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
     return obj;
@@ -1386,8 +1379,8 @@ export const MsgDeleteAuthorizedAddress = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgDeleteAuthorizedAddress>, I>>(object: I): MsgDeleteAuthorizedAddress {
     const message = createBaseMsgDeleteAuthorizedAddress();
-    message.target = object.target ?? "";
-    message.creator = object.creator ?? "";
+    message.target = object.target ?? '';
+    message.creator = object.creator ?? '';
     return message;
   },
 };
@@ -1427,12 +1420,12 @@ export const MsgDeleteAuthorizedAddressResponse = {
   },
 
   create<I extends Exact<DeepPartial<MsgDeleteAuthorizedAddressResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgDeleteAuthorizedAddressResponse {
     return MsgDeleteAuthorizedAddressResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgDeleteAuthorizedAddressResponse>, I>>(
-    _: I,
+    _: I
   ): MsgDeleteAuthorizedAddressResponse {
     const message = createBaseMsgDeleteAuthorizedAddressResponse();
     return message;
@@ -1441,10 +1434,10 @@ export const MsgDeleteAuthorizedAddressResponse = {
 
 function createBaseMsgCreateGeneralKeyShare(): MsgCreateGeneralKeyShare {
   return {
-    creator: "",
-    idType: "",
-    idValue: "",
-    keyShare: "",
+    creator: '',
+    idType: '',
+    idValue: '',
+    keyShare: '',
     keyShareIndex: 0,
     receivedTimestamp: 0,
     receivedBlockHeight: 0,
@@ -1453,16 +1446,16 @@ function createBaseMsgCreateGeneralKeyShare(): MsgCreateGeneralKeyShare {
 
 export const MsgCreateGeneralKeyShare = {
   encode(message: MsgCreateGeneralKeyShare, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
-    if (message.idType !== "") {
+    if (message.idType !== '') {
       writer.uint32(18).string(message.idType);
     }
-    if (message.idValue !== "") {
+    if (message.idValue !== '') {
       writer.uint32(26).string(message.idValue);
     }
-    if (message.keyShare !== "") {
+    if (message.keyShare !== '') {
       writer.uint32(34).string(message.keyShare);
     }
     if (message.keyShareIndex !== 0) {
@@ -1544,10 +1537,10 @@ export const MsgCreateGeneralKeyShare = {
 
   fromJSON(object: any): MsgCreateGeneralKeyShare {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      idType: isSet(object.idType) ? String(object.idType) : "",
-      idValue: isSet(object.idValue) ? String(object.idValue) : "",
-      keyShare: isSet(object.keyShare) ? String(object.keyShare) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
+      idType: isSet(object.idType) ? String(object.idType) : '',
+      idValue: isSet(object.idValue) ? String(object.idValue) : '',
+      keyShare: isSet(object.keyShare) ? String(object.keyShare) : '',
       keyShareIndex: isSet(object.keyShareIndex) ? Number(object.keyShareIndex) : 0,
       receivedTimestamp: isSet(object.receivedTimestamp) ? Number(object.receivedTimestamp) : 0,
       receivedBlockHeight: isSet(object.receivedBlockHeight) ? Number(object.receivedBlockHeight) : 0,
@@ -1556,16 +1549,16 @@ export const MsgCreateGeneralKeyShare = {
 
   toJSON(message: MsgCreateGeneralKeyShare): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
-    if (message.idType !== "") {
+    if (message.idType !== '') {
       obj.idType = message.idType;
     }
-    if (message.idValue !== "") {
+    if (message.idValue !== '') {
       obj.idValue = message.idValue;
     }
-    if (message.keyShare !== "") {
+    if (message.keyShare !== '') {
       obj.keyShare = message.keyShare;
     }
     if (message.keyShareIndex !== 0) {
@@ -1585,10 +1578,10 @@ export const MsgCreateGeneralKeyShare = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateGeneralKeyShare>, I>>(object: I): MsgCreateGeneralKeyShare {
     const message = createBaseMsgCreateGeneralKeyShare();
-    message.creator = object.creator ?? "";
-    message.idType = object.idType ?? "";
-    message.idValue = object.idValue ?? "";
-    message.keyShare = object.keyShare ?? "";
+    message.creator = object.creator ?? '';
+    message.idType = object.idType ?? '';
+    message.idValue = object.idValue ?? '';
+    message.keyShare = object.keyShare ?? '';
     message.keyShareIndex = object.keyShareIndex ?? 0;
     message.receivedTimestamp = object.receivedTimestamp ?? 0;
     message.receivedBlockHeight = object.receivedBlockHeight ?? 0;
@@ -1598,29 +1591,29 @@ export const MsgCreateGeneralKeyShare = {
 
 function createBaseMsgCreateGeneralKeyShareResponse(): MsgCreateGeneralKeyShareResponse {
   return {
-    creator: "",
-    idType: "",
-    idValue: "",
-    keyShare: "",
+    creator: '',
+    idType: '',
+    idValue: '',
+    keyShare: '',
     keyShareIndex: 0,
     receivedBlockHeight: 0,
     success: false,
-    errorMessage: "",
+    errorMessage: '',
   };
 }
 
 export const MsgCreateGeneralKeyShareResponse = {
   encode(message: MsgCreateGeneralKeyShareResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       writer.uint32(10).string(message.creator);
     }
-    if (message.idType !== "") {
+    if (message.idType !== '') {
       writer.uint32(18).string(message.idType);
     }
-    if (message.idValue !== "") {
+    if (message.idValue !== '') {
       writer.uint32(26).string(message.idValue);
     }
-    if (message.keyShare !== "") {
+    if (message.keyShare !== '') {
       writer.uint32(34).string(message.keyShare);
     }
     if (message.keyShareIndex !== 0) {
@@ -1632,7 +1625,7 @@ export const MsgCreateGeneralKeyShareResponse = {
     if (message.success === true) {
       writer.uint32(56).bool(message.success);
     }
-    if (message.errorMessage !== "") {
+    if (message.errorMessage !== '') {
       writer.uint32(66).string(message.errorMessage);
     }
     return writer;
@@ -1712,29 +1705,29 @@ export const MsgCreateGeneralKeyShareResponse = {
 
   fromJSON(object: any): MsgCreateGeneralKeyShareResponse {
     return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      idType: isSet(object.idType) ? String(object.idType) : "",
-      idValue: isSet(object.idValue) ? String(object.idValue) : "",
-      keyShare: isSet(object.keyShare) ? String(object.keyShare) : "",
+      creator: isSet(object.creator) ? String(object.creator) : '',
+      idType: isSet(object.idType) ? String(object.idType) : '',
+      idValue: isSet(object.idValue) ? String(object.idValue) : '',
+      keyShare: isSet(object.keyShare) ? String(object.keyShare) : '',
       keyShareIndex: isSet(object.keyShareIndex) ? Number(object.keyShareIndex) : 0,
       receivedBlockHeight: isSet(object.receivedBlockHeight) ? Number(object.receivedBlockHeight) : 0,
       success: isSet(object.success) ? Boolean(object.success) : false,
-      errorMessage: isSet(object.errorMessage) ? String(object.errorMessage) : "",
+      errorMessage: isSet(object.errorMessage) ? String(object.errorMessage) : '',
     };
   },
 
   toJSON(message: MsgCreateGeneralKeyShareResponse): unknown {
     const obj: any = {};
-    if (message.creator !== "") {
+    if (message.creator !== '') {
       obj.creator = message.creator;
     }
-    if (message.idType !== "") {
+    if (message.idType !== '') {
       obj.idType = message.idType;
     }
-    if (message.idValue !== "") {
+    if (message.idValue !== '') {
       obj.idValue = message.idValue;
     }
-    if (message.keyShare !== "") {
+    if (message.keyShare !== '') {
       obj.keyShare = message.keyShare;
     }
     if (message.keyShareIndex !== 0) {
@@ -1746,29 +1739,29 @@ export const MsgCreateGeneralKeyShareResponse = {
     if (message.success === true) {
       obj.success = message.success;
     }
-    if (message.errorMessage !== "") {
+    if (message.errorMessage !== '') {
       obj.errorMessage = message.errorMessage;
     }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<MsgCreateGeneralKeyShareResponse>, I>>(
-    base?: I,
+    base?: I
   ): MsgCreateGeneralKeyShareResponse {
     return MsgCreateGeneralKeyShareResponse.fromPartial(base ?? ({} as any));
   },
   fromPartial<I extends Exact<DeepPartial<MsgCreateGeneralKeyShareResponse>, I>>(
-    object: I,
+    object: I
   ): MsgCreateGeneralKeyShareResponse {
     const message = createBaseMsgCreateGeneralKeyShareResponse();
-    message.creator = object.creator ?? "";
-    message.idType = object.idType ?? "";
-    message.idValue = object.idValue ?? "";
-    message.keyShare = object.keyShare ?? "";
+    message.creator = object.creator ?? '';
+    message.idType = object.idType ?? '';
+    message.idValue = object.idValue ?? '';
+    message.keyShare = object.keyShare ?? '';
     message.keyShareIndex = object.keyShareIndex ?? 0;
     message.receivedBlockHeight = object.receivedBlockHeight ?? 0;
     message.success = object.success ?? false;
-    message.errorMessage = object.errorMessage ?? "";
+    message.errorMessage = object.errorMessage ?? '';
     return message;
   },
 };
@@ -1792,7 +1785,7 @@ export interface Msg {
   CreateGeneralKeyShare(request: MsgCreateGeneralKeyShare): Promise<MsgCreateGeneralKeyShareResponse>;
 }
 
-export const MsgServiceName = "fairyring.keyshare.Msg";
+export const MsgServiceName = 'fairyring.keyshare.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -1812,61 +1805,61 @@ export class MsgClientImpl implements Msg {
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateParams", data);
+    const promise = this.rpc.request(this.service, 'UpdateParams', data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 
   RegisterValidator(request: MsgRegisterValidator): Promise<MsgRegisterValidatorResponse> {
     const data = MsgRegisterValidator.encode(request).finish();
-    const promise = this.rpc.request(this.service, "RegisterValidator", data);
+    const promise = this.rpc.request(this.service, 'RegisterValidator', data);
     return promise.then((data) => MsgRegisterValidatorResponse.decode(_m0.Reader.create(data)));
   }
 
   DeRegisterValidator(request: MsgDeRegisterValidator): Promise<MsgDeRegisterValidatorResponse> {
     const data = MsgDeRegisterValidator.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DeRegisterValidator", data);
+    const promise = this.rpc.request(this.service, 'DeRegisterValidator', data);
     return promise.then((data) => MsgDeRegisterValidatorResponse.decode(_m0.Reader.create(data)));
   }
 
   SendKeyshare(request: MsgSendKeyshare): Promise<MsgSendKeyshareResponse> {
     const data = MsgSendKeyshare.encode(request).finish();
-    const promise = this.rpc.request(this.service, "SendKeyshare", data);
+    const promise = this.rpc.request(this.service, 'SendKeyshare', data);
     return promise.then((data) => MsgSendKeyshareResponse.decode(_m0.Reader.create(data)));
   }
 
   CreateLatestPubKey(request: MsgCreateLatestPubKey): Promise<MsgCreateLatestPubKeyResponse> {
     const data = MsgCreateLatestPubKey.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CreateLatestPubKey", data);
+    const promise = this.rpc.request(this.service, 'CreateLatestPubKey', data);
     return promise.then((data) => MsgCreateLatestPubKeyResponse.decode(_m0.Reader.create(data)));
   }
 
   OverrideLatestPubKey(request: MsgOverrideLatestPubKey): Promise<MsgOverrideLatestPubKeyResponse> {
     const data = MsgOverrideLatestPubKey.encode(request).finish();
-    const promise = this.rpc.request(this.service, "OverrideLatestPubKey", data);
+    const promise = this.rpc.request(this.service, 'OverrideLatestPubKey', data);
     return promise.then((data) => MsgOverrideLatestPubKeyResponse.decode(_m0.Reader.create(data)));
   }
 
   CreateAuthorizedAddress(request: MsgCreateAuthorizedAddress): Promise<MsgCreateAuthorizedAddressResponse> {
     const data = MsgCreateAuthorizedAddress.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CreateAuthorizedAddress", data);
+    const promise = this.rpc.request(this.service, 'CreateAuthorizedAddress', data);
     return promise.then((data) => MsgCreateAuthorizedAddressResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateAuthorizedAddress(request: MsgUpdateAuthorizedAddress): Promise<MsgUpdateAuthorizedAddressResponse> {
     const data = MsgUpdateAuthorizedAddress.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateAuthorizedAddress", data);
+    const promise = this.rpc.request(this.service, 'UpdateAuthorizedAddress', data);
     return promise.then((data) => MsgUpdateAuthorizedAddressResponse.decode(_m0.Reader.create(data)));
   }
 
   DeleteAuthorizedAddress(request: MsgDeleteAuthorizedAddress): Promise<MsgDeleteAuthorizedAddressResponse> {
     const data = MsgDeleteAuthorizedAddress.encode(request).finish();
-    const promise = this.rpc.request(this.service, "DeleteAuthorizedAddress", data);
+    const promise = this.rpc.request(this.service, 'DeleteAuthorizedAddress', data);
     return promise.then((data) => MsgDeleteAuthorizedAddressResponse.decode(_m0.Reader.create(data)));
   }
 
   CreateGeneralKeyShare(request: MsgCreateGeneralKeyShare): Promise<MsgCreateGeneralKeyShareResponse> {
     const data = MsgCreateGeneralKeyShare.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CreateGeneralKeyShare", data);
+    const promise = this.rpc.request(this.service, 'CreateGeneralKeyShare', data);
     return promise.then((data) => MsgCreateGeneralKeyShareResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -1879,35 +1872,41 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

@@ -1,12 +1,12 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Any } from "../../../google/protobuf/any";
-import { Timestamp } from "../../../google/protobuf/timestamp";
-import { Coin } from "../../base/v1beta1/coin";
-import { Params, VoteOption, voteOptionFromJSON, voteOptionToJSON, WeightedVoteOption } from "./gov";
+import Long from 'long';
+import _m0 from 'protobufjs/minimal';
+import { Any } from '../../../google/protobuf/any';
+import { Timestamp } from '../../../google/protobuf/timestamp';
+import { Coin } from '../../base/v1beta1/coin';
+import { Params, VoteOption, voteOptionFromJSON, voteOptionToJSON, WeightedVoteOption } from './gov';
 
-export const protobufPackage = "cosmos.gov.v1";
+export const protobufPackage = 'cosmos.gov.v1';
 
 /** Since: cosmos-sdk 0.46 */
 
@@ -55,16 +55,13 @@ export interface MsgSubmitProposalResponse {
  */
 export interface MsgExecLegacyContent {
   /** content is the proposal's content. */
-  content:
-    | Any
-    | undefined;
+  content: Any | undefined;
   /** authority must be the gov module address. */
   authority: string;
 }
 
 /** MsgExecLegacyContentResponse defines the Msg/ExecLegacyContent response type. */
-export interface MsgExecLegacyContentResponse {
-}
+export interface MsgExecLegacyContentResponse {}
 
 /** MsgVote defines a message to cast a vote. */
 export interface MsgVote {
@@ -79,8 +76,7 @@ export interface MsgVote {
 }
 
 /** MsgVoteResponse defines the Msg/Vote response type. */
-export interface MsgVoteResponse {
-}
+export interface MsgVoteResponse {}
 
 /** MsgVoteEncrypted defines a message to cast an encrypted vote. */
 export interface MsgVoteEncrypted {
@@ -95,8 +91,7 @@ export interface MsgVoteEncrypted {
 }
 
 /** MsgVoteResponse defines the Msg/Vote response type. */
-export interface MsgVoteEncryptedResponse {
-}
+export interface MsgVoteEncryptedResponse {}
 
 /** MsgVoteWeighted defines a message to cast a vote. */
 export interface MsgVoteWeighted {
@@ -111,8 +106,7 @@ export interface MsgVoteWeighted {
 }
 
 /** MsgVoteWeightedResponse defines the Msg/VoteWeighted response type. */
-export interface MsgVoteWeightedResponse {
-}
+export interface MsgVoteWeightedResponse {}
 
 /** MsgDeposit defines a message to submit a deposit to an existing proposal. */
 export interface MsgDeposit {
@@ -125,8 +119,7 @@ export interface MsgDeposit {
 }
 
 /** MsgDepositResponse defines the Msg/Deposit response type. */
-export interface MsgDepositResponse {
-}
+export interface MsgDepositResponse {}
 
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
@@ -150,8 +143,7 @@ export interface MsgUpdateParams {
  *
  * Since: cosmos-sdk 0.47
  */
-export interface MsgUpdateParamsResponse {
-}
+export interface MsgUpdateParamsResponse {}
 
 /**
  * MsgCancelProposal is the Msg/CancelProposal request type.
@@ -175,15 +167,13 @@ export interface MsgCancelProposalResponse {
   /** proposal_id defines the unique id of the proposal. */
   proposalId: number;
   /** canceled_time is the time when proposal is canceled. */
-  canceledTime:
-    | Date
-    | undefined;
+  canceledTime: Date | undefined;
   /** canceled_height defines the block height at which the proposal is canceled. */
   canceledHeight: number;
 }
 
 function createBaseMsgSubmitProposal(): MsgSubmitProposal {
-  return { messages: [], initialDeposit: [], proposer: "", metadata: "", title: "", summary: "", expedited: false };
+  return { messages: [], initialDeposit: [], proposer: '', metadata: '', title: '', summary: '', expedited: false };
 }
 
 export const MsgSubmitProposal = {
@@ -194,16 +184,16 @@ export const MsgSubmitProposal = {
     for (const v of message.initialDeposit) {
       Coin.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    if (message.proposer !== "") {
+    if (message.proposer !== '') {
       writer.uint32(26).string(message.proposer);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(34).string(message.metadata);
     }
-    if (message.title !== "") {
+    if (message.title !== '') {
       writer.uint32(42).string(message.title);
     }
-    if (message.summary !== "") {
+    if (message.summary !== '') {
       writer.uint32(50).string(message.summary);
     }
     if (message.expedited === true) {
@@ -283,10 +273,10 @@ export const MsgSubmitProposal = {
       initialDeposit: Array.isArray(object?.initialDeposit)
         ? object.initialDeposit.map((e: any) => Coin.fromJSON(e))
         : [],
-      proposer: isSet(object.proposer) ? String(object.proposer) : "",
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
-      title: isSet(object.title) ? String(object.title) : "",
-      summary: isSet(object.summary) ? String(object.summary) : "",
+      proposer: isSet(object.proposer) ? String(object.proposer) : '',
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
+      title: isSet(object.title) ? String(object.title) : '',
+      summary: isSet(object.summary) ? String(object.summary) : '',
       expedited: isSet(object.expedited) ? Boolean(object.expedited) : false,
     };
   },
@@ -299,16 +289,16 @@ export const MsgSubmitProposal = {
     if (message.initialDeposit?.length) {
       obj.initialDeposit = message.initialDeposit.map((e) => Coin.toJSON(e));
     }
-    if (message.proposer !== "") {
+    if (message.proposer !== '') {
       obj.proposer = message.proposer;
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
-    if (message.title !== "") {
+    if (message.title !== '') {
       obj.title = message.title;
     }
-    if (message.summary !== "") {
+    if (message.summary !== '') {
       obj.summary = message.summary;
     }
     if (message.expedited === true) {
@@ -324,10 +314,10 @@ export const MsgSubmitProposal = {
     const message = createBaseMsgSubmitProposal();
     message.messages = object.messages?.map((e) => Any.fromPartial(e)) || [];
     message.initialDeposit = object.initialDeposit?.map((e) => Coin.fromPartial(e)) || [];
-    message.proposer = object.proposer ?? "";
-    message.metadata = object.metadata ?? "";
-    message.title = object.title ?? "";
-    message.summary = object.summary ?? "";
+    message.proposer = object.proposer ?? '';
+    message.metadata = object.metadata ?? '';
+    message.title = object.title ?? '';
+    message.summary = object.summary ?? '';
     message.expedited = object.expedited ?? false;
     return message;
   },
@@ -391,7 +381,7 @@ export const MsgSubmitProposalResponse = {
 };
 
 function createBaseMsgExecLegacyContent(): MsgExecLegacyContent {
-  return { content: undefined, authority: "" };
+  return { content: undefined, authority: '' };
 }
 
 export const MsgExecLegacyContent = {
@@ -399,7 +389,7 @@ export const MsgExecLegacyContent = {
     if (message.content !== undefined) {
       Any.encode(message.content, writer.uint32(10).fork()).ldelim();
     }
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(18).string(message.authority);
     }
     return writer;
@@ -438,7 +428,7 @@ export const MsgExecLegacyContent = {
   fromJSON(object: any): MsgExecLegacyContent {
     return {
       content: isSet(object.content) ? Any.fromJSON(object.content) : undefined,
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
     };
   },
 
@@ -447,7 +437,7 @@ export const MsgExecLegacyContent = {
     if (message.content !== undefined) {
       obj.content = Any.toJSON(message.content);
     }
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     return obj;
@@ -458,10 +448,9 @@ export const MsgExecLegacyContent = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgExecLegacyContent>, I>>(object: I): MsgExecLegacyContent {
     const message = createBaseMsgExecLegacyContent();
-    message.content = (object.content !== undefined && object.content !== null)
-      ? Any.fromPartial(object.content)
-      : undefined;
-    message.authority = object.authority ?? "";
+    message.content =
+      object.content !== undefined && object.content !== null ? Any.fromPartial(object.content) : undefined;
+    message.authority = object.authority ?? '';
     return message;
   },
 };
@@ -510,7 +499,7 @@ export const MsgExecLegacyContentResponse = {
 };
 
 function createBaseMsgVote(): MsgVote {
-  return { proposalId: 0, voter: "", option: 0, metadata: "" };
+  return { proposalId: 0, voter: '', option: 0, metadata: '' };
 }
 
 export const MsgVote = {
@@ -518,13 +507,13 @@ export const MsgVote = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.voter !== "") {
+    if (message.voter !== '') {
       writer.uint32(18).string(message.voter);
     }
     if (message.option !== 0) {
       writer.uint32(24).int32(message.option);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(34).string(message.metadata);
     }
     return writer;
@@ -577,9 +566,9 @@ export const MsgVote = {
   fromJSON(object: any): MsgVote {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      voter: isSet(object.voter) ? String(object.voter) : "",
+      voter: isSet(object.voter) ? String(object.voter) : '',
       option: isSet(object.option) ? voteOptionFromJSON(object.option) : 0,
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
     };
   },
 
@@ -588,13 +577,13 @@ export const MsgVote = {
     if (message.proposalId !== 0) {
       obj.proposalId = Math.round(message.proposalId);
     }
-    if (message.voter !== "") {
+    if (message.voter !== '') {
       obj.voter = message.voter;
     }
     if (message.option !== 0) {
       obj.option = voteOptionToJSON(message.option);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     return obj;
@@ -606,9 +595,9 @@ export const MsgVote = {
   fromPartial<I extends Exact<DeepPartial<MsgVote>, I>>(object: I): MsgVote {
     const message = createBaseMsgVote();
     message.proposalId = object.proposalId ?? 0;
-    message.voter = object.voter ?? "";
+    message.voter = object.voter ?? '';
     message.option = object.option ?? 0;
-    message.metadata = object.metadata ?? "";
+    message.metadata = object.metadata ?? '';
     return message;
   },
 };
@@ -657,7 +646,7 @@ export const MsgVoteResponse = {
 };
 
 function createBaseMsgVoteEncrypted(): MsgVoteEncrypted {
-  return { proposalId: 0, voter: "", encryptedData: "", metadata: "" };
+  return { proposalId: 0, voter: '', encryptedData: '', metadata: '' };
 }
 
 export const MsgVoteEncrypted = {
@@ -665,13 +654,13 @@ export const MsgVoteEncrypted = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.voter !== "") {
+    if (message.voter !== '') {
       writer.uint32(18).string(message.voter);
     }
-    if (message.encryptedData !== "") {
+    if (message.encryptedData !== '') {
       writer.uint32(26).string(message.encryptedData);
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(34).string(message.metadata);
     }
     return writer;
@@ -724,9 +713,9 @@ export const MsgVoteEncrypted = {
   fromJSON(object: any): MsgVoteEncrypted {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      voter: isSet(object.voter) ? String(object.voter) : "",
-      encryptedData: isSet(object.encryptedData) ? String(object.encryptedData) : "",
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      voter: isSet(object.voter) ? String(object.voter) : '',
+      encryptedData: isSet(object.encryptedData) ? String(object.encryptedData) : '',
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
     };
   },
 
@@ -735,13 +724,13 @@ export const MsgVoteEncrypted = {
     if (message.proposalId !== 0) {
       obj.proposalId = Math.round(message.proposalId);
     }
-    if (message.voter !== "") {
+    if (message.voter !== '') {
       obj.voter = message.voter;
     }
-    if (message.encryptedData !== "") {
+    if (message.encryptedData !== '') {
       obj.encryptedData = message.encryptedData;
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     return obj;
@@ -753,9 +742,9 @@ export const MsgVoteEncrypted = {
   fromPartial<I extends Exact<DeepPartial<MsgVoteEncrypted>, I>>(object: I): MsgVoteEncrypted {
     const message = createBaseMsgVoteEncrypted();
     message.proposalId = object.proposalId ?? 0;
-    message.voter = object.voter ?? "";
-    message.encryptedData = object.encryptedData ?? "";
-    message.metadata = object.metadata ?? "";
+    message.voter = object.voter ?? '';
+    message.encryptedData = object.encryptedData ?? '';
+    message.metadata = object.metadata ?? '';
     return message;
   },
 };
@@ -804,7 +793,7 @@ export const MsgVoteEncryptedResponse = {
 };
 
 function createBaseMsgVoteWeighted(): MsgVoteWeighted {
-  return { proposalId: 0, voter: "", options: [], metadata: "" };
+  return { proposalId: 0, voter: '', options: [], metadata: '' };
 }
 
 export const MsgVoteWeighted = {
@@ -812,13 +801,13 @@ export const MsgVoteWeighted = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.voter !== "") {
+    if (message.voter !== '') {
       writer.uint32(18).string(message.voter);
     }
     for (const v of message.options) {
       WeightedVoteOption.encode(v!, writer.uint32(26).fork()).ldelim();
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       writer.uint32(34).string(message.metadata);
     }
     return writer;
@@ -871,9 +860,9 @@ export const MsgVoteWeighted = {
   fromJSON(object: any): MsgVoteWeighted {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      voter: isSet(object.voter) ? String(object.voter) : "",
+      voter: isSet(object.voter) ? String(object.voter) : '',
       options: Array.isArray(object?.options) ? object.options.map((e: any) => WeightedVoteOption.fromJSON(e)) : [],
-      metadata: isSet(object.metadata) ? String(object.metadata) : "",
+      metadata: isSet(object.metadata) ? String(object.metadata) : '',
     };
   },
 
@@ -882,13 +871,13 @@ export const MsgVoteWeighted = {
     if (message.proposalId !== 0) {
       obj.proposalId = Math.round(message.proposalId);
     }
-    if (message.voter !== "") {
+    if (message.voter !== '') {
       obj.voter = message.voter;
     }
     if (message.options?.length) {
       obj.options = message.options.map((e) => WeightedVoteOption.toJSON(e));
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== '') {
       obj.metadata = message.metadata;
     }
     return obj;
@@ -900,9 +889,9 @@ export const MsgVoteWeighted = {
   fromPartial<I extends Exact<DeepPartial<MsgVoteWeighted>, I>>(object: I): MsgVoteWeighted {
     const message = createBaseMsgVoteWeighted();
     message.proposalId = object.proposalId ?? 0;
-    message.voter = object.voter ?? "";
+    message.voter = object.voter ?? '';
     message.options = object.options?.map((e) => WeightedVoteOption.fromPartial(e)) || [];
-    message.metadata = object.metadata ?? "";
+    message.metadata = object.metadata ?? '';
     return message;
   },
 };
@@ -951,7 +940,7 @@ export const MsgVoteWeightedResponse = {
 };
 
 function createBaseMsgDeposit(): MsgDeposit {
-  return { proposalId: 0, depositor: "", amount: [] };
+  return { proposalId: 0, depositor: '', amount: [] };
 }
 
 export const MsgDeposit = {
@@ -959,7 +948,7 @@ export const MsgDeposit = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.depositor !== "") {
+    if (message.depositor !== '') {
       writer.uint32(18).string(message.depositor);
     }
     for (const v of message.amount) {
@@ -1008,7 +997,7 @@ export const MsgDeposit = {
   fromJSON(object: any): MsgDeposit {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      depositor: isSet(object.depositor) ? String(object.depositor) : "",
+      depositor: isSet(object.depositor) ? String(object.depositor) : '',
       amount: Array.isArray(object?.amount) ? object.amount.map((e: any) => Coin.fromJSON(e)) : [],
     };
   },
@@ -1018,7 +1007,7 @@ export const MsgDeposit = {
     if (message.proposalId !== 0) {
       obj.proposalId = Math.round(message.proposalId);
     }
-    if (message.depositor !== "") {
+    if (message.depositor !== '') {
       obj.depositor = message.depositor;
     }
     if (message.amount?.length) {
@@ -1033,7 +1022,7 @@ export const MsgDeposit = {
   fromPartial<I extends Exact<DeepPartial<MsgDeposit>, I>>(object: I): MsgDeposit {
     const message = createBaseMsgDeposit();
     message.proposalId = object.proposalId ?? 0;
-    message.depositor = object.depositor ?? "";
+    message.depositor = object.depositor ?? '';
     message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
@@ -1083,12 +1072,12 @@ export const MsgDepositResponse = {
 };
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
-  return { authority: "", params: undefined };
+  return { authority: '', params: undefined };
 }
 
 export const MsgUpdateParams = {
   encode(message: MsgUpdateParams, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       writer.uint32(10).string(message.authority);
     }
     if (message.params !== undefined) {
@@ -1129,14 +1118,14 @@ export const MsgUpdateParams = {
 
   fromJSON(object: any): MsgUpdateParams {
     return {
-      authority: isSet(object.authority) ? String(object.authority) : "",
+      authority: isSet(object.authority) ? String(object.authority) : '',
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
     };
   },
 
   toJSON(message: MsgUpdateParams): unknown {
     const obj: any = {};
-    if (message.authority !== "") {
+    if (message.authority !== '') {
       obj.authority = message.authority;
     }
     if (message.params !== undefined) {
@@ -1150,10 +1139,9 @@ export const MsgUpdateParams = {
   },
   fromPartial<I extends Exact<DeepPartial<MsgUpdateParams>, I>>(object: I): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
-    message.authority = object.authority ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Params.fromPartial(object.params)
-      : undefined;
+    message.authority = object.authority ?? '';
+    message.params =
+      object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
 };
@@ -1202,7 +1190,7 @@ export const MsgUpdateParamsResponse = {
 };
 
 function createBaseMsgCancelProposal(): MsgCancelProposal {
-  return { proposalId: 0, proposer: "" };
+  return { proposalId: 0, proposer: '' };
 }
 
 export const MsgCancelProposal = {
@@ -1210,7 +1198,7 @@ export const MsgCancelProposal = {
     if (message.proposalId !== 0) {
       writer.uint32(8).uint64(message.proposalId);
     }
-    if (message.proposer !== "") {
+    if (message.proposer !== '') {
       writer.uint32(18).string(message.proposer);
     }
     return writer;
@@ -1249,7 +1237,7 @@ export const MsgCancelProposal = {
   fromJSON(object: any): MsgCancelProposal {
     return {
       proposalId: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      proposer: isSet(object.proposer) ? String(object.proposer) : "",
+      proposer: isSet(object.proposer) ? String(object.proposer) : '',
     };
   },
 
@@ -1258,7 +1246,7 @@ export const MsgCancelProposal = {
     if (message.proposalId !== 0) {
       obj.proposalId = Math.round(message.proposalId);
     }
-    if (message.proposer !== "") {
+    if (message.proposer !== '') {
       obj.proposer = message.proposer;
     }
     return obj;
@@ -1270,7 +1258,7 @@ export const MsgCancelProposal = {
   fromPartial<I extends Exact<DeepPartial<MsgCancelProposal>, I>>(object: I): MsgCancelProposal {
     const message = createBaseMsgCancelProposal();
     message.proposalId = object.proposalId ?? 0;
-    message.proposer = object.proposer ?? "";
+    message.proposer = object.proposer ?? '';
     return message;
   },
 };
@@ -1396,7 +1384,7 @@ export interface Msg {
   CancelProposal(request: MsgCancelProposal): Promise<MsgCancelProposalResponse>;
 }
 
-export const MsgServiceName = "cosmos.gov.v1.Msg";
+export const MsgServiceName = 'cosmos.gov.v1.Msg';
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;
@@ -1414,49 +1402,49 @@ export class MsgClientImpl implements Msg {
   }
   SubmitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse> {
     const data = MsgSubmitProposal.encode(request).finish();
-    const promise = this.rpc.request(this.service, "SubmitProposal", data);
+    const promise = this.rpc.request(this.service, 'SubmitProposal', data);
     return promise.then((data) => MsgSubmitProposalResponse.decode(_m0.Reader.create(data)));
   }
 
   ExecLegacyContent(request: MsgExecLegacyContent): Promise<MsgExecLegacyContentResponse> {
     const data = MsgExecLegacyContent.encode(request).finish();
-    const promise = this.rpc.request(this.service, "ExecLegacyContent", data);
+    const promise = this.rpc.request(this.service, 'ExecLegacyContent', data);
     return promise.then((data) => MsgExecLegacyContentResponse.decode(_m0.Reader.create(data)));
   }
 
   Vote(request: MsgVote): Promise<MsgVoteResponse> {
     const data = MsgVote.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Vote", data);
+    const promise = this.rpc.request(this.service, 'Vote', data);
     return promise.then((data) => MsgVoteResponse.decode(_m0.Reader.create(data)));
   }
 
   VoteEncrypted(request: MsgVoteEncrypted): Promise<MsgVoteEncryptedResponse> {
     const data = MsgVoteEncrypted.encode(request).finish();
-    const promise = this.rpc.request(this.service, "VoteEncrypted", data);
+    const promise = this.rpc.request(this.service, 'VoteEncrypted', data);
     return promise.then((data) => MsgVoteEncryptedResponse.decode(_m0.Reader.create(data)));
   }
 
   VoteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse> {
     const data = MsgVoteWeighted.encode(request).finish();
-    const promise = this.rpc.request(this.service, "VoteWeighted", data);
+    const promise = this.rpc.request(this.service, 'VoteWeighted', data);
     return promise.then((data) => MsgVoteWeightedResponse.decode(_m0.Reader.create(data)));
   }
 
   Deposit(request: MsgDeposit): Promise<MsgDepositResponse> {
     const data = MsgDeposit.encode(request).finish();
-    const promise = this.rpc.request(this.service, "Deposit", data);
+    const promise = this.rpc.request(this.service, 'Deposit', data);
     return promise.then((data) => MsgDepositResponse.decode(_m0.Reader.create(data)));
   }
 
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request(this.service, "UpdateParams", data);
+    const promise = this.rpc.request(this.service, 'UpdateParams', data);
     return promise.then((data) => MsgUpdateParamsResponse.decode(_m0.Reader.create(data)));
   }
 
   CancelProposal(request: MsgCancelProposal): Promise<MsgCancelProposalResponse> {
     const data = MsgCancelProposal.encode(request).finish();
-    const promise = this.rpc.request(this.service, "CancelProposal", data);
+    const promise = this.rpc.request(this.service, 'CancelProposal', data);
     return promise.then((data) => MsgCancelProposalResponse.decode(_m0.Reader.create(data)));
   }
 }
@@ -1469,30 +1457,36 @@ declare const self: any | undefined;
 declare const window: any | undefined;
 declare const global: any | undefined;
 const tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
+  if (typeof globalThis !== 'undefined') {
     return globalThis;
   }
-  if (typeof self !== "undefined") {
+  if (typeof self !== 'undefined') {
     return self;
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     return window;
   }
-  if (typeof global !== "undefined") {
+  if (typeof global !== 'undefined') {
     return global;
   }
-  throw "Unable to locate global object";
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends ReadonlyArray<infer U>
+      ? ReadonlyArray<DeepPartial<U>>
+      : T extends {}
+        ? { [K in keyof T]?: DeepPartial<T[K]> }
+        : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function toTimestamp(date: Date): Timestamp {
@@ -1510,7 +1504,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === "string") {
+  } else if (typeof o === 'string') {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -1519,7 +1513,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }
